@@ -4,7 +4,6 @@ Modified: 2017-05-25 10:05
 Category: Python
 Tags: pelican, publishing
 Authors: Ace Fei
-Summary: Short version for index and feeds
 
 ### Make a Github Pages blog with Pelican:
 ####  Install dependence
@@ -88,13 +87,18 @@ $ fg
 ```
 #### Publish
 If everything is OK, generate the website.
+
 Currently, all pelican settings that are used to render HTML are on pelican branch.
+
 As previously mentioned, the static website content should be pulish from master branch.
+
 So, I will publish twice:
+
 For website: 
 ```
 $ make github
 ```
+
 For pelican settings:
 ```
 $ echo -e "*.pyc\noutput/" >> .gitignore
@@ -105,5 +109,9 @@ $ git push -u origin pelican
 
 
 #### Finally
-Everything can be customized in Pelican. To start with, you can choose from [a set of themes](http://pelicanthemes.com/). There are also [a set of plug-ins](https://github.com/getpelican/pelican-plugins) that help you add various functions to your site. Of course, you can write your own, or customize existing plugins and themes.
+Everything can be customized in Pelican. 
+
+To start with, you can choose from [a set of themes](http://pelicanthemes.com/). 
+
+There are also [a set of plug-ins](https://github.com/getpelican/pelican-plugins) that help you add various functions to your site. Of course, you can write your own, or customize existing plugins and themes.
 
