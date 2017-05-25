@@ -37,7 +37,7 @@ needed by Pelican.
 
 ```
 
-# 3. [Write first post](http://docs.getpelican.com/en/3.6.3/content.html)
+#####  3. [Write first post](http://docs.getpelican.com/en/3.6.3/content.html)
 this script will create a template with md format
 ```
 $ cat create_new_blog.sh
@@ -65,7 +65,7 @@ $ firefox http://localhost:8000/
 $ fg
 # Then, Ctrl+C to terminate the process
 ```
-# 3. Publish
+##### 4. Publish
 If everything is OK, generate the website
 ```
 $ make publish
@@ -81,5 +81,5 @@ $ git push -u origin master
 ```
 
 
-#### Finally
+### Finally
 Everything can be customized in Pelican. To start with, you can choose from [a set of themes](http://pelicanthemes.com/). There are also [a set of plug-ins](https://github.com/getpelican/pelican-plugins) that help you add various functions to your site. Of course, you can write your own, or customize existing plugins and themes.
