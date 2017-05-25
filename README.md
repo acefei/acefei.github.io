@@ -1,12 +1,21 @@
 参考：[使用Pelican + Github Pages搭建个人博客](http://www.wengweitao.com/shi-yong-pelican-github-pagesda-jian-ge-ren-bo-ke.html)
 
 ### Make a Github Pages blog with Pelican:
-##### 1. install dependence
+####  Install dependence
 ```
 sudo yum install -y git
-sudo pip install pelican markdown
+sudo pip install pelican markdown ghp-import
 ```
-##### 2. Set up the blog with Pelican
+
+####  Create user pages
+There are two basic types of GitHub Pages: [User/Organization Pages and Project Pages](https://help.github.com/articles/user-organization-and-project-pages/). 
+Generally, most people will select User Pages, and there are two caveat as below:
+> You must use the *username.github.io* naming scheme.
+> Content from the *master* branch will be used to build and publish your GitHub Pages site.
+When User Pages are built, they are available at http(s)://<username>.github.io.
+
+
+####  Set up the blog with Pelican
 ```
 $ git clone https://github.com/acefei/acefei.github.io
 $ cd acefei.github.io/
@@ -39,7 +48,7 @@ needed by Pelican.
 
 ```
 
-#####  3. [Write first post](http://docs.getpelican.com/en/3.6.3/content.html)
+####  [Write first post](http://docs.getpelican.com/en/3.6.3/content.html)
 this script will create a template with md format
 ```
 $ cat create_new_blog.sh
@@ -67,7 +76,7 @@ $ firefox http://localhost:8000/
 $ fg
 # Then, Ctrl+C to terminate the process
 ```
-##### 4. Publish
+#### Publish
 If everything is OK, generate the website
 ```
 $ make publish
@@ -83,5 +92,5 @@ $ git push -u origin master
 ```
 
 
-### Finally
+#### Finally
 Everything can be customized in Pelican. To start with, you can choose from [a set of themes](http://pelicanthemes.com/). There are also [a set of plug-ins](https://github.com/getpelican/pelican-plugins) that help you add various functions to your site. Of course, you can write your own, or customize existing plugins and themes.
