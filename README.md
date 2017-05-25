@@ -1,5 +1,4 @@
-[使用Pelican + Github Pages搭建个人博客](http://www.wengweitao.com/shi-yong-pelican-github-pagesda-jian-ge-ren-bo-ke.html)
-
+参考：[使用Pelican + Github Pages搭建个人博客](http://www.wengweitao.com/shi-yong-pelican-github-pagesda-jian-ge-ren-bo-ke.html)
 
 ### Make a Github Pages blog with Pelican:
 ##### 1. install dependence
