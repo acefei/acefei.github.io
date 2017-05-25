@@ -1,3 +1,25 @@
+### 技术选型
+1.Jekyll
+
+Jekyll可以说是静态网站的鼻祖，也是最著名的静态博客引擎。它是由GitHub创始人之一使用Ruby写的。
+
+2.Octopress
+
+Octopress是Jekyll的一个框架，但是降低了使用和部署的难度，目前也有大量的人在使用。
+
+3.Hexo
+
+Hexo是使用Node.js编写的快速、简单且功能强大静态博客框架，值得一提的是Hexo作者来自中国台湾。
+
+4.Hugo
+
+Hugo是使用Go语言编写的，特点是网站编译的速度非常快。记得在听IPN旗下的博客节目内核恐慌中Rio谈到，使用Jekyll编译2000+网页需要12分钟左右，使用未经优化的Python多核程序进行编译需要5分钟左右，而使用Hugo只用了12秒！可见速度之快。
+
+5.Pelican
+
+这就是本博客使用的框架，是Python编写的静态博客框架中最流行的一种。Pelican作者来自法国，pelican在法语中的是记事本的意思，非常适合用来作为个人博客，作为一名Pythoner使用Pelican也就理所当然了。
+
+
 ### Make a Github Pages blog with Pelican:
 ##### 1. install dependence
 ```
