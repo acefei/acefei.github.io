@@ -1,5 +1,9 @@
 # acefei.github.io
 ```
+# set up steps:
+# 1. install dependence
+sudo yum install -y git
+sudo pip install pelican markdown
 
 [vagrant@localhost acefei.github.io]$ pelican-quickstart
 Welcome to pelican-quickstart v3.7.1.
