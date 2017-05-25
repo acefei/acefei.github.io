@@ -7,7 +7,6 @@ Date: $(date "+%Y-%m-%d %H:%M")
 Modified: $(date "+%Y-%m-%d %H:%M")
 Category: Python
 Tags: pelican, publishing
-Slug: my-super-post
 Authors: Ace Fei
 Summary: Short version for index and feeds
 
