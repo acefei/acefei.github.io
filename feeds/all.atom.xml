@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei's Blog</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/all.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2017-05-25T10:05:00+08:00</updated><entry><title>Make_a_Github_Pages_blog_with_Pelican</title><link href="https://acefei.github.io/make_a_github_pages_blog_with_pelican.html" rel="alternate"></link><published>2017-05-25T10:05:00+08:00</published><updated>2017-05-25T10:05:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-05-25:/make_a_github_pages_blog_with_pelican.html</id><summary type="html">&lt;p&gt;Short version for index and feeds&lt;/p&gt;</summary><content type="html">&lt;h3&gt;Make a Github Pages blog with Pelican:&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei's Blog</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/all.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2017-05-25T10:05:00+08:00</updated><entry><title>Make_a_Github_Pages_blog_with_Pelican</title><link href="https://acefei.github.io/make_a_github_pages_blog_with_pelican.html" rel="alternate"></link><published>2017-05-25T10:05:00+08:00</published><updated>2017-05-25T10:05:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-05-25:/make_a_github_pages_blog_with_pelican.html</id><summary type="html">&lt;h3&gt;Make a Github Pages blog with Pelican:&lt;/h3&gt;
+&lt;h4&gt;Install dependence&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install -y git
+sudo pip install pelican markdown ghp-import
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4&gt;Create user pages&lt;/h4&gt;
+&lt;p&gt;There are two basic types of GitHub Pages: &lt;a href="https://help.github.com/articles/user-organization-and-project-pages/"&gt;User/Organization Pages and Project Pages&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;Generally, most people will select User Pages, and there are two caveat as …&lt;/p&gt;</summary><content type="html">&lt;h3&gt;Make a Github Pages blog with Pelican:&lt;/h3&gt;
 &lt;h4&gt;Install dependence&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install -y git
 sudo pip install pelican markdown ghp-import
@@ -79,11 +88,11 @@ $ &lt;span class="nb"&gt;fg&lt;/span&gt;
 
 
 &lt;h4&gt;Publish&lt;/h4&gt;
-&lt;p&gt;If everything is OK, generate the website.
-Currently, all pelican settings that are used to render HTML are on pelican branch.
-As previously mentioned, the static website content should be pulish from master branch.
-So, I will publish twice:
-For website: &lt;/p&gt;
+&lt;p&gt;If everything is OK, generate the website.&lt;/p&gt;
+&lt;p&gt;Currently, all pelican settings that are used to render HTML are on pelican branch.&lt;/p&gt;
+&lt;p&gt;As previously mentioned, the static website content should be pulish from master branch.&lt;/p&gt;
+&lt;p&gt;So, I will publish twice:&lt;/p&gt;
+&lt;p&gt;For website: &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ make github
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -97,4 +106,6 @@ $ git push -u origin pelican
 
 
 &lt;h4&gt;Finally&lt;/h4&gt;
-&lt;p&gt;Everything can be customized in Pelican. To start with, you can choose from &lt;a href="http://pelicanthemes.com/"&gt;a set of themes&lt;/a&gt;. There are also &lt;a href="https://github.com/getpelican/pelican-plugins"&gt;a set of plug-ins&lt;/a&gt; that help you add various functions to your site. Of course, you can write your own, or customize existing plugins and themes.&lt;/p&gt;</content><category term="pelican"></category><category term="publishing"></category></entry><entry><title>Hello GitHub Pages</title><link href="https://acefei.github.io/my-super-post.html" rel="alternate"></link><published>2017-05-25T01:57:00+08:00</published><updated>2017-05-25T01:57:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-05-25:/my-super-post.html</id><summary type="html">&lt;p&gt;Short version for index and feeds&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is the content of my super blog post.&lt;/p&gt;</content><category term="pelican"></category><category term="publishing"></category></entry></feed>
+&lt;p&gt;Everything can be customized in Pelican. &lt;/p&gt;
+&lt;p&gt;To start with, you can choose from &lt;a href="http://pelicanthemes.com/"&gt;a set of themes&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;There are also &lt;a href="https://github.com/getpelican/pelican-plugins"&gt;a set of plug-ins&lt;/a&gt; that help you add various functions to your site. Of course, you can write your own, or customize existing plugins and themes.&lt;/p&gt;</content><category term="pelican"></category><category term="publishing"></category></entry><entry><title>Hello GitHub Pages</title><link href="https://acefei.github.io/my-super-post.html" rel="alternate"></link><published>2017-05-25T01:57:00+08:00</published><updated>2017-05-25T01:57:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-05-25:/my-super-post.html</id><summary type="html">&lt;p&gt;Short version for index and feeds&lt;/p&gt;</summary><content type="html">&lt;p&gt;This is the content of my super blog post.&lt;/p&gt;</content><category term="pelican"></category><category term="publishing"></category></entry></feed>
