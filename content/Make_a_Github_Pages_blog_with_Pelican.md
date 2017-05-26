@@ -89,11 +89,11 @@ If everything is OK, generate the website.
 Currently, all pelican settings that are used to render HTML are on pelican branch.       
 As previously mentioned, the static website content should be pulish from master branch.       
 So, I need to publish respectively:      
-For static website: ([on master](https://github.com/acefei/acefei.github.io/tree/master))
+For static website: (on [master branch](https://github.com/acefei/acefei.github.io/tree/master))
 ```
 make github
 ```     
-For pelican settings: ([on pelican](https://github.com/acefei/acefei.github.io/tree/pelican))       
+For pelican settings: (on [pelican branch](https://github.com/acefei/acefei.github.io/tree/pelican))       
 ```
 echo -e "*.pyc\noutput/" >> .gitignore
 git add .
