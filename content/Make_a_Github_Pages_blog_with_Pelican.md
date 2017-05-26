@@ -23,7 +23,7 @@ When User Pages are built, they are available at http(s)://<username>.github.io.
 
 
 ###  Set up the blog with Pelican
-I will elaborate why checkout a new branch (pelican) later.
+Create a new branch (pelican) for hosting pelican settings on github, please refer to *[Publish](#publish)
 ```
 $ git clone https://github.com/acefei/acefei.github.io
 $ cd acefei.github.io/
