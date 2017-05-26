@@ -8,7 +8,7 @@ Authors: Ace Fei
 ###  Install dependence
 ```
 sudo yum install -y git
-sudo pip install pelican markdown ghp-import
+sudo pip install pelican markdown ghp-import BeautifulSoup4
 ```
 
 ###  Create user pages
