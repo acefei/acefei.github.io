@@ -1,171 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-        <meta charset="utf-8" />
-        <title>Acefei's Blog - Ace Fei</title>
-        <link rel="stylesheet" href="https://acefei.github.io/theme/css/main.css" />
-        <link href="https://acefei.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Acefei's Blog Atom Feed" />
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="acefei" />
+        <meta name="copyright" content="acefei" />
 
-        <!--[if IE]>
-            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-</head>
-
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="https://acefei.github.io/">Acefei's Blog </a></h1>
-                <nav><ul>
-                    <li><a href="https://acefei.github.io/category/python.html">Python</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="https://acefei.github.io/make_a_github_pages_blog_with_pelican.html">Make_a_Github_Pages_blog_with_Pelican</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2017-05-25T10:05:00+08:00">
-                Published: Thu 25 May 2017
-        </abbr>
-		<br />
-        <abbr class="modified" title="2017-05-25T10:05:00+08:00">
-                Updated: Thu 25 May 2017
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="https://acefei.github.io/author/ace-fei.html">Ace Fei</a>
-        </address>
-<p>In <a href="https://acefei.github.io/category/python.html">Python</a>.</p>
-<p>tags: <a href="https://acefei.github.io/tag/pelican.html">pelican</a> <a href="https://acefei.github.io/tag/publishing.html">publishing</a> </p>
-</footer><!-- /.post-info --><h3>Make a Github Pages blog with Pelican:</h3>
-<h4>Install dependence</h4>
-<div class="highlight"><pre><span></span>sudo yum install -y git
-sudo pip install pelican markdown ghp-import
-</pre></div>
-
-
-<h4>Create user pages</h4>
-<p>There are two basic types of GitHub Pages: <a href="https://help.github.com/articles/user-organization-and-project-pages/">User/Organization Pages and Project Pages</a>. </p>
-<p>Generally, most people will select User Pages, and there are two caveat as below:</p>
-<blockquote>
-<p>You must use the <em>username.github.io</em> naming scheme.
-Content from the <em>master</em> branch will be used to build and publish your GitHub Pages site.</p>
-</blockquote>
-<p>When User Pages are built, they are available at http(s)://<username>.github.io.</p>
-<h4>Set up the blog with Pelican</h4>
-<p>I will elaborate why checkout a new branch (pelican) later.</p>
-<div class="highlight"><pre><span></span>$ git clone https://github.com/acefei/acefei.github.io
-$ <span class="nb">cd</span> acefei.github.io/
-$ git checkout -b pelican
-$ pelican-quickstart
-Welcome to pelican-quickstart v3.7.1.
-
-This script will <span class="nb">help</span> you create a new Pelican-based website.
-
-Please answer the following questions so this script can generate the files
-needed by Pelican.
-
-
-&gt; Where <span class="k">do</span> you want to create your new web site? <span class="o">[</span>.<span class="o">]</span>
-&gt; What will be the title of this web site? Acefei<span class="err">&#39;</span>s Blog
-&gt; Who will be the author of this web site? acefei
-&gt; What will be the default language of this web site? <span class="o">[</span>en<span class="o">]</span>
-&gt; Do you want to specify a URL prefix? e.g., http://example.com   <span class="o">(</span>Y/n<span class="o">)</span>
-&gt; What is your URL prefix? <span class="o">(</span>see above example<span class="p">;</span> no trailing slash<span class="o">)</span> https://acefei.github.io
-&gt; Do you want to <span class="nb">enable</span> article pagination? <span class="o">(</span>Y/n<span class="o">)</span> n
-&gt; What is your <span class="nb">time</span> zone? <span class="o">[</span>Europe/Paris<span class="o">]</span> Asia/Shanghai
-&gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? <span class="o">(</span>Y/n<span class="o">)</span>
-&gt; Do you want an auto-reload <span class="p">&amp;</span> simpleHTTP script to assist with theme and site development? <span class="o">(</span>Y/n<span class="o">)</span>
-&gt; Do you want to upload your website using FTP? <span class="o">(</span>y/N<span class="o">)</span>
-&gt; Do you want to upload your website using SSH? <span class="o">(</span>y/N<span class="o">)</span>
-&gt; Do you want to upload your website using Dropbox? <span class="o">(</span>y/N<span class="o">)</span>
-&gt; Do you want to upload your website using S3? <span class="o">(</span>y/N<span class="o">)</span>
-&gt; Do you want to upload your website using Rackspace Cloud Files? <span class="o">(</span>y/N<span class="o">)</span>
-&gt; Do you want to upload your website using GitHub Pages? <span class="o">(</span>y/N<span class="o">)</span> Y
-&gt; Is this your personal page <span class="o">(</span>username.github.io<span class="o">)</span>? <span class="o">(</span>y/N<span class="o">)</span> Y
-</pre></div>
-
-
-<h4><a href="http://docs.getpelican.com/en/3.6.3/content.html">Write first post</a></h4>
-<p>To facilitate blog creation, I write a script (create_new_blog.sh) which create a template with md format</p>
-<div class="highlight"><pre><span></span><span class="err">$</span> <span class="s s-Atom">cat</span> <span class="s s-Atom">create_new_blog</span><span class="p">.</span><span class="s s-Atom">sh</span>
-<span class="c1">#!/bin/bash</span>
-<span class="s s-Atom">cd</span> <span class="s s-Atom">content</span><span class="o">/</span>
-<span class="s s-Atom">title=</span><span class="err">$</span><span class="p">{</span><span class="mi">1</span><span class="p">:-</span><span class="nv">NewBlog</span><span class="p">}</span>
-<span class="s s-Atom">cat</span> <span class="o">&gt;</span> <span class="err">$</span><span class="p">(</span><span class="s s-Atom">echo</span> <span class="err">$</span><span class="s s-Atom">title</span> <span class="p">|</span> <span class="s s-Atom">tr</span> <span class="s s-Atom">&#39; &#39;</span> <span class="s s-Atom">&#39;_&#39;</span><span class="p">).</span><span class="s s-Atom">md</span> <span class="s s-Atom">&lt;&lt;</span><span class="nv">EOF</span>
-<span class="nv">Title</span><span class="s s-Atom">:</span> <span class="err">$</span><span class="p">{</span><span class="s s-Atom">title</span><span class="p">}</span>
-<span class="nv">Date</span><span class="s s-Atom">:</span> <span class="err">$</span><span class="p">(</span><span class="s s-Atom">date</span> <span class="s2">&quot;+%Y-%m-%d %H:%M&quot;</span><span class="p">)</span>
-<span class="nv">Modified</span><span class="s s-Atom">:</span> <span class="err">$</span><span class="p">(</span><span class="s s-Atom">date</span> <span class="s2">&quot;+%Y-%m-%d %H:%M&quot;</span><span class="p">)</span>
-<span class="nv">Category</span><span class="s s-Atom">:</span> <span class="nv">Python</span>
-<span class="nv">Tags</span><span class="s s-Atom">:</span> <span class="s s-Atom">pelican</span><span class="p">,</span> <span class="s s-Atom">publishing</span>
-<span class="nv">Slug</span><span class="s s-Atom">:</span> <span class="s s-Atom">my</span><span class="o">-</span><span class="s s-Atom">super</span><span class="o">-</span><span class="s s-Atom">post</span>
-<span class="nv">Authors</span><span class="s s-Atom">:</span> <span class="nv">Ace</span> <span class="nv">Fei</span>
-<span class="nv">Summary</span><span class="s s-Atom">:</span> <span class="nv">Short</span> <span class="s s-Atom">version</span> <span class="s s-Atom">for</span> <span class="s s-Atom">index</span> <span class="s s-Atom">and</span> <span class="s s-Atom">feeds</span>
-
-<span class="nv">This</span> <span class="o">is</span> <span class="s s-Atom">the</span> <span class="s s-Atom">content</span> <span class="s s-Atom">of</span> <span class="s s-Atom">my</span> <span class="s s-Atom">super</span> <span class="s s-Atom">blog</span> <span class="s s-Atom">post</span><span class="p">.</span>
-<span class="nv">EOF</span>
-</pre></div>
-
-
-<p>Generate html format and pre-view via http://localhost:8000/</p>
-<div class="highlight"><pre><span></span>$ make html <span class="o">&amp;&amp;</span> make serve<span class="p">&amp;</span>
-$ firefox http://localhost:8000/
-<span class="c1"># After pre-view </span>
-$ <span class="nb">fg</span>
-<span class="c1"># Then, Ctrl+C to terminate the process</span>
-</pre></div>
-
-
-<h4>Publish</h4>
-<p>If everything is OK, generate the website.</p>
-<p>Currently, all pelican settings that are used to render HTML are on pelican branch.</p>
-<p>As previously mentioned, the static website content should be pulish from master branch.</p>
-<p>So, I will publish twice:</p>
-<p>For website: </p>
-<div class="highlight"><pre><span></span>$ make github
-</pre></div>
-
-
-<p>For pelican settings:</p>
-<div class="highlight"><pre><span></span>$ <span class="nb">echo</span> -e <span class="s2">&quot;*.pyc\noutput/&quot;</span> &gt;&gt; .gitignore
-$ git add .
-$ git commit -m <span class="s2">&quot;commit pelican setting&quot;</span>
-$ git push -u origin pelican
-</pre></div>
-
-
-<h4>Finally</h4>
-<p>Everything can be customized in Pelican. </p>
-<p>To start with, you can choose from <a href="http://pelicanthemes.com/">a set of themes</a>. </p>
-<p>There are also <a href="https://github.com/getpelican/pelican-plugins">a set of plug-ins</a> that help you add various functions to your site. Of course, you can write your own, or customize existing plugins and themes.</p>                </article>
-            </aside><!-- /#featured -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>links</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
+        <title>Acefei's Blog - Articles by Ace Fei</title>
+        <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/style.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/solarizedlight.css" media="screen">
+        <link rel="shortcut icon" href="https://acefei.github.io/theme/images/favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="https://acefei.github.io/theme/images/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="https://acefei.github.io/theme/images/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="https://acefei.github.io/theme/images/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="https://acefei.github.io/theme/images/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="https://acefei.github.io/theme/images/apple-touch-icon-144x144.png" />
+        <link rel="icon" href="https://acefei.github.io/theme/images/apple-touch-icon-144x144.png" />
+        <link href="https://acefei.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Acefei's Blog - Full Atom Feed" />
+        <link href="https://acefei.github.io/feeds/Python.atom.xml" type="application/atom+xml" rel="alternate" title="Acefei's Blog - Python Category Atom Feed" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://acefei.github.io/"><span class=site-name>Acefei's Blog</span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://acefei.github.io">Home</a></li>
+                            <li ><a href="https://acefei.github.io/categories.html">Categories</a></li>
+                            <li ><a href="https://acefei.github.io/tags.html">Tags</a></li>
+                            <li ><a href="https://acefei.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="https://acefei.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
                         </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="https://acefei.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<div class="row-fluid">
 
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
+    <div class="row-fluid">
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
+    </div>
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
-</body>
+    <div class="row-fluid">
+        <div class="span12">
+            <header>
+            <h1 id="recent-posts">Recent Posts <a id="allposts" href="https://acefei.github.io/archives.html">all posts</a></h1>
+            </header>
+            <ul class="list-all-articles">
+                <li>
+                <a href="https://acefei.github.io/make_a_github_pages_blog_with_pelican.html">Make_a_Github_Pages_blog_with_Pelican  </a> 
+                <time pubdate="pubdate" datetime="2017-05-25T10:05:00+08:00">Thu 25 May 2017</time>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>        <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+    </body>
 </html>
