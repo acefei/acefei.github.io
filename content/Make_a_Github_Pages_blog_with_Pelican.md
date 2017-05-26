@@ -23,7 +23,7 @@ When User Pages are built, they are available at http(s)://<username>.github.io.
 
 
 ###  Set up the blog with Pelican
-Create a new branch (pelican) for hosting pelican settings on github, please refer to *[Publish](#publish)
+Create a new branch (pelican) for hosting pelican settings on github, please refer to [Publish](#publish) 
 ```
 $ git clone https://github.com/acefei/acefei.github.io
 $ cd acefei.github.io/
@@ -89,7 +89,7 @@ If everything is OK, generate the website.
 Currently, all pelican settings that are used to render HTML are on pelican branch.       
 As previously mentioned, the static website content should be pulish from master branch.       
 So, I need to publish respectively:      
-For website: ([on master](https://github.com/acefei/acefei.github.io/tree/master))
+For static website: ([on master](https://github.com/acefei/acefei.github.io/tree/master))
 ```
 make github
 ```     
