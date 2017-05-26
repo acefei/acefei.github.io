@@ -19,7 +19,7 @@ Generally, most people will select User Pages, and there are two caveat as below
 > You must use the *username.github.io* naming scheme.
 > Content from the *master* branch will be used to build and publish your GitHub Pages site.
 
-When User Pages are built, they are available at http(s)://<username>.github.io.
+When User Pages are built, they are available at http(s)://username.github.io.
 
 
 ###  Set up the blog with Pelican
