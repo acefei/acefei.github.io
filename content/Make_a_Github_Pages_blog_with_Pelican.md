@@ -1,18 +1,17 @@
-Title: Make_a_Github_Pages_blog_with_Pelican
+Title: Make a Github Pages blog with Pelican
 Date: 2017-05-25 10:05
-Modified: 2017-05-25 10:05
 Category: Python
-Tags: pelican, publishing
+Tags: pelican
 Authors: Ace Fei
 
-### Make a Github Pages blog with Pelican:
-####  Install dependence
+## Make a Github Pages blog with Pelican:
+###  Install dependence
 ```
 sudo yum install -y git
 sudo pip install pelican markdown ghp-import
 ```
 
-####  Create user pages
+###  Create user pages
 There are two basic types of GitHub Pages: [User/Organization Pages and Project Pages](https://help.github.com/articles/user-organization-and-project-pages/). 
 
 Generally, most people will select User Pages, and there are two caveat as below:
@@ -23,7 +22,7 @@ Generally, most people will select User Pages, and there are two caveat as below
 When User Pages are built, they are available at http(s)://<username>.github.io.
 
 
-####  Set up the blog with Pelican
+###  Set up the blog with Pelican
 I will elaborate why checkout a new branch (pelican) later.
 ```
 $ git clone https://github.com/acefei/acefei.github.io
@@ -57,7 +56,7 @@ needed by Pelican.
 > Is this your personal page (username.github.io)? (y/N) Y
 ```
 
-####  [Write first post](http://docs.getpelican.com/en/3.6.3/content.html)
+###  [Write first post](http://docs.getpelican.com/en/3.6.3/content.html)
 To facilitate blog creation, I write a script (create_new_blog.sh) which create a template with md format
 ```
 $ cat create_new_blog.sh
@@ -85,7 +84,7 @@ $ firefox http://localhost:8000/
 $ fg
 # Then, Ctrl+C to terminate the process
 ```
-#### Publish
+### Publish
 If everything is OK, generate the website.
 
 Currently, all pelican settings that are used to render HTML are on pelican branch.
@@ -107,8 +106,10 @@ $ git commit -m "commit pelican setting"
 $ git push -u origin pelican
 ```
 
+### Extension
+#### 
 
-#### Finally
+### Finally
 Everything can be customized in Pelican. 
 
 To start with, you can choose from [a set of themes](http://pelicanthemes.com/). 
