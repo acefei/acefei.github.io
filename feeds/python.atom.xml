@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei's Blog - Python</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/python.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2017-05-25T10:05:00+08:00</updated><entry><title>Make_a_Github_Pages_blog_with_Pelican</title><link href="https://acefei.github.io/make_a_github_pages_blog_with_pelican.html" rel="alternate"></link><published>2017-05-25T10:05:00+08:00</published><updated>2017-05-25T10:05:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-05-25:/make_a_github_pages_blog_with_pelican.html</id><summary type="html">&lt;h3&gt;Make a Github Pages blog with Pelican:&lt;/h3&gt;
-&lt;h4&gt;Install dependence&lt;/h4&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei's Blog - Python</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/python.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2017-05-25T10:05:00+08:00</updated><entry><title>Make a Github Pages blog with Pelican</title><link href="https://acefei.github.io/make-a-github-pages-blog-with-pelican.html" rel="alternate"></link><published>2017-05-25T10:05:00+08:00</published><updated>2017-05-25T10:05:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-05-25:/make-a-github-pages-blog-with-pelican.html</id><summary type="html">&lt;h2&gt;Make a Github Pages blog with Pelican:&lt;/h2&gt;
+&lt;h3&gt;Install dependence&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install -y git
 sudo pip install pelican markdown ghp-import
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;Create user pages&lt;/h4&gt;
+&lt;h3&gt;Create user pages&lt;/h3&gt;
 &lt;p&gt;There are two basic types of GitHub Pages: &lt;a href="https://help.github.com/articles/user-organization-and-project-pages/"&gt;User/Organization Pages and Project Pages&lt;/a&gt;. &lt;/p&gt;
-&lt;p&gt;Generally, most people will select User Pages, and there are two caveat as …&lt;/p&gt;</summary><content type="html">&lt;h3&gt;Make a Github Pages blog with Pelican:&lt;/h3&gt;
-&lt;h4&gt;Install dependence&lt;/h4&gt;
+&lt;p&gt;Generally, most people will select User Pages, and there are two caveat as …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Make a Github Pages blog with Pelican:&lt;/h2&gt;
+&lt;h3&gt;Install dependence&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install -y git
 sudo pip install pelican markdown ghp-import
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;Create user pages&lt;/h4&gt;
+&lt;h3&gt;Create user pages&lt;/h3&gt;
 &lt;p&gt;There are two basic types of GitHub Pages: &lt;a href="https://help.github.com/articles/user-organization-and-project-pages/"&gt;User/Organization Pages and Project Pages&lt;/a&gt;. &lt;/p&gt;
 &lt;p&gt;Generally, most people will select User Pages, and there are two caveat as below:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -23,7 +23,7 @@ sudo pip install pelican markdown ghp-import
 Content from the &lt;em&gt;master&lt;/em&gt; branch will be used to build and publish your GitHub Pages site.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;When User Pages are built, they are available at http(s)://&lt;username&gt;.github.io.&lt;/p&gt;
-&lt;h4&gt;Set up the blog with Pelican&lt;/h4&gt;
+&lt;h3&gt;Set up the blog with Pelican&lt;/h3&gt;
 &lt;p&gt;I will elaborate why checkout a new branch (pelican) later.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ git clone https://github.com/acefei/acefei.github.io
 $ &lt;span class="nb"&gt;cd&lt;/span&gt; acefei.github.io/
@@ -57,55 +57,78 @@ needed by Pelican.
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;&lt;a href="http://docs.getpelican.com/en/3.6.3/content.html"&gt;Write first post&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;To facilitate blog creation, I write a script (create_new_blog.sh) which create a template with md format&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="s s-Atom"&gt;cat&lt;/span&gt; &lt;span class="s s-Atom"&gt;create_new_blog&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="s s-Atom"&gt;sh&lt;/span&gt;
-&lt;span class="c1"&gt;#!/bin/bash&lt;/span&gt;
-&lt;span class="s s-Atom"&gt;cd&lt;/span&gt; &lt;span class="s s-Atom"&gt;content&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
-&lt;span class="s s-Atom"&gt;title=&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:-&lt;/span&gt;&lt;span class="nv"&gt;NewBlog&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="s s-Atom"&gt;cat&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s s-Atom"&gt;echo&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="s s-Atom"&gt;title&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="s s-Atom"&gt;tr&lt;/span&gt; &lt;span class="s s-Atom"&gt;&amp;#39; &amp;#39;&lt;/span&gt; &lt;span class="s s-Atom"&gt;&amp;#39;_&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="s s-Atom"&gt;md&lt;/span&gt; &lt;span class="s s-Atom"&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;EOF&lt;/span&gt;
-&lt;span class="nv"&gt;Title&lt;/span&gt;&lt;span class="s s-Atom"&gt;:&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s s-Atom"&gt;title&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="nv"&gt;Date&lt;/span&gt;&lt;span class="s s-Atom"&gt;:&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s s-Atom"&gt;date&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;+%Y-%m-%d %H:%M&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="nv"&gt;Modified&lt;/span&gt;&lt;span class="s s-Atom"&gt;:&lt;/span&gt; &lt;span class="err"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s s-Atom"&gt;date&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;+%Y-%m-%d %H:%M&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="nv"&gt;Category&lt;/span&gt;&lt;span class="s s-Atom"&gt;:&lt;/span&gt; &lt;span class="nv"&gt;Python&lt;/span&gt;
-&lt;span class="nv"&gt;Tags&lt;/span&gt;&lt;span class="s s-Atom"&gt;:&lt;/span&gt; &lt;span class="s s-Atom"&gt;pelican&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s s-Atom"&gt;publishing&lt;/span&gt;
-&lt;span class="nv"&gt;Slug&lt;/span&gt;&lt;span class="s s-Atom"&gt;:&lt;/span&gt; &lt;span class="s s-Atom"&gt;my&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;super&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="s s-Atom"&gt;post&lt;/span&gt;
-&lt;span class="nv"&gt;Authors&lt;/span&gt;&lt;span class="s s-Atom"&gt;:&lt;/span&gt; &lt;span class="nv"&gt;Ace&lt;/span&gt; &lt;span class="nv"&gt;Fei&lt;/span&gt;
-&lt;span class="nv"&gt;Summary&lt;/span&gt;&lt;span class="s s-Atom"&gt;:&lt;/span&gt; &lt;span class="nv"&gt;Short&lt;/span&gt; &lt;span class="s s-Atom"&gt;version&lt;/span&gt; &lt;span class="s s-Atom"&gt;for&lt;/span&gt; &lt;span class="s s-Atom"&gt;index&lt;/span&gt; &lt;span class="s s-Atom"&gt;and&lt;/span&gt; &lt;span class="s s-Atom"&gt;feeds&lt;/span&gt;
+&lt;h3&gt;&lt;a href="http://docs.getpelican.com/en/3.6.3/content.html"&gt;Write first post&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;To facilitate blog creation, I write a script for creating the template with md format.         &lt;/p&gt;
+&lt;table class="highlighttable"&gt;&lt;tr&gt;&lt;td class="linenos"&gt;&lt;div class="linenodiv"&gt;&lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
+&lt;span class="c1"&gt;## save as create_new_blog.sh&lt;/span&gt;
+&lt;span class="nb"&gt;cd&lt;/span&gt; content/
+&lt;span class="nv"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;1&lt;/span&gt;&lt;span class="k"&gt;:-&lt;/span&gt;&lt;span class="nv"&gt;NewBlog&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
+cat &amp;gt; &lt;span class="k"&gt;$(&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$title&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; tr &lt;span class="s1"&gt;&amp;#39; &amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;_&amp;#39;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;.md &lt;span class="s"&gt;&amp;lt;&amp;lt;EOF&lt;/span&gt;
+&lt;span class="s"&gt;Title: ${title}&lt;/span&gt;
+&lt;span class="s"&gt;Date: $(date &amp;quot;+%Y-%m-%d %H:%M&amp;quot;)&lt;/span&gt;
+&lt;span class="s"&gt;Category: Python&lt;/span&gt;
+&lt;span class="s"&gt;Tags: pelican&lt;/span&gt;
+&lt;span class="s"&gt;Slug: my-super-post&lt;/span&gt;
+&lt;span class="s"&gt;Authors: Ace Fei&lt;/span&gt;
+&lt;span class="s"&gt;Summary: Short version for index and feeds&lt;/span&gt;
 
-&lt;span class="nv"&gt;This&lt;/span&gt; &lt;span class="o"&gt;is&lt;/span&gt; &lt;span class="s s-Atom"&gt;the&lt;/span&gt; &lt;span class="s s-Atom"&gt;content&lt;/span&gt; &lt;span class="s s-Atom"&gt;of&lt;/span&gt; &lt;span class="s s-Atom"&gt;my&lt;/span&gt; &lt;span class="s s-Atom"&gt;super&lt;/span&gt; &lt;span class="s s-Atom"&gt;blog&lt;/span&gt; &lt;span class="s s-Atom"&gt;post&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="nv"&gt;EOF&lt;/span&gt;
+&lt;span class="s"&gt;This is the content of my blog post.&lt;/span&gt;
+&lt;span class="s"&gt;EOF&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 &lt;p&gt;Generate html format and pre-view via http://localhost:8000/&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ make html &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; make serve&lt;span class="p"&gt;&amp;amp;&lt;/span&gt;
-$ firefox http://localhost:8000/
-&lt;span class="c1"&gt;# After pre-view &lt;/span&gt;
-$ &lt;span class="nb"&gt;fg&lt;/span&gt;
-&lt;span class="c1"&gt;# Then, Ctrl+C to terminate the process&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make html &amp;amp;&amp;amp; make serve&amp;amp;
+firefox http://localhost:8000/
+# After pre-view 
+fg
+# Then, Ctrl+C to terminate the process
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;Publish&lt;/h4&gt;
-&lt;p&gt;If everything is OK, generate the website.&lt;/p&gt;
-&lt;p&gt;Currently, all pelican settings that are used to render HTML are on pelican branch.&lt;/p&gt;
-&lt;p&gt;As previously mentioned, the static website content should be pulish from master branch.&lt;/p&gt;
-&lt;p&gt;So, I will publish twice:&lt;/p&gt;
-&lt;p&gt;For website: &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ make github
+&lt;h3&gt;Publish&lt;/h3&gt;
+&lt;p&gt;If everything is OK, generate the website.       &lt;br&gt;
+Currently, all pelican settings that are used to render HTML are on pelican branch.     &lt;br&gt;
+As previously mentioned, the static website content should be pulish from master branch.     &lt;br&gt;
+So, I need to publish respectively:    &lt;br&gt;
+&lt;em&gt;For website:&lt;/em&gt;                 &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make github
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;For pelican settings:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nb"&gt;echo&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;quot;*.pyc\noutput/&amp;quot;&lt;/span&gt; &amp;gt;&amp;gt; .gitignore
-$ git add .
-$ git commit -m &lt;span class="s2"&gt;&amp;quot;commit pelican setting&amp;quot;&lt;/span&gt;
-$ git push -u origin pelican
+&lt;p&gt;&lt;em&gt;For pelican settings:&lt;/em&gt;        &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;echo -e &amp;quot;*.pyc\noutput/&amp;quot; &amp;gt;&amp;gt; .gitignore
+git add .
+git commit -m &amp;quot;commit pelican setting&amp;quot;
+git push -u origin pelican
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h4&gt;Finally&lt;/h4&gt;
-&lt;p&gt;Everything can be customized in Pelican. &lt;/p&gt;
-&lt;p&gt;To start with, you can choose from &lt;a href="http://pelicanthemes.com/"&gt;a set of themes&lt;/a&gt;. &lt;/p&gt;
-&lt;p&gt;There are also &lt;a href="https://github.com/getpelican/pelican-plugins"&gt;a set of plug-ins&lt;/a&gt; that help you add various functions to your site. Of course, you can write your own, or customize existing plugins and themes.&lt;/p&gt;</content><category term="pelican"></category><category term="publishing"></category></entry></feed>
+&lt;h3&gt;Extension&lt;/h3&gt;
+&lt;h4&gt;Theme&lt;/h4&gt;
+&lt;p&gt;Download your fevorite &lt;a href="http://pelicanthemes.com/"&gt;theme&lt;/a&gt;, such as &lt;a href="http://oncrashreboot.com/elegant-best-pelican-theme-features"&gt;elegant&lt;/a&gt;
+and unpack it (the path named pelican-elegant-1.3) to the path where there is pelicanconf.py.                           &lt;br&gt;
+Then, append the following content into pelicanconf.py&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;THEME = &amp;quot;pelican-elegant-1.3&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;blockquote&gt;
+&lt;p&gt;Caveat:          &lt;br&gt;
+Under GFW, we need to find an alternative CDN site to replace googleapis
+I use the &lt;a href="https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/boost_cdn.sh"&gt;script&lt;/a&gt; to do it.&lt;/p&gt;
+&lt;/blockquote&gt;</content><category term="pelican"></category></entry></feed>
