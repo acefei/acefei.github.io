@@ -113,3 +113,8 @@ THEME = "pelican-elegant-1.3"
 > Caveat:            
 > Under GFW, we need to find an alternative CDN site to replace googleapis           
 > I use [a script](https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/boost_cdn.sh) to do it.
+
+### Reference
+> Blog [`onCrash=Reboot();`](http://oncrashreboot.com) uses Elegant theme. You
+can see its configuration files at
+[Github](https://github.com/talha131/onCrashReboot) for inspiration. 
