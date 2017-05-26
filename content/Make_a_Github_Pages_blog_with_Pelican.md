@@ -57,62 +57,58 @@ needed by Pelican.
 ```
 
 ###  [Write first post](http://docs.getpelican.com/en/3.6.3/content.html)
-To facilitate blog creation, I write a script (create_new_blog.sh) which create a template with md format
+To facilitate blog creation, I write a script for creating the template with md format.         
 ```
-$ cat create_new_blog.sh
 #!/bin/bash
+## save as create_new_blog.sh
 cd content/
 title=${1:-NewBlog}
 cat > $(echo $title | tr ' ' '_').md <<EOF
 Title: ${title}
 Date: $(date "+%Y-%m-%d %H:%M")
-Modified: $(date "+%Y-%m-%d %H:%M")
 Category: Python
-Tags: pelican, publishing
+Tags: pelican
 Slug: my-super-post
 Authors: Ace Fei
 Summary: Short version for index and feeds
 
-This is the content of my super blog post.
+This is the content of my blog post.
 EOF
 ```
 Generate html format and pre-view via http://localhost:8000/
 ```
-$ make html && make serve&
-$ firefox http://localhost:8000/
+make html && make serve&
+firefox http://localhost:8000/
 # After pre-view 
-$ fg
+fg
 # Then, Ctrl+C to terminate the process
 ```
 ### Publish
-If everything is OK, generate the website.
-
-Currently, all pelican settings that are used to render HTML are on pelican branch.
-
-As previously mentioned, the static website content should be pulish from master branch.
-
-So, I will publish twice:
-
-For website: 
+If everything is OK, generate the website.         
+Currently, all pelican settings that are used to render HTML are on pelican branch.       
+As previously mentioned, the static website content should be pulish from master branch.       
+So, I need to publish respectively:      
+*For website:*                 
 ```
-$ make github
+make github
+```     
+*For pelican settings:*        
 ```
-
-For pelican settings:
-```
-$ echo -e "*.pyc\noutput/" >> .gitignore
-$ git add .
-$ git commit -m "commit pelican setting"
-$ git push -u origin pelican
+echo -e "*.pyc\noutput/" >> .gitignore
+git add .
+git commit -m "commit pelican setting"
+git push -u origin pelican
 ```
 
 ### Extension
-#### 
-
-### Finally
-Everything can be customized in Pelican. 
-
-To start with, you can choose from [a set of themes](http://pelicanthemes.com/). 
-
-There are also [a set of plug-ins](https://github.com/getpelican/pelican-plugins) that help you add various functions to your site. Of course, you can write your own, or customize existing plugins and themes.
-
+#### Theme
+Download your fevorite [theme](http://pelicanthemes.com/), such as [elegant](http://oncrashreboot.com/elegant-best-pelican-theme-features)
+and unpack it (the path named pelican-elegant-1.3) to the path where there is pelicanconf.py.                             
+Then, append the following content into pelicanconf.py
+```
+THEME = "pelican-elegant-1.3"
+```
+         
+> Caveat:            
+> Under GFW, we need to find an alternative CDN site to replace googleapis
+> I use the [script](https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/boost_cdn.sh) to do it.
