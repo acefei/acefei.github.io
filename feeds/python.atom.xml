@@ -24,7 +24,7 @@ Content from the &lt;em&gt;master&lt;/em&gt; branch will be used to build and pu
 &lt;/blockquote&gt;
 &lt;p&gt;When User Pages are built, they are available at http(s)://&lt;username&gt;.github.io.&lt;/p&gt;
 &lt;h3&gt;Set up the blog with Pelican&lt;/h3&gt;
-&lt;p&gt;I will elaborate why checkout a new branch (pelican) later.&lt;/p&gt;
+&lt;p&gt;Create a new branch (pelican) for hosting pelican settings on github, please refer to &lt;a href="#publish"&gt;Publish&lt;/a&gt; &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ git clone https://github.com/acefei/acefei.github.io
 $ &lt;span class="nb"&gt;cd&lt;/span&gt; acefei.github.io/
 $ git checkout -b pelican
@@ -91,12 +91,12 @@ fg
 Currently, all pelican settings that are used to render HTML are on pelican branch.     &lt;br&gt;
 As previously mentioned, the static website content should be pulish from master branch.     &lt;br&gt;
 So, I need to publish respectively:    &lt;br&gt;
-&lt;em&gt;For website:&lt;/em&gt;                 &lt;/p&gt;
+For static website: (on &lt;a href="https://github.com/acefei/acefei.github.io/tree/master"&gt;master branch&lt;/a&gt;)&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make github
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;em&gt;For pelican settings:&lt;/em&gt;        &lt;/p&gt;
+&lt;p&gt;For pelican settings: (on &lt;a href="https://github.com/acefei/acefei.github.io/tree/pelican"&gt;pelican branch&lt;/a&gt;)       &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;echo -e &amp;quot;*.pyc\noutput/&amp;quot; &amp;gt;&amp;gt; .gitignore
 git add .
 git commit -m &amp;quot;commit pelican setting&amp;quot;
@@ -115,6 +115,6 @@ Then, append the following content into pelicanconf.py&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Caveat:          &lt;br&gt;
-Under GFW, we need to find an alternative CDN site to replace googleapis
-I use the &lt;a href="https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/boost_cdn.sh"&gt;script&lt;/a&gt; to do it.&lt;/p&gt;
+Under GFW, we need to find an alternative CDN site to replace googleapis         &lt;br&gt;
+I use &lt;a href="https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/boost_cdn.sh"&gt;a script&lt;/a&gt; to do it.&lt;/p&gt;
 &lt;/blockquote&gt;</content><category term="pelican"></category></entry></feed>

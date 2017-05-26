@@ -76,7 +76,7 @@ Content from the <em>master</em> branch will be used to build and publish your G
 </blockquote>
 <p>When User Pages are built, they are available at http(s)://<username>.github.io.</p>
 <h3>Set up the blog with Pelican</h3>
-<p>I will elaborate why checkout a new branch (pelican) later.</p>
+<p>Create a new branch (pelican) for hosting pelican settings on github, please refer to <a href="#publish">Publish</a> </p>
 <div class="highlight"><pre><span></span>$ git clone https://github.com/acefei/acefei.github.io
 $ <span class="nb">cd</span> acefei.github.io/
 $ git checkout -b pelican
@@ -143,12 +143,12 @@ fg
 Currently, all pelican settings that are used to render HTML are on pelican branch.     <br>
 As previously mentioned, the static website content should be pulish from master branch.     <br>
 So, I need to publish respectively:    <br>
-<em>For website:</em>                 </p>
+For static website: (on <a href="https://github.com/acefei/acefei.github.io/tree/master">master branch</a>)</p>
 <div class="highlight"><pre><span></span>make github
 </pre></div>
 
 
-<p><em>For pelican settings:</em>        </p>
+<p>For pelican settings: (on <a href="https://github.com/acefei/acefei.github.io/tree/pelican">pelican branch</a>)       </p>
 <div class="highlight"><pre><span></span>echo -e &quot;*.pyc\noutput/&quot; &gt;&gt; .gitignore
 git add .
 git commit -m &quot;commit pelican setting&quot;
@@ -167,8 +167,8 @@ Then, append the following content into pelicanconf.py</p>
 
 <blockquote>
 <p>Caveat:          <br>
-Under GFW, we need to find an alternative CDN site to replace googleapis
-I use the <a href="https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/boost_cdn.sh">script</a> to do it.</p>
+Under GFW, we need to find an alternative CDN site to replace googleapis         <br>
+I use <a href="https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/boost_cdn.sh">a script</a> to do it.</p>
 </blockquote>
             <aside>
             <hr/>
