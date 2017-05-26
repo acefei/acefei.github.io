@@ -6,8 +6,10 @@
         <meta name="author" content="Ace Fei" />
         <meta name="copyright" content="Ace Fei" />
 
+        <meta name="description" content="Make a Github Pages blog with Pelican: Install dependence sudo yum install -y git sudo pip install pelican markdown ghp-import BeautifulSoup4 Create user pages There are two basic types of GitHub Pages: User/Organization Pages and Project Pages. Generally, most people will select User Pages, and there are two …
+" />
 <meta name="keywords" content="pelican, Python, " />
-        <title>Make a Github Pages blog with Pelican  · Acefei's Blog
+        <title>Make a Github Pages blog with Pelican  · Acefei 's One Piece
 </title>
         <link href="http://cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
@@ -20,8 +22,8 @@
         <link rel="apple-touch-icon" sizes="114x114" href="https://acefei.github.io/theme/images/apple-touch-icon-114x114.png" />
         <link rel="apple-touch-icon" sizes="144x144" href="https://acefei.github.io/theme/images/apple-touch-icon-144x144.png" />
         <link rel="icon" href="https://acefei.github.io/theme/images/apple-touch-icon-144x144.png" />
-        <link href="https://acefei.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Acefei's Blog - Full Atom Feed" />
-        <link href="https://acefei.github.io/feeds/Python.atom.xml" type="application/atom+xml" rel="alternate" title="Acefei's Blog - Python Category Atom Feed" />
+        <link href="https://acefei.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Acefei 's One Piece - Full Atom Feed" />
+        <link href="https://acefei.github.io/feeds/Python.atom.xml" type="application/atom+xml" rel="alternate" title="Acefei 's One Piece - Python Category Atom Feed" />
     </head>
     <body>
         <div id="content-sans-footer">
@@ -33,7 +35,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="https://acefei.github.io/"><span class=site-name>Acefei's Blog</span></a>
+                    <a class="brand" href="https://acefei.github.io/"><span class=site-name><span style="color:black;">Acefei</span> <span style="color:darkblue;">'s</span> <span style="color:#AA1032;">One Piece</span></span></a>
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
                             <li ><a href="https://acefei.github.io">Home</a></li>
@@ -62,8 +64,8 @@
 
             <h2>Make a Github Pages blog with Pelican:</h2>
 <h3>Install dependence</h3>
-<div class="highlight"><pre><span></span>sudo yum install -y git
-sudo pip install pelican markdown ghp-import
+<div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">yum</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">git</span>
+<span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pelican</span> <span class="n">markdown</span> <span class="n">ghp</span><span class="o">-</span><span class="kn">import</span> <span class="nn">BeautifulSoup4</span>
 </pre></div>
 
 
@@ -74,7 +76,7 @@ sudo pip install pelican markdown ghp-import
 <p>You must use the <em>username.github.io</em> naming scheme.
 Content from the <em>master</em> branch will be used to build and publish your GitHub Pages site.</p>
 </blockquote>
-<p>When User Pages are built, they are available at http(s)://<username>.github.io.</p>
+<p>When User Pages are built, they are available at http(s)://username.github.io.</p>
 <h3>Set up the blog with Pelican</h3>
 <p>Create a new branch (pelican) for hosting pelican settings on github, please refer to <a href="#publish">Publish</a> </p>
 <div class="highlight"><pre><span></span>$ git clone https://github.com/acefei/acefei.github.io
@@ -170,6 +172,43 @@ Then, append the following content into pelicanconf.py</p>
 Under GFW, we need to find an alternative CDN site to replace googleapis         <br>
 I use <a href="https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/boost_cdn.sh">a script</a> to do it.</p>
 </blockquote>
+<h3>Reference</h3>
+<blockquote>
+<p>Blog <a href="http://oncrashreboot.com"><code>onCrash=Reboot();</code></a> uses Elegant theme. You
+can see its configuration files at
+<a href="https://github.com/talha131/onCrashReboot">Github</a> for inspiration. </p>
+</blockquote>
+<section>
+<div class="accordion" id="accordion2">
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
+                href="https://acefei.github.io/make-a-github-pages-blog-with-pelican.html#disqus_thread">
+                Comments
+            </a>
+        </div>
+        <div id="disqus_thread" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div class="comments">
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'ace';
+        var disqus_identifier = 'https://acefei.github.io/make-a-github-pages-blog-with-pelican.html';
+    var disqus_url = 'https://acefei.github.io/make-a-github-pages-blog-with-pelican.html';
+
+    (function() {
+         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+         dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+     })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
             <aside>
             <hr/>
             <nav>
@@ -216,5 +255,31 @@ I use <a href="https://raw.githubusercontent.com/acefei/acefei.github.io/pelican
             }
         </script>
 
+<script type="text/javascript">
+    var disqus_shortname = 'ace';
+
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+        <script  language="javascript" type="text/javascript">
+            function uncollapse() {
+                var hash_str = window.location.hash;
+                if (window.location.hash.match(/^#comment-\d+$/))
+                {
+                    var hash_str = '#disqus_thread';
+                }
+                $(hash_str).collapse({
+                    toggle: true
+                    })
+            }
+        </script>
+
+        <script type="text/javascript" language="JavaScript">
+            uncollapse(); 
+        </script>
     </body>
 </html>

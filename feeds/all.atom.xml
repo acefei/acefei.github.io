@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei's Blog</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/all.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2017-05-25T10:05:00+08:00</updated><entry><title>Make a Github Pages blog with Pelican</title><link href="https://acefei.github.io/make-a-github-pages-blog-with-pelican.html" rel="alternate"></link><published>2017-05-25T10:05:00+08:00</published><updated>2017-05-25T10:05:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-05-25:/make-a-github-pages-blog-with-pelican.html</id><summary type="html">&lt;h2&gt;Make a Github Pages blog with Pelican:&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei 's One Piece</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/all.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2017-05-25T10:05:00+08:00</updated><entry><title>Make a Github Pages blog with Pelican</title><link href="https://acefei.github.io/make-a-github-pages-blog-with-pelican.html" rel="alternate"></link><published>2017-05-25T10:05:00+08:00</published><updated>2017-05-25T10:05:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-05-25:/make-a-github-pages-blog-with-pelican.html</id><summary type="html">&lt;h2&gt;Make a Github Pages blog with Pelican:&lt;/h2&gt;
 &lt;h3&gt;Install dependence&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install -y git
-sudo pip install pelican markdown ghp-import
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;yum&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;pelican&lt;/span&gt; &lt;span class="n"&gt;markdown&lt;/span&gt; &lt;span class="n"&gt;ghp&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;BeautifulSoup4&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;h3&gt;Create user pages&lt;/h3&gt;
 &lt;p&gt;There are two basic types of GitHub Pages: &lt;a href="https://help.github.com/articles/user-organization-and-project-pages/"&gt;User/Organization Pages and Project Pages&lt;/a&gt;. &lt;/p&gt;
-&lt;p&gt;Generally, most people will select User Pages, and there are two caveat as …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Make a Github Pages blog with Pelican:&lt;/h2&gt;
+&lt;p&gt;Generally, most people will select User Pages, and there are two …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Make a Github Pages blog with Pelican:&lt;/h2&gt;
 &lt;h3&gt;Install dependence&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install -y git
-sudo pip install pelican markdown ghp-import
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;yum&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;pelican&lt;/span&gt; &lt;span class="n"&gt;markdown&lt;/span&gt; &lt;span class="n"&gt;ghp&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;BeautifulSoup4&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -22,7 +22,7 @@ sudo pip install pelican markdown ghp-import
 &lt;p&gt;You must use the &lt;em&gt;username.github.io&lt;/em&gt; naming scheme.
 Content from the &lt;em&gt;master&lt;/em&gt; branch will be used to build and publish your GitHub Pages site.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;When User Pages are built, they are available at http(s)://&lt;username&gt;.github.io.&lt;/p&gt;
+&lt;p&gt;When User Pages are built, they are available at http(s)://username.github.io.&lt;/p&gt;
 &lt;h3&gt;Set up the blog with Pelican&lt;/h3&gt;
 &lt;p&gt;Create a new branch (pelican) for hosting pelican settings on github, please refer to &lt;a href="#publish"&gt;Publish&lt;/a&gt; &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ git clone https://github.com/acefei/acefei.github.io
@@ -117,4 +117,10 @@ Then, append the following content into pelicanconf.py&lt;/p&gt;
 &lt;p&gt;Caveat:          &lt;br&gt;
 Under GFW, we need to find an alternative CDN site to replace googleapis         &lt;br&gt;
 I use &lt;a href="https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/boost_cdn.sh"&gt;a script&lt;/a&gt; to do it.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Reference&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Blog &lt;a href="http://oncrashreboot.com"&gt;&lt;code&gt;onCrash=Reboot();&lt;/code&gt;&lt;/a&gt; uses Elegant theme. You
+can see its configuration files at
+&lt;a href="https://github.com/talha131/onCrashReboot"&gt;Github&lt;/a&gt; for inspiration. &lt;/p&gt;
 &lt;/blockquote&gt;</content><category term="pelican"></category></entry></feed>
