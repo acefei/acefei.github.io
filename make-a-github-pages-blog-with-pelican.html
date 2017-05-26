@@ -110,22 +110,8 @@ needed by Pelican.
 
 
 <h3><a href="http://docs.getpelican.com/en/3.6.3/content.html">Write first post</a></h3>
-<p>To facilitate blog creation, I write a script for creating the template with md format.         </p>
-<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10
-11
-12
-13
-14
-15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<p>To facilitate blog creation, I write a script for creating the template with md format.</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">## save as create_new_blog.sh</span>
 <span class="nb">cd</span> content/
 <span class="nv">title</span><span class="o">=</span><span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">NewBlog</span><span class="si">}</span>
@@ -141,7 +127,7 @@ cat &gt; <span class="k">$(</span><span class="nb">echo</span> <span class="nv">
 <span class="s">This is the content of my blog post.</span>
 <span class="s">EOF</span>
 </pre></div>
-</td></tr></table>
+
 
 <p>Generate html format and pre-view via http://localhost:8000/</p>
 <div class="highlight"><pre><span></span>make html &amp;&amp; make serve&amp;
