@@ -57,8 +57,8 @@ needed by Pelican.
 ```
 
 ###  [Write first post](http://docs.getpelican.com/en/3.6.3/content.html)
-To facilitate blog creation, I write a script for creating the template with md format.         
-```
+To facilitate blog creation, I write a script for creating the template with md format.
+```bash
 #!/bin/bash
 ## save as create_new_blog.sh
 cd content/
@@ -75,6 +75,7 @@ Summary: Short version for index and feeds
 This is the content of my blog post.
 EOF
 ```
+
 Generate html format and pre-view via http://localhost:8000/
 ```
 make html && make serve&
