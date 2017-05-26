@@ -89,11 +89,11 @@ If everything is OK, generate the website.
 Currently, all pelican settings that are used to render HTML are on pelican branch.       
 As previously mentioned, the static website content should be pulish from master branch.       
 So, I need to publish respectively:      
-*For website:*                 
+For website: ([on master](https://github.com/acefei/acefei.github.io/tree/master))
 ```
 make github
 ```     
-*For pelican settings:*        
+For pelican settings: ([on pelican](https://github.com/acefei/acefei.github.io/tree/pelican))       
 ```
 echo -e "*.pyc\noutput/" >> .gitignore
 git add .
@@ -111,5 +111,5 @@ THEME = "pelican-elegant-1.3"
 ```
          
 > Caveat:            
-> Under GFW, we need to find an alternative CDN site to replace googleapis
-> I use the [script](https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/boost_cdn.sh) to do it.
+> Under GFW, we need to find an alternative CDN site to replace googleapis           
+> I use [a script](https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/boost_cdn.sh) to do it.
