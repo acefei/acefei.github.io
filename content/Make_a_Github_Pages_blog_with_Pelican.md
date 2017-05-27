@@ -59,26 +59,9 @@ needed by Pelican.
 ```
 
 ###  [Write first post](http://docs.getpelican.com/en/3.6.3/content.html)
-To facilitate blog creation, I write a script for creating the template with md format.
-```bash
-#!/bin/bash
-## save as create_new_blog.sh
-cd content/
-title=${1:-NewBlog}
-cat > $(echo $title | tr ' ' '_').md <<EOF
-Title: ${title}
-Date: $(date "+%Y-%m-%d %H:%M")
-Category: Python
-Tags: pelican
-Slug: my-super-post
-Authors: Ace Fei
-Summary: Short version for index and feeds
+To facilitate blog creation, I write [a script](https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/create_new_blog.sh) for creating the template with md format.
 
-This is the content of my blog post.
-EOF
-```
-
-Generate html format and pre-view via http://localhost:8000/
+Generate HTML pages and pre-view via http://localhost:8000/
 ```
 make html && make serve&
 firefox http://localhost:8000/
@@ -86,6 +69,7 @@ firefox http://localhost:8000/
 fg
 # Then, Ctrl+C to terminate the process
 ```
+
 ### Publish
 If everything is OK, generate the website.         
 Currently, all pelican settings that are used to render HTML are on pelican branch.       
@@ -105,11 +89,14 @@ git push -u origin pelican
 
 ### Extension
 #### Theme
-Download your fevorite [theme](http://pelicanthemes.com/), such as [elegant](http://oncrashreboot.com/elegant-best-pelican-theme-features)
-and unpack it (the path named pelican-elegant-1.3) to the path where there is pelicanconf.py.                             
-Then, append the following content into pelicanconf.py
+Clone your fevorite [theme](http://pelicanthemes.com/), such as [elegant](http://oncrashreboot.com/elegant-best-pelican-theme-features) 
 ```
-THEME = "pelican-elegant-1.3"
+cd pelican-theme
+git clone git://github.com/talha131/pelican-elegant.git
+```
+Then, add something like this to  pelicanconf.py
+```
+THEME = "pelican-theme/pelican-elegant"
 ```
          
 > Caveat:            
@@ -117,7 +104,7 @@ THEME = "pelican-elegant-1.3"
 > I use [a script](https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/boost_cdn.sh) to do it.
 
 #### Plugin
-At first, clone the plugin repo.
+Clone the plugin repo.
 ```
 git clone git://github.com/getpelican/pelican-plugins.git
 ```
@@ -142,6 +129,8 @@ SITEMAP = {
 ```
 Ok, plugin install completely.
 
+#### Pelican settings
+There are enhancements in [pelicanconfig.py](https://github.com/acefei/acefei.github.io/blob/pelican/pelicanconf.py)
 
 ### Reference
 > Blog [`onCrash=Reboot();`](http://oncrashreboot.com) uses Elegant theme. You
