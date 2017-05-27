@@ -91,17 +91,18 @@ git push -u origin pelican
 #### Theme
 Clone your fevorite [theme](http://pelicanthemes.com/), such as [elegant](http://oncrashreboot.com/elegant-best-pelican-theme-features) 
 ```
-cd pelican-theme
+mkdir pelican-themes
+cd pelican-themes
 git clone git://github.com/talha131/pelican-elegant.git
 ```
 Then, add something like this to  pelicanconf.py
 ```
-THEME = "pelican-theme/pelican-elegant"
+THEME = "pelican-themes/pelican-elegant"
 ```
          
 > Caveat:            
 > 1. Under GFW, we need to find an alternative CDN site to replace googleapis, I use [a script](https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/boost_cdn.sh) to do it.    
-> 2. If you want to add the theme into your pelican branch, remove the .git/ path under the theme folder.
+> 2. If you want to add the theme into your pelican branch, remove the .git* path under the theme folder.
 
 #### Plugin
 Clone the plugin repo.
