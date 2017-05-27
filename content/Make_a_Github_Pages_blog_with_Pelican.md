@@ -4,6 +4,8 @@ Category: Python
 Tags: pelican
 Authors: Ace Fei
 
+[TOC]
+
 ## Make a Github Pages blog with Pelican:
 ###  Install dependence
 ```

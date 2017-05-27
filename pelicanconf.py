@@ -2,11 +2,15 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
+#################### For the details, please refer to http://docs.getpelican.com/en/stable/settings.html  #####################
+
 AUTHOR = u'acefei'
 SITENAME = u"""<span style="color:black;">Acefei</span> <span style="color:darkblue;">'s</span> <span style="color:#AA1032;">One Piece</span>"""
 SITEURL = ''
 
 PATH = 'content'
+# set the page in navigation bar
+PAGE_PATHS = ['pages']
 
 TIMEZONE = 'Asia/Shanghai'
 
@@ -19,21 +23,13 @@ TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
-# Blogroll
+# Friend link
 #LINKS = (('Pelican', 'http://getpelican.com/'),
 #         ('Python.org', 'http://python.org/'),
 #         ('Jinja2', 'http://jinja.pocoo.org/'),
 #         ('You can modify those links in your config file', '#'),)
 
-# Social widget
-SOCIAL = (
-        ('CSDN (legacy blog)', 'http://blog.csdn.net/ace_fei'),
-        ('GitHub', 'https://github.com/acefei'),
-        ('Wechat', 'acefei'),
-        ('Email', 'mailto:acefei@163.com'),
-          )
 
-DEFAULT_PAGINATION = False
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
@@ -61,11 +57,31 @@ STATIC_PATHS = ['theme/images', 'images']
 TAG_SAVE_AS = ''
 CATEGORY_SAVE_AS = ''
 AUTHOR_SAVE_AS = ''
+USE_SHORTCUT_ICONS = True
+DEFAULT_PAGINATION = 10
+RECENT_ARTICLES_COUNT = 10
+
+# Elegant Labels
+SOCIAL_PROFILE_LABEL = u'Stay in Touch'
+
+# Social widget
+SOCIAL = (
+        ('CSDN (legacy blog)', 'http://blog.csdn.net/ace_fei'),
+        ('GitHub', 'https://github.com/acefei'),
+        ('Wechat', 'acefei'),
+        ('Email', 'mailto:acefei@163.com'),
+          )
 
 
 ###### plugin configuration #######
 PLUGIN_PATHS = ['pelican-plugins']
-PLUGINS = ['sitemap', 'extract_toc', 'tipue_search']
+PLUGINS = ['sitemap',
+           'extract_toc',
+           'tipue_search',
+           #'related_posts',
+           #'code_include',
+           #'summary',
+          ]
 SITEMAP = {
 'format': 'xml',
 'priorities': {
@@ -79,3 +95,16 @@ SITEMAP = {
     'pages': 'monthly'
     }
 }
+
+# For extract_toc plugin
+# For markdown extension settings, refer to http://pythonhosted.org/Markdown/extensions/index.html
+MARKDOWN = {
+        'extension_configs': {
+            'markdown.extensions.codehilite': {'css_class': 'highlight'},
+            'markdown.extensions.extra': {},
+            'markdown.extensions.meta': {},
+            # When set permalink to True the paragraph symbol (¶ or “&para;”) is used as the link text.
+            'markdown.extensions.toc': {'permalink': True},
+            },
+        'output_format': 'html5',
+        }
