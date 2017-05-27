@@ -78,9 +78,6 @@ PLUGIN_PATHS = ['pelican-plugins']
 PLUGINS = ['sitemap',
            'extract_toc',
            'tipue_search',
-           #'related_posts',
-           #'code_include',
-           #'summary',
           ]
 SITEMAP = {
 'format': 'xml',
