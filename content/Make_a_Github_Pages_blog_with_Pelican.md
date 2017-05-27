@@ -116,6 +116,33 @@ THEME = "pelican-elegant-1.3"
 > Under GFW, we need to find an alternative CDN site to replace googleapis           
 > I use [a script](https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/boost_cdn.sh) to do it.
 
+#### Plugin
+At first, clone the plugin repo.
+```
+git clone git://github.com/getpelican/pelican-plugins.git
+```
+Then, add following contents into pelicanconf.py
+```
+###### plugin configuration #######
+PLUGIN_PATHS = ['pelican-plugins']
+PLUGINS = ['sitemap', 'extract_toc', 'tipue_search']
+SITEMAP = {
+'format': 'xml',
+'priorities': {
+    'articles': 0.5,
+    'indexes': 0.5,
+    'pages': 0.5
+    },
+'changefreqs': {
+    'articles': 'weekly',
+    'indexes': 'daily',
+    'pages': 'monthly'
+    }
+}
+```
+Ok, plugin install completely.
+
+
 ### Reference
 > Blog [`onCrash=Reboot();`](http://oncrashreboot.com) uses Elegant theme. You
 can see its configuration files at
