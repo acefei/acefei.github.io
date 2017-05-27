@@ -54,24 +54,8 @@ needed by Pelican.
 &amp;gt; Is this your personal page &lt;span class="o"&gt;(&lt;/span&gt;username.github.io&lt;span class="o"&gt;)&lt;/span&gt;? &lt;span class="o"&gt;(&lt;/span&gt;y/N&lt;span class="o"&gt;)&lt;/span&gt; Y
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="write-first-post"&gt;&lt;a href="http://docs.getpelican.com/en/3.6.3/content.html"&gt;Write first post&lt;/a&gt;&lt;a class="headerlink" href="#write-first-post" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;To facilitate blog creation, I write a script for creating the template with md format.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
-&lt;span class="c1"&gt;## save as create_new_blog.sh&lt;/span&gt;
-&lt;span class="nb"&gt;cd&lt;/span&gt; content/
-&lt;span class="nv"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;1&lt;/span&gt;&lt;span class="k"&gt;:-&lt;/span&gt;&lt;span class="nv"&gt;NewBlog&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
-cat &amp;gt; &lt;span class="k"&gt;$(&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$title&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; tr &lt;span class="s1"&gt;' '&lt;/span&gt; &lt;span class="s1"&gt;'_'&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;.md &lt;span class="s"&gt;&amp;lt;&amp;lt;EOF&lt;/span&gt;
-&lt;span class="s"&gt;Title: ${title}&lt;/span&gt;
-&lt;span class="s"&gt;Date: $(date "+%Y-%m-%d %H:%M")&lt;/span&gt;
-&lt;span class="s"&gt;Category: Python&lt;/span&gt;
-&lt;span class="s"&gt;Tags: pelican&lt;/span&gt;
-&lt;span class="s"&gt;Slug: my-super-post&lt;/span&gt;
-&lt;span class="s"&gt;Authors: Ace Fei&lt;/span&gt;
-&lt;span class="s"&gt;Summary: Short version for index and feeds&lt;/span&gt;
-
-&lt;span class="s"&gt;This is the content of my blog post.&lt;/span&gt;
-&lt;span class="s"&gt;EOF&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Generate html format and pre-view via http://localhost:8000/&lt;/p&gt;
+&lt;p&gt;To facilitate blog creation, I write &lt;a href="https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/create_new_blog.sh"&gt;a script&lt;/a&gt; for creating the template with md format.&lt;/p&gt;
+&lt;p&gt;Generate HTML pages and pre-view via http://localhost:8000/&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make html &amp;amp;&amp;amp; make serve&amp;amp;
 firefox http://localhost:8000/
 # After pre-view 
@@ -94,18 +78,20 @@ git push -u origin pelican
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="extension"&gt;Extension&lt;a class="headerlink" href="#extension" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;h4 id="theme"&gt;Theme&lt;a class="headerlink" href="#theme" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;Download your fevorite &lt;a href="http://pelicanthemes.com/"&gt;theme&lt;/a&gt;, such as &lt;a href="http://oncrashreboot.com/elegant-best-pelican-theme-features"&gt;elegant&lt;/a&gt;
-and unpack it (the path named pelican-elegant-1.3) to the path where there is pelicanconf.py.                           &lt;br/&gt;
-Then, append the following content into pelicanconf.py&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;THEME = "pelican-elegant-1.3"
+&lt;p&gt;Clone your fevorite &lt;a href="http://pelicanthemes.com/"&gt;theme&lt;/a&gt;, such as &lt;a href="http://oncrashreboot.com/elegant-best-pelican-theme-features"&gt;elegant&lt;/a&gt; &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd pelican-theme
+git clone git://github.com/talha131/pelican-elegant.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then, add something like this to  pelicanconf.py&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;THEME = "pelican-theme/pelican-elegant"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Caveat:          &lt;br/&gt;
-Under GFW, we need to find an alternative CDN site to replace googleapis         &lt;br/&gt;
-I use &lt;a href="https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/boost_cdn.sh"&gt;a script&lt;/a&gt; to do it.&lt;/p&gt;
+1. Under GFW, we need to find an alternative CDN site to replace googleapis, I use &lt;a href="https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/boost_cdn.sh"&gt;a script&lt;/a&gt; to do it.  &lt;br/&gt;
+2. If you want to add the theme into your pelican branch, remove the .git/ path under the theme folder.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;h4 id="plugin"&gt;Plugin&lt;a class="headerlink" href="#plugin" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
-&lt;p&gt;At first, clone the plugin repo.&lt;/p&gt;
+&lt;p&gt;Clone the plugin repo.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git clone git://github.com/getpelican/pelican-plugins.git
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Then, add following contents into pelicanconf.py&lt;/p&gt;
@@ -127,6 +113,8 @@ SITEMAP = {
 }
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Ok, plugin install completely.&lt;/p&gt;
+&lt;h4 id="pelican-settings"&gt;Pelican settings&lt;a class="headerlink" href="#pelican-settings" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;There are enhancements in &lt;a href="https://github.com/acefei/acefei.github.io/blob/pelican/pelicanconf.py"&gt;pelicanconfig.py&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id="reference"&gt;Reference&lt;a class="headerlink" href="#reference" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Blog &lt;a href="http://oncrashreboot.com"&gt;&lt;code&gt;onCrash=Reboot();&lt;/code&gt;&lt;/a&gt; uses Elegant theme. You
