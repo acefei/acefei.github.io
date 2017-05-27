@@ -6,7 +6,7 @@
         <meta name="author" content="Ace Fei" />
         <meta name="copyright" content="Ace Fei" />
 
-        <meta name="description" content="Make a Github Pages blog with Pelican: Install dependence sudo yum install -y git sudo pip install pelican markdown ghp-import BeautifulSoup4 Create user pages There are two basic types of GitHub Pages: User/Organization Pages and Project Pages. Generally, most people will select User Pages, and there are two …
+        <meta name="description" content="Make a Github Pages blog with Pelican:¶ Install dependence¶ sudo yum install -y git sudo pip install pelican markdown ghp-import BeautifulSoup4 Create user pages¶ There are two basic types of GitHub Pages: User/Organization Pages and Project Pages. Generally, most people will select User Pages, and there are two …
 " />
 <meta name="keywords" content="pelican, Python, " />
         <title>Make a Github Pages blog with Pelican  · Acefei 's One Piece
@@ -60,16 +60,38 @@
 </div>
 
 <div class="row-fluid">
-        <div class="span8 offset2 article-content">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#make-a-github-pages-blog-with-pelican">Make a Github Pages blog with Pelican:</a><ul>
+<li><a href="#install-dependence">Install dependence</a></li>
+<li><a href="#create-user-pages">Create user pages</a></li>
+<li><a href="#set-up-the-blog-with-pelican">Set up the blog with Pelican</a></li>
+<li><a href="#write-first-post">Write first post</a></li>
+<li><a href="#publish">Publish</a></li>
+<li><a href="#extension">Extension</a><ul>
+<li><a href="#theme">Theme</a></li>
+<li><a href="#plugin">Plugin</a></li>
+</ul>
+</li>
+<li><a href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
 
-            <h2>Make a Github Pages blog with Pelican:</h2>
-<h3>Install dependence</h3>
+            
+<h2 id="make-a-github-pages-blog-with-pelican">Make a Github Pages blog with Pelican:<a class="headerlink" href="#make-a-github-pages-blog-with-pelican" title="Permanent link">¶</a></h2>
+<h3 id="install-dependence">Install dependence<a class="headerlink" href="#install-dependence" title="Permanent link">¶</a></h3>
 <div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">yum</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">git</span>
 <span class="n">sudo</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pelican</span> <span class="n">markdown</span> <span class="n">ghp</span><span class="o">-</span><span class="kn">import</span> <span class="nn">BeautifulSoup4</span>
 </pre></div>
-
-
-<h3>Create user pages</h3>
+<h3 id="create-user-pages">Create user pages<a class="headerlink" href="#create-user-pages" title="Permanent link">¶</a></h3>
 <p>There are two basic types of GitHub Pages: <a href="https://help.github.com/articles/user-organization-and-project-pages/">User/Organization Pages and Project Pages</a>. </p>
 <p>Generally, most people will select User Pages, and there are two caveat as below:</p>
 <blockquote>
@@ -77,7 +99,7 @@
 Content from the <em>master</em> branch will be used to build and publish your GitHub Pages site.</p>
 </blockquote>
 <p>When User Pages are built, they are available at http(s)://username.github.io.</p>
-<h3>Set up the blog with Pelican</h3>
+<h3 id="set-up-the-blog-with-pelican">Set up the blog with Pelican<a class="headerlink" href="#set-up-the-blog-with-pelican" title="Permanent link">¶</a></h3>
 <p>Create a new branch (pelican) for hosting pelican settings on github, please refer to <a href="#publish">Publish</a> </p>
 <div class="highlight"><pre><span></span>$ git clone https://github.com/acefei/acefei.github.io
 $ <span class="nb">cd</span> acefei.github.io/
@@ -92,7 +114,7 @@ needed by Pelican.
 
 
 &gt; Where <span class="k">do</span> you want to create your new web site? <span class="o">[</span>.<span class="o">]</span>
-&gt; What will be the title of this web site? Acefei<span class="err">&#39;</span>s Blog
+&gt; What will be the title of this web site? Acefei<span class="err">'</span>s Blog
 &gt; Who will be the author of this web site? acefei
 &gt; What will be the default language of this web site? <span class="o">[</span>en<span class="o">]</span>
 &gt; Do you want to specify a URL prefix? e.g., http://example.com   <span class="o">(</span>Y/n<span class="o">)</span>
@@ -109,17 +131,15 @@ needed by Pelican.
 &gt; Do you want to upload your website using GitHub Pages? <span class="o">(</span>y/N<span class="o">)</span> Y
 &gt; Is this your personal page <span class="o">(</span>username.github.io<span class="o">)</span>? <span class="o">(</span>y/N<span class="o">)</span> Y
 </pre></div>
-
-
-<h3><a href="http://docs.getpelican.com/en/3.6.3/content.html">Write first post</a></h3>
+<h3 id="write-first-post"><a href="http://docs.getpelican.com/en/3.6.3/content.html">Write first post</a><a class="headerlink" href="#write-first-post" title="Permanent link">¶</a></h3>
 <p>To facilitate blog creation, I write a script for creating the template with md format.</p>
 <div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">## save as create_new_blog.sh</span>
 <span class="nb">cd</span> content/
 <span class="nv">title</span><span class="o">=</span><span class="si">${</span><span class="nv">1</span><span class="k">:-</span><span class="nv">NewBlog</span><span class="si">}</span>
-cat &gt; <span class="k">$(</span><span class="nb">echo</span> <span class="nv">$title</span> <span class="p">|</span> tr <span class="s1">&#39; &#39;</span> <span class="s1">&#39;_&#39;</span><span class="k">)</span>.md <span class="s">&lt;&lt;EOF</span>
+cat &gt; <span class="k">$(</span><span class="nb">echo</span> <span class="nv">$title</span> <span class="p">|</span> tr <span class="s1">' '</span> <span class="s1">'_'</span><span class="k">)</span>.md <span class="s">&lt;&lt;EOF</span>
 <span class="s">Title: ${title}</span>
-<span class="s">Date: $(date &quot;+%Y-%m-%d %H:%M&quot;)</span>
+<span class="s">Date: $(date "+%Y-%m-%d %H:%M")</span>
 <span class="s">Category: Python</span>
 <span class="s">Tags: pelican</span>
 <span class="s">Slug: my-super-post</span>
@@ -129,8 +149,6 @@ cat &gt; <span class="k">$(</span><span class="nb">echo</span> <span class="nv">
 <span class="s">This is the content of my blog post.</span>
 <span class="s">EOF</span>
 </pre></div>
-
-
 <p>Generate html format and pre-view via http://localhost:8000/</p>
 <div class="highlight"><pre><span></span>make html &amp;&amp; make serve&amp;
 firefox http://localhost:8000/
@@ -138,41 +156,56 @@ firefox http://localhost:8000/
 fg
 # Then, Ctrl+C to terminate the process
 </pre></div>
-
-
-<h3>Publish</h3>
-<p>If everything is OK, generate the website.       <br>
-Currently, all pelican settings that are used to render HTML are on pelican branch.     <br>
-As previously mentioned, the static website content should be pulish from master branch.     <br>
-So, I need to publish respectively:    <br>
+<h3 id="publish">Publish<a class="headerlink" href="#publish" title="Permanent link">¶</a></h3>
+<p>If everything is OK, generate the website.       <br/>
+Currently, all pelican settings that are used to render HTML are on pelican branch.     <br/>
+As previously mentioned, the static website content should be pulish from master branch.     <br/>
+So, I need to publish respectively:    <br/>
 For static website: (on <a href="https://github.com/acefei/acefei.github.io/tree/master">master branch</a>)</p>
 <div class="highlight"><pre><span></span>make github
 </pre></div>
-
-
 <p>For pelican settings: (on <a href="https://github.com/acefei/acefei.github.io/tree/pelican">pelican branch</a>)       </p>
-<div class="highlight"><pre><span></span>echo -e &quot;*.pyc\noutput/&quot; &gt;&gt; .gitignore
+<div class="highlight"><pre><span></span>echo -e "*.pyc\noutput/" &gt;&gt; .gitignore
 git add .
-git commit -m &quot;commit pelican setting&quot;
+git commit -m "commit pelican setting"
 git push -u origin pelican
 </pre></div>
-
-
-<h3>Extension</h3>
-<h4>Theme</h4>
+<h3 id="extension">Extension<a class="headerlink" href="#extension" title="Permanent link">¶</a></h3>
+<h4 id="theme">Theme<a class="headerlink" href="#theme" title="Permanent link">¶</a></h4>
 <p>Download your fevorite <a href="http://pelicanthemes.com/">theme</a>, such as <a href="http://oncrashreboot.com/elegant-best-pelican-theme-features">elegant</a>
-and unpack it (the path named pelican-elegant-1.3) to the path where there is pelicanconf.py.                           <br>
+and unpack it (the path named pelican-elegant-1.3) to the path where there is pelicanconf.py.                           <br/>
 Then, append the following content into pelicanconf.py</p>
-<div class="highlight"><pre><span></span>THEME = &quot;pelican-elegant-1.3&quot;
+<div class="highlight"><pre><span></span>THEME = "pelican-elegant-1.3"
 </pre></div>
-
-
 <blockquote>
-<p>Caveat:          <br>
-Under GFW, we need to find an alternative CDN site to replace googleapis         <br>
+<p>Caveat:          <br/>
+Under GFW, we need to find an alternative CDN site to replace googleapis         <br/>
 I use <a href="https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/boost_cdn.sh">a script</a> to do it.</p>
 </blockquote>
-<h3>Reference</h3>
+<h4 id="plugin">Plugin<a class="headerlink" href="#plugin" title="Permanent link">¶</a></h4>
+<p>At first, clone the plugin repo.</p>
+<div class="highlight"><pre><span></span>git clone git://github.com/getpelican/pelican-plugins.git
+</pre></div>
+<p>Then, add following contents into pelicanconf.py</p>
+<div class="highlight"><pre><span></span>###### plugin configuration #######
+PLUGIN_PATHS = ['pelican-plugins']
+PLUGINS = ['sitemap', 'extract_toc', 'tipue_search']
+SITEMAP = {
+'format': 'xml',
+'priorities': {
+    'articles': 0.5,
+    'indexes': 0.5,
+    'pages': 0.5
+    },
+'changefreqs': {
+    'articles': 'weekly',
+    'indexes': 'daily',
+    'pages': 'monthly'
+    }
+}
+</pre></div>
+<p>Ok, plugin install completely.</p>
+<h3 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">¶</a></h3>
 <blockquote>
 <p>Blog <a href="http://oncrashreboot.com"><code>onCrash=Reboot();</code></a> uses Elegant theme. You
 can see its configuration files at

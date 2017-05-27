@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei 's One Piece</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/all.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2017-05-25T10:05:00+08:00</updated><entry><title>Make a Github Pages blog with Pelican</title><link href="https://acefei.github.io/make-a-github-pages-blog-with-pelican.html" rel="alternate"></link><published>2017-05-25T10:05:00+08:00</published><updated>2017-05-25T10:05:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-05-25:/make-a-github-pages-blog-with-pelican.html</id><summary type="html">&lt;h2&gt;Make a Github Pages blog with Pelican:&lt;/h2&gt;
-&lt;h3&gt;Install dependence&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei 's One Piece</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/all.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2017-05-25T10:05:00+08:00</updated><entry><title>Make a Github Pages blog with Pelican</title><link href="https://acefei.github.io/make-a-github-pages-blog-with-pelican.html" rel="alternate"></link><published>2017-05-25T10:05:00+08:00</published><updated>2017-05-25T10:05:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-05-25:/make-a-github-pages-blog-with-pelican.html</id><summary type="html">
+&lt;h2 id="make-a-github-pages-blog-with-pelican"&gt;Make a Github Pages blog with Pelican:&lt;a class="headerlink" href="#make-a-github-pages-blog-with-pelican" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="install-dependence"&gt;Install dependence&lt;a class="headerlink" href="#install-dependence" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;yum&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt;
 &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;pelican&lt;/span&gt; &lt;span class="n"&gt;markdown&lt;/span&gt; &lt;span class="n"&gt;ghp&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;BeautifulSoup4&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3&gt;Create user pages&lt;/h3&gt;
+&lt;h3 id="create-user-pages"&gt;Create user pages&lt;a class="headerlink" href="#create-user-pages" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;There are two basic types of GitHub Pages: &lt;a href="https://help.github.com/articles/user-organization-and-project-pages/"&gt;User/Organization Pages and Project Pages&lt;/a&gt;. &lt;/p&gt;
-&lt;p&gt;Generally, most people will select User Pages, and there are two …&lt;/p&gt;</summary><content type="html">&lt;h2&gt;Make a Github Pages blog with Pelican:&lt;/h2&gt;
-&lt;h3&gt;Install dependence&lt;/h3&gt;
+&lt;p&gt;Generally, most people will select User Pages, and there are two …&lt;/p&gt;</summary><content type="html">
+&lt;h2 id="make-a-github-pages-blog-with-pelican"&gt;Make a Github Pages blog with Pelican:&lt;a class="headerlink" href="#make-a-github-pages-blog-with-pelican" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id="install-dependence"&gt;Install dependence&lt;a class="headerlink" href="#install-dependence" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;yum&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt;
 &lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;pelican&lt;/span&gt; &lt;span class="n"&gt;markdown&lt;/span&gt; &lt;span class="n"&gt;ghp&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;BeautifulSoup4&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3&gt;Create user pages&lt;/h3&gt;
+&lt;h3 id="create-user-pages"&gt;Create user pages&lt;a class="headerlink" href="#create-user-pages" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;There are two basic types of GitHub Pages: &lt;a href="https://help.github.com/articles/user-organization-and-project-pages/"&gt;User/Organization Pages and Project Pages&lt;/a&gt;. &lt;/p&gt;
 &lt;p&gt;Generally, most people will select User Pages, and there are two caveat as below:&lt;/p&gt;
 &lt;blockquote&gt;
@@ -23,7 +21,7 @@
 Content from the &lt;em&gt;master&lt;/em&gt; branch will be used to build and publish your GitHub Pages site.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;When User Pages are built, they are available at http(s)://username.github.io.&lt;/p&gt;
-&lt;h3&gt;Set up the blog with Pelican&lt;/h3&gt;
+&lt;h3 id="set-up-the-blog-with-pelican"&gt;Set up the blog with Pelican&lt;a class="headerlink" href="#set-up-the-blog-with-pelican" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Create a new branch (pelican) for hosting pelican settings on github, please refer to &lt;a href="#publish"&gt;Publish&lt;/a&gt; &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ git clone https://github.com/acefei/acefei.github.io
 $ &lt;span class="nb"&gt;cd&lt;/span&gt; acefei.github.io/
@@ -38,7 +36,7 @@ needed by Pelican.
 
 
 &amp;gt; Where &lt;span class="k"&gt;do&lt;/span&gt; you want to create your new web site? &lt;span class="o"&gt;[&lt;/span&gt;.&lt;span class="o"&gt;]&lt;/span&gt;
-&amp;gt; What will be the title of this web site? Acefei&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;s Blog
+&amp;gt; What will be the title of this web site? Acefei&lt;span class="err"&gt;'&lt;/span&gt;s Blog
 &amp;gt; Who will be the author of this web site? acefei
 &amp;gt; What will be the default language of this web site? &lt;span class="o"&gt;[&lt;/span&gt;en&lt;span class="o"&gt;]&lt;/span&gt;
 &amp;gt; Do you want to specify a URL prefix? e.g., http://example.com   &lt;span class="o"&gt;(&lt;/span&gt;Y/n&lt;span class="o"&gt;)&lt;/span&gt;
@@ -55,17 +53,15 @@ needed by Pelican.
 &amp;gt; Do you want to upload your website using GitHub Pages? &lt;span class="o"&gt;(&lt;/span&gt;y/N&lt;span class="o"&gt;)&lt;/span&gt; Y
 &amp;gt; Is this your personal page &lt;span class="o"&gt;(&lt;/span&gt;username.github.io&lt;span class="o"&gt;)&lt;/span&gt;? &lt;span class="o"&gt;(&lt;/span&gt;y/N&lt;span class="o"&gt;)&lt;/span&gt; Y
 &lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3&gt;&lt;a href="http://docs.getpelican.com/en/3.6.3/content.html"&gt;Write first post&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="write-first-post"&gt;&lt;a href="http://docs.getpelican.com/en/3.6.3/content.html"&gt;Write first post&lt;/a&gt;&lt;a class="headerlink" href="#write-first-post" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;To facilitate blog creation, I write a script for creating the template with md format.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="ch"&gt;#!/bin/bash&lt;/span&gt;
 &lt;span class="c1"&gt;## save as create_new_blog.sh&lt;/span&gt;
 &lt;span class="nb"&gt;cd&lt;/span&gt; content/
 &lt;span class="nv"&gt;title&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;1&lt;/span&gt;&lt;span class="k"&gt;:-&lt;/span&gt;&lt;span class="nv"&gt;NewBlog&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;
-cat &amp;gt; &lt;span class="k"&gt;$(&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$title&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; tr &lt;span class="s1"&gt;&amp;#39; &amp;#39;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;_&amp;#39;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;.md &lt;span class="s"&gt;&amp;lt;&amp;lt;EOF&lt;/span&gt;
+cat &amp;gt; &lt;span class="k"&gt;$(&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$title&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; tr &lt;span class="s1"&gt;' '&lt;/span&gt; &lt;span class="s1"&gt;'_'&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;.md &lt;span class="s"&gt;&amp;lt;&amp;lt;EOF&lt;/span&gt;
 &lt;span class="s"&gt;Title: ${title}&lt;/span&gt;
-&lt;span class="s"&gt;Date: $(date &amp;quot;+%Y-%m-%d %H:%M&amp;quot;)&lt;/span&gt;
+&lt;span class="s"&gt;Date: $(date "+%Y-%m-%d %H:%M")&lt;/span&gt;
 &lt;span class="s"&gt;Category: Python&lt;/span&gt;
 &lt;span class="s"&gt;Tags: pelican&lt;/span&gt;
 &lt;span class="s"&gt;Slug: my-super-post&lt;/span&gt;
@@ -75,8 +71,6 @@ cat &amp;gt; &lt;span class="k"&gt;$(&lt;/span&gt;&lt;span class="nb"&gt;echo&lt
 &lt;span class="s"&gt;This is the content of my blog post.&lt;/span&gt;
 &lt;span class="s"&gt;EOF&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
-
 &lt;p&gt;Generate html format and pre-view via http://localhost:8000/&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make html &amp;amp;&amp;amp; make serve&amp;amp;
 firefox http://localhost:8000/
@@ -84,41 +78,56 @@ firefox http://localhost:8000/
 fg
 # Then, Ctrl+C to terminate the process
 &lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3&gt;Publish&lt;/h3&gt;
-&lt;p&gt;If everything is OK, generate the website.       &lt;br&gt;
-Currently, all pelican settings that are used to render HTML are on pelican branch.     &lt;br&gt;
-As previously mentioned, the static website content should be pulish from master branch.     &lt;br&gt;
-So, I need to publish respectively:    &lt;br&gt;
+&lt;h3 id="publish"&gt;Publish&lt;a class="headerlink" href="#publish" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;If everything is OK, generate the website.       &lt;br/&gt;
+Currently, all pelican settings that are used to render HTML are on pelican branch.     &lt;br/&gt;
+As previously mentioned, the static website content should be pulish from master branch.     &lt;br/&gt;
+So, I need to publish respectively:    &lt;br/&gt;
 For static website: (on &lt;a href="https://github.com/acefei/acefei.github.io/tree/master"&gt;master branch&lt;/a&gt;)&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make github
 &lt;/pre&gt;&lt;/div&gt;
-
-
 &lt;p&gt;For pelican settings: (on &lt;a href="https://github.com/acefei/acefei.github.io/tree/pelican"&gt;pelican branch&lt;/a&gt;)       &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;echo -e &amp;quot;*.pyc\noutput/&amp;quot; &amp;gt;&amp;gt; .gitignore
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;echo -e "*.pyc\noutput/" &amp;gt;&amp;gt; .gitignore
 git add .
-git commit -m &amp;quot;commit pelican setting&amp;quot;
+git commit -m "commit pelican setting"
 git push -u origin pelican
 &lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3&gt;Extension&lt;/h3&gt;
-&lt;h4&gt;Theme&lt;/h4&gt;
+&lt;h3 id="extension"&gt;Extension&lt;a class="headerlink" href="#extension" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h4 id="theme"&gt;Theme&lt;a class="headerlink" href="#theme" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;Download your fevorite &lt;a href="http://pelicanthemes.com/"&gt;theme&lt;/a&gt;, such as &lt;a href="http://oncrashreboot.com/elegant-best-pelican-theme-features"&gt;elegant&lt;/a&gt;
-and unpack it (the path named pelican-elegant-1.3) to the path where there is pelicanconf.py.                           &lt;br&gt;
+and unpack it (the path named pelican-elegant-1.3) to the path where there is pelicanconf.py.                           &lt;br/&gt;
 Then, append the following content into pelicanconf.py&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;THEME = &amp;quot;pelican-elegant-1.3&amp;quot;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;THEME = "pelican-elegant-1.3"
 &lt;/pre&gt;&lt;/div&gt;
-
-
 &lt;blockquote&gt;
-&lt;p&gt;Caveat:          &lt;br&gt;
-Under GFW, we need to find an alternative CDN site to replace googleapis         &lt;br&gt;
+&lt;p&gt;Caveat:          &lt;br/&gt;
+Under GFW, we need to find an alternative CDN site to replace googleapis         &lt;br/&gt;
 I use &lt;a href="https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/boost_cdn.sh"&gt;a script&lt;/a&gt; to do it.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3&gt;Reference&lt;/h3&gt;
+&lt;h4 id="plugin"&gt;Plugin&lt;a class="headerlink" href="#plugin" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;At first, clone the plugin repo.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git clone git://github.com/getpelican/pelican-plugins.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then, add following contents into pelicanconf.py&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;###### plugin configuration #######
+PLUGIN_PATHS = ['pelican-plugins']
+PLUGINS = ['sitemap', 'extract_toc', 'tipue_search']
+SITEMAP = {
+'format': 'xml',
+'priorities': {
+    'articles': 0.5,
+    'indexes': 0.5,
+    'pages': 0.5
+    },
+'changefreqs': {
+    'articles': 'weekly',
+    'indexes': 'daily',
+    'pages': 'monthly'
+    }
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Ok, plugin install completely.&lt;/p&gt;
+&lt;h3 id="reference"&gt;Reference&lt;a class="headerlink" href="#reference" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Blog &lt;a href="http://oncrashreboot.com"&gt;&lt;code&gt;onCrash=Reboot();&lt;/code&gt;&lt;/a&gt; uses Elegant theme. You
 can see its configuration files at
