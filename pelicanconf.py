@@ -24,12 +24,9 @@ AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
 # Friend link
-#LINKS = (('Pelican', 'http://getpelican.com/'),
-#         ('Python.org', 'http://python.org/'),
-#         ('Jinja2', 'http://jinja.pocoo.org/'),
-#         ('You can modify those links in your config file', '#'),)
-
-
+LINKS = (
+        ('CSDN (legacy blog)', 'blog.csdn.com/ace_fei'),
+        )
 
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
@@ -39,16 +36,28 @@ DELETE_OUTPUT_DIRECTORY = True
 # SEO
 SITE_DESCRIPTION = u'My name is acefei/ace_fei. This is my personal blog.'
 
-#Disqus
-DISQUS_SITENAME = "ace"
-
 ###### elegant theme configuration #######
-THEME = "theme/pelican-elegant-1.3"
+THEME = "pelican-themes/pelican-elegant"
 # About Me
 LANDING_PAGE_ABOUT = {
         'title': 'WHEN YOU AUTOMATE, YOU ACCELERATE',
         'details': """
-        <div><p>As a geek, I always like to bring fresh and challenging work.</p></div>
+        <div>
+            <h1>欢迎来到Acefei的博客!</h1>
+            <p>我是一名开发攻城狮，喜欢篮球、电影和游戏。</p>
+            <p>由于<a href='http://blog.csdn.net/csdnproduct/article/details/70145129'>特殊原因</a>(呵呵！)，我的CSDN博客(<a href='http://blog.csdn.net/ace_fei'>ace_fei</a>)已经停止更新！</p>
+            <hr class="eye-protector-processed" style="transition: background-color 0.3s ease; border-color: rgba(0, 0, 0, 0.35); color: rgb(0, 0, 0); background-color: rgb(193, 230, 198);">
+            <h2>博文分类</h2>
+            <ul>
+            <li>DevOps：持续交付、自动化 </li>
+            <li>语言&开发：编程语言 </li>
+            <li>Misc：意趣、闲思、杂七杂八</li>
+            </ul>
+            <p>翻阅博客：<a href="/archives.html">文章归档</a> <a href="/tags.html">话题标签</a></p>
+            <h2>电影让你更懂人生</h2>
+            <p>&emsp;&emsp;——人生只能活一次，但是透过电影可以了解到世界上大小人物的人生故事，而这当中，一定有些是说中你心声的故事。</p>
+            <p>近期影单：《加勒比海盗5：死无对证》、漫威和DC的新片</p>
+        </div>
         """
         }
 
@@ -65,10 +74,10 @@ RECENT_ARTICLES_COUNT = 10
 SOCIAL_PROFILE_LABEL = u'Stay in Touch'
 
 # Social widget
+
+# you can find the icons in http://fontawesome.io/icons/#brand
 SOCIAL = (
-        ('CSDN (legacy blog)', 'http://blog.csdn.net/ace_fei'),
         ('GitHub', 'https://github.com/acefei'),
-        ('Wechat', 'acefei'),
         ('Email', 'mailto:acefei@163.com'),
           )
 
