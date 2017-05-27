@@ -130,7 +130,7 @@ SITEMAP = {
 Ok, plugin install completely.
 
 #### Pelican settings
-There are emhancements in [pelicanconfig.py](https://github.com/acefei/acefei.github.io/blob/pelican/pelicanconf.py)
+There are enhancements in [pelicanconfig.py](https://github.com/acefei/acefei.github.io/blob/pelican/pelicanconf.py)
 
 ### Reference
 > Blog [`onCrash=Reboot();`](http://oncrashreboot.com) uses Elegant theme. You
