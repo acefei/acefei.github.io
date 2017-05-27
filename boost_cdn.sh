@@ -12,7 +12,7 @@ while read line
 do
     regexp=${line%% *}
     replacement=${line##* }
-    find pelican-theme/ -type f -print | xargs -i sed -i "s/$regexp/$replacement/" {}
+    find pelican-themes/ -type f -print | xargs -i sed -i "s/$regexp/$replacement/" {}
 done < mapping
 
 rm mapping
