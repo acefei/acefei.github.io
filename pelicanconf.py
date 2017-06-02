@@ -44,7 +44,7 @@ LANDING_PAGE_ABOUT = {
         'details': """
         <div>
             <h1>欢迎来到Acefei的博客!</h1>
-            <p>我是一名开发攻城狮，喜欢篮球、电影和游戏。</p>
+            <p>我是一名开发攻城狮，有很强的学习能力，并喜欢钻研、思考问题，而且善于总结经验，平时喜欢篮球、电影和游戏。</p>
             <p>由于<a href='http://blog.csdn.net/csdnproduct/article/details/70145129'>特殊原因</a>(呵呵！)，我的CSDN博客(<a href='http://blog.csdn.net/ace_fei'>ace_fei</a>)已经停止更新！</p>
             <hr class="eye-protector-processed" style="transition: background-color 0.3s ease; border-color: rgba(0, 0, 0, 0.35); color: rgb(0, 0, 0); background-color: rgb(193, 230, 198);">
             <h2>博文分类</h2>
@@ -56,7 +56,7 @@ LANDING_PAGE_ABOUT = {
             <p>翻阅博客：<a href="/archives.html">文章归档</a> <a href="/tags.html">话题标签</a></p>
             <h2>电影让你更懂人生</h2>
             <p>&emsp;&emsp;——人生只能活一次，但是透过电影可以了解到世界上大小人物的人生故事，而这当中，一定有些是说中你心声的故事。</p>
-            <p>近期影单：《加勒比海盗5：死无对证》、漫威和DC的新片</p>
+            <p>近期影单：《DUNKIRK》</p>
         </div>
         """
         }
