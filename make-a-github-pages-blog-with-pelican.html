@@ -177,16 +177,17 @@ git push -u origin pelican
 <h3 id="extension">Extension<a class="headerlink" href="#extension" title="Permanent link">¶</a></h3>
 <h4 id="theme">Theme<a class="headerlink" href="#theme" title="Permanent link">¶</a></h4>
 <p>Clone your fevorite <a href="http://pelicanthemes.com/">theme</a>, such as <a href="http://oncrashreboot.com/elegant-best-pelican-theme-features">elegant</a> </p>
-<div class="highlight"><pre><span></span>cd pelican-theme
+<div class="highlight"><pre><span></span>mkdir pelican-themes
+cd pelican-themes
 git clone git://github.com/talha131/pelican-elegant.git
 </pre></div>
 <p>Then, add something like this to  pelicanconf.py</p>
-<div class="highlight"><pre><span></span>THEME = "pelican-theme/pelican-elegant"
+<div class="highlight"><pre><span></span>THEME = "pelican-themes/pelican-elegant"
 </pre></div>
 <blockquote>
 <p>Caveat:          <br/>
 1. Under GFW, we need to find an alternative CDN site to replace googleapis, I use <a href="https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/boost_cdn.sh">a script</a> to do it.  <br/>
-2. If you want to add the theme into your pelican branch, remove the .git/ path under the theme folder.</p>
+2. If you want to add the theme into your pelican branch, remove the .git* path under the theme folder.</p>
 </blockquote>
 <h4 id="plugin">Plugin<a class="headerlink" href="#plugin" title="Permanent link">¶</a></h4>
 <p>Clone the plugin repo.</p>
