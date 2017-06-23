@@ -100,7 +100,7 @@ Then, add something like this to  pelicanconf.py
 THEME = "pelican-themes/pelican-elegant"
 ```
          
-> Caveat:            
+> Note:            
 > 1. Under GFW, we need to find an alternative CDN site to replace googleapis, I use [a script](https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/boost_cdn.sh) to do it.    
 > 2. If you want to add the theme into your pelican branch, remove the .git* path under the theme folder.
 

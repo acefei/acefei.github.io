@@ -88,6 +88,7 @@ PLUGINS = ['sitemap',
            'extract_toc',
            'tipue_search',
           ]
+
 SITEMAP = {
 'format': 'xml',
 'priorities': {
