@@ -140,7 +140,7 @@ git clone git://github.com/talha131/pelican-elegant.git
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;THEME = "pelican-themes/pelican-elegant"
 &lt;/pre&gt;&lt;/div&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Caveat:          &lt;br/&gt;
+&lt;p&gt;Note:          &lt;br/&gt;
 1. Under GFW, we need to find an alternative CDN site to replace googleapis, I use &lt;a href="https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/boost_cdn.sh"&gt;a script&lt;/a&gt; to do it.  &lt;br/&gt;
 2. If you want to add the theme into your pelican branch, remove the .git* path under the theme folder.&lt;/p&gt;
 &lt;/blockquote&gt;
