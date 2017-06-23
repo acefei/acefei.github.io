@@ -53,7 +53,7 @@ LANDING_PAGE_ABOUT = {
             <li>Development：编程语言 </li>
             <li>Misc：意趣、闲思、杂七杂八</li>
             </ul>
-            <p>翻阅博客：<a href="/archives.html">文章归档</a> <a href="/tags.html">话题标签</a></p>
+            <p>翻阅博客：<a href="/categories.html">文章归档</a> <a href="/tags.html">话题标签</a></p>
             <h2>电影让你更懂人生</h2>
             <p>&emsp;&emsp;——人生只能活一次，但是透过电影可以了解到世界上大小人物的人生故事，而这当中，一定有些是说中你心声的故事。</p>
             <p>近期影单：<a href='http://www.dunkirkmovie.com/'>《DUNKIRK》</a></p>

@@ -1,7 +1,7 @@
 #!/bin/bash
 read -p "Article Title: " r_title
 read -p "Category: [Development/DevOps/Misc]" r_category
-read -p "Tags: " r_tags
+read -p "Tags: (separated by comma) " r_tags
 title=${r_title:-NewBlog}
 category=${r_category:-Development}
 tags=${r_tags:-na}
