@@ -25,9 +25,9 @@ About the details, please refer to [the link](http://docs.python-guide.org/en/la
 ### Concurrency
 We will use [GRequests](https://github.com/kennethreitz/grequests) which allows you to use Requests with Gevent to make asynchronous HTTP Requests easily. Or use the fork: [FRequests](https://github.com/i-trofimtschuk/frequests) 
 
-*Note:*
+The following need to be noted:
 
-1. Using pool to limit concurrency. 
+#### 1. Using pool to limit concurrency. 
 GRequests doesn't use pool by default, please see below code snippet: 
 ```
 def map(requests, stream=False, size=None, exception_handler=None, gtimeout=None):
@@ -48,10 +48,12 @@ def map(requests, stream=False, size=None, exception_handler=None, gtimeout=None
 
 In my requirement, there are enomous links need to settle. If don't constrain concurrency, it would lead to the exception "gevent.hub.LoopExit: This operation would block forever".
 
-2. Using session to avoid the fd consuming. 
+#### 2. Using session to avoid the fd consuming. 
 There is a [same problem](https://github.com/kennethreitz/grequests/issues/54) with me.
 
-The source code is available in [the gist](https://gist.github.com/acefei/2ca602d67e53011878dbf40f1ccda216#file-fetch_mp3_from_apexlegend-py)
+
+
+Finally, the source code is available in [the gist](https://gist.github.com/acefei/2ca602d67e53011878dbf40f1ccda216#file-fetch_mp3_from_apexlegend-py)
 
 ### SEE ALSO: 
 1. http://xlambda.com/gevent-tutorial/
