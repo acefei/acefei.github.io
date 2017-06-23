@@ -61,7 +61,8 @@ LANDING_PAGE_ABOUT = {
         """
         }
 
-DIRECT_TEMPLATES = (('index', 'tags', 'categories','archives', 'search', '404'))
+DIRECT_TEMPLATES = (('index', 'tags', 'categories','archives','404'))
+# Relative path with content/
 STATIC_PATHS = ['theme/images', 'images']
 TAG_SAVE_AS = ''
 CATEGORY_SAVE_AS = ''
@@ -86,7 +87,6 @@ SOCIAL = (
 PLUGIN_PATHS = ['pelican-plugins']
 PLUGINS = ['sitemap',
            'extract_toc',
-           'tipue_search',
           ]
 
 SITEMAP = {
