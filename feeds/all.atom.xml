@@ -1,5 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei 's One Piece</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/all.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2017-05-25T10:05:00+08:00</updated><entry><title>Make a Github Pages blog with Pelican</title><link href="https://acefei.github.io/make-a-github-pages-blog-with-pelican.html" rel="alternate"></link><published>2017-05-25T10:05:00+08:00</published><updated>2017-05-25T10:05:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-05-25:/make-a-github-pages-blog-with-pelican.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei 's One Piece</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/all.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2017-06-23T02:37:00+08:00</updated><entry><title>Web Scraping Practice</title><link href="https://acefei.github.io/web-scraping-practice.html" rel="alternate"></link><published>2017-06-23T02:37:00+08:00</published><updated>2017-06-23T02:37:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-06-23:/web-scraping-practice.html</id><summary type="html">&lt;p&gt;Scraping and downloading MP3 in parallel by python grequests package&lt;/p&gt;</summary><content type="html">&lt;h3 id="background"&gt;Background&lt;a class="headerlink" href="#background" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Recently, I found a &lt;a href="http://www.apexlegend.com/eas/media/"&gt;TOEIC test website&lt;/a&gt; with enomous mp3 materials.
+Just in time, I decided to download by automation script.&lt;/p&gt;
+&lt;h3 id="requirement"&gt;Requirement&lt;a class="headerlink" href="#requirement" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install lxml
+# https://github.com/kennethreitz/grequests
+pip install grequests
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id="html-scraping"&gt;HTML Scraping&lt;a class="headerlink" href="#html-scraping" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://lxml.de/"&gt;lxml&lt;/a&gt; is a pretty extensive library written for parsing XML and HTML documents very quickly, even handling messed up tags in the process. We will also be using the &lt;a href="http://docs.python-requests.org/en/latest/"&gt;Requests&lt;/a&gt; module instead of the already built-in urllib2 module due to improvements in speed and readability. &lt;/p&gt;
+&lt;p&gt;About the details, please refer to http://docs.python-guide.org/en/latest/scenarios/scrape/#html-scraping&lt;/p&gt;
+&lt;h3 id="concurrency"&gt;Concurrency&lt;a class="headerlink" href="#concurrency" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;We will use &lt;a href="https://github.com/kennethreitz/grequests"&gt;GRequests&lt;/a&gt; which allows you to use Requests with Gevent to make asynchronous HTTP Requests easily.&lt;/p&gt;
+&lt;p&gt;Note:
+1. Using pool to limit concurrency. 
+GRequests doesn't use pool by default, please see below code snippet: &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;def map(requests, stream=False, size=None, exception_handler=None, gtimeout=None):
+    &amp;quot;&amp;quot;&amp;quot;Concurrently converts a list of Requests to Responses.
+    :param requests: a collection of Request objects.
+    :param stream: If True, the content will not be downloaded immediately.
+    :param size: Specifies the number of requests to make at a time. If None, no throttling occurs.
+    :param exception_handler: Callback function, called when exception occured. Params: Request, Exception
+    :param gtimeout: Gevent joinall timeout in seconds. (Note: unrelated to requests timeout)
+    &amp;quot;&amp;quot;&amp;quot;
+
+    requests = list(requests)
+
+    pool = Pool(size) if size else None
+
+...
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In my requirement, there are enomous links need to settle. If don't constrain concurrency, it would lead to the exception "gevent.hub.LoopExit: This operation would block forever".&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Using session to avoid the fd consuming. 
+Please refer to the &lt;a href="https://github.com/kennethreitz/grequests/issues/54"&gt;issue&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The source code is available in &lt;a href="https://gist.github.com/acefei/2ca602d67e53011878dbf40f1ccda216#file-fetch_mp3_from_apexlegend-py"&gt;git gist&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="see-also"&gt;SEE ALSO:&lt;a class="headerlink" href="#see-also" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;http://xlambda.com/gevent-tutorial/&lt;/li&gt;
+&lt;/ol&gt;</content></entry><entry><title>Make a Github Pages blog with Pelican</title><link href="https://acefei.github.io/make-a-github-pages-blog-with-pelican.html" rel="alternate"></link><published>2017-05-25T10:05:00+08:00</published><updated>2017-05-25T10:05:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-05-25:/make-a-github-pages-blog-with-pelican.html</id><summary type="html">
 &lt;h2 id="make-a-github-pages-blog-with-pelican"&gt;Make a Github Pages blog with Pelican:&lt;a class="headerlink" href="#make-a-github-pages-blog-with-pelican" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;h3 id="install-dependence"&gt;Install dependence&lt;a class="headerlink" href="#install-dependence" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;yum&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt;
