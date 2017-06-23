@@ -23,7 +23,7 @@ About the details, please refer to [the link](http://docs.python-guide.org/en/la
 
 
 ### Concurrency
-We will use [GRequests](https://github.com/kennethreitz/grequests) which allows you to use Requests with Gevent to make asynchronous HTTP Requests easily.
+We will use [GRequests](https://github.com/kennethreitz/grequests) which allows you to use Requests with Gevent to make asynchronous HTTP Requests easily. Or use the fork: [FRequests](https://github.com/i-trofimtschuk/frequests) 
 
 *Note:*
 
