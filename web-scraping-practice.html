@@ -82,8 +82,8 @@
 
             
             <h3 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h3>
-<p>Recently, I found a <a href="http://www.apexlegend.com/eas/media/">TOEIC test website</a> with enomous mp3 materials.
-Just in time, I decided to download by automation script.</p>
+<p>Recently, I found a <a href="http://www.apexlegend.com/eas/media/">TOEIC test website</a> with enomous mp3 materials.</p>
+<p>Just in time, I decided to download by automation script.</p>
 <h3 id="requirement">Requirement<a class="headerlink" href="#requirement" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span>pip install lxml
 # https://github.com/kennethreitz/grequests
@@ -93,12 +93,12 @@ pip install grequests
 
 <h3 id="html-scraping">HTML Scraping<a class="headerlink" href="#html-scraping" title="Permanent link">&para;</a></h3>
 <p><a href="http://lxml.de/">lxml</a> is a pretty extensive library written for parsing XML and HTML documents very quickly, even handling messed up tags in the process. We will also be using the <a href="http://docs.python-requests.org/en/latest/">Requests</a> module instead of the already built-in urllib2 module due to improvements in speed and readability. </p>
-<p>About the details, please refer to http://docs.python-guide.org/en/latest/scenarios/scrape/#html-scraping</p>
+<p>About the details, please refer to <a href="http://docs.python-guide.org/en/latest/scenarios/scrape/#html-scraping">the link</a></p>
 <h3 id="concurrency">Concurrency<a class="headerlink" href="#concurrency" title="Permanent link">&para;</a></h3>
-<p>We will use <a href="https://github.com/kennethreitz/grequests">GRequests</a> which allows you to use Requests with Gevent to make asynchronous HTTP Requests easily.</p>
-<p>Note:
-1. Using pool to limit concurrency. 
-GRequests doesn't use pool by default, please see below code snippet: </p>
+<p>We will use <a href="https://github.com/kennethreitz/grequests">GRequests</a> which allows you to use Requests with Gevent to make asynchronous HTTP Requests easily. Or use the fork: <a href="https://github.com/i-trofimtschuk/frequests">FRequests</a> </p>
+<p>The following need to be noted:</p>
+<h4 id="1-using-pool-to-limit-concurrency">1. Using pool to limit concurrency.<a class="headerlink" href="#1-using-pool-to-limit-concurrency" title="Permanent link">&para;</a></h4>
+<p>GRequests doesn't use pool by default, please see below code snippet: </p>
 <div class="highlight"><pre><span></span>def map(requests, stream=False, size=None, exception_handler=None, gtimeout=None):
     &quot;&quot;&quot;Concurrently converts a list of Requests to Responses.
     :param requests: a collection of Request objects.
@@ -117,11 +117,9 @@ GRequests doesn't use pool by default, please see below code snippet: </p>
 
 
 <p>In my requirement, there are enomous links need to settle. If don't constrain concurrency, it would lead to the exception "gevent.hub.LoopExit: This operation would block forever".</p>
-<ol>
-<li>Using session to avoid the fd consuming. 
-Please refer to the <a href="https://github.com/kennethreitz/grequests/issues/54">issue</a>.</li>
-</ol>
-<p>The source code is available in <a href="https://gist.github.com/acefei/2ca602d67e53011878dbf40f1ccda216#file-fetch_mp3_from_apexlegend-py">git gist</a></p>
+<h4 id="2-using-session-to-avoid-the-fd-consuming">2. Using session to avoid the fd consuming.<a class="headerlink" href="#2-using-session-to-avoid-the-fd-consuming" title="Permanent link">&para;</a></h4>
+<p>There is a <a href="https://github.com/kennethreitz/grequests/issues/54">same problem</a> with me.</p>
+<p>Finally, the source code is available in <a href="https://gist.github.com/acefei/2ca602d67e53011878dbf40f1ccda216#file-fetch_mp3_from_apexlegend-py">the gist</a></p>
 <h3 id="see-also">SEE ALSO:<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h3>
 <ol>
 <li>http://xlambda.com/gevent-tutorial/</li>
