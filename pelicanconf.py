@@ -50,7 +50,7 @@ LANDING_PAGE_ABOUT = {
             <h2>博文分类</h2>
             <ul>
             <li>DevOps：持续交付、自动化 </li>
-            <li>语言&开发：编程语言 </li>
+            <li>Development：编程语言 </li>
             <li>Misc：意趣、闲思、杂七杂八</li>
             </ul>
             <p>翻阅博客：<a href="/archives.html">文章归档</a> <a href="/tags.html">话题标签</a></p>

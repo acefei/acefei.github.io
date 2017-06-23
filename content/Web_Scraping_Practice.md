@@ -1,13 +1,13 @@
 Title: Web Scraping Practice
 Date: 2017-06-23 02:37
-Category: Python
+Category: Development
+Tags: python, grequests
 Authors: Ace Fei
-Summary: Scraping and downloading MP3 in parallel by python grequests package
 
-### Background
+### Summary
 Recently, I found a [TOEIC test website](http://www.apexlegend.com/eas/media/) with enomous mp3 materials.
 
-Just in time, I decided to download by automation script.
+Just in time, I decided to scrape and download MP3 in parallel by python 
 
 ### Requirement
 ```

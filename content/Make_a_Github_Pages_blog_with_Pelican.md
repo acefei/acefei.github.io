@@ -1,7 +1,7 @@
 Title: Make a Github Pages blog with Pelican
 Date: 2017-05-25 10:05
-Category: Python
-Tags: pelican
+Category: Development
+Tags: python pelican
 Authors: Ace Fei
 
 [TOC]
