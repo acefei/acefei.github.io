@@ -7,23 +7,23 @@
         <meta name="author" content="Ace Fei" />
         <meta name="copyright" content="Ace Fei" />
 
-        <meta name="description" content="Summary¶ Recently, I found a TOEIC test website with enomous mp3 materials. Just in time, I decided to scrape and download MP3 in parallel by python Requirement¶ pip install lxml # https://github.com/kennethreitz/grequests pip install grequests HTML Scraping¶ lxml is a pretty extensive library written for parsing XML …
+        <meta name="description" content="Summary:¶ This article will illustrate how to renovate scrapy-redis to dupefilter. Why use bloomfilter¶ Tips on optimizing scrapy for a high performance How to integrate bloomfilter into scrapy redis¶ copy scrapy_redis into the path alongside settings in scrapy project implement bloom_filter.py in scrapy_redis path the code in https://github …
 " />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="python, grequests, Development, " />
+<meta name="keywords" content="Python, Scrapy, Development, " />
 
-<meta property="og:title" content="Web Scraping Practice "/>
-<meta property="og:url" content="https://acefei.github.io/web-scraping-practice.html" />
-<meta property="og:description" content="Summary¶ Recently, I found a TOEIC test website with enomous mp3 materials. Just in time, I decided to scrape and download MP3 in parallel by python Requirement¶ pip install lxml # https://github.com/kennethreitz/grequests pip install grequests HTML Scraping¶ lxml is a pretty extensive library written for parsing XML …" />
+<meta property="og:title" content="BloomFilter For Scrapy Redis "/>
+<meta property="og:url" content="https://acefei.github.io/bloomfilter-for-scrapy-redis.html" />
+<meta property="og:description" content="Summary:¶ This article will illustrate how to renovate scrapy-redis to dupefilter. Why use bloomfilter¶ Tips on optimizing scrapy for a high performance How to integrate bloomfilter into scrapy redis¶ copy scrapy_redis into the path alongside settings in scrapy project implement bloom_filter.py in scrapy_redis path the code in https://github …" />
 <meta property="og:site_name" content="Acefei &#39;s One Piece" />
 <meta property="og:article:author" content="Ace Fei" />
-<meta property="og:article:published_time" content="2017-06-23T02:37:00+08:00" />
-<meta name="twitter:title" content="Web Scraping Practice ">
-<meta name="twitter:description" content="Summary¶ Recently, I found a TOEIC test website with enomous mp3 materials. Just in time, I decided to scrape and download MP3 in parallel by python Requirement¶ pip install lxml # https://github.com/kennethreitz/grequests pip install grequests HTML Scraping¶ lxml is a pretty extensive library written for parsing XML …">
+<meta property="og:article:published_time" content="2017-09-21T15:29:00+08:00" />
+<meta name="twitter:title" content="BloomFilter For Scrapy Redis ">
+<meta name="twitter:description" content="Summary:¶ This article will illustrate how to renovate scrapy-redis to dupefilter. Why use bloomfilter¶ Tips on optimizing scrapy for a high performance How to integrate bloomfilter into scrapy redis¶ copy scrapy_redis into the path alongside settings in scrapy project implement bloom_filter.py in scrapy_redis path the code in https://github …">
 
-        <title>Web Scraping Practice  · Acefei &#39;s One Piece
+        <title>BloomFilter For Scrapy Redis  · Acefei &#39;s One Piece
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
@@ -73,7 +73,7 @@
 <article>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://acefei.github.io/web-scraping-practice.html"> Web Scraping Practice  </a></h1>
+    <h1><a href="https://acefei.github.io/bloomfilter-for-scrapy-redis.html"> BloomFilter For Scrapy Redis  </a></h1>
     </header>
 </div>
 
@@ -81,49 +81,107 @@
         <div class="span8 offset2 article-content">
 
             
-            <h3 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
-<p>Recently, I found a <a href="http://www.apexlegend.com/eas/media/">TOEIC test website</a> with enomous mp3 materials.</p>
-<p>Just in time, I decided to scrape and download MP3 in parallel by python </p>
-<h3 id="requirement">Requirement<a class="headerlink" href="#requirement" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span>pip install lxml
-# https://github.com/kennethreitz/grequests
-pip install grequests
-</pre></div>
-
-
-<h3 id="html-scraping">HTML Scraping<a class="headerlink" href="#html-scraping" title="Permanent link">&para;</a></h3>
-<p><a href="http://lxml.de/">lxml</a> is a pretty extensive library written for parsing XML and HTML documents very quickly, even handling messed up tags in the process. We will also be using the <a href="http://docs.python-requests.org/en/latest/">Requests</a> module instead of the already built-in urllib2 module due to improvements in speed and readability. </p>
-<p>About the details, please refer to <a href="http://docs.python-guide.org/en/latest/scenarios/scrape/#html-scraping">the link</a></p>
-<h3 id="concurrency">Concurrency<a class="headerlink" href="#concurrency" title="Permanent link">&para;</a></h3>
-<p>We will use <a href="https://github.com/kennethreitz/grequests">GRequests</a> which allows you to use Requests with Gevent to make asynchronous HTTP Requests easily. Or use the fork: <a href="https://github.com/i-trofimtschuk/frequests">FRequests</a> </p>
-<p>The following need to be noted:</p>
-<h4 id="1-using-pool-to-limit-concurrency">1. Using pool to limit concurrency.<a class="headerlink" href="#1-using-pool-to-limit-concurrency" title="Permanent link">&para;</a></h4>
-<p>GRequests doesn't use pool by default, please see below code snippet: </p>
-<div class="highlight"><pre><span></span>def map(requests, stream=False, size=None, exception_handler=None, gtimeout=None):
-    &quot;&quot;&quot;Concurrently converts a list of Requests to Responses.
-    :param requests: a collection of Request objects.
-    :param stream: If True, the content will not be downloaded immediately.
-    :param size: Specifies the number of requests to make at a time. If None, no throttling occurs.
-    :param exception_handler: Callback function, called when exception occured. Params: Request, Exception
-    :param gtimeout: Gevent joinall timeout in seconds. (Note: unrelated to requests timeout)
-    &quot;&quot;&quot;
-
-    requests = list(requests)
-
-    pool = Pool(size) if size else None
-
-...
-</pre></div>
-
-
-<p>In my requirement, there are enomous links need to settle. If don't constrain concurrency, it would lead to the exception "gevent.hub.LoopExit: This operation would block forever".</p>
-<h4 id="2-using-session-to-avoid-the-fd-consuming">2. Using session to avoid the fd consuming.<a class="headerlink" href="#2-using-session-to-avoid-the-fd-consuming" title="Permanent link">&para;</a></h4>
-<p>There is a <a href="https://github.com/kennethreitz/grequests/issues/54">same problem</a> with me.</p>
-<p>Finally, the source code is available in <a href="https://gist.github.com/acefei/2ca602d67e53011878dbf40f1ccda216#file-fetch_mp3_from_apexlegend-py">the gist</a></p>
-<h3 id="see-also">SEE ALSO:<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h3>
+            <h3 id="summary">Summary:<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
+<p>This article will illustrate how to renovate scrapy-redis to dupefilter.</p>
+<h3 id="why-use-bloomfilter">Why use bloomfilter<a class="headerlink" href="#why-use-bloomfilter" title="Permanent link">&para;</a></h3>
+<p><a href="http://alexeyvishnevsky.com/2013/11/tips-on-optimizing-scrapy-for-a-high-performance/">Tips on optimizing scrapy for a high performance</a></p>
+<h3 id="how-to-integrate-bloomfilter-into-scrapy-redis">How to integrate bloomfilter into scrapy redis<a class="headerlink" href="#how-to-integrate-bloomfilter-into-scrapy-redis" title="Permanent link">&para;</a></h3>
 <ol>
-<li>http://xlambda.com/gevent-tutorial/</li>
+<li>
+<p>copy scrapy_redis into the path alongside settings in scrapy project</p>
+</li>
+<li>
+<p>implement bloom_filter.py in scrapy_redis path
+   the code in https://github.com/acefei/scrapy-redis-docker/blob/master/scrapy_redis_demo/scrapy_redis_demo/bloom_filter.py</p>
+</li>
+<li>
+<p>modify scrapy_redis/dupefilter.py</p>
+</li>
 </ol>
+<div class="highlight"><pre><span></span>    def __init__(self, server, key, debug=False):
+        &quot;&quot;&quot;Initialize the duplicates filter.
+
+        Parameters
+        ----------
+        server : redis.StrictRedis
+            The redis server instance.
+        key : str
+            Redis key Where to store fingerprints.
+        debug : bool, optional
+            Whether to log filtered requests.
+
+        &quot;&quot;&quot;
+        self.server = server
+        self.key = key
+        self.debug = debug
+        self.logdupes = True
+
+        # 集成布隆过滤器
+        self.bf = BloomFilter(conn=server, key=key)     # 利用连接池连接Redis
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>    def request_seen(self, request):
+        &quot;&quot;&quot;Returns True if request was already seen.
+
+        Parameters
+        ----------
+        request : scrapy.http.Request
+
+        Returns
+        -------
+        bool
+
+        &quot;&quot;&quot;
+        # 集成布隆过滤器
+        if self.bf.is_exist(fp):    # 判断如果域名在Redis里存在
+            return True
+        else:
+            self.bf.add(fp)         # 如果不存在，将域名添加到Redis
+            return False
+
+        #fp = self.request_fingerprint(request)
+        # This returns the number of values added, zero if already exists.
+        #added = self.server.sadd(self.key, fp)
+        #return added == 0
+</pre></div>
+
+
+<ol>
+<li>Add scrapy_redis configration into settings.py
+Note: use our scrapy_redis code like <scrapy_project_name>.scrapy_redis instead of scrapy_redis that created by pip install</li>
+</ol>
+<div class="highlight"><pre><span></span>##################################
+# Configuration for scrapy-redis {
+DUPEFILTER_CLASS = &quot;scrapy_redis_demo.scrapy_redis.dupefilter.RFPDupeFilter&quot;
+SCHEDULER = &quot;scrapy_redis_demo.scrapy_redis.scheduler.Scheduler&quot;
+SCHEDULER_PERSIST = True
+
+ITEM_PIPELINES = {
+  &#39;scrapy_redis_demo.scrapy_redis.pipelines.RedisPipeline&#39;: 400,
+}
+
+# if u add &#39;network_mode: &quot;host&quot;&#39; in scraper service in docker-compose.yaml
+# use host ip to access redis server
+REDIS_HOST = &#39;172.16.100.62&#39;
+# else use redis hostname to access redis server
+#REDIS_HOST = &#39;redis&#39;
+REDIS_PORT = 6379
+
+# Specify your redis uri
+# the uri scheme syntax: http://www.iana.org/assignments/uri-schemes/prov/redis
+#REDIS_URL = &#39;redis://172.16.100.62:6379&#39;
+
+# }
+##################################
+</pre></div>
+
+
+<ol>
+<li>import <scrapy_project_name>.scrapy_redis in your spiders/xxxxx.py</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scrapy_redis_demo.scrapy_redis.spiders</span> <span class="kn">import</span> <span class="n">RedisCrawlSpider</span>
+</pre></div>
             
             
             <hr/>
@@ -131,16 +189,16 @@ pip install grequests
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2017-06-23T02:37:00+08:00">Jun 23, 2017</time>
+            <time pubdate="pubdate" datetime="2017-09-21T15:29:00+08:00">Sep 21, 2017</time>
             <h4>Category</h4>
             <a class="category-link" href="https://acefei.github.io/categories.html#development-ref">Development</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="https://acefei.github.io/tags.html#grequests-ref">grequests
-                    <span>1</span>
-</a></li>
-                <li><a href="https://acefei.github.io/tags.html#python-ref">python
+                <li><a href="https://acefei.github.io/tags.html#python-ref">Python
                     <span>3</span>
+</a></li>
+                <li><a href="https://acefei.github.io/tags.html#scrapy-ref">Scrapy
+                    <span>1</span>
 </a></li>
             </ul>
 <h4>Stay in Touch</h4>

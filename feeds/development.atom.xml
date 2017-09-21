@@ -1,5 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei 's One Piece - Development</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/development.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2017-06-23T02:37:00+08:00</updated><entry><title>Web Scraping Practice</title><link href="https://acefei.github.io/web-scraping-practice.html" rel="alternate"></link><published>2017-06-23T02:37:00+08:00</published><updated>2017-06-23T02:37:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-06-23:/web-scraping-practice.html</id><summary type="html">&lt;h3 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei 's One Piece - Development</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/development.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2017-09-21T15:29:00+08:00</updated><entry><title>BloomFilter For Scrapy Redis</title><link href="https://acefei.github.io/bloomfilter-for-scrapy-redis.html" rel="alternate"></link><published>2017-09-21T15:29:00+08:00</published><updated>2017-09-21T15:29:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-09-21:/bloomfilter-for-scrapy-redis.html</id><summary type="html">&lt;h3 id="summary"&gt;Summary:&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;This article will illustrate how to renovate scrapy-redis to dupefilter.&lt;/p&gt;
+&lt;h3 id="why-use-bloomfilter"&gt;Why use bloomfilter&lt;a class="headerlink" href="#why-use-bloomfilter" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://alexeyvishnevsky.com/2013/11/tips-on-optimizing-scrapy-for-a-high-performance/"&gt;Tips on optimizing scrapy for a high performance&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="how-to-integrate-bloomfilter-into-scrapy-redis"&gt;How to integrate bloomfilter into scrapy redis&lt;a class="headerlink" href="#how-to-integrate-bloomfilter-into-scrapy-redis" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;copy scrapy_redis into the path alongside settings in scrapy project&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;implement bloom_filter.py in scrapy_redis path
+   the code in https://github …&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">&lt;h3 id="summary"&gt;Summary:&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;This article will illustrate how to renovate scrapy-redis to dupefilter.&lt;/p&gt;
+&lt;h3 id="why-use-bloomfilter"&gt;Why use bloomfilter&lt;a class="headerlink" href="#why-use-bloomfilter" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://alexeyvishnevsky.com/2013/11/tips-on-optimizing-scrapy-for-a-high-performance/"&gt;Tips on optimizing scrapy for a high performance&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="how-to-integrate-bloomfilter-into-scrapy-redis"&gt;How to integrate bloomfilter into scrapy redis&lt;a class="headerlink" href="#how-to-integrate-bloomfilter-into-scrapy-redis" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;copy scrapy_redis into the path alongside settings in scrapy project&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;implement bloom_filter.py in scrapy_redis path
+   the code in https://github.com/acefei/scrapy-redis-docker/blob/master/scrapy_redis_demo/scrapy_redis_demo/bloom_filter.py&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;modify scrapy_redis/dupefilter.py&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    def __init__(self, server, key, debug=False):
+        &amp;quot;&amp;quot;&amp;quot;Initialize the duplicates filter.
+
+        Parameters
+        ----------
+        server : redis.StrictRedis
+            The redis server instance.
+        key : str
+            Redis key Where to store fingerprints.
+        debug : bool, optional
+            Whether to log filtered requests.
+
+        &amp;quot;&amp;quot;&amp;quot;
+        self.server = server
+        self.key = key
+        self.debug = debug
+        self.logdupes = True
+
+        # 集成布隆过滤器
+        self.bf = BloomFilter(conn=server, key=key)     # 利用连接池连接Redis
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    def request_seen(self, request):
+        &amp;quot;&amp;quot;&amp;quot;Returns True if request was already seen.
+
+        Parameters
+        ----------
+        request : scrapy.http.Request
+
+        Returns
+        -------
+        bool
+
+        &amp;quot;&amp;quot;&amp;quot;
+        # 集成布隆过滤器
+        if self.bf.is_exist(fp):    # 判断如果域名在Redis里存在
+            return True
+        else:
+            self.bf.add(fp)         # 如果不存在，将域名添加到Redis
+            return False
+
+        #fp = self.request_fingerprint(request)
+        # This returns the number of values added, zero if already exists.
+        #added = self.server.sadd(self.key, fp)
+        #return added == 0
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;Add scrapy_redis configration into settings.py
+Note: use our scrapy_redis code like &lt;scrapy_project_name&gt;.scrapy_redis instead of scrapy_redis that created by pip install&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;##################################
+# Configuration for scrapy-redis {
+DUPEFILTER_CLASS = &amp;quot;scrapy_redis_demo.scrapy_redis.dupefilter.RFPDupeFilter&amp;quot;
+SCHEDULER = &amp;quot;scrapy_redis_demo.scrapy_redis.scheduler.Scheduler&amp;quot;
+SCHEDULER_PERSIST = True
+
+ITEM_PIPELINES = {
+  &amp;#39;scrapy_redis_demo.scrapy_redis.pipelines.RedisPipeline&amp;#39;: 400,
+}
+
+# if u add &amp;#39;network_mode: &amp;quot;host&amp;quot;&amp;#39; in scraper service in docker-compose.yaml
+# use host ip to access redis server
+REDIS_HOST = &amp;#39;172.16.100.62&amp;#39;
+# else use redis hostname to access redis server
+#REDIS_HOST = &amp;#39;redis&amp;#39;
+REDIS_PORT = 6379
+
+# Specify your redis uri
+# the uri scheme syntax: http://www.iana.org/assignments/uri-schemes/prov/redis
+#REDIS_URL = &amp;#39;redis://172.16.100.62:6379&amp;#39;
+
+# }
+##################################
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;import &lt;scrapy_project_name&gt;.scrapy_redis in your spiders/xxxxx.py&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scrapy_redis_demo.scrapy_redis.spiders&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;RedisCrawlSpider&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="Python"></category><category term="Scrapy"></category></entry><entry><title>Web Scraping Practice</title><link href="https://acefei.github.io/web-scraping-practice.html" rel="alternate"></link><published>2017-06-23T02:37:00+08:00</published><updated>2017-06-23T02:37:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-06-23:/web-scraping-practice.html</id><summary type="html">&lt;h3 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Recently, I found a &lt;a href="http://www.apexlegend.com/eas/media/"&gt;TOEIC test website&lt;/a&gt; with enomous mp3 materials.&lt;/p&gt;
 &lt;p&gt;Just in time, I decided to scrape and download MP3 in parallel by python &lt;/p&gt;
 &lt;h3 id="requirement"&gt;Requirement&lt;a class="headerlink" href="#requirement" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
