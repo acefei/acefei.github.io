@@ -7,23 +7,23 @@
         <meta name="author" content="Ace Fei" />
         <meta name="copyright" content="Ace Fei" />
 
-        <meta name="description" content="Summary¶ Recently, I found a TOEIC test website with enomous mp3 materials. Just in time, I decided to scrape and download MP3 in parallel by python Requirement¶ pip install lxml # https://github.com/kennethreitz/grequests pip install grequests HTML Scraping¶ lxml is a pretty extensive library written for parsing XML …
+        <meta name="description" content="Centos7上安装mysql¶ sudo yum install mysql mysql-devel # centos7上已经使用mariadb替换了mysql，它们仅在安装配置上有些区别，使用上没有差别。 sudo yum install mariadb-server 配置mysql¶ # 第一次启动会检查/var/lib/mysql目录是否为空，不为空将返回失败 sudo service mysql start # 设置mysql密码 sudo mysql_secure_installation 如果配置时有任何错误，可在/var/log/mariadb/mariadb.log里查看具体原因 Python Mysql库安装¶ sudo pip install mysql-python # Toolkit for Python-based database access. sudo pip install dataset dataset常见操作¶ dataset …
 " />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="python, grequests, Development, " />
+<meta name="keywords" content="Python, dataset, Development, " />
 
-<meta property="og:title" content="Web Scraping Practice "/>
-<meta property="og:url" content="https://acefei.github.io/web-scraping-practice.html" />
-<meta property="og:description" content="Summary¶ Recently, I found a TOEIC test website with enomous mp3 materials. Just in time, I decided to scrape and download MP3 in parallel by python Requirement¶ pip install lxml # https://github.com/kennethreitz/grequests pip install grequests HTML Scraping¶ lxml is a pretty extensive library written for parsing XML …" />
+<meta property="og:title" content="在Centos7上使用Python操作Mysql实践 "/>
+<meta property="og:url" content="https://acefei.github.io/zai-centos7shang-shi-yong-pythoncao-zuo-mysqlshi-jian.html" />
+<meta property="og:description" content="Centos7上安装mysql¶ sudo yum install mysql mysql-devel # centos7上已经使用mariadb替换了mysql，它们仅在安装配置上有些区别，使用上没有差别。 sudo yum install mariadb-server 配置mysql¶ # 第一次启动会检查/var/lib/mysql目录是否为空，不为空将返回失败 sudo service mysql start # 设置mysql密码 sudo mysql_secure_installation 如果配置时有任何错误，可在/var/log/mariadb/mariadb.log里查看具体原因 Python Mysql库安装¶ sudo pip install mysql-python # Toolkit for Python-based database access. sudo pip install dataset dataset常见操作¶ dataset …" />
 <meta property="og:site_name" content="Acefei &#39;s One Piece" />
 <meta property="og:article:author" content="Ace Fei" />
-<meta property="og:article:published_time" content="2017-06-23T02:37:00+08:00" />
-<meta name="twitter:title" content="Web Scraping Practice ">
-<meta name="twitter:description" content="Summary¶ Recently, I found a TOEIC test website with enomous mp3 materials. Just in time, I decided to scrape and download MP3 in parallel by python Requirement¶ pip install lxml # https://github.com/kennethreitz/grequests pip install grequests HTML Scraping¶ lxml is a pretty extensive library written for parsing XML …">
+<meta property="og:article:published_time" content="2017-10-27T01:14:00+08:00" />
+<meta name="twitter:title" content="在Centos7上使用Python操作Mysql实践 ">
+<meta name="twitter:description" content="Centos7上安装mysql¶ sudo yum install mysql mysql-devel # centos7上已经使用mariadb替换了mysql，它们仅在安装配置上有些区别，使用上没有差别。 sudo yum install mariadb-server 配置mysql¶ # 第一次启动会检查/var/lib/mysql目录是否为空，不为空将返回失败 sudo service mysql start # 设置mysql密码 sudo mysql_secure_installation 如果配置时有任何错误，可在/var/log/mariadb/mariadb.log里查看具体原因 Python Mysql库安装¶ sudo pip install mysql-python # Toolkit for Python-based database access. sudo pip install dataset dataset常见操作¶ dataset …">
 
-        <title>Web Scraping Practice  · Acefei &#39;s One Piece
+        <title>在Centos7上使用Python操作Mysql实践  · Acefei &#39;s One Piece
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
@@ -73,7 +73,7 @@
 <article>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://acefei.github.io/web-scraping-practice.html"> Web Scraping Practice  </a></h1>
+    <h1><a href="https://acefei.github.io/zai-centos7shang-shi-yong-pythoncao-zuo-mysqlshi-jian.html"> 在Centos7上使用Python操作Mysql实践  </a></h1>
     </header>
 </div>
 
@@ -81,49 +81,90 @@
         <div class="span8 offset2 article-content">
 
             
-            <h3 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
-<p>Recently, I found a <a href="http://www.apexlegend.com/eas/media/">TOEIC test website</a> with enomous mp3 materials.</p>
-<p>Just in time, I decided to scrape and download MP3 in parallel by python </p>
-<h3 id="requirement">Requirement<a class="headerlink" href="#requirement" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span>pip install lxml
-# https://github.com/kennethreitz/grequests
-pip install grequests
+            <h3 id="centos7mysql">Centos7上安装mysql<a class="headerlink" href="#centos7mysql" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>sudo yum install mysql mysql-devel
+# centos7上已经使用mariadb替换了mysql，它们仅在安装配置上有些区别，使用上没有差别。
+sudo yum install mariadb-server
 </pre></div>
 
 
-<h3 id="html-scraping">HTML Scraping<a class="headerlink" href="#html-scraping" title="Permanent link">&para;</a></h3>
-<p><a href="http://lxml.de/">lxml</a> is a pretty extensive library written for parsing XML and HTML documents very quickly, even handling messed up tags in the process. We will also be using the <a href="http://docs.python-requests.org/en/latest/">Requests</a> module instead of the already built-in urllib2 module due to improvements in speed and readability. </p>
-<p>About the details, please refer to <a href="http://docs.python-guide.org/en/latest/scenarios/scrape/#html-scraping">the link</a></p>
-<h3 id="concurrency">Concurrency<a class="headerlink" href="#concurrency" title="Permanent link">&para;</a></h3>
-<p>We will use <a href="https://github.com/kennethreitz/grequests">GRequests</a> which allows you to use Requests with Gevent to make asynchronous HTTP Requests easily. Or use the fork: <a href="https://github.com/i-trofimtschuk/frequests">FRequests</a> </p>
-<p>The following need to be noted:</p>
-<h4 id="1-using-pool-to-limit-concurrency">1. Using pool to limit concurrency.<a class="headerlink" href="#1-using-pool-to-limit-concurrency" title="Permanent link">&para;</a></h4>
-<p>GRequests doesn't use pool by default, please see below code snippet: </p>
-<div class="highlight"><pre><span></span>def map(requests, stream=False, size=None, exception_handler=None, gtimeout=None):
-    &quot;&quot;&quot;Concurrently converts a list of Requests to Responses.
-    :param requests: a collection of Request objects.
-    :param stream: If True, the content will not be downloaded immediately.
-    :param size: Specifies the number of requests to make at a time. If None, no throttling occurs.
-    :param exception_handler: Callback function, called when exception occured. Params: Request, Exception
-    :param gtimeout: Gevent joinall timeout in seconds. (Note: unrelated to requests timeout)
-    &quot;&quot;&quot;
-
-    requests = list(requests)
-
-    pool = Pool(size) if size else None
-
-...
+<h3 id="mysql">配置mysql<a class="headerlink" href="#mysql" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span># 第一次启动会检查/var/lib/mysql目录是否为空，不为空将返回失败
+sudo service mysql start
+# 设置mysql密码
+sudo mysql_secure_installation
 </pre></div>
 
 
-<p>In my requirement, there are enomous links need to settle. If don't constrain concurrency, it would lead to the exception "gevent.hub.LoopExit: This operation would block forever".</p>
-<h4 id="2-using-session-to-avoid-the-fd-consuming">2. Using session to avoid the fd consuming.<a class="headerlink" href="#2-using-session-to-avoid-the-fd-consuming" title="Permanent link">&para;</a></h4>
-<p>There is a <a href="https://github.com/kennethreitz/grequests/issues/54">same problem</a> with me.</p>
-<p>Finally, the source code is available in <a href="https://gist.github.com/acefei/2ca602d67e53011878dbf40f1ccda216#file-fetch_mp3_from_apexlegend-py">the gist</a></p>
-<h3 id="see-also">SEE ALSO:<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h3>
-<ol>
-<li>http://xlambda.com/gevent-tutorial/</li>
-</ol>
+<p>如果配置时有任何错误，可在/var/log/mariadb/mariadb.log里查看具体原因</p>
+<h3 id="python-mysql">Python Mysql库安装<a class="headerlink" href="#python-mysql" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>sudo pip install mysql-python
+# Toolkit for Python-based database access.
+sudo pip install dataset
+</pre></div>
+
+
+<h3 id="dataset">dataset常见操作<a class="headerlink" href="#dataset" title="Permanent link">&para;</a></h3>
+<p><a href="http://dataset.readthedocs.io/en/latest/api.html">dataset</a>库是对SQLAlchemy二次封装，使其操作数据库就像操作json文件一样方便。</p>
+<h4 id="mysql_1">连接Mysql<a class="headerlink" href="#mysql_1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span>db = dataset.connect(&#39;mysql://username:password@port/dbname?charset=utf8&#39;)
+</pre></div>
+
+
+<h4 id="_1">添加记录<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span>data = {
+    &#39;key&#39;: 1,
+    &#39;column2&#39;: 2,
+    &#39;column3&#39;: 3,
+}
+# 插入记录，如果key，存在则报错
+db[t_name].insert(data, [&#39;key&#39;])
+# 插入记录，如果key，存在则更新
+db[t_name].upsert(data, [&#39;key&#39;])
+</pre></div>
+
+
+<h4 id="_2">查找记录<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span># 打印表的字段
+print self.db[&#39;t_name&#39;].columns
+
+# 打印表中所有数据
+for row_data in self.db[&#39;t_name&#39;].all():
+    print row_data
+
+# 根据多个条件找记录, 返回的是列表
+self.db[&#39;t_name&#39;].find(key1 = 1, key2 =2)
+
+# 返回一条记录
+self.db[&#39;t_name&#39;].find_one(key1 = 1, key2 =2)
+</pre></div>
+
+
+<p>考虑到find()查找性能，也可以使用原生的sql语句来进行query</p>
+<div class="highlight"><pre><span></span>select * from t_name limit 99
+</pre></div>
+
+
+<h4 id="_3">更新记录<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span>data = {
+    &#39;key&#39;: 1,
+    &#39;column2&#39;: 2,
+    &#39;column3&#39;: 3,
+}
+self.db[&#39;t_name&#39;].update(data, [&#39;key&#39;])
+</pre></div>
+
+
+<h4 id="_4">删除记录<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span>self.db[&#39;t_name&#39;].delete(key1=1, key2=2)
+# 删除所有记录
+self.db[&#39;t_name&#39;].delete()
+</pre></div>
+
+
+<h4 id="dataset_1">关于dataset导出数据<a class="headerlink" href="#dataset_1" title="Permanent link">&para;</a></h4>
+<p>现在dataset被分离成两个模块，如果想导出数据请看<a href="https://github.com/pudo/datafreeze">datafreeze</a></p>
+<p>详细用法请见<a href="https://dataset.readthedocs.io/en/latest/">dataset readthedocs</a></p>
             
             
             <hr/>
@@ -131,15 +172,15 @@ pip install grequests
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2017-06-23T02:37:00+08:00">Jun 23, 2017</time>
+            <time pubdate="pubdate" datetime="2017-10-27T01:14:00+08:00">Oct 27, 2017</time>
             <h4>Category</h4>
             <a class="category-link" href="https://acefei.github.io/categories.html#development-ref">Development</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="https://acefei.github.io/tags.html#grequests-ref">grequests
+                <li><a href="https://acefei.github.io/tags.html#dataset-ref">dataset
                     <span>1</span>
 </a></li>
-                <li><a href="https://acefei.github.io/tags.html#python-ref">python
+                <li><a href="https://acefei.github.io/tags.html#python-ref">Python
                     <span>5</span>
 </a></li>
             </ul>

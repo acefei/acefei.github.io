@@ -1,5 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei 's One Piece</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/all.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2017-10-26T09:53:00+08:00</updated><entry><title>如何在unittest cases之间传递变量</title><link href="https://acefei.github.io/ru-he-zai-unittest-caseszhi-jian-chuan-di-bian-liang.html" rel="alternate"></link><published>2017-10-26T09:53:00+08:00</published><updated>2017-10-26T09:53:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-10-26:/ru-he-zai-unittest-caseszhi-jian-chuan-di-bian-liang.html</id><summary type="html">&lt;p&gt;想必大家在写Python UT的时候，偶尔会遇到一些测试用例需要同时测试CRUD的接口。
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei 's One Piece</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/all.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2017-10-27T01:14:00+08:00</updated><entry><title>在Centos7上使用Python操作Mysql实践</title><link href="https://acefei.github.io/zai-centos7shang-shi-yong-pythoncao-zuo-mysqlshi-jian.html" rel="alternate"></link><published>2017-10-27T01:14:00+08:00</published><updated>2017-10-27T01:14:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-10-27:/zai-centos7shang-shi-yong-pythoncao-zuo-mysqlshi-jian.html</id><summary type="html">&lt;h3 id="centos7mysql"&gt;Centos7上安装mysql&lt;a class="headerlink" href="#centos7mysql" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install mysql mysql-devel
+# centos7上已经使用mariadb替换了mysql，它们仅在安装配置上有些区别，使用上没有差别。
+sudo yum install mariadb-server
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id="mysql"&gt;配置mysql&lt;a class="headerlink" href="#mysql" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# 第一次启动会检查/var/lib/mysql目录是否为空，不为空将返回失败
+sudo service mysql start
+# 设置mysql密码
+sudo mysql_secure_installation
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果配置时有任何错误，可在/var/log/mariadb/mariadb.log里查看具体原因&lt;/p&gt;
+&lt;h3 id="python-mysql"&gt;Python Mysql库安装&lt;a class="headerlink" href="#python-mysql" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo pip install mysql-python
+# Toolkit for Python-based database access.
+sudo pip install dataset
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id="dataset"&gt;dataset常见操作&lt;a class="headerlink" href="#dataset" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://dataset.readthedocs.io/en/latest/api.html"&gt;dataset …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;h3 id="centos7mysql"&gt;Centos7上安装mysql&lt;a class="headerlink" href="#centos7mysql" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install mysql mysql-devel
+# centos7上已经使用mariadb替换了mysql，它们仅在安装配置上有些区别，使用上没有差别。
+sudo yum install mariadb-server
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id="mysql"&gt;配置mysql&lt;a class="headerlink" href="#mysql" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# 第一次启动会检查/var/lib/mysql目录是否为空，不为空将返回失败
+sudo service mysql start
+# 设置mysql密码
+sudo mysql_secure_installation
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;如果配置时有任何错误，可在/var/log/mariadb/mariadb.log里查看具体原因&lt;/p&gt;
+&lt;h3 id="python-mysql"&gt;Python Mysql库安装&lt;a class="headerlink" href="#python-mysql" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo pip install mysql-python
+# Toolkit for Python-based database access.
+sudo pip install dataset
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3 id="dataset"&gt;dataset常见操作&lt;a class="headerlink" href="#dataset" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://dataset.readthedocs.io/en/latest/api.html"&gt;dataset&lt;/a&gt;库是对SQLAlchemy二次封装，使其操作数据库就像操作json文件一样方便。&lt;/p&gt;
+&lt;h4 id="mysql_1"&gt;连接Mysql&lt;a class="headerlink" href="#mysql_1" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;db = dataset.connect(&amp;#39;mysql://username:password@port/dbname?charset=utf8&amp;#39;)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4 id="_1"&gt;添加记录&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;data = {
+    &amp;#39;key&amp;#39;: 1,
+    &amp;#39;column2&amp;#39;: 2,
+    &amp;#39;column3&amp;#39;: 3,
+}
+# 插入记录，如果key，存在则报错
+db[t_name].insert(data, [&amp;#39;key&amp;#39;])
+# 插入记录，如果key，存在则更新
+db[t_name].upsert(data, [&amp;#39;key&amp;#39;])
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4 id="_2"&gt;查找记录&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# 打印表的字段
+print self.db[&amp;#39;t_name&amp;#39;].columns
+
+# 打印表中所有数据
+for row_data in self.db[&amp;#39;t_name&amp;#39;].all():
+    print row_data
+
+# 根据多个条件找记录, 返回的是列表
+self.db[&amp;#39;t_name&amp;#39;].find(key1 = 1, key2 =2)
+
+# 返回一条记录
+self.db[&amp;#39;t_name&amp;#39;].find_one(key1 = 1, key2 =2)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;考虑到find()查找性能，也可以使用原生的sql语句来进行query&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;select * from t_name limit 99
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4 id="_3"&gt;更新记录&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;data = {
+    &amp;#39;key&amp;#39;: 1,
+    &amp;#39;column2&amp;#39;: 2,
+    &amp;#39;column3&amp;#39;: 3,
+}
+self.db[&amp;#39;t_name&amp;#39;].update(data, [&amp;#39;key&amp;#39;])
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4 id="_4"&gt;删除记录&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;self.db[&amp;#39;t_name&amp;#39;].delete(key1=1, key2=2)
+# 删除所有记录
+self.db[&amp;#39;t_name&amp;#39;].delete()
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h4 id="dataset_1"&gt;关于dataset导出数据&lt;a class="headerlink" href="#dataset_1" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;现在dataset被分离成两个模块，如果想导出数据请看&lt;a href="https://github.com/pudo/datafreeze"&gt;datafreeze&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;详细用法请见&lt;a href="https://dataset.readthedocs.io/en/latest/"&gt;dataset readthedocs&lt;/a&gt;&lt;/p&gt;</content><category term="Python"></category><category term="dataset"></category></entry><entry><title>如何在unittest cases之间传递变量</title><link href="https://acefei.github.io/ru-he-zai-unittest-caseszhi-jian-chuan-di-bian-liang.html" rel="alternate"></link><published>2017-10-26T09:53:00+08:00</published><updated>2017-10-26T09:53:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-10-26:/ru-he-zai-unittest-caseszhi-jian-chuan-di-bian-liang.html</id><summary type="html">&lt;p&gt;想必大家在写Python UT的时候，偶尔会遇到一些测试用例需要同时测试CRUD的接口。
 这时需要在test cases之间传递变量该如何做呢？&lt;/p&gt;
 &lt;p&gt;一开始，我们想既然是在一个class里，直接给instance增加attribute不就好了么?&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;unittest&lt;/span&gt;
