@@ -9,6 +9,7 @@ SITENAME = u"""<span style="color:black;">Acefei</span> <span style="color:darkb
 SITEURL = ''
 
 PATH = 'content'
+
 # set the page in navigation bar
 PAGE_PATHS = ['pages']
 
@@ -88,6 +89,7 @@ SOCIAL = (
 PLUGIN_PATHS = ['pelican-plugins']
 PLUGINS = ['sitemap',
            'extract_toc',
+           'tipue_search',
           ]
 
 SITEMAP = {
