@@ -1,26 +1,25 @@
-Title: scä½¿ç”¨Scrapydå’ŒScrapyd-clientéƒ¨ç½²çˆ¬è™«
+Title: ä½¿ç”¨Scrapydå’ŒScrapyd-clientéƒ¨ç½²çˆ¬è™«
 Date: 2017-10-30 09:17
 Category: Development
-Tags: pythonï,scrapy
+Tags: python,scrapy
 Authors: Ace Fei
 
-
-### ¿¿¿¿
+### åŸºæœ¬ä»‹ç»
 #### [Scrapyd](https://github.com/scrapy/scrapyd)
 Scrapyd is a service for running Scrapy spiders.
-It allows you to deploy your Scrapy projects and control their spiders using a HTTP JSON API.
+It allows you to deploy your Scrapy projects and control their spiders using a HTTP JSON API.    
 Scrapyd can manage multiple projects and each project can have multiple versions uploaded, but only the latest one will be used for launching new spiders.
 
 #### [Scrapyd-client](https://github.com/scrapy/scrapyd-client)
 Scrapyd-client is a client for Scrapyd. It provides the general scrapyd-client and the scrapyd-deploy utility which allows you to deploy your project to a Scrapyd server.
 
-### ¿¿
+### å®‰è£…
 ```
 pip install scrapyd scrapyd-client
 ```
 
-### ¿¿¿¿¿¿¿
-¿¿¿¿¿scrapy startnewproject¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿scrapy.cfg¿¿¿
+### é…ç½®æœåŠ¡å™¨ä¿¡æ¯
+å½“æˆ‘ä»¬ä½¿ç”¨scrapy startnewprojectæ¥åˆ›å»ºæ–°å·¥ç¨‹æ—¶ï¼Œä¼šè‡ªåŠ¨ç”Ÿæˆä¸€ä¸ªscrapy.cfgæ–‡ä»¶ã€‚
 ```
 # Automatically created by: scrapy startproject
 #
@@ -34,47 +33,47 @@ default = prototypes.settings
 url = http://localhost:6800/
 project = prototypes
 ```
-¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿
-> proto_server¿¿¿¿¿¿¿¿¿¿
-> url¿¿scrapyd¿¿¿¿¿¿¿¿¿¿¿¿
+å…¶ä¸­æœ‰ä¸¤ä¸ªåœ°æ–¹æ˜¯éœ€è¦æˆ‘ä»¬æ›´æ–°çš„ï¼š
+> proto_serveræ˜¯è‡ªå®šä¹‰çš„æœåŠ¡å™¨åç§°         
+> urlæ˜¯æŒ‡scrapydå¯åŠ¨åï¼Œé»˜è®¤çš„æœåŠ¡å™¨åœ°å€
 
 
-### ¿¿scrapyd¿¿
-¿¿scrapyd¿¿¿¿¿¿¿¿¿http://localhost:6800/¿¿¿¿¿¿¿¿¿¿
+### å¯åŠ¨scrapydæœåŠ¡
+æ‰§è¡Œscrapydï¼Œç„¶åç”¨æµè§ˆå™¨æ‰“å¼€http://localhost:6800/æŸ¥çœ‹ç•Œé¢æ˜¯å¦å¯åŠ¨æˆåŠŸ
 
-### ¿¿project
-¿¿¿¿¿¿¿¿
-1. ¿¿json API:
-[addversion.json](http://scrapyd.readthedocs.io/en/stable/api.html?highlight=egg#addversion-json)
+### éƒ¨ç½²project
+éƒ¨ç½²æœ‰ä¸¤ç§æ–¹å¼ï¼š
+1. é€šè¿‡json API:
+[addversion.json](http://scrapyd.readthedocs.io/en/stable/api.html?highlight=egg#addversion-json) 
 ```
 curl http://localhost:6800/addversion.json -F project=prototypes -F version=r23 -F egg=@prototypes.egg
 ```
-¿¿egg¿¿¿scrapyd-deploy¿¿¿
+å…¶ä¸­eggéœ€è¦ç”¨scrapyd-deployæ¥ç”Ÿæˆ
 ```
-# ¿¿scrapy¿¿¿¿
+# è¿›å…¥scrapyå·¥ç¨‹ç›®å½•
 scrapyd-deploy --build-egg prototypes.egg
 ```
 
-2. ¿¿scrapyd-deploy¿¿¿¿
+2. é€šè¿‡scrapyd-deployä¸€é”®éƒ¨ç½²
 ```
 scrapyd-deploy proto_server -p prototypes
 ```
 
-¿¿¿¿¿¿¿¿¿¿¿¿¿¿
+éƒ¨ç½²å¥½åï¼Œæˆ‘ä»¬å¯ä»¥ç”¨å‘½ä»¤æŸ¥çœ‹
 ```
 scrapyd-deploy -L proto_server
 ```
 
-¿¿¿http://localhost:6800/¿¿¿¿¿¿Available projects¿**prototypes**
+ç„¶ååœ¨http://localhost:6800/æŸ¥çœ‹ç•Œé¢å‘ç°Available projectsï¼š**prototypes**    
 ![image](http://note.youdao.com/favicon.ico)
 
-### ¿¿spider
+### è¿è¡Œspider
 ```
 curl http://localhost:6800/schedule.json -d project=prototypes -d spider=qichacha
 ```
 > Note:
-¿¿¿¿¿¿spider¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿¿`exceptions.TypeError: __init__() got an unexpected keyword argument '_job'`
+è¯·åŠ¡å¿…ç¡®è®¤åœ¨spiderè„šæœ¬ä¸­çš„åˆå§‹åŒ–ä¸­å¯¹çˆ¶ç±»ä¹Ÿè¿›è¡Œåˆå§‹åŒ–ï¼Œå¦åˆ™ä¼šæŠ¥é”™`exceptions.TypeError: __init__() got an unexpected keyword argument '_job'`
 
 ### Further
-[ ]  ¿¿[DormyMo/SpiderKeeper](https://github.com/DormyMo/SpiderKeeper)¿[Gerapy/Gerapy](https://github.com/Gerapy/Gerapy)
+[ ]  é›†æˆ[DormyMo/SpiderKeeper](https://github.com/DormyMo/SpiderKeeper)æˆ–[Gerapy/Gerapy](https://github.com/Gerapy/Gerapy)
 
