@@ -14,10 +14,9 @@ Category: ${category}
 Tags: ${tags}
 Authors: Ace Fei
 
-### Summary: 
-Short version for index and feeds
 
-### This is the content of my blog post.
+[TOC]
+
 EOF
 
 echo "Now you can edit new article: content/$(echo $title | tr ' ' '_').md"

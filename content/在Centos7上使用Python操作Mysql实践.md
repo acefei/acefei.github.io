@@ -5,6 +5,8 @@ Tags: Python,dataset
 Authors: Ace Fei
 
 
+[TOC]
+
 ### Centos7上安装mysql
 ```
 sudo yum install mysql mysql-devel
