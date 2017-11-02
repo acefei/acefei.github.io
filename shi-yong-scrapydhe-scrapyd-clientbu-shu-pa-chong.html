@@ -7,23 +7,23 @@
         <meta name="author" content="Ace Fei" />
         <meta name="copyright" content="Ace Fei" />
 
-        <meta name="description" content="Summary:¶ This article will illustrate how to renovate scrapy-redis to dupefilter. Why use bloomfilter¶ Tips on optimizing scrapy for a high performance How to integrate bloomfilter into scrapy redis¶ copy scrapy_redis into the path alongside settings in scrapy project implement bloom_filter.py in scrapy_redis path the code in https://github …
+        <meta name="description" content="基本介绍¶ Scrapyd¶ Scrapyd is a service for running Scrapy spiders. It allows you to deploy your Scrapy projects and control their spiders using a HTTP JSON API. Scrapyd can manage multiple projects and each project can have multiple versions uploaded, but only the latest one will be used for launching …
 " />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="Python, Scrapy, Development, " />
+<meta name="keywords" content="python, scrapy, Development, " />
 
-<meta property="og:title" content="BloomFilter For Scrapy Redis "/>
-<meta property="og:url" content="https://acefei.github.io/bloomfilter-for-scrapy-redis.html" />
-<meta property="og:description" content="Summary:¶ This article will illustrate how to renovate scrapy-redis to dupefilter. Why use bloomfilter¶ Tips on optimizing scrapy for a high performance How to integrate bloomfilter into scrapy redis¶ copy scrapy_redis into the path alongside settings in scrapy project implement bloom_filter.py in scrapy_redis path the code in https://github …" />
+<meta property="og:title" content="使用Scrapyd和Scrapyd-client部署爬虫 "/>
+<meta property="og:url" content="https://acefei.github.io/shi-yong-scrapydhe-scrapyd-clientbu-shu-pa-chong.html" />
+<meta property="og:description" content="基本介绍¶ Scrapyd¶ Scrapyd is a service for running Scrapy spiders. It allows you to deploy your Scrapy projects and control their spiders using a HTTP JSON API. Scrapyd can manage multiple projects and each project can have multiple versions uploaded, but only the latest one will be used for launching …" />
 <meta property="og:site_name" content="Acefei &#39;s One Piece" />
 <meta property="og:article:author" content="Ace Fei" />
-<meta property="og:article:published_time" content="2017-09-21T15:29:00+08:00" />
-<meta name="twitter:title" content="BloomFilter For Scrapy Redis ">
-<meta name="twitter:description" content="Summary:¶ This article will illustrate how to renovate scrapy-redis to dupefilter. Why use bloomfilter¶ Tips on optimizing scrapy for a high performance How to integrate bloomfilter into scrapy redis¶ copy scrapy_redis into the path alongside settings in scrapy project implement bloom_filter.py in scrapy_redis path the code in https://github …">
+<meta property="og:article:published_time" content="2017-10-30T09:17:00+08:00" />
+<meta name="twitter:title" content="使用Scrapyd和Scrapyd-client部署爬虫 ">
+<meta name="twitter:description" content="基本介绍¶ Scrapyd¶ Scrapyd is a service for running Scrapy spiders. It allows you to deploy your Scrapy projects and control their spiders using a HTTP JSON API. Scrapyd can manage multiple projects and each project can have multiple versions uploaded, but only the latest one will be used for launching …">
 
-        <title>BloomFilter For Scrapy Redis  · Acefei &#39;s One Piece
+        <title>使用Scrapyd和Scrapyd-client部署爬虫  · Acefei &#39;s One Piece
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
@@ -73,7 +73,7 @@
 <article>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://acefei.github.io/bloomfilter-for-scrapy-redis.html"> BloomFilter For Scrapy Redis  </a></h1>
+    <h1><a href="https://acefei.github.io/shi-yong-scrapydhe-scrapyd-clientbu-shu-pa-chong.html"> 使用Scrapyd和Scrapyd-client部署爬虫  </a></h1>
     </header>
 </div>
 
@@ -81,107 +81,80 @@
         <div class="span8 offset2 article-content">
 
             
-            <h3 id="summary">Summary:<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
-<p>This article will illustrate how to renovate scrapy-redis to dupefilter.</p>
-<h3 id="why-use-bloomfilter">Why use bloomfilter<a class="headerlink" href="#why-use-bloomfilter" title="Permanent link">&para;</a></h3>
-<p><a href="http://alexeyvishnevsky.com/2013/11/tips-on-optimizing-scrapy-for-a-high-performance/">Tips on optimizing scrapy for a high performance</a></p>
-<h3 id="how-to-integrate-bloomfilter-into-scrapy-redis">How to integrate bloomfilter into scrapy redis<a class="headerlink" href="#how-to-integrate-bloomfilter-into-scrapy-redis" title="Permanent link">&para;</a></h3>
-<ol>
-<li>
-<p>copy scrapy_redis into the path alongside settings in scrapy project</p>
-</li>
-<li>
-<p>implement bloom_filter.py in scrapy_redis path
-   the code in https://github.com/acefei/scrapy-redis-docker/blob/master/scrapy_redis_demo/scrapy_redis_demo/bloom_filter.py</p>
-</li>
-<li>
-<p>modify scrapy_redis/dupefilter.py</p>
-</li>
-</ol>
-<div class="highlight"><pre><span></span>    def __init__(self, server, key, debug=False):
-        &quot;&quot;&quot;Initialize the duplicates filter.
-
-        Parameters
-        ----------
-        server : redis.StrictRedis
-            The redis server instance.
-        key : str
-            Redis key Where to store fingerprints.
-        debug : bool, optional
-            Whether to log filtered requests.
-
-        &quot;&quot;&quot;
-        self.server = server
-        self.key = key
-        self.debug = debug
-        self.logdupes = True
-
-        # 集成布隆过滤器
-        self.bf = BloomFilter(conn=server, key=key)     # 利用连接池连接Redis
+            <h3 id="_1">基本介绍<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<h4 id="scrapyd"><a href="https://github.com/scrapy/scrapyd">Scrapyd</a><a class="headerlink" href="#scrapyd" title="Permanent link">&para;</a></h4>
+<p>Scrapyd is a service for running Scrapy spiders.
+It allows you to deploy your Scrapy projects and control their spiders using a HTTP JSON API.  <br>
+Scrapyd can manage multiple projects and each project can have multiple versions uploaded, but only the latest one will be used for launching new spiders.</p>
+<h4 id="scrapyd-client"><a href="https://github.com/scrapy/scrapyd-client">Scrapyd-client</a><a class="headerlink" href="#scrapyd-client" title="Permanent link">&para;</a></h4>
+<p>Scrapyd-client is a client for Scrapyd. It provides the general scrapyd-client and the scrapyd-deploy utility which allows you to deploy your project to a Scrapyd server.</p>
+<h3 id="_2">安装<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>pip install scrapyd scrapyd-client
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>    def request_seen(self, request):
-        &quot;&quot;&quot;Returns True if request was already seen.
+<h3 id="_3">配置服务器信息<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>当我们使用scrapy startnewproject来创建新工程时，会自动生成一个scrapy.cfg文件。</p>
+<div class="highlight"><pre><span></span># Automatically created by: scrapy startproject
+#
+# For more information about the [deploy] section see:
+# https://scrapyd.readthedocs.org/en/latest/deploy.html
 
-        Parameters
-        ----------
-        request : scrapy.http.Request
+[settings]
+default = prototypes.settings
 
-        Returns
-        -------
-        bool
+[deploy:proto_server]
+url = http://localhost:6800/
+project = prototypes
+</pre></div>
 
-        &quot;&quot;&quot;
-        # 集成布隆过滤器
-        if self.bf.is_exist(fp):    # 判断如果域名在Redis里存在
-            return True
-        else:
-            self.bf.add(fp)         # 如果不存在，将域名添加到Redis
-            return False
 
-        #fp = self.request_fingerprint(request)
-        # This returns the number of values added, zero if already exists.
-        #added = self.server.sadd(self.key, fp)
-        #return added == 0
+<p>其中有两个地方是需要我们更新的：</p>
+<blockquote>
+<p>proto_server是自定义的服务器名称       <br>
+url是指scrapyd启动后，默认的服务器地址</p>
+</blockquote>
+<h3 id="scrapyd_1">启动scrapyd服务<a class="headerlink" href="#scrapyd_1" title="Permanent link">&para;</a></h3>
+<p>执行scrapyd，然后用浏览器打开http://localhost:6800/查看界面是否启动成功</p>
+<h3 id="project">部署project<a class="headerlink" href="#project" title="Permanent link">&para;</a></h3>
+<p>部署有两种方式：
+1. 通过json API:
+<a href="http://scrapyd.readthedocs.io/en/stable/api.html?highlight=egg#addversion-json">addversion.json</a> </p>
+<div class="highlight"><pre><span></span>curl http://localhost:6800/addversion.json -F project=prototypes -F version=r23 -F egg=@prototypes.egg
+</pre></div>
+
+
+<p>其中egg需要用scrapyd-deploy来生成</p>
+<div class="highlight"><pre><span></span># 进入scrapy工程目录
+scrapyd-deploy --build-egg prototypes.egg
 </pre></div>
 
 
 <ol>
-<li>Add scrapy_redis configration into settings.py
-Note: use our scrapy_redis code like <scrapy_project_name>.scrapy_redis instead of scrapy_redis that created by pip install</li>
+<li>通过scrapyd-deploy一键部署</li>
 </ol>
-<div class="highlight"><pre><span></span>##################################
-# Configuration for scrapy-redis {
-DUPEFILTER_CLASS = &quot;scrapy_redis_demo.scrapy_redis.dupefilter.RFPDupeFilter&quot;
-SCHEDULER = &quot;scrapy_redis_demo.scrapy_redis.scheduler.Scheduler&quot;
-SCHEDULER_PERSIST = True
-
-ITEM_PIPELINES = {
-  &#39;scrapy_redis_demo.scrapy_redis.pipelines.RedisPipeline&#39;: 400,
-}
-
-# if u add &#39;network_mode: &quot;host&quot;&#39; in scraper service in docker-compose.yaml
-# use host ip to access redis server
-REDIS_HOST = &#39;172.16.100.62&#39;
-# else use redis hostname to access redis server
-#REDIS_HOST = &#39;redis&#39;
-REDIS_PORT = 6379
-
-# Specify your redis uri
-# the uri scheme syntax: http://www.iana.org/assignments/uri-schemes/prov/redis
-#REDIS_URL = &#39;redis://172.16.100.62:6379&#39;
-
-# }
-##################################
+<div class="highlight"><pre><span></span>scrapyd-deploy proto_server -p prototypes
 </pre></div>
 
 
-<ol>
-<li>import <scrapy_project_name>.scrapy_redis in your spiders/xxxxx.py</li>
-</ol>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scrapy_redis_demo.scrapy_redis.spiders</span> <span class="kn">import</span> <span class="n">RedisCrawlSpider</span>
+<p>部署好后，我们可以用命令查看</p>
+<div class="highlight"><pre><span></span>scrapyd-deploy -L proto_server
 </pre></div>
+
+
+<p>然后在http://localhost:6800/查看界面发现Available projects：<strong>prototypes</strong>  <br>
+<img alt="image" src="http://note.youdao.com/favicon.ico"></p>
+<h3 id="spider">运行spider<a class="headerlink" href="#spider" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span>curl http://localhost:6800/schedule.json -d project=prototypes -d spider=qichacha
+</pre></div>
+
+
+<blockquote>
+<p>Note:
+请务必确认在spider脚本中的初始化中对父类也进行初始化，否则会报错<code>exceptions.TypeError: __init__() got an unexpected keyword argument '_job'</code></p>
+</blockquote>
+<h3 id="further">Further<a class="headerlink" href="#further" title="Permanent link">&para;</a></h3>
+<p>[ ]  集成<a href="https://github.com/DormyMo/SpiderKeeper">DormyMo/SpiderKeeper</a>或<a href="https://github.com/Gerapy/Gerapy">Gerapy/Gerapy</a></p>
             
             
             <hr/>
@@ -189,15 +162,15 @@ REDIS_PORT = 6379
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2017-09-21T15:29:00+08:00">Sep 21, 2017</time>
+            <time pubdate="pubdate" datetime="2017-10-30T09:17:00+08:00">Oct 30, 2017</time>
             <h4>Category</h4>
             <a class="category-link" href="https://acefei.github.io/categories.html#development-ref">Development</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="https://acefei.github.io/tags.html#python-ref">Python
+                <li><a href="https://acefei.github.io/tags.html#python-ref">python
                     <span>6</span>
 </a></li>
-                <li><a href="https://acefei.github.io/tags.html#scrapy-ref">Scrapy
+                <li><a href="https://acefei.github.io/tags.html#scrapy-ref">scrapy
                     <span>2</span>
 </a></li>
             </ul>
