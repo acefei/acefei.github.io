@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei 's One Piece</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/all.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2017-10-30T09:17:00+08:00</updated><entry><title>使用Scrapyd和Scrapyd-client部署爬虫</title><link href="https://acefei.github.io/shi-yong-scrapydhe-scrapyd-clientbu-shu-pa-chong.html" rel="alternate"></link><published>2017-10-30T09:17:00+08:00</published><updated>2017-10-30T09:17:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-10-30:/shi-yong-scrapydhe-scrapyd-clientbu-shu-pa-chong.html</id><summary type="html">&lt;h3 id="_1"&gt;基本介绍&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;h4 id="scrapyd"&gt;&lt;a href="https://github.com/scrapy/scrapyd"&gt;Scrapyd&lt;/a&gt;&lt;a class="headerlink" href="#scrapyd" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h4&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei 's One Piece</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/all.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2017-10-30T09:17:00+08:00</updated><entry><title>使用Scrapyd和Scrapyd-client部署爬虫</title><link href="https://acefei.github.io/shi-yong-scrapydhe-scrapyd-clientbu-shu-pa-chong.html" rel="alternate"></link><published>2017-10-30T09:17:00+08:00</published><updated>2017-10-30T09:17:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-10-30:/shi-yong-scrapydhe-scrapyd-clientbu-shu-pa-chong.html</id><summary type="html">
+&lt;h3 id="_1"&gt;基本介绍&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h4 id="scrapyd"&gt;&lt;a href="https://github.com/scrapy/scrapyd"&gt;Scrapyd&lt;/a&gt;&lt;a class="headerlink" href="#scrapyd" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;Scrapyd is a service for running Scrapy spiders.
-It allows you to deploy your Scrapy projects and control their spiders using a HTTP JSON API.  &lt;br&gt;
-Scrapyd can manage multiple projects and each project can have multiple versions uploaded, but only the latest one will be used for launching …&lt;/p&gt;</summary><content type="html">&lt;h3 id="_1"&gt;基本介绍&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;h4 id="scrapyd"&gt;&lt;a href="https://github.com/scrapy/scrapyd"&gt;Scrapyd&lt;/a&gt;&lt;a class="headerlink" href="#scrapyd" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h4&gt;
+It allows you to deploy your Scrapy projects and control their spiders using a HTTP JSON API.  &lt;br/&gt;
+Scrapyd can manage multiple projects and each project can have multiple versions uploaded, but only the latest one will be used for launching …&lt;/p&gt;</summary><content type="html">
+&lt;h3 id="_1"&gt;基本介绍&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h4 id="scrapyd"&gt;&lt;a href="https://github.com/scrapy/scrapyd"&gt;Scrapyd&lt;/a&gt;&lt;a class="headerlink" href="#scrapyd" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;Scrapyd is a service for running Scrapy spiders.
-It allows you to deploy your Scrapy projects and control their spiders using a HTTP JSON API.  &lt;br&gt;
+It allows you to deploy your Scrapy projects and control their spiders using a HTTP JSON API.  &lt;br/&gt;
 Scrapyd can manage multiple projects and each project can have multiple versions uploaded, but only the latest one will be used for launching new spiders.&lt;/p&gt;
-&lt;h4 id="scrapyd-client"&gt;&lt;a href="https://github.com/scrapy/scrapyd-client"&gt;Scrapyd-client&lt;/a&gt;&lt;a class="headerlink" href="#scrapyd-client" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id="scrapyd-client"&gt;&lt;a href="https://github.com/scrapy/scrapyd-client"&gt;Scrapyd-client&lt;/a&gt;&lt;a class="headerlink" href="#scrapyd-client" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;Scrapyd-client is a client for Scrapyd. It provides the general scrapyd-client and the scrapyd-deploy utility which allows you to deploy your project to a Scrapyd server.&lt;/p&gt;
-&lt;h3 id="_2"&gt;安装&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="_2"&gt;安装&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install scrapyd scrapyd-client
 &lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3 id="_3"&gt;配置服务器信息&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="_3"&gt;配置服务器信息&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;当我们使用scrapy startnewproject来创建新工程时，会自动生成一个scrapy.cfg文件。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# Automatically created by: scrapy startproject
 #
@@ -29,159 +29,125 @@ default = prototypes.settings
 url = http://localhost:6800/
 project = prototypes
 &lt;/pre&gt;&lt;/div&gt;
-
-
 &lt;p&gt;其中有两个地方是需要我们更新的：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;proto_server是自定义的服务器名称       &lt;br&gt;
+&lt;p&gt;proto_server是自定义的服务器名称       &lt;br/&gt;
 url是指scrapyd启动后，默认的服务器地址&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id="scrapyd_1"&gt;启动scrapyd服务&lt;a class="headerlink" href="#scrapyd_1" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="scrapyd_1"&gt;启动scrapyd服务&lt;a class="headerlink" href="#scrapyd_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;执行scrapyd，然后用浏览器打开http://localhost:6800/查看界面是否启动成功&lt;/p&gt;
-&lt;h3 id="project"&gt;部署project&lt;a class="headerlink" href="#project" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="project"&gt;部署project&lt;a class="headerlink" href="#project" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;部署有两种方式：
 1. 通过json API:
 &lt;a href="http://scrapyd.readthedocs.io/en/stable/api.html?highlight=egg#addversion-json"&gt;addversion.json&lt;/a&gt; &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl http://localhost:6800/addversion.json -F project=prototypes -F version=r23 -F egg=@prototypes.egg
 &lt;/pre&gt;&lt;/div&gt;
-
-
 &lt;p&gt;其中egg需要用scrapyd-deploy来生成&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# 进入scrapy工程目录
 scrapyd-deploy --build-egg prototypes.egg
 &lt;/pre&gt;&lt;/div&gt;
-
-
 &lt;ol&gt;
 &lt;li&gt;通过scrapyd-deploy一键部署&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;scrapyd-deploy proto_server -p prototypes
 &lt;/pre&gt;&lt;/div&gt;
-
-
 &lt;p&gt;部署好后，我们可以用命令查看&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;scrapyd-deploy -L proto_server
 &lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;p&gt;然后在http://localhost:6800/查看界面发现Available projects：&lt;strong&gt;prototypes&lt;/strong&gt;  &lt;br&gt;
-&lt;img alt="image" src="http://note.youdao.com/favicon.ico"&gt;&lt;/p&gt;
-&lt;h3 id="spider"&gt;运行spider&lt;a class="headerlink" href="#spider" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;然后在http://localhost:6800/查看界面发现Available projects：&lt;strong&gt;prototypes&lt;/strong&gt; &lt;br/&gt;
+&lt;img alt="image" src="http://note.youdao.com/favicon.ico"/&gt;&lt;/p&gt;
+&lt;h3 id="spider"&gt;运行spider&lt;a class="headerlink" href="#spider" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl http://localhost:6800/schedule.json -d project=prototypes -d spider=qichacha
 &lt;/pre&gt;&lt;/div&gt;
-
-
 &lt;blockquote&gt;
 &lt;p&gt;Note:
 请务必确认在spider脚本中的初始化中对父类也进行初始化，否则会报错&lt;code&gt;exceptions.TypeError: __init__() got an unexpected keyword argument '_job'&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h3 id="further"&gt;Further&lt;a class="headerlink" href="#further" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;[ ]  集成&lt;a href="https://github.com/DormyMo/SpiderKeeper"&gt;DormyMo/SpiderKeeper&lt;/a&gt;或&lt;a href="https://github.com/Gerapy/Gerapy"&gt;Gerapy/Gerapy&lt;/a&gt;&lt;/p&gt;</content><category term="python"></category><category term="scrapy"></category></entry><entry><title>在Centos7上使用Python操作Mysql实践</title><link href="https://acefei.github.io/zai-centos7shang-shi-yong-pythoncao-zuo-mysqlshi-jian.html" rel="alternate"></link><published>2017-10-27T01:14:00+08:00</published><updated>2017-10-27T01:14:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-10-27:/zai-centos7shang-shi-yong-pythoncao-zuo-mysqlshi-jian.html</id><summary type="html">&lt;h3 id="centos7mysql"&gt;Centos7上安装mysql&lt;a class="headerlink" href="#centos7mysql" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="further"&gt;Further&lt;a class="headerlink" href="#further" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;[ ]  集成&lt;a href="https://github.com/DormyMo/SpiderKeeper"&gt;DormyMo/SpiderKeeper&lt;/a&gt;或&lt;a href="https://github.com/Gerapy/Gerapy"&gt;Gerapy/Gerapy&lt;/a&gt;&lt;/p&gt;</content><category term="python"></category><category term="scrapy"></category></entry><entry><title>在Centos7上使用Python操作Mysql实践</title><link href="https://acefei.github.io/zai-centos7shang-shi-yong-pythoncao-zuo-mysqlshi-jian.html" rel="alternate"></link><published>2017-10-27T01:14:00+08:00</published><updated>2017-10-27T01:14:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-10-27:/zai-centos7shang-shi-yong-pythoncao-zuo-mysqlshi-jian.html</id><summary type="html">
+&lt;h3 id="centos7mysql"&gt;Centos7上安装mysql&lt;a class="headerlink" href="#centos7mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install mysql mysql-devel
 # centos7上已经使用mariadb替换了mysql，它们仅在安装配置上有些区别，使用上没有差别。
 sudo yum install mariadb-server
 &lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3 id="mysql"&gt;配置mysql&lt;a class="headerlink" href="#mysql" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="mysql"&gt;配置mysql&lt;a class="headerlink" href="#mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# 第一次启动会检查/var/lib/mysql目录是否为空，不为空将返回失败
 sudo service mysql start
 # 设置mysql密码
 sudo mysql_secure_installation
 &lt;/pre&gt;&lt;/div&gt;
-
-
 &lt;p&gt;如果配置时有任何错误，可在/var/log/mariadb/mariadb.log里查看具体原因&lt;/p&gt;
-&lt;h3 id="python-mysql"&gt;Python Mysql库安装&lt;a class="headerlink" href="#python-mysql" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="python-mysql"&gt;Python Mysql库安装&lt;a class="headerlink" href="#python-mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo pip install mysql-python
 # Toolkit for Python-based database access.
 sudo pip install dataset
 &lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3 id="dataset"&gt;dataset常见操作&lt;a class="headerlink" href="#dataset" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a href="http://dataset.readthedocs.io/en/latest/api.html"&gt;dataset …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">&lt;h3 id="centos7mysql"&gt;Centos7上安装mysql&lt;a class="headerlink" href="#centos7mysql" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="dataset"&gt;dataset常见操作&lt;a class="headerlink" href="#dataset" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://dataset.readthedocs.io/en/latest/api.html"&gt;dataset …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">
+&lt;h3 id="centos7mysql"&gt;Centos7上安装mysql&lt;a class="headerlink" href="#centos7mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install mysql mysql-devel
 # centos7上已经使用mariadb替换了mysql，它们仅在安装配置上有些区别，使用上没有差别。
 sudo yum install mariadb-server
 &lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3 id="mysql"&gt;配置mysql&lt;a class="headerlink" href="#mysql" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="mysql"&gt;配置mysql&lt;a class="headerlink" href="#mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# 第一次启动会检查/var/lib/mysql目录是否为空，不为空将返回失败
 sudo service mysql start
 # 设置mysql密码
 sudo mysql_secure_installation
 &lt;/pre&gt;&lt;/div&gt;
-
-
 &lt;p&gt;如果配置时有任何错误，可在/var/log/mariadb/mariadb.log里查看具体原因&lt;/p&gt;
-&lt;h3 id="python-mysql"&gt;Python Mysql库安装&lt;a class="headerlink" href="#python-mysql" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="python-mysql"&gt;Python Mysql库安装&lt;a class="headerlink" href="#python-mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo pip install mysql-python
 # Toolkit for Python-based database access.
 sudo pip install dataset
 &lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h3 id="dataset"&gt;dataset常见操作&lt;a class="headerlink" href="#dataset" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
+&lt;h3 id="dataset"&gt;dataset常见操作&lt;a class="headerlink" href="#dataset" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://dataset.readthedocs.io/en/latest/api.html"&gt;dataset&lt;/a&gt;库是对SQLAlchemy二次封装，使其操作数据库就像操作json文件一样方便。&lt;/p&gt;
-&lt;h4 id="mysql_1"&gt;连接Mysql&lt;a class="headerlink" href="#mysql_1" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;db = dataset.connect(&amp;#39;mysql://username:password@port/dbname?charset=utf8&amp;#39;)
+&lt;h4 id="mysql_1"&gt;连接Mysql&lt;a class="headerlink" href="#mysql_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;db = dataset.connect('mysql://username:password@port/dbname?charset=utf8')
 &lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h4 id="_1"&gt;添加记录&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id="_1"&gt;添加记录&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;data = {
-    &amp;#39;key&amp;#39;: 1,
-    &amp;#39;column2&amp;#39;: 2,
-    &amp;#39;column3&amp;#39;: 3,
+    'key': 1,
+    'column2': 2,
+    'column3': 3,
 }
 # 插入记录，如果key，存在则报错
-db[t_name].insert(data, [&amp;#39;key&amp;#39;])
+db[t_name].insert(data, ['key'])
 # 插入记录，如果key，存在则更新
-db[t_name].upsert(data, [&amp;#39;key&amp;#39;])
+db[t_name].upsert(data, ['key'])
 &lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h4 id="_2"&gt;查找记录&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id="_2"&gt;查找记录&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# 打印表的字段
-print self.db[&amp;#39;t_name&amp;#39;].columns
+print self.db['t_name'].columns
 
 # 打印表中所有数据
-for row_data in self.db[&amp;#39;t_name&amp;#39;].all():
+for row_data in self.db['t_name'].all():
     print row_data
 
 # 根据多个条件找记录, 返回的是列表
-self.db[&amp;#39;t_name&amp;#39;].find(key1 = 1, key2 =2)
+self.db['t_name'].find(key1 = 1, key2 =2)
 
 # 返回一条记录
-self.db[&amp;#39;t_name&amp;#39;].find_one(key1 = 1, key2 =2)
+self.db['t_name'].find_one(key1 = 1, key2 =2)
 &lt;/pre&gt;&lt;/div&gt;
-
-
 &lt;p&gt;考虑到find()查找性能，也可以使用原生的sql语句来进行query&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;select * from t_name limit 99
 &lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h4 id="_3"&gt;更新记录&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id="_3"&gt;更新记录&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;data = {
-    &amp;#39;key&amp;#39;: 1,
-    &amp;#39;column2&amp;#39;: 2,
-    &amp;#39;column3&amp;#39;: 3,
+    'key': 1,
+    'column2': 2,
+    'column3': 3,
 }
-self.db[&amp;#39;t_name&amp;#39;].update(data, [&amp;#39;key&amp;#39;])
+self.db['t_name'].update(data, ['key'])
 &lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h4 id="_4"&gt;删除记录&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h4&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;self.db[&amp;#39;t_name&amp;#39;].delete(key1=1, key2=2)
+&lt;h4 id="_4"&gt;删除记录&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;self.db['t_name'].delete(key1=1, key2=2)
 # 删除所有记录
-self.db[&amp;#39;t_name&amp;#39;].delete()
+self.db['t_name'].delete()
 &lt;/pre&gt;&lt;/div&gt;
-
-
-&lt;h4 id="dataset_1"&gt;关于dataset导出数据&lt;a class="headerlink" href="#dataset_1" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id="dataset_1"&gt;关于dataset导出数据&lt;a class="headerlink" href="#dataset_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;现在dataset被分离成两个模块，如果想导出数据请看&lt;a href="https://github.com/pudo/datafreeze"&gt;datafreeze&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;详细用法请见&lt;a href="https://dataset.readthedocs.io/en/latest/"&gt;dataset readthedocs&lt;/a&gt;&lt;/p&gt;</content><category term="Python"></category><category term="dataset"></category></entry><entry><title>如何在unittest cases之间传递变量</title><link href="https://acefei.github.io/ru-he-zai-unittest-caseszhi-jian-chuan-di-bian-liang.html" rel="alternate"></link><published>2017-10-26T09:53:00+08:00</published><updated>2017-10-26T09:53:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-10-26:/ru-he-zai-unittest-caseszhi-jian-chuan-di-bian-liang.html</id><summary type="html">&lt;p&gt;想必大家在写Python UT的时候，偶尔会遇到一些测试用例需要同时测试CRUD的接口。
 这时需要在test cases之间传递变量该如何做呢？&lt;/p&gt;
