@@ -45,15 +45,12 @@ LANDING_PAGE_ABOUT = {
         'details': """
         <div>
             <h1>欢迎来到Acefei的博客!</h1>
+            <p><a href="https://gitter.im/acefei-github-io/Lobby?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=body_badge"><img src="https://camo.githubusercontent.com/afba4da91df6731efa687d0457c6fdf98f346f36/68747470733a2f2f6261646765732e6769747465722e696d2f6163656665692d6769746875622d696f2f4c6f6262792e737667" alt="Gitter" data-canonical-src="https://badges.gitter.im/acefei-github-io/Lobby.svg" style="max-width:100%;"></a></p>
             <p>写博客目的:</p>
             <p>    ——未经你思考的知识是不属于你的。</p>
             <p>    ——要拒绝思维懒惰, 要勇于发现问题，勤于分析问题，善于解决问题。</p>
             <p>    ——好记忆不如烂笔头，定期梳理自己的掌握的技术，并记录下来。</p>
             <p>题外话：由于<a href='http://blog.csdn.net/csdnproduct/article/details/70145129'>特殊原因</a>(呵呵！看评论)，我的CSDN博客(<a href='http://blog.csdn.net/ace_fei'>ace_fei</a>)已经停止更新！</p>
-            <p>
-                <a href="https://gitter.im/acefei-github-io/Lobby?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=body_badge"><img src="https://camo.githubusercontent.com/afba4da91df6731efa687d0457c6fdf98f346f36/68747470733a2f2f6261646765732e6769747465722e696d2f6163656665692d6769746875622d696f2f4c6f6262792e737667" alt="Gitter" data-canonical-src="https://badges.gitter.im/acefei-github-io/Lobby.svg" style="max-width:100%;"></a>
-            </p>
-
             <hr class="eye-protector-processed" style="transition: background-color 0.3s ease; border-color: rgba(0, 0, 0, 0.35); color: rgb(0, 0, 0); background-color: rgb(193, 230, 198);">
             <h2>博文分类</h2>
             <ul>
