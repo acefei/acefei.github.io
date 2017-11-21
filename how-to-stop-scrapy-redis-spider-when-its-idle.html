@@ -7,23 +7,23 @@
         <meta name="author" content="Ace Fei" />
         <meta name="copyright" content="Ace Fei" />
 
-        <meta name="description" content="基本介绍¶ Scrapyd¶ Scrapyd is a service for running Scrapy spiders. It allows you to deploy your Scrapy projects and control their spiders using a HTTP JSON API. Scrapyd can manage multiple projects and each project can have multiple versions uploaded, but only the latest one will be used for launching …
+        <meta name="description" content="scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。 但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在日志末尾里可以看到如下内容： 2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min) 在scrapy-redis的README中得知: # Max idle time to prevent the spider from being closed when distributed crawling. # This only works if queue class …
 " />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="python, scrapy, Development, " />
+<meta name="keywords" content="scrapy, python, Development, " />
 
-<meta property="og:title" content="使用Scrapyd和Scrapyd-client部署爬虫 "/>
-<meta property="og:url" content="https://acefei.github.io/shi-yong-scrapydhe-scrapyd-clientbu-shu-pa-chong.html" />
-<meta property="og:description" content="基本介绍¶ Scrapyd¶ Scrapyd is a service for running Scrapy spiders. It allows you to deploy your Scrapy projects and control their spiders using a HTTP JSON API. Scrapyd can manage multiple projects and each project can have multiple versions uploaded, but only the latest one will be used for launching …" />
+<meta property="og:title" content="How to stop scrapy-redis spider when it&#39;s idle "/>
+<meta property="og:url" content="https://acefei.github.io/how-to-stop-scrapy-redis-spider-when-its-idle.html" />
+<meta property="og:description" content="scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。 但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在日志末尾里可以看到如下内容： 2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min) 在scrapy-redis的README中得知: # Max idle time to prevent the spider from being closed when distributed crawling. # This only works if queue class …" />
 <meta property="og:site_name" content="Acefei &#39;s One Piece" />
 <meta property="og:article:author" content="Ace Fei" />
-<meta property="og:article:published_time" content="2017-10-30T09:17:00+08:00" />
-<meta name="twitter:title" content="使用Scrapyd和Scrapyd-client部署爬虫 ">
-<meta name="twitter:description" content="基本介绍¶ Scrapyd¶ Scrapyd is a service for running Scrapy spiders. It allows you to deploy your Scrapy projects and control their spiders using a HTTP JSON API. Scrapyd can manage multiple projects and each project can have multiple versions uploaded, but only the latest one will be used for launching …">
+<meta property="og:article:published_time" content="2017-11-21T06:44:00+08:00" />
+<meta name="twitter:title" content="How to stop scrapy-redis spider when it&#39;s idle ">
+<meta name="twitter:description" content="scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。 但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在日志末尾里可以看到如下内容： 2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min) 在scrapy-redis的README中得知: # Max idle time to prevent the spider from being closed when distributed crawling. # This only works if queue class …">
 
-        <title>使用Scrapyd和Scrapyd-client部署爬虫  · Acefei &#39;s One Piece
+        <title>How to stop scrapy-redis spider when it&#39;s idle  · Acefei &#39;s One Piece
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
@@ -73,95 +73,74 @@
 <article>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://acefei.github.io/shi-yong-scrapydhe-scrapyd-clientbu-shu-pa-chong.html"> 使用Scrapyd和Scrapyd-client部署爬虫  </a></h1>
+    <h1><a href="https://acefei.github.io/how-to-stop-scrapy-redis-spider-when-its-idle.html"> How to stop scrapy-redis spider when it's idle  </a></h1>
     </header>
 </div>
 
 <div class="row-fluid">
-    <div class="span2 table-of-content">
-        <nav>
-        <h4>Contents</h4>
-        <div class="toc">
-<ul>
-<li><a href="#_1">基本介绍</a><ul>
-<li><a href="#scrapyd">Scrapyd</a></li>
-<li><a href="#scrapyd-client">Scrapyd-client</a></li>
-</ul>
-</li>
-<li><a href="#_2">安装</a></li>
-<li><a href="#_3">配置服务器信息</a></li>
-<li><a href="#scrapyd_1">启动scrapyd服务</a></li>
-<li><a href="#project">部署project</a></li>
-<li><a href="#spider">运行spider</a></li>
-<li><a href="#further">Further</a></li>
-</ul>
-</div>
-        </nav>
-    </div>
-    <div class="span8 article-content">
+        <div class="span8 offset2 article-content">
 
             
-            
-<h3 id="_1">基本介绍<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
-<h4 id="scrapyd"><a href="https://github.com/scrapy/scrapyd">Scrapyd</a><a class="headerlink" href="#scrapyd" title="Permanent link">¶</a></h4>
-<p>Scrapyd is a service for running Scrapy spiders.
-It allows you to deploy your Scrapy projects and control their spiders using a HTTP JSON API.  <br/>
-Scrapyd can manage multiple projects and each project can have multiple versions uploaded, but only the latest one will be used for launching new spiders.</p>
-<h4 id="scrapyd-client"><a href="https://github.com/scrapy/scrapyd-client">Scrapyd-client</a><a class="headerlink" href="#scrapyd-client" title="Permanent link">¶</a></h4>
-<p>Scrapyd-client is a client for Scrapyd. It provides the general scrapyd-client and the scrapyd-deploy utility which allows you to deploy your project to a Scrapyd server.</p>
-<h3 id="_2">安装<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
-<div class="highlight"><pre><span></span>pip install scrapyd scrapyd-client
+            <p>scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。
+但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在日志末尾里可以看到如下内容：</p>
+<div class="highlight"><pre><span></span>2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
 </pre></div>
-<h3 id="_3">配置服务器信息<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
-<p>当我们使用scrapy startnewproject来创建新工程时，会自动生成一个scrapy.cfg文件。</p>
-<div class="highlight"><pre><span></span># Automatically created by: scrapy startproject
-#
-# For more information about the [deploy] section see:
-# https://scrapyd.readthedocs.org/en/latest/deploy.html
 
-[settings]
-default = prototypes.settings
 
-[deploy:proto_server]
-url = http://localhost:6800/
-project = prototypes
+<p>在scrapy-redis的README中得知:</p>
+<div class="highlight"><pre><span></span># Max idle time to prevent the spider from being closed when distributed crawling.
+# This only works if queue class is SpiderQueue or SpiderStack,
+# and may also block the same time when your spider start at the first time (because the queue is empty).
+SCHEDULER_IDLE_BEFORE_CLOSE = 10
 </pre></div>
-<p>其中有两个地方是需要我们更新的：</p>
-<blockquote>
-<p>proto_server是自定义的服务器名称       <br/>
-url是指scrapyd启动后，默认的服务器地址</p>
-</blockquote>
-<h3 id="scrapyd_1">启动scrapyd服务<a class="headerlink" href="#scrapyd_1" title="Permanent link">¶</a></h3>
-<p>执行scrapyd，然后用浏览器打开http://localhost:6800/查看界面是否启动成功</p>
-<h3 id="project">部署project<a class="headerlink" href="#project" title="Permanent link">¶</a></h3>
-<p>部署有两种方式：
-1. 通过json API:
-<a href="http://scrapyd.readthedocs.io/en/stable/api.html?highlight=egg#addversion-json">addversion.json</a> </p>
-<div class="highlight"><pre><span></span>curl http://localhost:6800/addversion.json -F project=prototypes -F version=r23 -F egg=@prototypes.egg
+
+
+<p>添加到settings后，发现spider还是不会退出，只是不停的报exception。</p>
+<p>于是，我想既然log中能知道spider的状态，那我们就再加一个判断，连续出现X次scrapyed 0 itmes就退出不就好了么。</p>
+<p>继续研读源码发现，这段log是scrapy extensions实现的，而且scrapy支持自定义extensions。</p>
+<p>照着logsstats实现一个<a href="https://github.com/acefei/ace-crawler/blob/master/prototypes/extensions.py">close spider extension</a></p>
+<p>并添加如下配置到settings中：</p>
+<div class="highlight"><pre><span></span>EXTENSIONS = {
+     &#39;prototypes.extensions.CloseSpiderRedis&#39;: 100,
+},
+CLOSE_SPIDER_AFTER_IDLE_TIMES = 5
 </pre></div>
-<p>其中egg需要用scrapyd-deploy来生成</p>
-<div class="highlight"><pre><span></span># 进入scrapy工程目录
-scrapyd-deploy --build-egg prototypes.egg
+
+
+<p><em>Done！</em></p>
+<div class="highlight"><pre><span></span>2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2017-11-21 08:16:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2017-11-21 08:17:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2017-11-21 08:18:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2017-11-21 08:19:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2017-11-21 08:19:10 [scrapy.core.engine] INFO: Closing spider (close spider after 5 times of spider idle)
+2017-11-21 08:19:10 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{&#39;downloader/request_bytes&#39;: 493,
+ &#39;downloader/request_count&#39;: 2,
+ &#39;downloader/request_method_count/GET&#39;: 2,
+ &#39;downloader/response_bytes&#39;: 23397,
+ &#39;downloader/response_count&#39;: 2,
+ &#39;downloader/response_status_count/200&#39;: 1,
+ &#39;downloader/response_status_count/302&#39;: 1,
+ &#39;finish_reason&#39;: &#39;close spider after 5 times of spider idle&#39;,
+ &#39;finish_time&#39;: datetime.datetime(2017, 11, 21, 8, 19, 10, 770725),
+ &#39;log_count/DEBUG&#39;: 6,
+ &#39;log_count/INFO&#39;: 14,
+ &#39;memusage/max&#39;: 936964096,
+ &#39;memusage/startup&#39;: 936964096,
+ &#39;response_received_count&#39;: 1,
+ &#39;scheduler/dequeued/redis&#39;: 2,
+ &#39;scheduler/enqueued/redis&#39;: 2,
+ &#39;start_time&#39;: datetime.datetime(2017, 11, 21, 8, 13, 10, 735722)}
+2017-11-21 08:19:10 [scrapy.core.engine] INFO: Spider closed (close spider after 5 times of spider idle)
 </pre></div>
-<ol>
-<li>通过scrapyd-deploy一键部署</li>
-</ol>
-<div class="highlight"><pre><span></span>scrapyd-deploy proto_server -p prototypes
+
+
+<p>最后要注意：
+默认scrapy-redis退出后，会清掉requests/dupefilter的内容，如果你想保留配置，请务必加上：</p>
+<div class="highlight"><pre><span></span># Don&#39;t cleanup redis queues, allows to pause/resume crawls.
+#SCHEDULER_PERSIST = True
 </pre></div>
-<p>部署好后，我们可以用命令查看</p>
-<div class="highlight"><pre><span></span>scrapyd-deploy -L proto_server
-</pre></div>
-<p>然后在http://localhost:6800/查看界面发现Available projects：<strong>prototypes</strong> <br/>
-<img alt="image" src="http://note.youdao.com/favicon.ico"/></p>
-<h3 id="spider">运行spider<a class="headerlink" href="#spider" title="Permanent link">¶</a></h3>
-<div class="highlight"><pre><span></span>curl http://localhost:6800/schedule.json -d project=prototypes -d spider=qichacha
-</pre></div>
-<blockquote>
-<p>Note:
-请务必确认在spider脚本中的初始化中对父类也进行初始化，否则会报错<code>exceptions.TypeError: __init__() got an unexpected keyword argument '_job'</code></p>
-</blockquote>
-<h3 id="further">Further<a class="headerlink" href="#further" title="Permanent link">¶</a></h3>
-<p>[ ]  集成<a href="https://github.com/DormyMo/SpiderKeeper">DormyMo/SpiderKeeper</a>或<a href="https://github.com/Gerapy/Gerapy">Gerapy/Gerapy</a></p>
             
             
             <hr/>
@@ -169,7 +148,7 @@ scrapyd-deploy --build-egg prototypes.egg
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2017-10-30T09:17:00+08:00">Oct 30, 2017</time>
+            <time pubdate="pubdate" datetime="2017-11-21T06:44:00+08:00">Nov 21, 2017</time>
             <h4>Category</h4>
             <a class="category-link" href="https://acefei.github.io/categories.html#development-ref">Development</a>
             <h4>Tags</h4>

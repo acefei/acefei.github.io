@@ -1,5 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei 's One Piece - Development</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/development.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2017-10-30T09:17:00+08:00</updated><entry><title>使用Scrapyd和Scrapyd-client部署爬虫</title><link href="https://acefei.github.io/shi-yong-scrapydhe-scrapyd-clientbu-shu-pa-chong.html" rel="alternate"></link><published>2017-10-30T09:17:00+08:00</published><updated>2017-10-30T09:17:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-10-30:/shi-yong-scrapydhe-scrapyd-clientbu-shu-pa-chong.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei 's One Piece - Development</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/development.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2017-11-21T06:44:00+08:00</updated><entry><title>How to stop scrapy-redis spider when it's idle</title><link href="https://acefei.github.io/how-to-stop-scrapy-redis-spider-when-its-idle.html" rel="alternate"></link><published>2017-11-21T06:44:00+08:00</published><updated>2017-11-21T06:44:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-11-21:/how-to-stop-scrapy-redis-spider-when-its-idle.html</id><summary type="html">&lt;p&gt;scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。
+但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在日志末尾里可以看到如下内容：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在scrapy-redis的README中得知:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# Max idle time to prevent the spider from being closed when distributed crawling.
+# This only works if queue class …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。
+但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在日志末尾里可以看到如下内容：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;在scrapy-redis的README中得知:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# Max idle time to prevent the spider from being closed when distributed crawling.
+# This only works if queue class is SpiderQueue or SpiderStack,
+# and may also block the same time when your spider start at the first time (because the queue is empty).
+SCHEDULER_IDLE_BEFORE_CLOSE = 10
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;添加到settings后，发现spider还是不会退出，只是不停的报exception。&lt;/p&gt;
+&lt;p&gt;于是，我想既然log中能知道spider的状态，那我们就再加一个判断，连续出现X次scrapyed 0 itmes就退出不就好了么。&lt;/p&gt;
+&lt;p&gt;继续研读源码发现，这段log是scrapy extensions实现的，而且scrapy支持自定义extensions。&lt;/p&gt;
+&lt;p&gt;照着logsstats实现一个&lt;a href="https://github.com/acefei/ace-crawler/blob/master/prototypes/extensions.py"&gt;close spider extension&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;并添加如下配置到settings中：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;EXTENSIONS = {
+     &amp;#39;prototypes.extensions.CloseSpiderRedis&amp;#39;: 100,
+},
+CLOSE_SPIDER_AFTER_IDLE_TIMES = 5
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;em&gt;Done！&lt;/em&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2017-11-21 08:16:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2017-11-21 08:17:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2017-11-21 08:18:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2017-11-21 08:19:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+2017-11-21 08:19:10 [scrapy.core.engine] INFO: Closing spider (close spider after 5 times of spider idle)
+2017-11-21 08:19:10 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
+{&amp;#39;downloader/request_bytes&amp;#39;: 493,
+ &amp;#39;downloader/request_count&amp;#39;: 2,
+ &amp;#39;downloader/request_method_count/GET&amp;#39;: 2,
+ &amp;#39;downloader/response_bytes&amp;#39;: 23397,
+ &amp;#39;downloader/response_count&amp;#39;: 2,
+ &amp;#39;downloader/response_status_count/200&amp;#39;: 1,
+ &amp;#39;downloader/response_status_count/302&amp;#39;: 1,
+ &amp;#39;finish_reason&amp;#39;: &amp;#39;close spider after 5 times of spider idle&amp;#39;,
+ &amp;#39;finish_time&amp;#39;: datetime.datetime(2017, 11, 21, 8, 19, 10, 770725),
+ &amp;#39;log_count/DEBUG&amp;#39;: 6,
+ &amp;#39;log_count/INFO&amp;#39;: 14,
+ &amp;#39;memusage/max&amp;#39;: 936964096,
+ &amp;#39;memusage/startup&amp;#39;: 936964096,
+ &amp;#39;response_received_count&amp;#39;: 1,
+ &amp;#39;scheduler/dequeued/redis&amp;#39;: 2,
+ &amp;#39;scheduler/enqueued/redis&amp;#39;: 2,
+ &amp;#39;start_time&amp;#39;: datetime.datetime(2017, 11, 21, 8, 13, 10, 735722)}
+2017-11-21 08:19:10 [scrapy.core.engine] INFO: Spider closed (close spider after 5 times of spider idle)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;最后要注意：
+默认scrapy-redis退出后，会清掉requests/dupefilter的内容，如果你想保留配置，请务必加上：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# Don&amp;#39;t cleanup redis queues, allows to pause/resume crawls.
+#SCHEDULER_PERSIST = True
+&lt;/pre&gt;&lt;/div&gt;</content><category term="scrapy"></category><category term="python"></category></entry><entry><title>使用Scrapyd和Scrapyd-client部署爬虫</title><link href="https://acefei.github.io/shi-yong-scrapydhe-scrapyd-clientbu-shu-pa-chong.html" rel="alternate"></link><published>2017-10-30T09:17:00+08:00</published><updated>2017-10-30T09:17:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-10-30:/shi-yong-scrapydhe-scrapyd-clientbu-shu-pa-chong.html</id><summary type="html">
 &lt;h3 id="_1"&gt;基本介绍&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;h4 id="scrapyd"&gt;&lt;a href="https://github.com/scrapy/scrapyd"&gt;Scrapyd&lt;/a&gt;&lt;a class="headerlink" href="#scrapyd" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;Scrapyd is a service for running Scrapy spiders.
