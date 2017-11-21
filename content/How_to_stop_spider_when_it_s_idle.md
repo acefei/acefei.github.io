@@ -6,21 +6,21 @@ Authors: Ace Fei
 
 
 scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。
-但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在日志末尾里可以看到如下内容：
+但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在log末尾里可以看到如下内容：
 ```
 2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
 ```
 
-在scrapy-redis的README中得知:
+在scrapy-redis的[README](https://github.com/rmax/scrapy-redis)中得知:
 ```
 # Max idle time to prevent the spider from being closed when distributed crawling.
 # This only works if queue class is SpiderQueue or SpiderStack,
 # and may also block the same time when your spider start at the first time (because the queue is empty).
 SCHEDULER_IDLE_BEFORE_CLOSE = 10
 ```
-添加到settings后，发现spider还是不会退出，只是不停的报exception。
+添加到settings后，发现spider还是不会退出，只是不停的报exception。 
 
-于是，我想既然log中能知道spider的状态，那我们就再加一个判断，连续出现X次scrapyed 0 itmes就退出不就好了么。
+重新想办法，既然log中能知道spider的状态，那我们就再加一个判断，连续出现X次scrapyed 0 itmes就退出不就好了么。
 
 继续研读源码发现，这段log是scrapy extensions实现的，而且scrapy支持自定义extensions。
 
@@ -63,10 +63,9 @@ CLOSE_SPIDER_AFTER_IDLE_TIMES = 5
 2017-11-21 08:19:10 [scrapy.core.engine] INFO: Spider closed (close spider after 5 times of spider idle)
 ```
 
-最后要注意：
-默认scrapy-redis退出后，会清掉requests/dupefilter的内容，如果你想保留配置，请务必加上：
+最后要注意，默认scrapy-redis退出后，会清掉requests/dupefilter的内容，如果你想保留配置，请务必在settings中加上：
 ```
 # Don't cleanup redis queues, allows to pause/resume crawls.
-#SCHEDULER_PERSIST = True
+SCHEDULER_PERSIST = True
 ```
 
