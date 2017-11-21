@@ -7,7 +7,7 @@
         <meta name="author" content="Ace Fei" />
         <meta name="copyright" content="Ace Fei" />
 
-        <meta name="description" content="scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。 但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在日志末尾里可以看到如下内容： 2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min) 在scrapy-redis的README中得知: # Max idle time to prevent the spider from being closed when distributed crawling. # This only works if queue class …
+        <meta name="description" content="scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。 但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在log末尾里可以看到如下内容： 2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min) 在scrapy-redis的README中得知: # Max idle time to prevent the spider from being closed when distributed crawling. # This only works if …
 " />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
@@ -16,12 +16,12 @@
 
 <meta property="og:title" content="How to stop scrapy-redis spider when it&#39;s idle "/>
 <meta property="og:url" content="https://acefei.github.io/how-to-stop-scrapy-redis-spider-when-its-idle.html" />
-<meta property="og:description" content="scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。 但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在日志末尾里可以看到如下内容： 2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min) 在scrapy-redis的README中得知: # Max idle time to prevent the spider from being closed when distributed crawling. # This only works if queue class …" />
+<meta property="og:description" content="scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。 但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在log末尾里可以看到如下内容： 2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min) 在scrapy-redis的README中得知: # Max idle time to prevent the spider from being closed when distributed crawling. # This only works if …" />
 <meta property="og:site_name" content="Acefei &#39;s One Piece" />
 <meta property="og:article:author" content="Ace Fei" />
 <meta property="og:article:published_time" content="2017-11-21T06:44:00+08:00" />
 <meta name="twitter:title" content="How to stop scrapy-redis spider when it&#39;s idle ">
-<meta name="twitter:description" content="scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。 但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在日志末尾里可以看到如下内容： 2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min) 在scrapy-redis的README中得知: # Max idle time to prevent the spider from being closed when distributed crawling. # This only works if queue class …">
+<meta name="twitter:description" content="scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。 但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在log末尾里可以看到如下内容： 2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min) 在scrapy-redis的README中得知: # Max idle time to prevent the spider from being closed when distributed crawling. # This only works if …">
 
         <title>How to stop scrapy-redis spider when it&#39;s idle  · Acefei &#39;s One Piece
 </title>
@@ -82,12 +82,12 @@
 
             
             <p>scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。
-但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在日志末尾里可以看到如下内容：</p>
+但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在log末尾里可以看到如下内容：</p>
 <div class="highlight"><pre><span></span>2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
 </pre></div>
 
 
-<p>在scrapy-redis的README中得知:</p>
+<p>在scrapy-redis的<a href="https://github.com/rmax/scrapy-redis">README</a>中得知:</p>
 <div class="highlight"><pre><span></span># Max idle time to prevent the spider from being closed when distributed crawling.
 # This only works if queue class is SpiderQueue or SpiderStack,
 # and may also block the same time when your spider start at the first time (because the queue is empty).
@@ -95,8 +95,8 @@ SCHEDULER_IDLE_BEFORE_CLOSE = 10
 </pre></div>
 
 
-<p>添加到settings后，发现spider还是不会退出，只是不停的报exception。</p>
-<p>于是，我想既然log中能知道spider的状态，那我们就再加一个判断，连续出现X次scrapyed 0 itmes就退出不就好了么。</p>
+<p>添加到settings后，发现spider还是不会退出，只是不停的报exception。 </p>
+<p>重新想办法，既然log中能知道spider的状态，那我们就再加一个判断，连续出现X次scrapyed 0 itmes就退出不就好了么。</p>
 <p>继续研读源码发现，这段log是scrapy extensions实现的，而且scrapy支持自定义extensions。</p>
 <p>照着logsstats实现一个<a href="https://github.com/acefei/ace-crawler/blob/master/prototypes/extensions.py">close spider extension</a></p>
 <p>并添加如下配置到settings中：</p>
@@ -136,10 +136,9 @@ CLOSE_SPIDER_AFTER_IDLE_TIMES = 5
 </pre></div>
 
 
-<p>最后要注意：
-默认scrapy-redis退出后，会清掉requests/dupefilter的内容，如果你想保留配置，请务必加上：</p>
+<p>最后要注意，默认scrapy-redis退出后，会清掉requests/dupefilter的内容，如果你想保留配置，请务必在settings中加上：</p>
 <div class="highlight"><pre><span></span># Don&#39;t cleanup redis queues, allows to pause/resume crawls.
-#SCHEDULER_PERSIST = True
+SCHEDULER_PERSIST = True
 </pre></div>
             
             
