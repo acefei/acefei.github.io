@@ -138,18 +138,16 @@ sudo yum install mariadb-server
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="mysql"&gt;配置mysql&lt;a class="headerlink" href="#mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# 第一次启动会检查/var/lib/mysql目录是否为空，不为空将返回失败
-sudo service mysql start
+sudo service mariadb start
 # 设置mysql密码
 sudo mysql_secure_installation
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;如果配置时有任何错误，可在/var/log/mariadb/mariadb.log里查看具体原因&lt;/p&gt;
 &lt;h3 id="python-mysql"&gt;Python Mysql库安装&lt;a class="headerlink" href="#python-mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo pip install mysql-python
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install python-devel
+sudo pip install mysql-python
 # Toolkit for Python-based database access.
-sudo pip install dataset
-&lt;/pre&gt;&lt;/div&gt;
-&lt;h3 id="dataset"&gt;dataset常见操作&lt;a class="headerlink" href="#dataset" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;a href="http://dataset.readthedocs.io/en/latest/api.html"&gt;dataset …&lt;/a&gt;&lt;/p&gt;</summary><content type="html">
+sudo pip …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">
 &lt;h3 id="centos7mysql"&gt;Centos7上安装mysql&lt;a class="headerlink" href="#centos7mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install mysql mysql-devel
 # centos7上已经使用mariadb替换了mysql，它们仅在安装配置上有些区别，使用上没有差别。
@@ -157,13 +155,14 @@ sudo yum install mariadb-server
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="mysql"&gt;配置mysql&lt;a class="headerlink" href="#mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# 第一次启动会检查/var/lib/mysql目录是否为空，不为空将返回失败
-sudo service mysql start
+sudo service mariadb start
 # 设置mysql密码
 sudo mysql_secure_installation
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;如果配置时有任何错误，可在/var/log/mariadb/mariadb.log里查看具体原因&lt;/p&gt;
 &lt;h3 id="python-mysql"&gt;Python Mysql库安装&lt;a class="headerlink" href="#python-mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo pip install mysql-python
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install python-devel
+sudo pip install mysql-python
 # Toolkit for Python-based database access.
 sudo pip install dataset
 &lt;/pre&gt;&lt;/div&gt;

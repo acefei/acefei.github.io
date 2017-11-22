@@ -7,7 +7,7 @@
         <meta name="author" content="Ace Fei" />
         <meta name="copyright" content="Ace Fei" />
 
-        <meta name="description" content="Centos7上安装mysql¶ sudo yum install mysql mysql-devel # centos7上已经使用mariadb替换了mysql，它们仅在安装配置上有些区别，使用上没有差别。 sudo yum install mariadb-server 配置mysql¶ # 第一次启动会检查/var/lib/mysql目录是否为空，不为空将返回失败 sudo service mysql start # 设置mysql密码 sudo mysql_secure_installation 如果配置时有任何错误，可在/var/log/mariadb/mariadb.log里查看具体原因 Python Mysql库安装¶ sudo pip install mysql-python # Toolkit for Python-based database access. sudo pip install dataset dataset常见操作¶ dataset …
+        <meta name="description" content="Centos7上安装mysql¶ sudo yum install mysql mysql-devel # centos7上已经使用mariadb替换了mysql，它们仅在安装配置上有些区别，使用上没有差别。 sudo yum install mariadb-server 配置mysql¶ # 第一次启动会检查/var/lib/mysql目录是否为空，不为空将返回失败 sudo service mariadb start # 设置mysql密码 sudo mysql_secure_installation 如果配置时有任何错误，可在/var/log/mariadb/mariadb.log里查看具体原因 Python Mysql库安装¶ sudo yum install python-devel sudo pip install mysql-python # Toolkit for Python-based database access. sudo pip …
 " />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
@@ -16,12 +16,12 @@
 
 <meta property="og:title" content="在Centos7上使用Python操作Mysql实践 "/>
 <meta property="og:url" content="https://acefei.github.io/zai-centos7shang-shi-yong-pythoncao-zuo-mysqlshi-jian.html" />
-<meta property="og:description" content="Centos7上安装mysql¶ sudo yum install mysql mysql-devel # centos7上已经使用mariadb替换了mysql，它们仅在安装配置上有些区别，使用上没有差别。 sudo yum install mariadb-server 配置mysql¶ # 第一次启动会检查/var/lib/mysql目录是否为空，不为空将返回失败 sudo service mysql start # 设置mysql密码 sudo mysql_secure_installation 如果配置时有任何错误，可在/var/log/mariadb/mariadb.log里查看具体原因 Python Mysql库安装¶ sudo pip install mysql-python # Toolkit for Python-based database access. sudo pip install dataset dataset常见操作¶ dataset …" />
+<meta property="og:description" content="Centos7上安装mysql¶ sudo yum install mysql mysql-devel # centos7上已经使用mariadb替换了mysql，它们仅在安装配置上有些区别，使用上没有差别。 sudo yum install mariadb-server 配置mysql¶ # 第一次启动会检查/var/lib/mysql目录是否为空，不为空将返回失败 sudo service mariadb start # 设置mysql密码 sudo mysql_secure_installation 如果配置时有任何错误，可在/var/log/mariadb/mariadb.log里查看具体原因 Python Mysql库安装¶ sudo yum install python-devel sudo pip install mysql-python # Toolkit for Python-based database access. sudo pip …" />
 <meta property="og:site_name" content="Acefei &#39;s One Piece" />
 <meta property="og:article:author" content="Ace Fei" />
 <meta property="og:article:published_time" content="2017-10-27T01:14:00+08:00" />
 <meta name="twitter:title" content="在Centos7上使用Python操作Mysql实践 ">
-<meta name="twitter:description" content="Centos7上安装mysql¶ sudo yum install mysql mysql-devel # centos7上已经使用mariadb替换了mysql，它们仅在安装配置上有些区别，使用上没有差别。 sudo yum install mariadb-server 配置mysql¶ # 第一次启动会检查/var/lib/mysql目录是否为空，不为空将返回失败 sudo service mysql start # 设置mysql密码 sudo mysql_secure_installation 如果配置时有任何错误，可在/var/log/mariadb/mariadb.log里查看具体原因 Python Mysql库安装¶ sudo pip install mysql-python # Toolkit for Python-based database access. sudo pip install dataset dataset常见操作¶ dataset …">
+<meta name="twitter:description" content="Centos7上安装mysql¶ sudo yum install mysql mysql-devel # centos7上已经使用mariadb替换了mysql，它们仅在安装配置上有些区别，使用上没有差别。 sudo yum install mariadb-server 配置mysql¶ # 第一次启动会检查/var/lib/mysql目录是否为空，不为空将返回失败 sudo service mariadb start # 设置mysql密码 sudo mysql_secure_installation 如果配置时有任何错误，可在/var/log/mariadb/mariadb.log里查看具体原因 Python Mysql库安装¶ sudo yum install python-devel sudo pip install mysql-python # Toolkit for Python-based database access. sudo pip …">
 
         <title>在Centos7上使用Python操作Mysql实践  · Acefei &#39;s One Piece
 </title>
@@ -110,13 +110,14 @@ sudo yum install mariadb-server
 </pre></div>
 <h3 id="mysql">配置mysql<a class="headerlink" href="#mysql" title="Permanent link">¶</a></h3>
 <div class="highlight"><pre><span></span># 第一次启动会检查/var/lib/mysql目录是否为空，不为空将返回失败
-sudo service mysql start
+sudo service mariadb start
 # 设置mysql密码
 sudo mysql_secure_installation
 </pre></div>
 <p>如果配置时有任何错误，可在/var/log/mariadb/mariadb.log里查看具体原因</p>
 <h3 id="python-mysql">Python Mysql库安装<a class="headerlink" href="#python-mysql" title="Permanent link">¶</a></h3>
-<div class="highlight"><pre><span></span>sudo pip install mysql-python
+<div class="highlight"><pre><span></span>sudo yum install python-devel
+sudo pip install mysql-python
 # Toolkit for Python-based database access.
 sudo pip install dataset
 </pre></div>
