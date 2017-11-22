@@ -17,7 +17,7 @@ sudo yum install mariadb-server
 ### 配置mysql
 ```
 # 第一次启动会检查/var/lib/mysql目录是否为空，不为空将返回失败
-sudo service mysql start
+sudo service mariadb start
 # 设置mysql密码
 sudo mysql_secure_installation
 ```
@@ -26,6 +26,7 @@ sudo mysql_secure_installation
 
 ### Python Mysql库安装
 ```
+sudo yum install python-devel
 sudo pip install mysql-python
 # Toolkit for Python-based database access.
 sudo pip install dataset
