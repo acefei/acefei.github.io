@@ -95,7 +95,7 @@
             
             
 <p>在写爬虫的时候，经常会遇到anti-spider，这时候我们可以采取切换代理ip来绕过限制。但是最近在Selenium+PhantomJS实践过程中遇到一个很trick的问题，在此做一下记录。</p>
-<h4 id="python-requests-with-proxy">python requests with proxy<a class="headerlink" href="#python-requests-with-proxy" title="Permanent link">¶</a></h4>
+<h2 id="python-requests-with-proxy">python requests with proxy<a class="headerlink" href="#python-requests-with-proxy" title="Permanent link">¶</a></h2>
 <p>一开始我们还是用pythonic的方式来看看，http proxy是如何隐藏真实ip的。</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
 <span class="k">print</span> <span class="s2">"--No Proxy--"</span>
@@ -119,7 +119,7 @@
 }
 </pre></div>
 <p>可以看出来origin的值插入了一条新的ip，证明设置proxy生效了。</p>
-<h4 id="phantomjs-with-proxy">phantomjs with proxy<a class="headerlink" href="#phantomjs-with-proxy" title="Permanent link">¶</a></h4>
+<h2 id="phantomjs-with-proxy">phantomjs with proxy<a class="headerlink" href="#phantomjs-with-proxy" title="Permanent link">¶</a></h2>
 <p>编辑httpbin_test.js，</p>
 <div class="highlight"><pre><span></span>"use strict";
 var page = require('webpage').create();
@@ -140,7 +140,7 @@ page.open('http://httpbin.org/ip', function (status) {
 <span class="nt">&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</span>
 </pre></div>
 <p>Ok，proxy设置成功。</p>
-<h4 id="selenium-phantomjs-with-proxy">selenium + phantomjs with proxy<a class="headerlink" href="#selenium-phantomjs-with-proxy" title="Permanent link">¶</a></h4>
+<h2 id="selenium-phantomjs-with-proxy">selenium + phantomjs with proxy<a class="headerlink" href="#selenium-phantomjs-with-proxy" title="Permanent link">¶</a></h2>
 <p>Stackoverflow上有人推荐方案，</p>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
 <span class="kn">from</span> <span class="nn">selenium.webdriver</span> <span class="kn">import</span> <span class="n">DesiredCapabilities</span>

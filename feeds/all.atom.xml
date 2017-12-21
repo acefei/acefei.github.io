@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei 's One Piece</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/all.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2017-12-21T15:12:00+08:00</updated><entry><title>关于Selenium+PhantomJS设置HTTP PROXY的问题</title><link href="https://acefei.github.io/guan-yu-seleniumphantomjsshe-zhi-http-proxyde-wen-ti.html" rel="alternate"></link><published>2017-12-21T15:12:00+08:00</published><updated>2017-12-21T15:12:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-12-21:/guan-yu-seleniumphantomjsshe-zhi-http-proxyde-wen-ti.html</id><summary type="html">
 &lt;p&gt;在写爬虫的时候，经常会遇到anti-spider，这时候我们可以采取切换代理ip来绕过限制。但是最近在Selenium+PhantomJS实践过程中遇到一个很trick的问题，在此做一下记录。&lt;/p&gt;
-&lt;h4 id="python-requests-with-proxy"&gt;python requests with proxy&lt;a class="headerlink" href="#python-requests-with-proxy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h2 id="python-requests-with-proxy"&gt;python requests with proxy&lt;a class="headerlink" href="#python-requests-with-proxy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;一开始我们还是用pythonic的方式来看看，http proxy是如何隐藏真实ip的。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;"--No Proxy--"&lt;/span&gt;
@@ -13,7 +13,7 @@
 &lt;span class="n"&gt;proxies&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;"http"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"http://{0}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;proxy&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"http://httpbin.org …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">
 &lt;p&gt;在写爬虫的时候，经常会遇到anti-spider，这时候我们可以采取切换代理ip来绕过限制。但是最近在Selenium+PhantomJS实践过程中遇到一个很trick的问题，在此做一下记录。&lt;/p&gt;
-&lt;h4 id="python-requests-with-proxy"&gt;python requests with proxy&lt;a class="headerlink" href="#python-requests-with-proxy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h2 id="python-requests-with-proxy"&gt;python requests with proxy&lt;a class="headerlink" href="#python-requests-with-proxy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;一开始我们还是用pythonic的方式来看看，http proxy是如何隐藏真实ip的。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;"--No Proxy--"&lt;/span&gt;
@@ -37,7 +37,7 @@
 }
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;可以看出来origin的值插入了一条新的ip，证明设置proxy生效了。&lt;/p&gt;
-&lt;h4 id="phantomjs-with-proxy"&gt;phantomjs with proxy&lt;a class="headerlink" href="#phantomjs-with-proxy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h2 id="phantomjs-with-proxy"&gt;phantomjs with proxy&lt;a class="headerlink" href="#phantomjs-with-proxy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;编辑httpbin_test.js，&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;"use strict";
 var page = require('webpage').create();
@@ -58,7 +58,7 @@ page.open('http://httpbin.org/ip', function (status) {
 &lt;span class="nt"&gt;&amp;lt;/pre&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Ok，proxy设置成功。&lt;/p&gt;
-&lt;h4 id="selenium-phantomjs-with-proxy"&gt;selenium + phantomjs with proxy&lt;a class="headerlink" href="#selenium-phantomjs-with-proxy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h2 id="selenium-phantomjs-with-proxy"&gt;selenium + phantomjs with proxy&lt;a class="headerlink" href="#selenium-phantomjs-with-proxy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Stackoverflow上有人推荐方案，&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;selenium&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;selenium.webdriver&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;DesiredCapabilities&lt;/span&gt;
@@ -147,10 +147,10 @@ Without any argument, PhantomJS will launch in interactive mode (REPL).
 Documentation can be found at the web site, http://phantomjs.org.
 &lt;/pre&gt;&lt;/div&gt;</content><category term="python"></category><category term="phantomjs"></category><category term="spider"></category></entry><entry><title>机器学习资料整理(Python方向，建议通读)</title><link href="https://acefei.github.io/ji-qi-xue-xi-zi-liao-zheng-li-pythonfang-xiang-jian-yi-tong-du.html" rel="alternate"></link><published>2017-11-30T09:17:00+08:00</published><updated>2017-11-30T09:17:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-11-30:/ji-qi-xue-xi-zi-liao-zheng-li-pythonfang-xiang-jian-yi-tong-du.html</id><summary type="html">
 &lt;p&gt;一些好东西，入门前未必看得懂，要等学有小成时再看才能体会。&lt;/p&gt;
-&lt;h3 id="python"&gt;Python&lt;a class="headerlink" href="#python" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h1 id="python"&gt;Python&lt;a class="headerlink" href="#python" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;&lt;a href="http://python.jobbole.com/87522/"&gt;致Python初学者：Anaconda入门使用指南&lt;/a&gt;  ——选择anaconda，体验拎包入住的感觉&lt;/p&gt;
-&lt;h3 id="_1"&gt;数据处理&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;h4 id="numpy"&gt;&lt;a href="http://www.numpy.org/"&gt;numpy&lt;/a&gt;&lt;a class="headerlink" href="#numpy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h1 id="_1"&gt;数据处理&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="numpy"&gt;&lt;a href="http://www.numpy.org/"&gt;numpy&lt;/a&gt;&lt;a class="headerlink" href="#numpy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Numpy--Numerical Python，一个基于Python的可以存储和处理大型矩阵的库。几乎是Python 生态系统的数值计算的基石，例如Scipy，Pandas，Scikit-learn，Keras等都基于Numpy。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -160,12 +160,12 @@ Documentation can be found at the web site, http://phantomjs.org.
 &lt;p&gt;&lt;a href="https://docs.scipy.org/doc/numpy-dev/genindex.html"&gt;Index&lt;/a&gt; 查询api，推荐！&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id="scipy"&gt;&lt;a href=""&gt;Scipy&lt;/a&gt;&lt;a class="headerlink" href="#scipy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h2 id="scipy"&gt;&lt;a href=""&gt;Scipy&lt;/a&gt;&lt;a class="headerlink" href="#scipy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;SciPy函数库在NumPy库的基础上增加了众多的数学、科学以及工程计算中常用的库函数。例如线性代数、常微分方程数值求解、信号处理、图像处理、稀疏矩阵等等。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.scipy-lectures.org/#"&gt;Scipy Lecture Notes&lt;/a&gt; 极力推荐的一个学习笔记！&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id="pandas"&gt;&lt;a href="http://pandas.pydata.org/"&gt;pandas&lt;/a&gt;&lt;a class="headerlink" href="#pandas" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h2 id="pandas"&gt;&lt;a href="http://pandas.pydata.org/"&gt;pandas&lt;/a&gt;&lt;a class="headerlink" href="#pandas" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;pandas是基于Numpy构建的含有更高级数据结构和工具的数据分析包。
 类似于Numpy的核心是ndarray，pandas也是围绕着Series和DataFrame两个核心数据结构展开的。
 Series和DataFrame分别对应于一维的序列和二维的表结构。&lt;/p&gt;
@@ -177,13 +177,13 @@ Series和DataFrame分别对应于一维的序列和二维的表结构。&lt;/p&g
 &lt;p&gt;&lt;a href="http://pandas.pydata.org/pandas-docs/stable/genindex.html"&gt;Index&lt;/a&gt; 查询api，推荐！&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="_2"&gt;机器算法&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;h4 id="scikit-learn"&gt;&lt;a href="http://scikit-learn.org/stable/"&gt;scikit-learn …&lt;/a&gt;&lt;/h4&gt;</summary><content type="html">
+&lt;h1 id="_2"&gt;机器算法&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="scikit-learn"&gt;&lt;a href="http://scikit-learn.org/stable/"&gt;scikit-learn …&lt;/a&gt;&lt;/h2&gt;</summary><content type="html">
 &lt;p&gt;一些好东西，入门前未必看得懂，要等学有小成时再看才能体会。&lt;/p&gt;
-&lt;h3 id="python"&gt;Python&lt;a class="headerlink" href="#python" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h1 id="python"&gt;Python&lt;a class="headerlink" href="#python" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;&lt;a href="http://python.jobbole.com/87522/"&gt;致Python初学者：Anaconda入门使用指南&lt;/a&gt;  ——选择anaconda，体验拎包入住的感觉&lt;/p&gt;
-&lt;h3 id="_1"&gt;数据处理&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;h4 id="numpy"&gt;&lt;a href="http://www.numpy.org/"&gt;numpy&lt;/a&gt;&lt;a class="headerlink" href="#numpy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h1 id="_1"&gt;数据处理&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="numpy"&gt;&lt;a href="http://www.numpy.org/"&gt;numpy&lt;/a&gt;&lt;a class="headerlink" href="#numpy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Numpy--Numerical Python，一个基于Python的可以存储和处理大型矩阵的库。几乎是Python 生态系统的数值计算的基石，例如Scipy，Pandas，Scikit-learn，Keras等都基于Numpy。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -193,12 +193,12 @@ Series和DataFrame分别对应于一维的序列和二维的表结构。&lt;/p&g
 &lt;p&gt;&lt;a href="https://docs.scipy.org/doc/numpy-dev/genindex.html"&gt;Index&lt;/a&gt; 查询api，推荐！&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id="scipy"&gt;&lt;a href=""&gt;Scipy&lt;/a&gt;&lt;a class="headerlink" href="#scipy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h2 id="scipy"&gt;&lt;a href=""&gt;Scipy&lt;/a&gt;&lt;a class="headerlink" href="#scipy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;SciPy函数库在NumPy库的基础上增加了众多的数学、科学以及工程计算中常用的库函数。例如线性代数、常微分方程数值求解、信号处理、图像处理、稀疏矩阵等等。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.scipy-lectures.org/#"&gt;Scipy Lecture Notes&lt;/a&gt; 极力推荐的一个学习笔记！&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id="pandas"&gt;&lt;a href="http://pandas.pydata.org/"&gt;pandas&lt;/a&gt;&lt;a class="headerlink" href="#pandas" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h2 id="pandas"&gt;&lt;a href="http://pandas.pydata.org/"&gt;pandas&lt;/a&gt;&lt;a class="headerlink" href="#pandas" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;pandas是基于Numpy构建的含有更高级数据结构和工具的数据分析包。
 类似于Numpy的核心是ndarray，pandas也是围绕着Series和DataFrame两个核心数据结构展开的。
 Series和DataFrame分别对应于一维的序列和二维的表结构。&lt;/p&gt;
@@ -210,20 +210,20 @@ Series和DataFrame分别对应于一维的序列和二维的表结构。&lt;/p&g
 &lt;p&gt;&lt;a href="http://pandas.pydata.org/pandas-docs/stable/genindex.html"&gt;Index&lt;/a&gt; 查询api，推荐！&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="_2"&gt;机器算法&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;h4 id="scikit-learn"&gt;&lt;a href="http://scikit-learn.org/stable/"&gt;scikit-learn&lt;/a&gt;&lt;a class="headerlink" href="#scikit-learn" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
-&lt;h3 id="_3"&gt;数据可视化&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;h4 id="seaborn"&gt;&lt;a href="http://seaborn.pydata.org/index.html"&gt;Seaborn&lt;/a&gt;&lt;a class="headerlink" href="#seaborn" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h1 id="_2"&gt;机器算法&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="scikit-learn"&gt;&lt;a href="http://scikit-learn.org/stable/"&gt;scikit-learn&lt;/a&gt;&lt;a class="headerlink" href="#scikit-learn" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h1 id="_3"&gt;数据可视化&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="seaborn"&gt;&lt;a href="http://seaborn.pydata.org/index.html"&gt;Seaborn&lt;/a&gt;&lt;a class="headerlink" href="#seaborn" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://seaborn.pydata.org/tutorial.html"&gt;Seaborn tutorial&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id="matplotlib"&gt;&lt;a href="http://matplotlib.org/"&gt;Matplotlib&lt;/a&gt;&lt;a class="headerlink" href="#matplotlib" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h2 id="matplotlib"&gt;&lt;a href="http://matplotlib.org/"&gt;Matplotlib&lt;/a&gt;&lt;a class="headerlink" href="#matplotlib" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.labri.fr/perso/nrougier/teaching/matplotlib/"&gt;Matplotlib tutorial&lt;/a&gt; (&lt;a href="http://reverland.org/python/2012/09/07/matplotlib-tutorial"&gt;翻译&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id="pyecharts"&gt;&lt;a href="https://github.com/chenjiandongx/pyecharts"&gt;Pyecharts&lt;/a&gt;&lt;a class="headerlink" href="#pyecharts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h2 id="pyecharts"&gt;&lt;a href="https://github.com/chenjiandongx/pyecharts"&gt;Pyecharts&lt;/a&gt;&lt;a class="headerlink" href="#pyecharts" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;如果想使用pandas和numpy数据，需要转换一下。参考：&lt;a href="https://zhuanlan.zhihu.com/p/28198363"&gt;增加了对 Pandas 和 Numpy 数据的简单处理&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id="_4"&gt;扩展阅读&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h1 id="_4"&gt;扩展阅读&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;&lt;a href="http://www.open-open.com/lib/view/open1452600067698.html##1"&gt;python机器学习入门资料梳理&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://jingyan.baidu.com/season/41121"&gt;python 线性代数&lt;/a&gt; 用numpy来讲解&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://jingyan.baidu.com/season/45667"&gt;Python 统计分析&lt;/a&gt;&lt;/p&gt;
@@ -361,47 +361,47 @@ scrapyd-deploy --build-egg prototypes.egg
 &lt;/blockquote&gt;
 &lt;h3 id="further"&gt;Further&lt;a class="headerlink" href="#further" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;[ ]  集成&lt;a href="https://github.com/DormyMo/SpiderKeeper"&gt;DormyMo/SpiderKeeper&lt;/a&gt;或&lt;a href="https://github.com/Gerapy/Gerapy"&gt;Gerapy/Gerapy&lt;/a&gt;&lt;/p&gt;</content><category term="python"></category><category term="scrapy"></category></entry><entry><title>在Centos7上使用Python操作Mysql实践</title><link href="https://acefei.github.io/zai-centos7shang-shi-yong-pythoncao-zuo-mysqlshi-jian.html" rel="alternate"></link><published>2017-10-27T01:14:00+08:00</published><updated>2017-10-27T01:14:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-10-27:/zai-centos7shang-shi-yong-pythoncao-zuo-mysqlshi-jian.html</id><summary type="html">
-&lt;h3 id="centos7mysql"&gt;Centos7上安装mysql&lt;a class="headerlink" href="#centos7mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h1 id="centos7mysql"&gt;Centos7上安装mysql&lt;a class="headerlink" href="#centos7mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install mysql mysql-devel
 # centos7上已经使用mariadb替换了mysql，它们仅在安装配置上有些区别，使用上没有差别。
 sudo yum install mariadb-server
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h3 id="mysql"&gt;配置mysql&lt;a class="headerlink" href="#mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h1 id="mysql"&gt;配置mysql&lt;a class="headerlink" href="#mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# 第一次启动会检查/var/lib/mysql目录是否为空，不为空将返回失败
 sudo service mariadb start
 # 设置mysql密码
 sudo mysql_secure_installation
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;如果配置时有任何错误，可在/var/log/mariadb/mariadb.log里查看具体原因&lt;/p&gt;
-&lt;h3 id="python-mysql"&gt;Python Mysql库安装&lt;a class="headerlink" href="#python-mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h1 id="python-mysql"&gt;Python Mysql库安装&lt;a class="headerlink" href="#python-mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install python-devel
 sudo pip install mysql-python
 # Toolkit for Python-based database access.
 sudo pip …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">
-&lt;h3 id="centos7mysql"&gt;Centos7上安装mysql&lt;a class="headerlink" href="#centos7mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h1 id="centos7mysql"&gt;Centos7上安装mysql&lt;a class="headerlink" href="#centos7mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install mysql mysql-devel
 # centos7上已经使用mariadb替换了mysql，它们仅在安装配置上有些区别，使用上没有差别。
 sudo yum install mariadb-server
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h3 id="mysql"&gt;配置mysql&lt;a class="headerlink" href="#mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h1 id="mysql"&gt;配置mysql&lt;a class="headerlink" href="#mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# 第一次启动会检查/var/lib/mysql目录是否为空，不为空将返回失败
 sudo service mariadb start
 # 设置mysql密码
 sudo mysql_secure_installation
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;如果配置时有任何错误，可在/var/log/mariadb/mariadb.log里查看具体原因&lt;/p&gt;
-&lt;h3 id="python-mysql"&gt;Python Mysql库安装&lt;a class="headerlink" href="#python-mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h1 id="python-mysql"&gt;Python Mysql库安装&lt;a class="headerlink" href="#python-mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install python-devel
 sudo pip install mysql-python
 # Toolkit for Python-based database access.
 sudo pip install dataset
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h3 id="dataset"&gt;dataset常见操作&lt;a class="headerlink" href="#dataset" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;h1 id="dataset"&gt;dataset常见操作&lt;a class="headerlink" href="#dataset" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;&lt;a href="http://dataset.readthedocs.io/en/latest/api.html"&gt;dataset&lt;/a&gt;库是对SQLAlchemy二次封装，使其操作数据库就像操作json文件一样方便。&lt;/p&gt;
-&lt;h4 id="mysql_1"&gt;连接Mysql&lt;a class="headerlink" href="#mysql_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h2 id="mysql_1"&gt;连接Mysql&lt;a class="headerlink" href="#mysql_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;db = dataset.connect('mysql://username:password@port/dbname?charset=utf8')
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h4 id="_1"&gt;添加记录&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h2 id="_1"&gt;添加记录&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;data = {
     'key': 1,
     'column2': 2,
@@ -412,7 +412,7 @@ db[t_name].insert(data, ['key'])
 # 插入记录，如果key，存在则更新
 db[t_name].upsert(data, ['key'])
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h4 id="_2"&gt;查找记录&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h2 id="_2"&gt;查找记录&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# 打印表的字段
 print self.db['t_name'].columns
 
@@ -429,7 +429,7 @@ self.db['t_name'].find_one(key1 = 1, key2 =2)
 &lt;p&gt;考虑到find()查找性能，也可以使用原生的sql语句来进行query&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;select * from t_name limit 99
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h4 id="_3"&gt;更新记录&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h2 id="_3"&gt;更新记录&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;data = {
     'key': 1,
     'column2': 2,
@@ -437,12 +437,12 @@ self.db['t_name'].find_one(key1 = 1, key2 =2)
 }
 self.db['t_name'].update(data, ['key'])
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h4 id="_4"&gt;删除记录&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h2 id="_4"&gt;删除记录&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;self.db['t_name'].delete(key1=1, key2=2)
 # 删除所有记录
 self.db['t_name'].delete()
 &lt;/pre&gt;&lt;/div&gt;
-&lt;h4 id="dataset_1"&gt;关于dataset导出数据&lt;a class="headerlink" href="#dataset_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;h2 id="dataset_1"&gt;关于dataset导出数据&lt;a class="headerlink" href="#dataset_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;现在dataset被分离成两个模块，如果想导出数据请看&lt;a href="https://github.com/pudo/datafreeze"&gt;datafreeze&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;详细用法请见&lt;a href="https://dataset.readthedocs.io/en/latest/"&gt;dataset readthedocs&lt;/a&gt;&lt;/p&gt;</content><category term="Python"></category><category term="dataset"></category></entry><entry><title>如何在unittest cases之间传递变量</title><link href="https://acefei.github.io/ru-he-zai-unittest-caseszhi-jian-chuan-di-bian-liang.html" rel="alternate"></link><published>2017-10-26T09:53:00+08:00</published><updated>2017-10-26T09:53:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-10-26:/ru-he-zai-unittest-caseszhi-jian-chuan-di-bian-liang.html</id><summary type="html">&lt;p&gt;想必大家在写Python UT的时候，偶尔会遇到一些测试用例需要同时测试CRUD的接口。
 这时需要在test cases之间传递变量该如何做呢？&lt;/p&gt;
