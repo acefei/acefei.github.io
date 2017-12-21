@@ -1,5 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei 's One Piece</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/all.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2017-11-30T09:17:00+08:00</updated><entry><title>机器学习资料整理(Python方向，建议通读)</title><link href="https://acefei.github.io/ji-qi-xue-xi-zi-liao-zheng-li-pythonfang-xiang-jian-yi-tong-du.html" rel="alternate"></link><published>2017-11-30T09:17:00+08:00</published><updated>2017-11-30T09:17:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-11-30:/ji-qi-xue-xi-zi-liao-zheng-li-pythonfang-xiang-jian-yi-tong-du.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei 's One Piece</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/all.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2017-12-21T15:12:00+08:00</updated><entry><title>关于Selenium+PhantomJS设置HTTP PROXY的问题</title><link href="https://acefei.github.io/guan-yu-seleniumphantomjsshe-zhi-http-proxyde-wen-ti.html" rel="alternate"></link><published>2017-12-21T15:12:00+08:00</published><updated>2017-12-21T15:12:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-12-21:/guan-yu-seleniumphantomjsshe-zhi-http-proxyde-wen-ti.html</id><summary type="html">
+&lt;p&gt;在写爬虫的时候，经常会遇到anti-spider，这时候我们可以采取切换代理ip来绕过限制。但是最近在Selenium+PhantomJS实践过程中遇到一个很trick的问题，在此做一下记录。&lt;/p&gt;
+&lt;h4 id="python-requests-with-proxy"&gt;python requests with proxy&lt;a class="headerlink" href="#python-requests-with-proxy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;一开始我们还是用pythonic的方式来看看，http proxy是如何隐藏真实ip的。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;"--No Proxy--"&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"http://httpbin.org/ip"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 在网上随便找个免费http代理&lt;/span&gt;
+&lt;span class="n"&gt;proxy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'182.121.201.9:9999'&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;"--Proxy {0}--"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;proxy&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;proxies&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;"http"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"http://{0}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;proxy&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"http://httpbin.org …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">
+&lt;p&gt;在写爬虫的时候，经常会遇到anti-spider，这时候我们可以采取切换代理ip来绕过限制。但是最近在Selenium+PhantomJS实践过程中遇到一个很trick的问题，在此做一下记录。&lt;/p&gt;
+&lt;h4 id="python-requests-with-proxy"&gt;python requests with proxy&lt;a class="headerlink" href="#python-requests-with-proxy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;一开始我们还是用pythonic的方式来看看，http proxy是如何隐藏真实ip的。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;"--No Proxy--"&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"http://httpbin.org/ip"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;
+
+&lt;span class="c1"&gt;# 在网上随便找个免费http代理&lt;/span&gt;
+&lt;span class="n"&gt;proxy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'182.121.201.9:9999'&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;"--Proxy {0}--"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;proxy&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;proxies&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt; &lt;span class="s2"&gt;"http"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"http://{0}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;proxy&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"http://httpbin.org/ip"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;proxies&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;proxies&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;output:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;--No Proxy--
+{
+  "origin": "36.152.29.163"
+}
+
+--Proxy 182.121.201.9:9999--
+{
+  "origin": "36.152.29.163, 182.121.204.0"
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;可以看出来origin的值插入了一条新的ip，证明设置proxy生效了。&lt;/p&gt;
+&lt;h4 id="phantomjs-with-proxy"&gt;phantomjs with proxy&lt;a class="headerlink" href="#phantomjs-with-proxy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;编辑httpbin_test.js，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;"use strict";
+var page = require('webpage').create();
+page.open('http://httpbin.org/ip', function (status) {
+    if (status !== 'success') {
+        console.log('Unable to access network');
+    } else {
+        console.log(page.content);
+    }
+    phantom.exit();
+});
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;执行phantomjs命令，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ phantomjs --proxy=182.121.201.9:9999 httpbin_test.js
+&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&amp;lt;pre&lt;/span&gt; &lt;span class="na"&gt;style=&lt;/span&gt;&lt;span class="s"&gt;"word-wrap: break-word; white-space: pre-wrap;"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;{
+  "origin": "36.152.29.163, 182.121.204.0"
+}
+&lt;span class="nt"&gt;&amp;lt;/pre&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Ok，proxy设置成功。&lt;/p&gt;
+&lt;h4 id="selenium-phantomjs-with-proxy"&gt;selenium + phantomjs with proxy&lt;a class="headerlink" href="#selenium-phantomjs-with-proxy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;Stackoverflow上有人推荐方案，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;selenium&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;selenium.webdriver&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;DesiredCapabilities&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;selenium.webdriver.common.proxy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Proxy&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;selenium.webdriver.common.proxy&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ProxyType&lt;/span&gt;
+&lt;span class="n"&gt;proxy&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Proxy&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+    &lt;span class="s1"&gt;'proxyType'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;ProxyType&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;MANUAL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;'httpProxy'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'182.121.201.9:9999'&lt;/span&gt;  &lt;span class="c1"&gt;# 代理ip和端口&lt;/span&gt;
+&lt;span class="p"&gt;})&lt;/span&gt;
+
+&lt;span class="n"&gt;desired_capabilities&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;DesiredCapabilities&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PHANTOMJS&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;copy&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="n"&gt;proxy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_to_capabilities&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;desired_capabilities&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;"add proxy"&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;proxy&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;http_proxy&lt;/span&gt;
+
+&lt;span class="n"&gt;driver&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PhantomJS&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;desired_capabilities&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;desired_capabilities&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'http://httpbin.org/ip'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;page_source&lt;/span&gt;
+&lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;output：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;add proxy182.121.201.9:9999
+&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&amp;lt;pre&lt;/span&gt; &lt;span class="na"&gt;style=&lt;/span&gt;&lt;span class="s"&gt;"word-wrap: break-word; white-space: pre-wrap;"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;{
+  "origin": "36.152.29.163"
+}
+&lt;span class="nt"&gt;&amp;lt;/pre&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;奇怪，这里发现proxy并没有生效，不知道是不是我的phantomjs 1.9.7版本的bug。&lt;/p&gt;
+&lt;p&gt;那换个方案试试，&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;selenium&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;
+
+&lt;span class="n"&gt;service_args&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+    &lt;span class="s1"&gt;'--proxy=182.121.201.9:9999'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;driver&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;webdriver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PhantomJS&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;service_args&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;service_args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'http://httpbin.org/ip'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;page_source&lt;/span&gt;
+&lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;output：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&amp;lt;pre&lt;/span&gt; &lt;span class="na"&gt;style=&lt;/span&gt;&lt;span class="s"&gt;"word-wrap: break-word; white-space: pre-wrap;"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;{
+  "origin": "36.152.29.163, 182.121.204.0"
+}
+&lt;span class="nt"&gt;&amp;lt;/pre&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Ok, proxy设置成功了。&lt;/p&gt;
+&lt;p&gt;可以看出来，通过service_args传递参数其实跟phantomjs命令行传参的是一样效果。&lt;/p&gt;
+&lt;p&gt;那么，如果想使用带auth的代理，只要加上对应的option就好了，很方便。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$phantomjs -h
+Usage:
+   phantomjs [switchs] [options] [script] [argument [argument [...]]]
+
+Options:
+  --cookies-file=&amp;lt;val&amp;gt;                 Sets the file name to store the persistent cookies
+  --config=&amp;lt;val&amp;gt;                       Specifies JSON-formatted configuration file
+  --debug=&amp;lt;val&amp;gt;                        Prints additional warning and debug message: 'true' or 'false' (default)
+  --disk-cache=&amp;lt;val&amp;gt;                   Enables disk cache: 'true' or 'false' (default)
+  --ignore-ssl-errors=&amp;lt;val&amp;gt;            Ignores SSL errors (expired/self-signed certificate errors): 'true' or 'false' (default)
+  --load-images=&amp;lt;val&amp;gt;                  Loads all inlined images: 'true' (default) or 'false'
+  --local-storage-path=&amp;lt;val&amp;gt;           Specifies the location for offline local storage
+  --local-storage-quota=&amp;lt;val&amp;gt;          Sets the maximum size of the offline local storage (in KB)
+  --local-to-remote-url-access=&amp;lt;val&amp;gt;   Allows local content to access remote URL: 'true' or 'false' (default)
+  --max-disk-cache-size=&amp;lt;val&amp;gt;          Limits the size of the disk cache (in KB)
+  --output-encoding=&amp;lt;val&amp;gt;              Sets the encoding for the terminal output, default is 'utf8'
+  --remote-debugger-port=&amp;lt;val&amp;gt;         Starts the script in a debug harness and listens on the specified port
+  --remote-debugger-autorun=&amp;lt;val&amp;gt;      Runs the script in the debugger immediately: 'true' or 'false' (default)
+  --proxy=&amp;lt;val&amp;gt;                        Sets the proxy server, e.g. '--proxy=http://proxy.company.com:8080'
+  --proxy-auth=&amp;lt;val&amp;gt;                   Provides authentication information for the proxy, e.g. ''-proxy-auth=username:password'
+  --proxy-type=&amp;lt;val&amp;gt;                   Specifies the proxy type, 'http' (default), 'none' (disable completely), or 'socks5'
+  --script-encoding=&amp;lt;val&amp;gt;              Sets the encoding used for the starting script, default is 'utf8'
+  --web-security=&amp;lt;val&amp;gt;                 Enables web security, 'true' (default) or 'false'
+  --ssl-protocol=&amp;lt;val&amp;gt;                 Sets the SSL protocol (supported protocols: 'SSLv3' (default), 'SSLv2', 'TLSv1', 'any')
+  --ssl-certificates-path=&amp;lt;val&amp;gt;        Sets the location for custom CA certificates (if none set, uses system default)
+  --webdriver=&amp;lt;val&amp;gt;                    Starts in 'Remote WebDriver mode' (embedded GhostDriver): '[[&amp;lt;IP&amp;gt;:]&amp;lt;PORT&amp;gt;]' (default '127.0.0.1:8910')
+  --webdriver-logfile=&amp;lt;val&amp;gt;            File where to write the WebDriver's Log (default 'none') (NOTE: needs '--webdriver')
+  --webdriver-loglevel=&amp;lt;val&amp;gt;           WebDriver Logging Level: (supported: 'ERROR', 'WARN', 'INFO', 'DEBUG') (default 'INFO') (NOTE: needs '--webdriver')
+  --webdriver-selenium-grid-hub=&amp;lt;val&amp;gt;  URL to the Selenium Grid HUB: 'URL_TO_HUB' (default 'none') (NOTE: needs '--webdriver')
+  -w,--wd                              Equivalent to '--webdriver' option above
+  -h,--help                            Shows this message and quits
+  -v,--version                         Prints out PhantomJS version
+
+Any of the options that accept boolean values ('true'/'false') can also accept 'yes'/'no'.
+
+Without any argument, PhantomJS will launch in interactive mode (REPL).
+
+Documentation can be found at the web site, http://phantomjs.org.
+&lt;/pre&gt;&lt;/div&gt;</content><category term="python"></category><category term="phantomjs"></category><category term="spider"></category></entry><entry><title>机器学习资料整理(Python方向，建议通读)</title><link href="https://acefei.github.io/ji-qi-xue-xi-zi-liao-zheng-li-pythonfang-xiang-jian-yi-tong-du.html" rel="alternate"></link><published>2017-11-30T09:17:00+08:00</published><updated>2017-11-30T09:17:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-11-30:/ji-qi-xue-xi-zi-liao-zheng-li-pythonfang-xiang-jian-yi-tong-du.html</id><summary type="html">
 &lt;p&gt;一些好东西，入门前未必看得懂，要等学有小成时再看才能体会。&lt;/p&gt;
 &lt;h3 id="python"&gt;Python&lt;a class="headerlink" href="#python" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;&lt;a href="http://python.jobbole.com/87522/"&gt;致Python初学者：Anaconda入门使用指南&lt;/a&gt;  ——选择anaconda，体验拎包入住的感觉&lt;/p&gt;

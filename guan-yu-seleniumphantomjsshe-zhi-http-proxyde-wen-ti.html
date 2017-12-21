@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Ace Fei" />
+        <meta name="copyright" content="Ace Fei" />
+
+        <meta name="description" content="在写爬虫的时候，经常会遇到anti-spider，这时候我们可以采取切换代理ip来绕过限制。但是最近在Selenium+PhantomJS实践过程中遇到一个很trick的问题，在此做一下记录。 python requests with proxy¶ 一开始我们还是用pythonic的方式来看看，http proxy是如何隐藏真实ip的。 import requests print &#34;--No Proxy--&#34; print requests.get(&#34;http://httpbin.org/ip&#34;).content # 在网上随便找个免费http代理 proxy=&#39;182.121.201.9:9999&#39; print &#34;--Proxy {0}--&#34;.format(proxy) proxies = { &#34;http&#34;: &#34;http://{0}&#34;.format(proxy) } print requests.get(&#34;http://httpbin.org …
+" />
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="python, phantomjs, spider, Development, " />
+
+<meta property="og:title" content="关于Selenium+PhantomJS设置HTTP PROXY的问题 "/>
+<meta property="og:url" content="https://acefei.github.io/guan-yu-seleniumphantomjsshe-zhi-http-proxyde-wen-ti.html" />
+<meta property="og:description" content="在写爬虫的时候，经常会遇到anti-spider，这时候我们可以采取切换代理ip来绕过限制。但是最近在Selenium+PhantomJS实践过程中遇到一个很trick的问题，在此做一下记录。 python requests with proxy¶ 一开始我们还是用pythonic的方式来看看，http proxy是如何隐藏真实ip的。 import requests print &#34;--No Proxy--&#34; print requests.get(&#34;http://httpbin.org/ip&#34;).content # 在网上随便找个免费http代理 proxy=&#39;182.121.201.9:9999&#39; print &#34;--Proxy {0}--&#34;.format(proxy) proxies = { &#34;http&#34;: &#34;http://{0}&#34;.format(proxy) } print requests.get(&#34;http://httpbin.org …" />
+<meta property="og:site_name" content="Acefei &#39;s One Piece" />
+<meta property="og:article:author" content="Ace Fei" />
+<meta property="og:article:published_time" content="2017-12-21T15:12:00+08:00" />
+<meta name="twitter:title" content="关于Selenium+PhantomJS设置HTTP PROXY的问题 ">
+<meta name="twitter:description" content="在写爬虫的时候，经常会遇到anti-spider，这时候我们可以采取切换代理ip来绕过限制。但是最近在Selenium+PhantomJS实践过程中遇到一个很trick的问题，在此做一下记录。 python requests with proxy¶ 一开始我们还是用pythonic的方式来看看，http proxy是如何隐藏真实ip的。 import requests print &#34;--No Proxy--&#34; print requests.get(&#34;http://httpbin.org/ip&#34;).content # 在网上随便找个免费http代理 proxy=&#39;182.121.201.9:9999&#39; print &#34;--Proxy {0}--&#34;.format(proxy) proxies = { &#34;http&#34;: &#34;http://{0}&#34;.format(proxy) } print requests.get(&#34;http://httpbin.org …">
+
+        <title>关于Selenium+PhantomJS设置HTTP PROXY的问题  · Acefei &#39;s One Piece
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/custom.css" media="screen">
+        <link rel="shortcut icon" href="https://acefei.github.io/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+        <link rel="icon" href="https://acefei.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link rel="apple-touch-icon" href="https://acefei.github.io/theme/images/apple-touch-icon.png"  type="image/png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="https://acefei.github.io/theme/images/apple-touch-icon-57x57.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="https://acefei.github.io/theme/images/apple-touch-icon-72x72.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="https://acefei.github.io/theme/images/apple-touch-icon-76x76.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="https://acefei.github.io/theme/images/apple-touch-icon-114x114.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="https://acefei.github.io/theme/images/apple-touch-icon-120x120.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="https://acefei.github.io/theme/images/apple-touch-icon-144x144.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="https://acefei.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link href="https://acefei.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Acefei &#39;s One Piece - Full Atom Feed" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://acefei.github.io/"><span class=site-name><span style="color:black;">Acefei</span> <span style="color:darkblue;">'s</span> <span style="color:#AA1032;">One Piece</span></span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://acefei.github.io">Home</a></li>
+                            <li ><a href="https://acefei.github.io/categories.html">Categories</a></li>
+                            <li ><a href="https://acefei.github.io/tags.html">Tags</a></li>
+                            <li ><a href="https://acefei.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="https://acefei.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://acefei.github.io/guan-yu-seleniumphantomjsshe-zhi-http-proxyde-wen-ti.html"> 关于Selenium+PhantomJS设置HTTP PROXY的问题  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#python-requests-with-proxy">python requests with proxy</a></li>
+<li><a href="#phantomjs-with-proxy">phantomjs with proxy</a></li>
+<li><a href="#selenium-phantomjs-with-proxy">selenium + phantomjs with proxy</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            
+<p>在写爬虫的时候，经常会遇到anti-spider，这时候我们可以采取切换代理ip来绕过限制。但是最近在Selenium+PhantomJS实践过程中遇到一个很trick的问题，在此做一下记录。</p>
+<h4 id="python-requests-with-proxy">python requests with proxy<a class="headerlink" href="#python-requests-with-proxy" title="Permanent link">¶</a></h4>
+<p>一开始我们还是用pythonic的方式来看看，http proxy是如何隐藏真实ip的。</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="k">print</span> <span class="s2">"--No Proxy--"</span>
+<span class="k">print</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"http://httpbin.org/ip"</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+
+<span class="c1"># 在网上随便找个免费http代理</span>
+<span class="n">proxy</span><span class="o">=</span><span class="s1">'182.121.201.9:9999'</span>
+<span class="k">print</span> <span class="s2">"--Proxy {0}--"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">proxy</span><span class="p">)</span>
+<span class="n">proxies</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"http"</span><span class="p">:</span> <span class="s2">"http://{0}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">proxy</span><span class="p">)</span> <span class="p">}</span>
+<span class="k">print</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"http://httpbin.org/ip"</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="n">proxies</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
+</pre></div>
+<p>output:</p>
+<div class="highlight"><pre><span></span>--No Proxy--
+{
+  "origin": "36.152.29.163"
+}
+
+--Proxy 182.121.201.9:9999--
+{
+  "origin": "36.152.29.163, 182.121.204.0"
+}
+</pre></div>
+<p>可以看出来origin的值插入了一条新的ip，证明设置proxy生效了。</p>
+<h4 id="phantomjs-with-proxy">phantomjs with proxy<a class="headerlink" href="#phantomjs-with-proxy" title="Permanent link">¶</a></h4>
+<p>编辑httpbin_test.js，</p>
+<div class="highlight"><pre><span></span>"use strict";
+var page = require('webpage').create();
+page.open('http://httpbin.org/ip', function (status) {
+    if (status !== 'success') {
+        console.log('Unable to access network');
+    } else {
+        console.log(page.content);
+    }
+    phantom.exit();
+});
+</pre></div>
+<p>执行phantomjs命令，</p>
+<div class="highlight"><pre><span></span>$ phantomjs --proxy=182.121.201.9:9999 httpbin_test.js
+<span class="nt">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;pre</span> <span class="na">style=</span><span class="s">"word-wrap: break-word; white-space: pre-wrap;"</span><span class="nt">&gt;</span>{
+  "origin": "36.152.29.163, 182.121.204.0"
+}
+<span class="nt">&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</span>
+</pre></div>
+<p>Ok，proxy设置成功。</p>
+<h4 id="selenium-phantomjs-with-proxy">selenium + phantomjs with proxy<a class="headerlink" href="#selenium-phantomjs-with-proxy" title="Permanent link">¶</a></h4>
+<p>Stackoverflow上有人推荐方案，</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver</span> <span class="kn">import</span> <span class="n">DesiredCapabilities</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.proxy</span> <span class="kn">import</span> <span class="n">Proxy</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.proxy</span> <span class="kn">import</span> <span class="n">ProxyType</span>
+<span class="n">proxy</span> <span class="o">=</span> <span class="n">Proxy</span><span class="p">({</span>
+    <span class="s1">'proxyType'</span><span class="p">:</span> <span class="n">ProxyType</span><span class="o">.</span><span class="n">MANUAL</span><span class="p">,</span>
+    <span class="s1">'httpProxy'</span><span class="p">:</span> <span class="s1">'182.121.201.9:9999'</span>  <span class="c1"># 代理ip和端口</span>
+<span class="p">})</span>
+
+<span class="n">desired_capabilities</span> <span class="o">=</span> <span class="n">DesiredCapabilities</span><span class="o">.</span><span class="n">PHANTOMJS</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="n">proxy</span><span class="o">.</span><span class="n">add_to_capabilities</span><span class="p">(</span><span class="n">desired_capabilities</span><span class="p">)</span>
+<span class="k">print</span> <span class="s2">"add proxy"</span> <span class="o">+</span> <span class="n">proxy</span><span class="o">.</span><span class="n">http_proxy</span>
+
+<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">PhantomJS</span><span class="p">(</span><span class="n">desired_capabilities</span><span class="o">=</span><span class="n">desired_capabilities</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'http://httpbin.org/ip'</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">page_source</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+<p>output：</p>
+<div class="highlight"><pre><span></span>add proxy182.121.201.9:9999
+<span class="nt">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;pre</span> <span class="na">style=</span><span class="s">"word-wrap: break-word; white-space: pre-wrap;"</span><span class="nt">&gt;</span>{
+  "origin": "36.152.29.163"
+}
+<span class="nt">&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</span>
+</pre></div>
+<p>奇怪，这里发现proxy并没有生效，不知道是不是我的phantomjs 1.9.7版本的bug。</p>
+<p>那换个方案试试，</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+
+<span class="n">service_args</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'--proxy=182.121.201.9:9999'</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">PhantomJS</span><span class="p">(</span><span class="n">service_args</span><span class="o">=</span><span class="n">service_args</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'http://httpbin.org/ip'</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">page_source</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+<p>output：</p>
+<div class="highlight"><pre><span></span><span class="nt">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;pre</span> <span class="na">style=</span><span class="s">"word-wrap: break-word; white-space: pre-wrap;"</span><span class="nt">&gt;</span>{
+  "origin": "36.152.29.163, 182.121.204.0"
+}
+<span class="nt">&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</span>
+</pre></div>
+<p>Ok, proxy设置成功了。</p>
+<p>可以看出来，通过service_args传递参数其实跟phantomjs命令行传参的是一样效果。</p>
+<p>那么，如果想使用带auth的代理，只要加上对应的option就好了，很方便。</p>
+<div class="highlight"><pre><span></span>$phantomjs -h
+Usage:
+   phantomjs [switchs] [options] [script] [argument [argument [...]]]
+
+Options:
+  --cookies-file=&lt;val&gt;                 Sets the file name to store the persistent cookies
+  --config=&lt;val&gt;                       Specifies JSON-formatted configuration file
+  --debug=&lt;val&gt;                        Prints additional warning and debug message: 'true' or 'false' (default)
+  --disk-cache=&lt;val&gt;                   Enables disk cache: 'true' or 'false' (default)
+  --ignore-ssl-errors=&lt;val&gt;            Ignores SSL errors (expired/self-signed certificate errors): 'true' or 'false' (default)
+  --load-images=&lt;val&gt;                  Loads all inlined images: 'true' (default) or 'false'
+  --local-storage-path=&lt;val&gt;           Specifies the location for offline local storage
+  --local-storage-quota=&lt;val&gt;          Sets the maximum size of the offline local storage (in KB)
+  --local-to-remote-url-access=&lt;val&gt;   Allows local content to access remote URL: 'true' or 'false' (default)
+  --max-disk-cache-size=&lt;val&gt;          Limits the size of the disk cache (in KB)
+  --output-encoding=&lt;val&gt;              Sets the encoding for the terminal output, default is 'utf8'
+  --remote-debugger-port=&lt;val&gt;         Starts the script in a debug harness and listens on the specified port
+  --remote-debugger-autorun=&lt;val&gt;      Runs the script in the debugger immediately: 'true' or 'false' (default)
+  --proxy=&lt;val&gt;                        Sets the proxy server, e.g. '--proxy=http://proxy.company.com:8080'
+  --proxy-auth=&lt;val&gt;                   Provides authentication information for the proxy, e.g. ''-proxy-auth=username:password'
+  --proxy-type=&lt;val&gt;                   Specifies the proxy type, 'http' (default), 'none' (disable completely), or 'socks5'
+  --script-encoding=&lt;val&gt;              Sets the encoding used for the starting script, default is 'utf8'
+  --web-security=&lt;val&gt;                 Enables web security, 'true' (default) or 'false'
+  --ssl-protocol=&lt;val&gt;                 Sets the SSL protocol (supported protocols: 'SSLv3' (default), 'SSLv2', 'TLSv1', 'any')
+  --ssl-certificates-path=&lt;val&gt;        Sets the location for custom CA certificates (if none set, uses system default)
+  --webdriver=&lt;val&gt;                    Starts in 'Remote WebDriver mode' (embedded GhostDriver): '[[&lt;IP&gt;:]&lt;PORT&gt;]' (default '127.0.0.1:8910')
+  --webdriver-logfile=&lt;val&gt;            File where to write the WebDriver's Log (default 'none') (NOTE: needs '--webdriver')
+  --webdriver-loglevel=&lt;val&gt;           WebDriver Logging Level: (supported: 'ERROR', 'WARN', 'INFO', 'DEBUG') (default 'INFO') (NOTE: needs '--webdriver')
+  --webdriver-selenium-grid-hub=&lt;val&gt;  URL to the Selenium Grid HUB: 'URL_TO_HUB' (default 'none') (NOTE: needs '--webdriver')
+  -w,--wd                              Equivalent to '--webdriver' option above
+  -h,--help                            Shows this message and quits
+  -v,--version                         Prints out PhantomJS version
+
+Any of the options that accept boolean values ('true'/'false') can also accept 'yes'/'no'.
+
+Without any argument, PhantomJS will launch in interactive mode (REPL).
+
+Documentation can be found at the web site, http://phantomjs.org.
+</pre></div>
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2017-12-21T15:12:00+08:00">Dec 21, 2017</time>
+            <h4>Category</h4>
+            <a class="category-link" href="https://acefei.github.io/categories.html#development-ref">Development</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://acefei.github.io/tags.html#phantomjs-ref">phantomjs
+                    <span>1</span>
+</a></li>
+                <li><a href="https://acefei.github.io/tags.html#python-ref">python
+                    <span>9</span>
+</a></li>
+                <li><a href="https://acefei.github.io/tags.html#spider-ref">spider
+                    <span>1</span>
+</a></li>
+            </ul>
+<h4>Stay in Touch</h4>
+    <a href="https://github.com/acefei" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+    <a href="https://www.linkedin.com/in/fei-su-2b6b10104" title="My linkedin Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-linkedin sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>
