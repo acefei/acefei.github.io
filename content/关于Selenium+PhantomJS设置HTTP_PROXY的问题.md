@@ -9,7 +9,7 @@ Authors: Ace Fei
 
 在写爬虫的时候，经常会遇到anti-spider，这时候我们可以采取切换代理ip来绕过限制。但是最近在Selenium+PhantomJS实践过程中遇到一个很trick的问题，在此做一下记录。
 
-#### python requests with proxy
+## python requests with proxy
 一开始我们还是用pythonic的方式来看看，http proxy是如何隐藏真实ip的。
 ```
 import requests
@@ -37,7 +37,7 @@ output:
 
 可以看出来origin的值插入了一条新的ip，证明设置proxy生效了。
 
-#### phantomjs with proxy
+## phantomjs with proxy
 编辑httpbin_test.js，
 ```
 "use strict";
@@ -63,7 +63,7 @@ $ phantomjs --proxy=182.121.201.9:9999 httpbin_test.js
 ```
 Ok，proxy设置成功。
 
-#### selenium + phantomjs with proxy
+## selenium + phantomjs with proxy
 Stackoverflow上有人推荐方案，
 ```
 from selenium import webdriver
