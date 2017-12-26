@@ -37,6 +37,18 @@
 }
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;可以看出来origin的值插入了一条新的ip，证明设置proxy生效了。&lt;/p&gt;
+&lt;p&gt;但是我们要注意，上面使用的代理并不是高匿的，所以从origin里面还是能找到机器的真实ip(仍然会被反爬)。
+高匿ip的输出应该是以下结果：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;--No Proxy--
+{
+  "origin": "36.152.29.163"
+}
+
+--Proxy 113.218.218.86:808--
+{
+  "origin": "113.218.218.86"
+}
+&lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="phantomjs-with-proxy"&gt;phantomjs with proxy&lt;a class="headerlink" href="#phantomjs-with-proxy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;编辑httpbin_test.js，&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;"use strict";
