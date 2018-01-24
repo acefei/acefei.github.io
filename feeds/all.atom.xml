@@ -1,5 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei 's One Piece</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/all.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2017-12-21T15:12:00+08:00</updated><entry><title>关于Selenium+PhantomJS设置HTTP PROXY的问题</title><link href="https://acefei.github.io/guan-yu-seleniumphantomjsshe-zhi-http-proxyde-wen-ti.html" rel="alternate"></link><published>2017-12-21T15:12:00+08:00</published><updated>2017-12-21T15:12:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-12-21:/guan-yu-seleniumphantomjsshe-zhi-http-proxyde-wen-ti.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei 's One Piece</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/all.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2018-01-24T15:24:00+08:00</updated><entry><title>使用cookiecutter+pypackage-minimal快速制作一个python package</title><link href="https://acefei.github.io/shi-yong-cookiecutterpypackage-minimalkuai-su-zhi-zuo-yi-ge-python-package.html" rel="alternate"></link><published>2018-01-24T15:24:00+08:00</published><updated>2018-01-24T15:24:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2018-01-24:/shi-yong-cookiecutterpypackage-minimalkuai-su-zhi-zuo-yi-ge-python-package.html</id><summary type="html">
+&lt;h3 id="prerequisites"&gt;Prerequisites&lt;a class="headerlink" href="#prerequisites" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install scrapy
+pip install cookiecutter
+https://github.com/kragniz/cookiecutter-pypackage-minimal.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="start-cookiecutter"&gt;Start &lt;a href="https://github.com/audreyr/cookiecutter"&gt;cookiecutter&lt;/a&gt;&lt;a class="headerlink" href="#start-cookiecutter" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cookiecutter&lt;/span&gt; &lt;span class="n"&gt;cookiecutter&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pypackage&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;minimal&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python2&lt;/span&gt;&lt;span class="mf"&gt;.7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nl"&gt;py&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nl"&gt;RequestsDependencyWarning&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;urllib3&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;1.22&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;chardet&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;2.2.1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;doesn&lt;/span&gt;&lt;span class="err"&gt;'&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;match&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;supported&lt;/span&gt; &lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
+  &lt;span class="n"&gt;RequestsDependencyWarning&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;author_name&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Louis&lt;/span&gt; &lt;span class="n"&gt;Taylor&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;acefei&lt;/span&gt;
+&lt;span class="n"&gt;author_email …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">
+&lt;h3 id="prerequisites"&gt;Prerequisites&lt;a class="headerlink" href="#prerequisites" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install scrapy
+pip install cookiecutter
+https://github.com/kragniz/cookiecutter-pypackage-minimal.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="start-cookiecutter"&gt;Start &lt;a href="https://github.com/audreyr/cookiecutter"&gt;cookiecutter&lt;/a&gt;&lt;a class="headerlink" href="#start-cookiecutter" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cookiecutter&lt;/span&gt; &lt;span class="n"&gt;cookiecutter&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pypackage&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;minimal&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python2&lt;/span&gt;&lt;span class="mf"&gt;.7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nl"&gt;py&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nl"&gt;RequestsDependencyWarning&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;urllib3&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;1.22&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;chardet&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;2.2.1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;doesn&lt;/span&gt;&lt;span class="err"&gt;'&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;match&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;supported&lt;/span&gt; &lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
+  &lt;span class="n"&gt;RequestsDependencyWarning&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;author_name&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Louis&lt;/span&gt; &lt;span class="n"&gt;Taylor&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;acefei&lt;/span&gt;
+&lt;span class="n"&gt;author_email&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;louis&lt;/span&gt;&lt;span class="p"&gt;@&lt;/span&gt;&lt;span class="n"&gt;kragniz&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;eu&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;acefei&lt;/span&gt;&lt;span class="mf"&gt;@163.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;
+&lt;span class="n"&gt;package_name&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;cookiecutter_pypackage_minimal&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;scrapy_templates&lt;/span&gt;
+&lt;span class="n"&gt;package_version&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;0.1.0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;package_description&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;An&lt;/span&gt; &lt;span class="n"&gt;opinionated&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;minimal&lt;/span&gt; &lt;span class="n"&gt;cookiecutter&lt;/span&gt; &lt;span class="n"&gt;template&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;Python&lt;/span&gt; &lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Templates&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;creating&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;projects&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;startproject&lt;/span&gt; &lt;span class="n"&gt;command&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt; &lt;span class="n"&gt;spiders&lt;/span&gt; &lt;span class="n"&gt;with&lt;/span&gt; &lt;span class="n"&gt;genspider&lt;/span&gt; &lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;package_url&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nl"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//github.com/borntyping/cookiecutter-pypackage-minimal]: https://github.com/acefei/scrapy_templates&lt;/span&gt;
+&lt;span class="n"&gt;readme_pypi_badge&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;True&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;
+&lt;span class="n"&gt;readme_travis_badge&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;True&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;False&lt;/span&gt;
+&lt;span class="n"&gt;readme_travis_url&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nl"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="c1"&gt;//travis-ci.org/borntyping/cookiecutter-pypackage-minimal]: False&lt;/span&gt;
+
+
+&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;ls&lt;/span&gt; &lt;span class="n"&gt;scrapy_templates&lt;/span&gt;&lt;span class="cm"&gt;/*&lt;/span&gt;
+&lt;span class="cm"&gt;scrapy_templates/README.rst  scrapy_templates/setup.py  scrapy_templates/tox.ini&lt;/span&gt;
+
+&lt;span class="cm"&gt;scrapy_templates/scrapy_templates:&lt;/span&gt;
+&lt;span class="cm"&gt;__init__.py&lt;/span&gt;
+
+&lt;span class="cm"&gt;scrapy_templates/tests:&lt;/span&gt;
+&lt;span class="cm"&gt;__init__.py  test_sample.py&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="create-scrapy-template"&gt;Create scrapy template&lt;a class="headerlink" href="#create-scrapy-template" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Copy the original template from scrapy project.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd scrapy_templates/scrapy_templates/
+mkdir scrapy &amp;amp;&amp;amp; cd scrapy
+cp -r /usr/lib64/python2.7/site-packages/scrapy/templates/project .
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now, you can customize the template in &lt;code&gt;scrapy_templates/scrapy_templates/scrapy&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id="add-non-package-files"&gt;Add non-package files&lt;a class="headerlink" href="#add-non-package-files" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Since the templates path is not a python package, to specify those files to distribute, we should add  &lt;a href="https://docs.python.org/2/distutils/sourcedist.html#manifest"&gt;MANIFEST&lt;/a&gt; file.       &lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# in MANIFEST
+recursive-include  scrapy_templates/  *
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In order for these files to be copied at install time to the package’s folder inside site-packages, you’ll need to supply &lt;code&gt;include_package_data=True&lt;/code&gt; to the setup() function.&lt;/p&gt;
+&lt;h3 id="command-line-script"&gt;Command Line Script&lt;a class="headerlink" href="#command-line-script" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;write a python script command_line.py with some functions in the package.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;register those functihons to setup() function.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;setuptools&lt;/span&gt;
+
+&lt;span class="n"&gt;setuptools&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="n"&gt;entry_points&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s1"&gt;'console_scripts'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+            &lt;span class="s1"&gt;'scrapy-startproject=scrapy_templates.command_line:startproj'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s1"&gt;'scrapy-genspider=scrapy_templates.command_line:genspider'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="specifying-dependencies"&gt;Specifying Dependencies&lt;a class="headerlink" href="#specifying-dependencies" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Edit &lt;code&gt;setup.py&lt;/code&gt;, we just add an install_requires keyword argument:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;setuptools&lt;/span&gt;
+
+&lt;span class="n"&gt;setuptools&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+    &lt;span class="n"&gt;install_requires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;
+        &lt;span class="s1"&gt;'scrapy-redis'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;'scrapy-splash'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;'scrapy-random-useragent'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s1"&gt;'scrapy-redis-bloomfilter'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="o"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Now, we have finished an python package.&lt;br/&gt;
+It's easy to install this package by pip.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install git+https://github.com/acefei/scrapy_templates.git
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;About this package details, please find &lt;a href="https://github.com/acefei/scrapy_templates.git"&gt;acefei/scrapy_templates
+&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="inspiration"&gt;Inspiration&lt;a class="headerlink" href="#inspiration" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;a href="http://python-packaging.readthedocs.io/en/latest/index.html"&gt;python-packaging&lt;/a&gt;&lt;/p&gt;</content><category term="python"></category><category term="cookiecutter"></category><category term="package"></category></entry><entry><title>关于Selenium+PhantomJS设置HTTP PROXY的问题</title><link href="https://acefei.github.io/guan-yu-seleniumphantomjsshe-zhi-http-proxyde-wen-ti.html" rel="alternate"></link><published>2017-12-21T15:12:00+08:00</published><updated>2017-12-21T15:12:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-12-21:/guan-yu-seleniumphantomjsshe-zhi-http-proxyde-wen-ti.html</id><summary type="html">
 &lt;p&gt;在写爬虫的时候，经常会遇到anti-spider，这时候我们可以采取切换代理ip来绕过限制。但是最近在Selenium+PhantomJS实践过程中遇到一个很trick的问题，在此做一下记录。&lt;/p&gt;
 &lt;h2 id="python-requests-with-proxy"&gt;python requests with proxy&lt;a class="headerlink" href="#python-requests-with-proxy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;一开始我们还是用pythonic的方式来看看，http proxy是如何隐藏真实ip的。&lt;/p&gt;

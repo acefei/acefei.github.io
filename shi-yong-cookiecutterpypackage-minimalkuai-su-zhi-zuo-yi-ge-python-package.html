@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8"> 
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Ace Fei" />
+        <meta name="copyright" content="Ace Fei" />
+
+        <meta name="description" content="Prerequisites¶ pip install scrapy pip install cookiecutter https://github.com/kragniz/cookiecutter-pypackage-minimal.git Start cookiecutter¶ $ cookiecutter cookiecutter-pypackage-minimal/ /usr/lib/python2.7/site-packages/requests/__init__.py:80: RequestsDependencyWarning: urllib3 (1.22) or chardet (2.2.1) doesn&#39;t match a supported version! RequestsDependencyWarning) author_name [Louis Taylor]: acefei author_email …
+" />
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="python, cookiecutter, package, DevOps, " />
+
+<meta property="og:title" content="使用cookiecutter+pypackage-minimal快速制作一个python package "/>
+<meta property="og:url" content="https://acefei.github.io/shi-yong-cookiecutterpypackage-minimalkuai-su-zhi-zuo-yi-ge-python-package.html" />
+<meta property="og:description" content="Prerequisites¶ pip install scrapy pip install cookiecutter https://github.com/kragniz/cookiecutter-pypackage-minimal.git Start cookiecutter¶ $ cookiecutter cookiecutter-pypackage-minimal/ /usr/lib/python2.7/site-packages/requests/__init__.py:80: RequestsDependencyWarning: urllib3 (1.22) or chardet (2.2.1) doesn&#39;t match a supported version! RequestsDependencyWarning) author_name [Louis Taylor]: acefei author_email …" />
+<meta property="og:site_name" content="Acefei &#39;s One Piece" />
+<meta property="og:article:author" content="Ace Fei" />
+<meta property="og:article:published_time" content="2018-01-24T15:24:00+08:00" />
+<meta name="twitter:title" content="使用cookiecutter+pypackage-minimal快速制作一个python package ">
+<meta name="twitter:description" content="Prerequisites¶ pip install scrapy pip install cookiecutter https://github.com/kragniz/cookiecutter-pypackage-minimal.git Start cookiecutter¶ $ cookiecutter cookiecutter-pypackage-minimal/ /usr/lib/python2.7/site-packages/requests/__init__.py:80: RequestsDependencyWarning: urllib3 (1.22) or chardet (2.2.1) doesn&#39;t match a supported version! RequestsDependencyWarning) author_name [Louis Taylor]: acefei author_email …">
+
+        <title>使用cookiecutter+pypackage-minimal快速制作一个python package  · Acefei &#39;s One Piece
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/custom.css" media="screen">
+        <link rel="shortcut icon" href="https://acefei.github.io/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+        <link rel="icon" href="https://acefei.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link rel="apple-touch-icon" href="https://acefei.github.io/theme/images/apple-touch-icon.png"  type="image/png" />
+        <link rel="apple-touch-icon" sizes="57x57" href="https://acefei.github.io/theme/images/apple-touch-icon-57x57.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="https://acefei.github.io/theme/images/apple-touch-icon-72x72.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="76x76" href="https://acefei.github.io/theme/images/apple-touch-icon-76x76.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="https://acefei.github.io/theme/images/apple-touch-icon-114x114.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="120x120" href="https://acefei.github.io/theme/images/apple-touch-icon-120x120.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="https://acefei.github.io/theme/images/apple-touch-icon-144x144.png" type="image/png" />
+        <link rel="apple-touch-icon" sizes="152x152" href="https://acefei.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
+        <link href="https://acefei.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Acefei &#39;s One Piece - Full Atom Feed" />
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://acefei.github.io/"><span class=site-name><span style="color:black;">Acefei</span> <span style="color:darkblue;">'s</span> <span style="color:#AA1032;">One Piece</span></span></a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://acefei.github.io">Home</a></li>
+                            <li ><a href="https://acefei.github.io/categories.html">Categories</a></li>
+                            <li ><a href="https://acefei.github.io/tags.html">Tags</a></li>
+                            <li ><a href="https://acefei.github.io/archives.html">Archives</a></li>
+                            <li><form class="navbar-search" action="https://acefei.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://acefei.github.io/shi-yong-cookiecutterpypackage-minimalkuai-su-zhi-zuo-yi-ge-python-package.html"> 使用cookiecutter+pypackage-minimal快速制作一个python package  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span2 table-of-content">
+        <nav>
+        <h4>Contents</h4>
+        <div class="toc">
+<ul>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#start-cookiecutter">Start cookiecutter</a></li>
+<li><a href="#create-scrapy-template">Create scrapy template</a></li>
+<li><a href="#add-non-package-files">Add non-package files</a></li>
+<li><a href="#command-line-script">Command Line Script</a></li>
+<li><a href="#specifying-dependencies">Specifying Dependencies</a></li>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#inspiration">Inspiration</a></li>
+</ul>
+</div>
+        </nav>
+    </div>
+    <div class="span8 article-content">
+
+            
+            
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span>pip install scrapy
+pip install cookiecutter
+https://github.com/kragniz/cookiecutter-pypackage-minimal.git
+</pre></div>
+<h3 id="start-cookiecutter">Start <a href="https://github.com/audreyr/cookiecutter">cookiecutter</a><a class="headerlink" href="#start-cookiecutter" title="Permanent link">¶</a></h3>
+<div class="highlight"><pre><span></span><span class="err">$</span> <span class="n">cookiecutter</span> <span class="n">cookiecutter</span><span class="o">-</span><span class="n">pypackage</span><span class="o">-</span><span class="n">minimal</span><span class="o">/</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="mf">.7</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">requests</span><span class="o">/</span><span class="n">__init__</span><span class="p">.</span><span class="nl">py</span><span class="p">:</span><span class="mi">80</span><span class="o">:</span> <span class="nl">RequestsDependencyWarning</span><span class="p">:</span> <span class="n">urllib3</span> <span class="p">(</span><span class="mf">1.22</span><span class="p">)</span> <span class="n">or</span> <span class="n">chardet</span> <span class="p">(</span><span class="mf">2.2.1</span><span class="p">)</span> <span class="n">doesn</span><span class="err">'</span><span class="n">t</span> <span class="n">match</span> <span class="n">a</span> <span class="n">supported</span> <span class="n">version</span><span class="o">!</span>
+  <span class="n">RequestsDependencyWarning</span><span class="p">)</span>
+<span class="n">author_name</span> <span class="p">[</span><span class="n">Louis</span> <span class="n">Taylor</span><span class="p">]</span><span class="o">:</span> <span class="n">acefei</span>
+<span class="n">author_email</span> <span class="p">[</span><span class="n">louis</span><span class="p">@</span><span class="n">kragniz</span><span class="p">.</span><span class="n">eu</span><span class="p">]</span><span class="o">:</span> <span class="n">acefei</span><span class="mf">@163.</span><span class="n">com</span>
+<span class="n">package_name</span> <span class="p">[</span><span class="n">cookiecutter_pypackage_minimal</span><span class="p">]</span><span class="o">:</span> <span class="n">scrapy_templates</span>
+<span class="n">package_version</span> <span class="p">[</span><span class="mf">0.1.0</span><span class="p">]</span><span class="o">:</span>
+<span class="n">package_description</span> <span class="p">[</span><span class="n">An</span> <span class="n">opinionated</span><span class="p">,</span> <span class="n">minimal</span> <span class="n">cookiecutter</span> <span class="n">template</span> <span class="k">for</span> <span class="n">Python</span> <span class="n">packages</span><span class="p">]</span><span class="o">:</span> <span class="n">Templates</span> <span class="k">for</span> <span class="n">creating</span> <span class="n">new</span> <span class="n">projects</span> <span class="n">with</span> <span class="n">startproject</span> <span class="n">command</span> <span class="n">and</span> <span class="n">new</span> <span class="n">spiders</span> <span class="n">with</span> <span class="n">genspider</span> <span class="n">command</span><span class="p">.</span>
+<span class="n">package_url</span> <span class="p">[</span><span class="nl">https</span><span class="p">:</span><span class="c1">//github.com/borntyping/cookiecutter-pypackage-minimal]: https://github.com/acefei/scrapy_templates</span>
+<span class="n">readme_pypi_badge</span> <span class="p">[</span><span class="n">True</span><span class="p">]</span><span class="o">:</span>
+<span class="n">readme_travis_badge</span> <span class="p">[</span><span class="n">True</span><span class="p">]</span><span class="o">:</span> <span class="n">False</span>
+<span class="n">readme_travis_url</span> <span class="p">[</span><span class="nl">https</span><span class="p">:</span><span class="c1">//travis-ci.org/borntyping/cookiecutter-pypackage-minimal]: False</span>
+
+
+<span class="err">$</span> <span class="n">ls</span> <span class="n">scrapy_templates</span><span class="cm">/*</span>
+<span class="cm">scrapy_templates/README.rst  scrapy_templates/setup.py  scrapy_templates/tox.ini</span>
+
+<span class="cm">scrapy_templates/scrapy_templates:</span>
+<span class="cm">__init__.py</span>
+
+<span class="cm">scrapy_templates/tests:</span>
+<span class="cm">__init__.py  test_sample.py</span>
+</pre></div>
+<h3 id="create-scrapy-template">Create scrapy template<a class="headerlink" href="#create-scrapy-template" title="Permanent link">¶</a></h3>
+<p>Copy the original template from scrapy project.</p>
+<div class="highlight"><pre><span></span>cd scrapy_templates/scrapy_templates/
+mkdir scrapy &amp;&amp; cd scrapy
+cp -r /usr/lib64/python2.7/site-packages/scrapy/templates/project .
+</pre></div>
+<p>Now, you can customize the template in <code>scrapy_templates/scrapy_templates/scrapy</code></p>
+<h3 id="add-non-package-files">Add non-package files<a class="headerlink" href="#add-non-package-files" title="Permanent link">¶</a></h3>
+<p>Since the templates path is not a python package, to specify those files to distribute, we should add  <a href="https://docs.python.org/2/distutils/sourcedist.html#manifest">MANIFEST</a> file.       </p>
+<div class="highlight"><pre><span></span># in MANIFEST
+recursive-include  scrapy_templates/  *
+</pre></div>
+<p>In order for these files to be copied at install time to the package’s folder inside site-packages, you’ll need to supply <code>include_package_data=True</code> to the setup() function.</p>
+<h3 id="command-line-script">Command Line Script<a class="headerlink" href="#command-line-script" title="Permanent link">¶</a></h3>
+<ol>
+<li>
+<p>write a python script command_line.py with some functions in the package.</p>
+</li>
+<li>
+<p>register those functihons to setup() function.</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">setuptools</span>
+
+<span class="n">setuptools</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span>
+    <span class="o">...</span>
+    <span class="n">entry_points</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">'console_scripts'</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s1">'scrapy-startproject=scrapy_templates.command_line:startproj'</span><span class="p">,</span>
+            <span class="s1">'scrapy-genspider=scrapy_templates.command_line:genspider'</span><span class="p">,</span>
+        <span class="p">],</span>
+    <span class="p">}</span>
+    <span class="o">...</span>
+<span class="p">)</span>
+</pre></div>
+<h3 id="specifying-dependencies">Specifying Dependencies<a class="headerlink" href="#specifying-dependencies" title="Permanent link">¶</a></h3>
+<p>Edit <code>setup.py</code>, we just add an install_requires keyword argument:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">setuptools</span>
+
+<span class="n">setuptools</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span>
+    <span class="o">...</span>
+    <span class="n">install_requires</span><span class="o">=</span><span class="p">[</span>
+        <span class="s1">'scrapy-redis'</span><span class="p">,</span>
+        <span class="s1">'scrapy-splash'</span><span class="p">,</span>
+        <span class="s1">'scrapy-random-useragent'</span><span class="p">,</span>
+        <span class="s1">'scrapy-redis-bloomfilter'</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="o">...</span>
+<span class="p">)</span>
+</pre></div>
+<h3 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">¶</a></h3>
+<p>Now, we have finished an python package.<br/>
+It's easy to install this package by pip.</p>
+<div class="highlight"><pre><span></span>pip install git+https://github.com/acefei/scrapy_templates.git
+</pre></div>
+<p>About this package details, please find <a href="https://github.com/acefei/scrapy_templates.git">acefei/scrapy_templates
+</a></p>
+<h3 id="inspiration">Inspiration<a class="headerlink" href="#inspiration" title="Permanent link">¶</a></h3>
+<p><a href="http://python-packaging.readthedocs.io/en/latest/index.html">python-packaging</a></p>
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h4>Published</h4>
+            <time pubdate="pubdate" datetime="2018-01-24T15:24:00+08:00">Jan 24, 2018</time>
+            <h4>Category</h4>
+            <a class="category-link" href="https://acefei.github.io/categories.html#devops-ref">DevOps</a>
+            <h4>Tags</h4>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://acefei.github.io/tags.html#cookiecutter-ref">cookiecutter
+                    <span>1</span>
+</a></li>
+                <li><a href="https://acefei.github.io/tags.html#package-ref">package
+                    <span>1</span>
+</a></li>
+                <li><a href="https://acefei.github.io/tags.html#python-ref">python
+                    <span>10</span>
+</a></li>
+            </ul>
+<h4>Stay in Touch</h4>
+    <a href="https://github.com/acefei" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-github sidebar-social-links"></i></a>
+    <a href="https://www.linkedin.com/in/fei-su-2b6b10104" title="My linkedin Profile" class="sidebar-social-links" target="_blank">
+    <i class="fa fa-linkedin sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+    </ul>
+</div>
+</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+
+    
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : http://oncrashreboot.com/pelican-elegant -->
+</html>
