@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
     <head>
-        <meta charset="utf-8"> 
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Ace Fei" />
-        <meta name="copyright" content="Ace Fei" />
 
         <meta name="description" content="一些好东西，入门前未必看得懂，要等学有小成时再看才能体会。 Python¶ 致Python初学者：Anaconda入门使用指南 ——选择anaconda，体验拎包入住的感觉 数据处理¶ numpy¶ Numpy--Numerical Python，一个基于Python的可以存储和处理大型矩阵的库。几乎是Python 生态系统的数值计算的基石，例如Scipy，Pandas，Scikit-learn，Keras等都基于Numpy。 Quickstart Index 查询api，推荐！ Scipy¶ SciPy函数库在NumPy库的基础上增加了众多的数学、科学以及工程计算中常用的库函数。例如线性代数、常微分方程数值求解、信号处理、图像处理、稀疏矩阵等等。 Scipy Lecture Notes 极力推荐的一个学习笔记！ pandas¶ pandas是基于Numpy构建的含有更高级数据结构和工具的数据分析包。 类似于Numpy的核心是ndarray，pandas也是围绕着Series和DataFrame两个核心数据结构展开的。 Series和DataFrame分别对应于一维的序列和二维的表结构。 10 Minutes to pandas (翻译) Index 查询api，推荐！ 机器算法¶ scikit-learn …
 " />
@@ -26,12 +25,14 @@
         <title>机器学习资料整理(Python方向，建议通读)  · Acefei &#39;s One Piece
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/pygments.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/admonition.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/custom.css" media="screen">
-        <link rel="shortcut icon" href="https://acefei.github.io/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+
+        <link rel="shortcut icon" href="https://acefei.github.io/theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="https://acefei.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
         <link rel="apple-touch-icon" href="https://acefei.github.io/theme/images/apple-touch-icon.png"  type="image/png" />
         <link rel="apple-touch-icon" sizes="57x57" href="https://acefei.github.io/theme/images/apple-touch-icon-57x57.png" type="image/png" />
@@ -42,38 +43,48 @@
         <link rel="apple-touch-icon" sizes="144x144" href="https://acefei.github.io/theme/images/apple-touch-icon-144x144.png" type="image/png" />
         <link rel="apple-touch-icon" sizes="152x152" href="https://acefei.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
         <link href="https://acefei.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Acefei &#39;s One Piece - Full Atom Feed" />
+
+
     </head>
     <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="https://acefei.github.io/"><span class=site-name><span style="color:black;">Acefei</span> <span style="color:darkblue;">'s</span> <span style="color:#AA1032;">One Piece</span></span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li ><a href="https://acefei.github.io">Home</a></li>
-                            <li ><a href="https://acefei.github.io/categories.html">Categories</a></li>
-                            <li ><a href="https://acefei.github.io/tags.html">Tags</a></li>
-                            <li ><a href="https://acefei.github.io/archives.html">Archives</a></li>
-                            <li><form class="navbar-search" action="https://acefei.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
-                        </ul>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="https://acefei.github.io/"><span class=site-name><span style="color:black;">Acefei</span> <span style="color:darkblue;">'s</span> <span style="color:#AA1032;">One Piece</span></span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       https://acefei.github.io
+                                    >Home</a>
+                                </li>
+                                <li ><a href="https://acefei.github.io/categories">Categories</a></li>
+                                <li ><a href="https://acefei.github.io/tags">Tags</a></li>
+                                <li ><a href="https://acefei.github.io/archives">Archives</a></li>
+                                <li><form class="navbar-search" action="https://acefei.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
-<article>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://acefei.github.io/ji-qi-xue-xi-zi-liao-zheng-li-pythonfang-xiang-jian-yi-tong-du.html"> 机器学习资料整理(Python方向，建议通读)  </a></h1>
+        <h1>
+            <a href="https://acefei.github.io/ji-qi-xue-xi-zi-liao-zheng-li-pythonfang-xiang-jian-yi-tong-du.html">
+                机器学习资料整理(Python方向，建议通读)
+            </a>
+        </h1>
     </header>
 </div>
 
@@ -106,7 +117,6 @@
         </nav>
     </div>
     <div class="span8 article-content">
-
             
             
 <p>一些好东西，入门前未必看得懂，要等学有小成时再看才能体会。</p>
@@ -160,6 +170,9 @@ Series和DataFrame分别对应于一维的序列和二维的表结构。</p>
 <p><a href="http://jingyan.baidu.com/season/43456">pandas教程</a></p>
 <p><a href="https://jingyan.baidu.com/season/35662">numpy函数</a></p>
 <p><a href="https://github.com/josephmisiti/awesome-machine-learning#python">awesome-machine-learning</a></p>
+
+
+            
             
             
             <hr/>
@@ -167,12 +180,12 @@ Series和DataFrame分别对应于一维的序列和二维的表结构。</p>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2017-11-30T09:17:00+08:00">Nov 30, 2017</time>
+            <time itemprop="dateCreated" datetime="2017-11-30T09:17:00+08:00">Nov 30, 2017</time>
             <h4>Category</h4>
             <a class="category-link" href="https://acefei.github.io/categories.html#development-ref">Development</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="https://acefei.github.io/tags.html#python-ref">python
+                <li><a href="https://acefei.github.io/tags#python-ref">python
                     <span>11</span>
 </a></li>
             </ul>
@@ -185,19 +198,21 @@ Series和DataFrame分别对应于一维的序列和二维的表结构。</p>
         </section>
 </div>
 </article>
+                    </div>
+                    <div class="span1"></div>
                 </div>
-                <div class="span1"></div>
             </div>
         </div>
-        <div id="push"></div>
-    </div>
 <footer>
-<div id="footer">
-    <ul class="footer-content">
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
-    </ul>
-</div>
-</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
             function validateForm(query)
@@ -209,5 +224,5 @@ Series和DataFrame分别对应于一维的序列和二维的表结构。</p>
     
     </body>
     <!-- Theme: Elegant built for Pelican
-    License : http://oncrashreboot.com/pelican-elegant -->
+        License : MIT -->
 </html>

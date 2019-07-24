@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
     <head>
-        <meta charset="utf-8"> 
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Ace Fei" />
-        <meta name="copyright" content="Ace Fei" />
 
         <meta name="description" content="Summary:¶ This article will illustrate how to renovate scrapy-redis to dupefilter. Why use bloomfilter¶ Tips on optimizing scrapy for a high performance How to integrate bloomfilter into scrapy redis¶ copy scrapy_redis into the path alongside settings in scrapy project implement bloom_filter.py in scrapy_redis path the code in https://github …
 " />
@@ -26,12 +25,14 @@
         <title>BloomFilter For Scrapy Redis  · Acefei &#39;s One Piece
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/pygments.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/admonition.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/custom.css" media="screen">
-        <link rel="shortcut icon" href="https://acefei.github.io/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+
+        <link rel="shortcut icon" href="https://acefei.github.io/theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="https://acefei.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
         <link rel="apple-touch-icon" href="https://acefei.github.io/theme/images/apple-touch-icon.png"  type="image/png" />
         <link rel="apple-touch-icon" sizes="57x57" href="https://acefei.github.io/theme/images/apple-touch-icon-57x57.png" type="image/png" />
@@ -42,44 +43,53 @@
         <link rel="apple-touch-icon" sizes="144x144" href="https://acefei.github.io/theme/images/apple-touch-icon-144x144.png" type="image/png" />
         <link rel="apple-touch-icon" sizes="152x152" href="https://acefei.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
         <link href="https://acefei.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Acefei &#39;s One Piece - Full Atom Feed" />
+
+
     </head>
     <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="https://acefei.github.io/"><span class=site-name><span style="color:black;">Acefei</span> <span style="color:darkblue;">'s</span> <span style="color:#AA1032;">One Piece</span></span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li ><a href="https://acefei.github.io">Home</a></li>
-                            <li ><a href="https://acefei.github.io/categories.html">Categories</a></li>
-                            <li ><a href="https://acefei.github.io/tags.html">Tags</a></li>
-                            <li ><a href="https://acefei.github.io/archives.html">Archives</a></li>
-                            <li><form class="navbar-search" action="https://acefei.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
-                        </ul>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="https://acefei.github.io/"><span class=site-name><span style="color:black;">Acefei</span> <span style="color:darkblue;">'s</span> <span style="color:#AA1032;">One Piece</span></span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       https://acefei.github.io
+                                    >Home</a>
+                                </li>
+                                <li ><a href="https://acefei.github.io/categories">Categories</a></li>
+                                <li ><a href="https://acefei.github.io/tags">Tags</a></li>
+                                <li ><a href="https://acefei.github.io/archives">Archives</a></li>
+                                <li><form class="navbar-search" action="https://acefei.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
-<article>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://acefei.github.io/bloomfilter-for-scrapy-redis.html"> BloomFilter For Scrapy Redis  </a></h1>
+        <h1>
+            <a href="https://acefei.github.io/bloomfilter-for-scrapy-redis.html">
+                BloomFilter For Scrapy Redis
+            </a>
+        </h1>
     </header>
 </div>
 
 <div class="row-fluid">
         <div class="span8 offset2 article-content">
-
             
             <h3 id="summary">Summary:<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h3>
 <p>This article will illustrate how to renovate scrapy-redis to dupefilter.</p>
@@ -98,52 +108,52 @@
 <p>modify scrapy_redis/dupefilter.py</p>
 </li>
 </ol>
-<div class="highlight"><pre><span></span>    def __init__(self, server, key, debug=False):
-        &quot;&quot;&quot;Initialize the duplicates filter.
+<div class="highlight"><pre><span></span>    <span class="n">def</span> <span class="n">__init__</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="k">key</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="k">False</span><span class="p">):</span>
+        <span class="ss">&quot;&quot;&quot;Initialize the duplicates filter.</span>
 
-        Parameters
-        ----------
-        server : redis.StrictRedis
-            The redis server instance.
-        key : str
-            Redis key Where to store fingerprints.
-        debug : bool, optional
-            Whether to log filtered requests.
+<span class="ss">        Parameters</span>
+<span class="ss">        ----------</span>
+<span class="ss">        server : redis.StrictRedis</span>
+<span class="ss">            The redis server instance.</span>
+<span class="ss">        key : str</span>
+<span class="ss">            Redis key Where to store fingerprints.</span>
+<span class="ss">        debug : bool, optional</span>
+<span class="ss">            Whether to log filtered requests.</span>
 
-        &quot;&quot;&quot;
-        self.server = server
-        self.key = key
-        self.debug = debug
-        self.logdupes = True
+<span class="ss">        &quot;&quot;&quot;</span>
+        <span class="k">self</span><span class="p">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">server</span>
+        <span class="k">self</span><span class="p">.</span><span class="k">key</span> <span class="o">=</span> <span class="k">key</span>
+        <span class="k">self</span><span class="p">.</span><span class="n">debug</span> <span class="o">=</span> <span class="n">debug</span>
+        <span class="k">self</span><span class="p">.</span><span class="n">logdupes</span> <span class="o">=</span> <span class="k">True</span>
 
-        # 集成布隆过滤器
-        self.bf = BloomFilter(conn=server, key=key)     # 利用连接池连接Redis
+        <span class="o">#</span> <span class="err">集成布隆过滤器</span>
+        <span class="k">self</span><span class="p">.</span><span class="n">bf</span> <span class="o">=</span> <span class="n">BloomFilter</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">server</span><span class="p">,</span> <span class="k">key</span><span class="o">=</span><span class="k">key</span><span class="p">)</span>     <span class="o">#</span> <span class="err">利用连接池连接</span><span class="n">Redis</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>    def request_seen(self, request):
-        &quot;&quot;&quot;Returns True if request was already seen.
+<div class="highlight"><pre><span></span>    <span class="nv">def</span> <span class="nv">request_seen</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">request</span><span class="ss">)</span>:
+        <span class="s2">&quot;&quot;&quot;</span><span class="s">Returns True if request was already seen.</span>
 
-        Parameters
-        ----------
-        request : scrapy.http.Request
+        <span class="nv">Parameters</span>
+        <span class="o">----------</span>
+        <span class="nv">request</span> : <span class="nv">scrapy</span>.<span class="nv">http</span>.<span class="nv">Request</span>
 
-        Returns
-        -------
-        bool
+        <span class="nv">Returns</span>
+        <span class="o">-------</span>
+        <span class="nv">bool</span>
 
-        &quot;&quot;&quot;
+        <span class="s2">&quot;&quot;&quot;</span>
         # 集成布隆过滤器
-        if self.bf.is_exist(fp):    # 判断如果域名在Redis里存在
-            return True
-        else:
-            self.bf.add(fp)         # 如果不存在，将域名添加到Redis
-            return False
+        <span class="k">if</span> <span class="nv">self</span>.<span class="nv">bf</span>.<span class="nv">is_exist</span><span class="ss">(</span><span class="nv">fp</span><span class="ss">)</span>:    # 判断如果域名在<span class="nv">Redis</span>里存在
+            <span class="k">return</span> <span class="nv">True</span>
+        <span class="k">else</span>:
+            <span class="nv">self</span>.<span class="nv">bf</span>.<span class="nv">add</span><span class="ss">(</span><span class="nv">fp</span><span class="ss">)</span>         # 如果不存在，将域名添加到<span class="nv">Redis</span>
+            <span class="k">return</span> <span class="nv">False</span>
 
-        #fp = self.request_fingerprint(request)
-        # This returns the number of values added, zero if already exists.
-        #added = self.server.sadd(self.key, fp)
-        #return added == 0
+        #<span class="nv">fp</span> <span class="o">=</span> <span class="nv">self</span>.<span class="nv">request_fingerprint</span><span class="ss">(</span><span class="nv">request</span><span class="ss">)</span>
+        # <span class="nv">This</span> <span class="nv">returns</span> <span class="nv">the</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">values</span> <span class="nv">added</span>, <span class="nv">zero</span> <span class="k">if</span> <span class="nv">already</span> <span class="nv">exists</span>.
+        #<span class="nv">added</span> <span class="o">=</span> <span class="nv">self</span>.<span class="nv">server</span>.<span class="nv">sadd</span><span class="ss">(</span><span class="nv">self</span>.<span class="nv">key</span>, <span class="nv">fp</span><span class="ss">)</span>
+        #<span class="k">return</span> <span class="nv">added</span> <span class="o">==</span> <span class="mi">0</span>
 </pre></div>
 
 
@@ -152,25 +162,25 @@
 Note: use our scrapy_redis code like <scrapy_project_name>.scrapy_redis instead of scrapy_redis that created by pip install</li>
 </ol>
 <div class="highlight"><pre><span></span>##################################
-# Configuration for scrapy-redis {
-DUPEFILTER_CLASS = &quot;scrapy_redis_demo.scrapy_redis.dupefilter.RFPDupeFilter&quot;
-SCHEDULER = &quot;scrapy_redis_demo.scrapy_redis.scheduler.Scheduler&quot;
-SCHEDULER_PERSIST = True
+# <span class="nv">Configuration</span> <span class="k">for</span> <span class="nv">scrapy</span><span class="o">-</span><span class="nv">redis</span> {
+<span class="nv">DUPEFILTER_CLASS</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">scrapy_redis_demo.scrapy_redis.dupefilter.RFPDupeFilter</span><span class="s2">&quot;</span>
+<span class="nv">SCHEDULER</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">scrapy_redis_demo.scrapy_redis.scheduler.Scheduler</span><span class="s2">&quot;</span>
+<span class="nv">SCHEDULER_PERSIST</span> <span class="o">=</span> <span class="nv">True</span>
 
-ITEM_PIPELINES = {
-  &#39;scrapy_redis_demo.scrapy_redis.pipelines.RedisPipeline&#39;: 400,
+<span class="nv">ITEM_PIPELINES</span> <span class="o">=</span> {
+  <span class="s1">&#39;</span><span class="s">scrapy_redis_demo.scrapy_redis.pipelines.RedisPipeline</span><span class="s1">&#39;</span>: <span class="mi">400</span>,
 }
 
-# if u add &#39;network_mode: &quot;host&quot;&#39; in scraper service in docker-compose.yaml
-# use host ip to access redis server
-REDIS_HOST = &#39;172.16.100.62&#39;
-# else use redis hostname to access redis server
-#REDIS_HOST = &#39;redis&#39;
-REDIS_PORT = 6379
+# <span class="k">if</span> <span class="nv">u</span> <span class="nv">add</span> <span class="s1">&#39;</span><span class="s">network_mode: &quot;host&quot;</span><span class="s1">&#39;</span> <span class="nv">in</span> <span class="nv">scraper</span> <span class="nv">service</span> <span class="nv">in</span> <span class="nv">docker</span><span class="o">-</span><span class="nv">compose</span>.<span class="nv">yaml</span>
+# <span class="nv">use</span> <span class="nv">host</span> <span class="nv">ip</span> <span class="nv">to</span> <span class="nv">access</span> <span class="nv">redis</span> <span class="nv">server</span>
+<span class="nv">REDIS_HOST</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">172.16.100.62</span><span class="s1">&#39;</span>
+# <span class="k">else</span> <span class="nv">use</span> <span class="nv">redis</span> <span class="nv">hostname</span> <span class="nv">to</span> <span class="nv">access</span> <span class="nv">redis</span> <span class="nv">server</span>
+#<span class="nv">REDIS_HOST</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">redis</span><span class="s1">&#39;</span>
+<span class="nv">REDIS_PORT</span> <span class="o">=</span> <span class="mi">6379</span>
 
-# Specify your redis uri
-# the uri scheme syntax: http://www.iana.org/assignments/uri-schemes/prov/redis
-#REDIS_URL = &#39;redis://172.16.100.62:6379&#39;
+# <span class="nv">Specify</span> <span class="nv">your</span> <span class="nv">redis</span> <span class="nv">uri</span>
+# <span class="nv">the</span> <span class="nv">uri</span> <span class="nv">scheme</span> <span class="nv">syntax</span>: <span class="nv">http</span>:<span class="o">//</span><span class="nv">www</span>.<span class="nv">iana</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">assignments</span><span class="o">/</span><span class="nv">uri</span><span class="o">-</span><span class="nv">schemes</span><span class="o">/</span><span class="nv">prov</span><span class="o">/</span><span class="nv">redis</span>
+#<span class="nv">REDIS_URL</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">redis://172.16.100.62:6379</span><span class="s1">&#39;</span>
 
 # }
 ##################################
@@ -182,6 +192,9 @@ REDIS_PORT = 6379
 </ol>
 <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scrapy_redis_demo.scrapy_redis.spiders</span> <span class="kn">import</span> <span class="n">RedisCrawlSpider</span>
 </pre></div>
+
+
+            
             
             
             <hr/>
@@ -189,15 +202,15 @@ REDIS_PORT = 6379
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2017-09-21T15:29:00+08:00">Sep 21, 2017</time>
+            <time itemprop="dateCreated" datetime="2017-09-21T15:29:00+08:00">Sep 21, 2017</time>
             <h4>Category</h4>
             <a class="category-link" href="https://acefei.github.io/categories.html#development-ref">Development</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="https://acefei.github.io/tags.html#python-ref">Python
+                <li><a href="https://acefei.github.io/tags#python-ref">Python
                     <span>11</span>
 </a></li>
-                <li><a href="https://acefei.github.io/tags.html#scrapy-ref">Scrapy
+                <li><a href="https://acefei.github.io/tags#scrapy-ref">Scrapy
                     <span>3</span>
 </a></li>
             </ul>
@@ -210,19 +223,21 @@ REDIS_PORT = 6379
         </section>
 </div>
 </article>
+                    </div>
+                    <div class="span1"></div>
                 </div>
-                <div class="span1"></div>
             </div>
         </div>
-        <div id="push"></div>
-    </div>
 <footer>
-<div id="footer">
-    <ul class="footer-content">
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
-    </ul>
-</div>
-</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
             function validateForm(query)
@@ -234,5 +249,5 @@ REDIS_PORT = 6379
     
     </body>
     <!-- Theme: Elegant built for Pelican
-    License : http://oncrashreboot.com/pelican-elegant -->
+        License : MIT -->
 </html>

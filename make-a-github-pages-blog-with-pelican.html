@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
     <head>
-        <meta charset="utf-8"> 
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Ace Fei" />
-        <meta name="copyright" content="Ace Fei" />
 
         <meta name="description" content="Make a Github Pages blog with Pelican:¶ Install dependence¶ sudo yum install -y git sudo pip install pelican markdown ghp-import BeautifulSoup4 Create user pages¶ There are two basic types of GitHub Pages: User/Organization Pages and Project Pages. Generally, most people will select User Pages, and there are two …
 " />
@@ -26,12 +25,14 @@
         <title>Make a Github Pages blog with Pelican  · Acefei &#39;s One Piece
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/pygments.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/admonition.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/custom.css" media="screen">
-        <link rel="shortcut icon" href="https://acefei.github.io/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+
+        <link rel="shortcut icon" href="https://acefei.github.io/theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="https://acefei.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
         <link rel="apple-touch-icon" href="https://acefei.github.io/theme/images/apple-touch-icon.png"  type="image/png" />
         <link rel="apple-touch-icon" sizes="57x57" href="https://acefei.github.io/theme/images/apple-touch-icon-57x57.png" type="image/png" />
@@ -42,38 +43,48 @@
         <link rel="apple-touch-icon" sizes="144x144" href="https://acefei.github.io/theme/images/apple-touch-icon-144x144.png" type="image/png" />
         <link rel="apple-touch-icon" sizes="152x152" href="https://acefei.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
         <link href="https://acefei.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Acefei &#39;s One Piece - Full Atom Feed" />
+
+
     </head>
     <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="https://acefei.github.io/"><span class=site-name><span style="color:black;">Acefei</span> <span style="color:darkblue;">'s</span> <span style="color:#AA1032;">One Piece</span></span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li ><a href="https://acefei.github.io">Home</a></li>
-                            <li ><a href="https://acefei.github.io/categories.html">Categories</a></li>
-                            <li ><a href="https://acefei.github.io/tags.html">Tags</a></li>
-                            <li ><a href="https://acefei.github.io/archives.html">Archives</a></li>
-                            <li><form class="navbar-search" action="https://acefei.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
-                        </ul>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="https://acefei.github.io/"><span class=site-name><span style="color:black;">Acefei</span> <span style="color:darkblue;">'s</span> <span style="color:#AA1032;">One Piece</span></span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       https://acefei.github.io
+                                    >Home</a>
+                                </li>
+                                <li ><a href="https://acefei.github.io/categories">Categories</a></li>
+                                <li ><a href="https://acefei.github.io/tags">Tags</a></li>
+                                <li ><a href="https://acefei.github.io/archives">Archives</a></li>
+                                <li><form class="navbar-search" action="https://acefei.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
-<article>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://acefei.github.io/make-a-github-pages-blog-with-pelican.html"> Make a Github Pages blog with Pelican  </a></h1>
+        <h1>
+            <a href="https://acefei.github.io/make-a-github-pages-blog-with-pelican.html">
+                Make a Github Pages blog with Pelican
+            </a>
+        </h1>
     </header>
 </div>
 
@@ -103,7 +114,6 @@
         </nav>
     </div>
     <div class="span8 article-content">
-
             
             
 <h2 id="make-a-github-pages-blog-with-pelican">Make a Github Pages blog with Pelican:<a class="headerlink" href="#make-a-github-pages-blog-with-pelican" title="Permanent link">¶</a></h2>
@@ -121,44 +131,44 @@ Content from the <em>master</em> branch will be used to build and publish your G
 <p>When User Pages are built, they are available at http(s)://username.github.io.</p>
 <h3 id="set-up-the-blog-with-pelican">Set up the blog with Pelican<a class="headerlink" href="#set-up-the-blog-with-pelican" title="Permanent link">¶</a></h3>
 <p>Create a new branch (pelican) for hosting pelican settings on github, please refer to <a href="#publish">Publish</a> </p>
-<div class="highlight"><pre><span></span>$ git clone https://github.com/acefei/acefei.github.io
-$ <span class="nb">cd</span> acefei.github.io/
-$ git checkout -b pelican
-$ pelican-quickstart
-Welcome to pelican-quickstart v3.7.1.
+<div class="highlight"><pre><span></span>$ <span class="nv">git</span> <span class="nv">clone</span> <span class="nv">https</span>:<span class="o">//</span><span class="nv">github</span>.<span class="nv">com</span><span class="o">/</span><span class="nv">acefei</span><span class="o">/</span><span class="nv">acefei</span>.<span class="nv">github</span>.<span class="nv">io</span>
+$ <span class="nv">cd</span> <span class="nv">acefei</span>.<span class="nv">github</span>.<span class="nv">io</span><span class="o">/</span>
+$ <span class="nv">git</span> <span class="nv">checkout</span> <span class="o">-</span><span class="nv">b</span> <span class="nv">pelican</span>
+$ <span class="nv">pelican</span><span class="o">-</span><span class="nv">quickstart</span>
+<span class="nv">Welcome</span> <span class="nv">to</span> <span class="nv">pelican</span><span class="o">-</span><span class="nv">quickstart</span> <span class="nv">v3</span>.<span class="mi">7</span>.<span class="mi">1</span>.
 
-This script will <span class="nb">help</span> you create a new Pelican-based website.
+<span class="nv">This</span> <span class="nv">script</span> <span class="nv">will</span> <span class="nv">help</span> <span class="nv">you</span> <span class="nv">create</span> <span class="nv">a</span> <span class="nv">new</span> <span class="nv">Pelican</span><span class="o">-</span><span class="nv">based</span> <span class="nv">website</span>.
 
-Please answer the following questions so this script can generate the files
-needed by Pelican.
+<span class="nv">Please</span> <span class="nv">answer</span> <span class="nv">the</span> <span class="nv">following</span> <span class="nv">questions</span> <span class="nv">so</span> <span class="nv">this</span> <span class="nv">script</span> <span class="nv">can</span> <span class="nv">generate</span> <span class="nv">the</span> <span class="nv">files</span>
+<span class="nv">needed</span> <span class="nv">by</span> <span class="nv">Pelican</span>.
 
 
-&gt; Where <span class="k">do</span> you want to create your new web site? <span class="o">[</span>.<span class="o">]</span>
-&gt; What will be the title of this web site? Acefei<span class="err">'</span>s Blog
-&gt; Who will be the author of this web site? acefei
-&gt; What will be the default language of this web site? <span class="o">[</span>en<span class="o">]</span>
-&gt; Do you want to specify a URL prefix? e.g., http://example.com   <span class="o">(</span>Y/n<span class="o">)</span>
-&gt; What is your URL prefix? <span class="o">(</span>see above example<span class="p">;</span> no trailing slash<span class="o">)</span> https://acefei.github.io
-&gt; Do you want to <span class="nb">enable</span> article pagination? <span class="o">(</span>Y/n<span class="o">)</span> n
-&gt; What is your <span class="nb">time</span> zone? <span class="o">[</span>Europe/Paris<span class="o">]</span> Asia/Shanghai
-&gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? <span class="o">(</span>Y/n<span class="o">)</span>
-&gt; Do you want an auto-reload <span class="p">&amp;</span> simpleHTTP script to assist with theme and site development? <span class="o">(</span>Y/n<span class="o">)</span>
-&gt; Do you want to upload your website using FTP? <span class="o">(</span>y/N<span class="o">)</span>
-&gt; Do you want to upload your website using SSH? <span class="o">(</span>y/N<span class="o">)</span>
-&gt; Do you want to upload your website using Dropbox? <span class="o">(</span>y/N<span class="o">)</span>
-&gt; Do you want to upload your website using S3? <span class="o">(</span>y/N<span class="o">)</span>
-&gt; Do you want to upload your website using Rackspace Cloud Files? <span class="o">(</span>y/N<span class="o">)</span>
-&gt; Do you want to upload your website using GitHub Pages? <span class="o">(</span>y/N<span class="o">)</span> Y
-&gt; Is this your personal page <span class="o">(</span>username.github.io<span class="o">)</span>? <span class="o">(</span>y/N<span class="o">)</span> Y
+<span class="o">&gt;</span> <span class="nv">Where</span> <span class="k">do</span> <span class="nv">you</span> <span class="nv">want</span> <span class="nv">to</span> <span class="nv">create</span> <span class="nv">your</span> <span class="nv">new</span> <span class="nv">web</span> <span class="nv">site</span>? [.]
+<span class="o">&gt;</span> <span class="nv">What</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">the</span> <span class="nv">title</span> <span class="nv">of</span> <span class="nv">this</span> <span class="nv">web</span> <span class="nv">site</span>? <span class="nv">Acefei</span><span class="s1">'</span><span class="s">s Blog</span>
+<span class="o">&gt;</span> <span class="nv">Who</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">the</span> <span class="nv">author</span> <span class="nv">of</span> <span class="nv">this</span> <span class="nv">web</span> <span class="nv">site</span>? <span class="nv">acefei</span>
+<span class="o">&gt;</span> <span class="nv">What</span> <span class="nv">will</span> <span class="nv">be</span> <span class="nv">the</span> <span class="nv">default</span> <span class="nv">language</span> <span class="nv">of</span> <span class="nv">this</span> <span class="nv">web</span> <span class="nv">site</span>? [<span class="nv">en</span>]
+<span class="o">&gt;</span> <span class="k">Do</span> <span class="nv">you</span> <span class="nv">want</span> <span class="nv">to</span> <span class="nv">specify</span> <span class="nv">a</span> <span class="nv">URL</span> <span class="nv">prefix</span>? <span class="nv">e</span>.<span class="nv">g</span>., <span class="nv">http</span>:<span class="o">//</span><span class="nv">example</span>.<span class="nv">com</span>   <span class="ss">(</span><span class="nv">Y</span><span class="o">/</span><span class="nv">n</span><span class="ss">)</span>
+<span class="o">&gt;</span> <span class="nv">What</span> <span class="nv">is</span> <span class="nv">your</span> <span class="nv">URL</span> <span class="nv">prefix</span>? <span class="ss">(</span><span class="nv">see</span> <span class="nv">above</span> <span class="nv">example</span><span class="c1">; no trailing slash) https://acefei.github.io</span>
+<span class="o">&gt;</span> <span class="k">Do</span> <span class="nv">you</span> <span class="nv">want</span> <span class="nv">to</span> <span class="nv">enable</span> <span class="nv">article</span> <span class="nv">pagination</span>? <span class="ss">(</span><span class="nv">Y</span><span class="o">/</span><span class="nv">n</span><span class="ss">)</span> <span class="nv">n</span>
+<span class="o">&gt;</span> <span class="nv">What</span> <span class="nv">is</span> <span class="nv">your</span> <span class="nv">time</span> <span class="nv">zone</span>? [<span class="nv">Europe</span><span class="o">/</span><span class="nv">Paris</span>] <span class="nv">Asia</span><span class="o">/</span><span class="nv">Shanghai</span>
+<span class="o">&gt;</span> <span class="k">Do</span> <span class="nv">you</span> <span class="nv">want</span> <span class="nv">to</span> <span class="nv">generate</span> <span class="nv">a</span> <span class="nv">Fabfile</span><span class="o">/</span><span class="nv">Makefile</span> <span class="nv">to</span> <span class="nv">automate</span> <span class="nv">generation</span> <span class="nv">and</span> <span class="nv">publishing</span>? <span class="ss">(</span><span class="nv">Y</span><span class="o">/</span><span class="nv">n</span><span class="ss">)</span>
+<span class="o">&gt;</span> <span class="k">Do</span> <span class="nv">you</span> <span class="nv">want</span> <span class="nv">an</span> <span class="nv">auto</span><span class="o">-</span><span class="nv">reload</span> <span class="o">&amp;</span> <span class="nv">simpleHTTP</span> <span class="nv">script</span> <span class="nv">to</span> <span class="nv">assist</span> <span class="nv">with</span> <span class="nv">theme</span> <span class="nv">and</span> <span class="nv">site</span> <span class="nv">development</span>? <span class="ss">(</span><span class="nv">Y</span><span class="o">/</span><span class="nv">n</span><span class="ss">)</span>
+<span class="o">&gt;</span> <span class="k">Do</span> <span class="nv">you</span> <span class="nv">want</span> <span class="nv">to</span> <span class="nv">upload</span> <span class="nv">your</span> <span class="nv">website</span> <span class="nv">using</span> <span class="nv">FTP</span>? <span class="ss">(</span><span class="nv">y</span><span class="o">/</span><span class="nv">N</span><span class="ss">)</span>
+<span class="o">&gt;</span> <span class="k">Do</span> <span class="nv">you</span> <span class="nv">want</span> <span class="nv">to</span> <span class="nv">upload</span> <span class="nv">your</span> <span class="nv">website</span> <span class="nv">using</span> <span class="nv">SSH</span>? <span class="ss">(</span><span class="nv">y</span><span class="o">/</span><span class="nv">N</span><span class="ss">)</span>
+<span class="o">&gt;</span> <span class="k">Do</span> <span class="nv">you</span> <span class="nv">want</span> <span class="nv">to</span> <span class="nv">upload</span> <span class="nv">your</span> <span class="nv">website</span> <span class="nv">using</span> <span class="nv">Dropbox</span>? <span class="ss">(</span><span class="nv">y</span><span class="o">/</span><span class="nv">N</span><span class="ss">)</span>
+<span class="o">&gt;</span> <span class="k">Do</span> <span class="nv">you</span> <span class="nv">want</span> <span class="nv">to</span> <span class="nv">upload</span> <span class="nv">your</span> <span class="nv">website</span> <span class="nv">using</span> <span class="nv">S3</span>? <span class="ss">(</span><span class="nv">y</span><span class="o">/</span><span class="nv">N</span><span class="ss">)</span>
+<span class="o">&gt;</span> <span class="k">Do</span> <span class="nv">you</span> <span class="nv">want</span> <span class="nv">to</span> <span class="nv">upload</span> <span class="nv">your</span> <span class="nv">website</span> <span class="nv">using</span> <span class="nv">Rackspace</span> <span class="nv">Cloud</span> <span class="nv">Files</span>? <span class="ss">(</span><span class="nv">y</span><span class="o">/</span><span class="nv">N</span><span class="ss">)</span>
+<span class="o">&gt;</span> <span class="k">Do</span> <span class="nv">you</span> <span class="nv">want</span> <span class="nv">to</span> <span class="nv">upload</span> <span class="nv">your</span> <span class="nv">website</span> <span class="nv">using</span> <span class="nv">GitHub</span> <span class="nv">Pages</span>? <span class="ss">(</span><span class="nv">y</span><span class="o">/</span><span class="nv">N</span><span class="ss">)</span> <span class="nv">Y</span>
+<span class="o">&gt;</span> <span class="nv">Is</span> <span class="nv">this</span> <span class="nv">your</span> <span class="nv">personal</span> <span class="nv">page</span> <span class="ss">(</span><span class="nv">username</span>.<span class="nv">github</span>.<span class="nv">io</span><span class="ss">)</span>? <span class="ss">(</span><span class="nv">y</span><span class="o">/</span><span class="nv">N</span><span class="ss">)</span> <span class="nv">Y</span>
 </pre></div>
 <h3 id="write-first-post"><a href="http://docs.getpelican.com/en/3.6.3/content.html">Write first post</a><a class="headerlink" href="#write-first-post" title="Permanent link">¶</a></h3>
 <p>To facilitate blog creation, I write <a href="https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/create_new_blog.sh">a script</a> for creating the template with md format.</p>
 <p>Generate HTML pages and pre-view via http://localhost:8000/</p>
-<div class="highlight"><pre><span></span>make html &amp;&amp; make serve&amp;
-firefox http://localhost:8000/
-# After pre-view 
-fg
-# Then, Ctrl+C to terminate the process
+<div class="highlight"><pre><span></span><span class="nv">make</span> <span class="nv">html</span> <span class="o">&amp;&amp;</span> <span class="nv">make</span> <span class="nv">serve</span><span class="o">&amp;</span>
+<span class="nv">firefox</span> <span class="nv">http</span>:<span class="o">//</span><span class="nv">localhost</span>:<span class="mi">8000</span><span class="o">/</span>
+# <span class="nv">After</span> <span class="nv">pre</span><span class="o">-</span><span class="nv">view</span> 
+<span class="nv">fg</span>
+# <span class="k">Then</span>, <span class="nv">Ctrl</span><span class="o">+</span><span class="nv">C</span> <span class="nv">to</span> <span class="nv">terminate</span> <span class="nv">the</span> <span class="nv">process</span>
 </pre></div>
 <h3 id="publish">Publish<a class="headerlink" href="#publish" title="Permanent link">¶</a></h3>
 <p>If everything is OK, generate the website.       <br/>
@@ -166,23 +176,23 @@ Currently, all pelican settings that are used to render HTML are on pelican bran
 As previously mentioned, the static website content should be pulish from master branch.     <br/>
 So, I need to publish respectively:    <br/>
 For static website: (on <a href="https://github.com/acefei/acefei.github.io/tree/master">master branch</a>)</p>
-<div class="highlight"><pre><span></span>make github
+<div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">github</span>
 </pre></div>
 <p>For pelican settings: (on <a href="https://github.com/acefei/acefei.github.io/tree/pelican">pelican branch</a>)       </p>
-<div class="highlight"><pre><span></span>echo -e "*.pyc\noutput/" &gt;&gt; .gitignore
-git add .
-git commit -m "commit pelican setting"
-git push -u origin pelican
+<div class="highlight"><pre><span></span><span class="n">echo</span> <span class="o">-</span><span class="n">e</span> <span class="ss">"*.pyc\noutput/"</span> <span class="o">&gt;&gt;</span> <span class="p">.</span><span class="n">gitignore</span>
+<span class="n">git</span> <span class="k">add</span> <span class="p">.</span>
+<span class="n">git</span> <span class="k">commit</span> <span class="o">-</span><span class="n">m</span> <span class="ss">"commit pelican setting"</span>
+<span class="n">git</span> <span class="n">push</span> <span class="o">-</span><span class="n">u</span> <span class="n">origin</span> <span class="n">pelican</span>
 </pre></div>
 <h3 id="extension">Extension<a class="headerlink" href="#extension" title="Permanent link">¶</a></h3>
 <h4 id="theme">Theme<a class="headerlink" href="#theme" title="Permanent link">¶</a></h4>
 <p>Clone your fevorite <a href="http://pelicanthemes.com/">theme</a>, such as <a href="http://oncrashreboot.com/elegant-best-pelican-theme-features">elegant</a> </p>
-<div class="highlight"><pre><span></span>mkdir pelican-themes
-cd pelican-themes
-git clone git://github.com/talha131/pelican-elegant.git
+<div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">pelican</span><span class="o">-</span><span class="n">themes</span>
+<span class="n">cd</span> <span class="n">pelican</span><span class="o">-</span><span class="n">themes</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">talha131</span><span class="o">/</span><span class="n">pelican</span><span class="o">-</span><span class="n">elegant</span><span class="p">.</span><span class="n">git</span>
 </pre></div>
 <p>Then, add something like this to  pelicanconf.py</p>
-<div class="highlight"><pre><span></span>THEME = "pelican-themes/pelican-elegant"
+<div class="highlight"><pre><span></span><span class="n">THEME</span> <span class="o">=</span> <span class="ss">"pelican-themes/pelican-elegant"</span>
 </pre></div>
 <blockquote>
 <p>Note:          <br/>
@@ -191,25 +201,25 @@ git clone git://github.com/talha131/pelican-elegant.git
 </blockquote>
 <h4 id="plugin">Plugin<a class="headerlink" href="#plugin" title="Permanent link">¶</a></h4>
 <p>Clone the plugin repo.</p>
-<div class="highlight"><pre><span></span>git clone git://github.com/getpelican/pelican-plugins.git
+<div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">getpelican</span><span class="o">/</span><span class="n">pelican</span><span class="o">-</span><span class="n">plugins</span><span class="p">.</span><span class="n">git</span>
 </pre></div>
 <p>Then, add following contents into pelicanconf.py</p>
-<div class="highlight"><pre><span></span>###### plugin configuration #######
-PLUGIN_PATHS = ['pelican-plugins']
-PLUGINS = ['sitemap', 'extract_toc', 'tipue_search']
-SITEMAP = {
-'format': 'xml',
-'priorities': {
-    'articles': 0.5,
-    'indexes': 0.5,
-    'pages': 0.5
-    },
-'changefreqs': {
-    'articles': 'weekly',
-    'indexes': 'daily',
-    'pages': 'monthly'
-    }
-}
+<div class="highlight"><pre><span></span><span class="o">######</span> <span class="n">plugin</span> <span class="n">configuration</span> <span class="o">#######</span>
+<span class="n">PLUGIN_PATHS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'pelican-plugins'</span><span class="p">]</span>
+<span class="n">PLUGINS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'sitemap'</span><span class="p">,</span> <span class="s1">'extract_toc'</span><span class="p">,</span> <span class="s1">'tipue_search'</span><span class="p">]</span>
+<span class="n">SITEMAP</span> <span class="o">=</span> <span class="err">{</span>
+<span class="s1">'format'</span><span class="p">:</span> <span class="s1">'xml'</span><span class="p">,</span>
+<span class="s1">'priorities'</span><span class="p">:</span> <span class="err">{</span>
+    <span class="s1">'articles'</span><span class="p">:</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span>
+    <span class="s1">'indexes'</span><span class="p">:</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span>
+    <span class="s1">'pages'</span><span class="p">:</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5</span>
+    <span class="err">}</span><span class="p">,</span>
+<span class="s1">'changefreqs'</span><span class="p">:</span> <span class="err">{</span>
+    <span class="s1">'articles'</span><span class="p">:</span> <span class="s1">'weekly'</span><span class="p">,</span>
+    <span class="s1">'indexes'</span><span class="p">:</span> <span class="s1">'daily'</span><span class="p">,</span>
+    <span class="s1">'pages'</span><span class="p">:</span> <span class="s1">'monthly'</span>
+    <span class="err">}</span>
+<span class="err">}</span>
 </pre></div>
 <p>Ok, plugin install completely.</p>
 <h4 id="pelican-settings">Pelican settings<a class="headerlink" href="#pelican-settings" title="Permanent link">¶</a></h4>
@@ -220,6 +230,9 @@ SITEMAP = {
 can see its configuration files at
 <a href="https://github.com/talha131/onCrashReboot">Github</a> for inspiration. </p>
 </blockquote>
+
+
+            
             
             
             <hr/>
@@ -227,15 +240,15 @@ can see its configuration files at
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2017-05-25T10:05:00+08:00">May 25, 2017</time>
+            <time itemprop="dateCreated" datetime="2017-05-25T10:05:00+08:00">May 25, 2017</time>
             <h4>Category</h4>
             <a class="category-link" href="https://acefei.github.io/categories.html#development-ref">Development</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="https://acefei.github.io/tags.html#pelican-ref">pelican
+                <li><a href="https://acefei.github.io/tags#pelican-ref">pelican
                     <span>1</span>
 </a></li>
-                <li><a href="https://acefei.github.io/tags.html#python-ref">python
+                <li><a href="https://acefei.github.io/tags#python-ref">python
                     <span>11</span>
 </a></li>
             </ul>
@@ -248,19 +261,21 @@ can see its configuration files at
         </section>
 </div>
 </article>
+                    </div>
+                    <div class="span1"></div>
                 </div>
-                <div class="span1"></div>
             </div>
         </div>
-        <div id="push"></div>
-    </div>
 <footer>
-<div id="footer">
-    <ul class="footer-content">
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
-    </ul>
-</div>
-</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
             function validateForm(query)
@@ -272,5 +287,5 @@ can see its configuration files at
     
     </body>
     <!-- Theme: Elegant built for Pelican
-    License : http://oncrashreboot.com/pelican-elegant -->
+        License : MIT -->
 </html>

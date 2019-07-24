@@ -40,12 +40,12 @@
 &lt;p&gt;注意&lt;code&gt;__ror__&lt;/code&gt;和&lt;code&gt;__or__&lt;/code&gt;的区别，重载&lt;code&gt;__ror__&lt;/code&gt;是因为我们需要数据是从&lt;code&gt;|&lt;/code&gt;的左边对象传给右边对象，比如&lt;code&gt;x | y&lt;/code&gt;等于&lt;code&gt;y.__ror__(x)&lt;/code&gt;, 而&lt;code&gt;__or__&lt;/code&gt;则相反, 它等于&lt;code&gt;x.__or__(y)&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Pipe的用法示例：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;@Pipe
-def to_str(data, sep=','):
-    return sep.join(map(str, data))
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;@&lt;span class="nv"&gt;Pipe&lt;/span&gt;
+&lt;span class="nv"&gt;def&lt;/span&gt; &lt;span class="nv"&gt;to_str&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;data&lt;/span&gt;, &lt;span class="nv"&gt;sep&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;,&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;:
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nv"&gt;sep&lt;/span&gt;.&lt;span class="nv"&gt;join&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;map&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;str&lt;/span&gt;, &lt;span class="nv"&gt;data&lt;/span&gt;&lt;span class="ss"&gt;))&lt;/span&gt;
 
-print [1,2,3] | to_str   # output is '1,2,3'
-print [4,5,6] | to_str('#')  # output is '1#2#3'
+&lt;span class="nv"&gt;print&lt;/span&gt; [&lt;span class="mi"&gt;1&lt;/span&gt;,&lt;span class="mi"&gt;2&lt;/span&gt;,&lt;span class="mi"&gt;3&lt;/span&gt;] &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="nv"&gt;to_str&lt;/span&gt;   # &lt;span class="nv"&gt;output&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;1,2,3&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;
+&lt;span class="nv"&gt;print&lt;/span&gt; [&lt;span class="mi"&gt;4&lt;/span&gt;,&lt;span class="mi"&gt;5&lt;/span&gt;,&lt;span class="mi"&gt;6&lt;/span&gt;] &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="nv"&gt;to_str&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;#&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;  # &lt;span class="nv"&gt;output&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;1#2#3&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;这里的&lt;code&gt;to_str('#')&lt;/code&gt;会调用&lt;code&gt;Pipe.__call__()&lt;/code&gt;, 实现&lt;code&gt;__call__&lt;/code&gt;需要注意几点：
 1. 定义的时候带上&lt;code&gt;(*args, **kwargs)&lt;/code&gt;来接受&lt;code&gt;to_str&lt;/code&gt;的参数。
@@ -86,34 +86,34 @@ print [4,5,6] | to_str('#')  # output is '1#2#3'
     &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;iterable&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;我们拿《The Zen of Python》来试试效果：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;"""&lt;/span&gt;
-&lt;span class="s"&gt;The Zen of Python, by Tim Peters&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;text&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"""&lt;/span&gt;
+&lt;span class="nv"&gt;The&lt;/span&gt; &lt;span class="nv"&gt;Zen&lt;/span&gt; &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="nv"&gt;Python&lt;/span&gt;, &lt;span class="nv"&gt;by&lt;/span&gt; &lt;span class="nv"&gt;Tim&lt;/span&gt; &lt;span class="nv"&gt;Peters&lt;/span&gt;
 
-&lt;span class="s"&gt;Beautiful is better than ugly.&lt;/span&gt;
-&lt;span class="s"&gt;Explicit is better than implicit.&lt;/span&gt;
-&lt;span class="s"&gt;Simple is better than complex.&lt;/span&gt;
-&lt;span class="s"&gt;Complex is better than complicated.&lt;/span&gt;
-&lt;span class="s"&gt;Flat is better than nested.&lt;/span&gt;
-&lt;span class="s"&gt;Sparse is better than dense.&lt;/span&gt;
-&lt;span class="s"&gt;Readability counts.&lt;/span&gt;
-&lt;span class="s"&gt;Special cases aren't special enough to break the rules.&lt;/span&gt;
-&lt;span class="s"&gt;Although practicality beats purity.&lt;/span&gt;
-&lt;span class="s"&gt;Errors should never pass silently.&lt;/span&gt;
-&lt;span class="s"&gt;Unless explicitly silenced.&lt;/span&gt;
-&lt;span class="s"&gt;In the face of ambiguity, refuse the temptation to guess.&lt;/span&gt;
-&lt;span class="s"&gt;There should be one-- and preferably only one --obvious way to do it.&lt;/span&gt;
-&lt;span class="s"&gt;Although that way may not be obvious at first unless you're Dutch.&lt;/span&gt;
-&lt;span class="s"&gt;Now is better than never.&lt;/span&gt;
-&lt;span class="s"&gt;Although never is often better than *right* now.&lt;/span&gt;
-&lt;span class="s"&gt;If the implementation is hard to explain, it's a bad idea.&lt;/span&gt;
-&lt;span class="s"&gt;If the implementation is easy to explain, it may be a good idea.&lt;/span&gt;
-&lt;span class="s"&gt;Namespaces are one honking great idea -- let's do more of those!&lt;/span&gt;
-&lt;span class="s"&gt;"""&lt;/span&gt;
+&lt;span class="nv"&gt;Beautiful&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;better&lt;/span&gt; &lt;span class="nv"&gt;than&lt;/span&gt; &lt;span class="nv"&gt;ugly&lt;/span&gt;.
+&lt;span class="nv"&gt;Explicit&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;better&lt;/span&gt; &lt;span class="nv"&gt;than&lt;/span&gt; &lt;span class="nv"&gt;implicit&lt;/span&gt;.
+&lt;span class="nv"&gt;Simple&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;better&lt;/span&gt; &lt;span class="nv"&gt;than&lt;/span&gt; &lt;span class="nv"&gt;complex&lt;/span&gt;.
+&lt;span class="nv"&gt;Complex&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;better&lt;/span&gt; &lt;span class="nv"&gt;than&lt;/span&gt; &lt;span class="nv"&gt;complicated&lt;/span&gt;.
+&lt;span class="nv"&gt;Flat&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;better&lt;/span&gt; &lt;span class="nv"&gt;than&lt;/span&gt; &lt;span class="nv"&gt;nested&lt;/span&gt;.
+&lt;span class="nv"&gt;Sparse&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;better&lt;/span&gt; &lt;span class="nv"&gt;than&lt;/span&gt; &lt;span class="nv"&gt;dense&lt;/span&gt;.
+&lt;span class="nv"&gt;Readability&lt;/span&gt; &lt;span class="nv"&gt;counts&lt;/span&gt;.
+&lt;span class="nv"&gt;Special&lt;/span&gt; &lt;span class="nv"&gt;cases&lt;/span&gt; &lt;span class="nv"&gt;aren&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;t special enough to break the rules.&lt;/span&gt;
+&lt;span class="nv"&gt;Although&lt;/span&gt; &lt;span class="nv"&gt;practicality&lt;/span&gt; &lt;span class="nv"&gt;beats&lt;/span&gt; &lt;span class="nv"&gt;purity&lt;/span&gt;.
+&lt;span class="nv"&gt;Errors&lt;/span&gt; &lt;span class="nv"&gt;should&lt;/span&gt; &lt;span class="nv"&gt;never&lt;/span&gt; &lt;span class="nv"&gt;pass&lt;/span&gt; &lt;span class="nv"&gt;silently&lt;/span&gt;.
+&lt;span class="nv"&gt;Unless&lt;/span&gt; &lt;span class="nv"&gt;explicitly&lt;/span&gt; &lt;span class="nv"&gt;silenced&lt;/span&gt;.
+&lt;span class="nv"&gt;In&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;face&lt;/span&gt; &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="nv"&gt;ambiguity&lt;/span&gt;, &lt;span class="nv"&gt;refuse&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;temptation&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;guess&lt;/span&gt;.
+&lt;span class="nv"&gt;There&lt;/span&gt; &lt;span class="nv"&gt;should&lt;/span&gt; &lt;span class="nv"&gt;be&lt;/span&gt; &lt;span class="nv"&gt;one&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt; &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;preferably&lt;/span&gt; &lt;span class="nv"&gt;only&lt;/span&gt; &lt;span class="nv"&gt;one&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;obvious&lt;/span&gt; &lt;span class="nv"&gt;way&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="nv"&gt;it&lt;/span&gt;.
+&lt;span class="nv"&gt;Although&lt;/span&gt; &lt;span class="nv"&gt;that&lt;/span&gt; &lt;span class="nv"&gt;way&lt;/span&gt; &lt;span class="nv"&gt;may&lt;/span&gt; &lt;span class="nv"&gt;not&lt;/span&gt; &lt;span class="nv"&gt;be&lt;/span&gt; &lt;span class="nv"&gt;obvious&lt;/span&gt; &lt;span class="nv"&gt;at&lt;/span&gt; &lt;span class="nv"&gt;first&lt;/span&gt; &lt;span class="nv"&gt;unless&lt;/span&gt; &lt;span class="nv"&gt;you&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;re Dutch.&lt;/span&gt;
+&lt;span class="nv"&gt;Now&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;better&lt;/span&gt; &lt;span class="nv"&gt;than&lt;/span&gt; &lt;span class="nv"&gt;never&lt;/span&gt;.
+&lt;span class="nv"&gt;Although&lt;/span&gt; &lt;span class="nv"&gt;never&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;often&lt;/span&gt; &lt;span class="nv"&gt;better&lt;/span&gt; &lt;span class="nv"&gt;than&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nv"&gt;right&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nv"&gt;now&lt;/span&gt;.
+&lt;span class="k"&gt;If&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;implementation&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;hard&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;explain&lt;/span&gt;, &lt;span class="nv"&gt;it&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;s a bad idea.&lt;/span&gt;
+&lt;span class="k"&gt;If&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;implementation&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;easy&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;explain&lt;/span&gt;, &lt;span class="nv"&gt;it&lt;/span&gt; &lt;span class="nv"&gt;may&lt;/span&gt; &lt;span class="nv"&gt;be&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;good&lt;/span&gt; &lt;span class="nv"&gt;idea&lt;/span&gt;.
+&lt;span class="nv"&gt;Namespaces&lt;/span&gt; &lt;span class="nv"&gt;are&lt;/span&gt; &lt;span class="nv"&gt;one&lt;/span&gt; &lt;span class="nv"&gt;honking&lt;/span&gt; &lt;span class="nv"&gt;great&lt;/span&gt; &lt;span class="nv"&gt;idea&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt; &lt;span class="nv"&gt;let&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;s do more of those!&lt;/span&gt;
+&lt;span class="s2"&gt;"""&lt;/span&gt;
 
-&lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="n"&gt;split_to_words&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="n"&gt;groupby&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="n"&gt;mapping&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="n"&gt;sort&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;reverse&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="err"&gt;|&lt;/span&gt; &lt;span class="n"&gt;echo&lt;/span&gt;
+&lt;span class="nv"&gt;text&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="nv"&gt;split_to_words&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="nv"&gt;groupby&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;lambda&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;: &lt;span class="nv"&gt;x&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="nv"&gt;mapping&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;lambda&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;: &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;x&lt;/span&gt;[&lt;span class="mi"&gt;0&lt;/span&gt;], &lt;span class="nv"&gt;x&lt;/span&gt;[&lt;span class="mi"&gt;1&lt;/span&gt;] &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="nv"&gt;count&lt;/span&gt;&lt;span class="ss"&gt;))&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="nv"&gt;sort&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;lambda&lt;/span&gt; &lt;span class="nv"&gt;x&lt;/span&gt;: &lt;span class="nv"&gt;x&lt;/span&gt;[&lt;span class="mi"&gt;1&lt;/span&gt;], &lt;span class="nv"&gt;reverse&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;True&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="nv"&gt;echo&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;输出如下:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[('is', 10), ('better', 8), ('than', 8), ('the', 5), ('to', 5), ('Although', 3), ('be', 3), ('of', 3), ('If', 2), ('a', 2), ('do', 2), ('explain,', 2), ('idea.', 2), ('implementation', 2), ('may', 2), ('never', 2), ('one', 2), ('should', 2), ('way', 2), ('*right*', 1), ('--', 1), ('--obvious', 1), ('Beautiful', 1), ('Complex', 1), ('Dutch.', 1), ('Errors', 1), ('Explicit', 1), ('Flat', 1), ('In', 1), ('Namespaces', 1), ('Now', 1), ('Peters', 1), ('Python,', 1), ('Readability', 1), ('Simple', 1), ('Sparse', 1), ('Special', 1), ('The', 1), ('There', 1), ('Tim', 1), ('Unless', 1), ('Zen', 1), ('ambiguity,', 1), ('and', 1), ('are', 1), ("aren't", 1), ('at', 1), ('bad', 1), ('beats', 1), ('break', 1), ('by', 1), ('cases', 1), ('complex.', 1), ('complicated.', 1), ('counts.', 1), ('dense.', 1), ('easy', 1), ('enough', 1), ('explicitly', 1), ('face', 1), ('first', 1), ('good', 1), ('great', 1), ('guess.', 1), ('hard', 1), ('honking', 1), ('idea', 1), ('implicit.', 1), ('it', 1), ("it's", 1), ('it.', 1), ("let's", 1), ('more', 1), ('nested.', 1), ('never.', 1), ('not', 1), ('now.', 1), ('obvious', 1), ('often', 1), ('one--', 1), ('only', 1), ('pass', 1), ('practicality', 1), ('preferably', 1), ('purity.', 1), ('refuse', 1), ('rules.', 1), ('silenced.', 1), ('silently.', 1), ('special', 1), ('temptation', 1), ('that', 1), ('those!', 1), ('ugly.', 1), ('unless', 1), ("you're", 1)]
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;is&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;better&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;than&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;the&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;to&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;Although&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;be&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;of&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;If&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;a&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;do&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;explain,&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;idea.&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;implementation&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;may&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;never&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;one&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;should&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;way&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;*right*&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;--&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;--obvious&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;Beautiful&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;Complex&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;Dutch.&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;Errors&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;Explicit&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;Flat&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;In&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;Namespaces&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;Now&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;Peters&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;Python,&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;Readability&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;Simple&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;Sparse&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;Special&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;The&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;There&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;Tim&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;Unless&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;Zen&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;ambiguity,&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;and&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;are&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="s"&gt;aren't&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;at&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;bad&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;beats&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;break&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;by&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;cases&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;complex.&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;complicated.&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;counts.&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;dense.&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;easy&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;enough&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;explicitly&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;face&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;first&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;good&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;great&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;guess.&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;hard&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;honking&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;idea&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;implicit.&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;it&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="s"&gt;it's&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;it.&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="s"&gt;let's&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;more&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;nested.&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;never.&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;not&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;now.&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;obvious&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;often&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;one--&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;only&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;pass&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;practicality&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;preferably&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;purity.&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;refuse&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;rules.&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;silenced.&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;silently.&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;special&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;temptation&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;that&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;those!&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;ugly.&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;unless&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="s"&gt;you're&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;, &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;]
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Works like a charm!&lt;/p&gt;
 &lt;h1 id="_1"&gt;参考&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
@@ -124,17 +124,17 @@ print [4,5,6] | to_str('#')  # output is '1#2#3'
 &lt;/ul&gt;</content><category term="python"></category><category term="function programming"></category></entry><entry><title>perl &amp; cgi practice</title><link href="https://acefei.github.io/perl-cgi-practice.html" rel="alternate"></link><published>2018-02-23T17:06:00+08:00</published><updated>2018-02-23T17:06:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2018-02-23:/perl-cgi-practice.html</id><summary type="html">
 &lt;p&gt;This article is inspired from &lt;a href="http://cgi.csc.liv.ac.uk/~ullrich/COMP284/assignment1N-2017-18.html"&gt;an practical assignment &lt;/a&gt;, as well as I have prior knowledge of perl script, so just for fun to write this.&lt;/p&gt;
 &lt;h1 id="install-and-configure-software"&gt;Install and configure software&lt;a class="headerlink" href="#install-and-configure-software" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install -y httpd perl perl-CGI
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;yum&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;httpd&lt;/span&gt; &lt;span class="n"&gt;perl&lt;/span&gt; &lt;span class="n"&gt;perl&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;CGI&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1 id="modify-httpdconf"&gt;Modify httpd.conf&lt;a class="headerlink" href="#modify-httpdconf" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="load-cgi-module"&gt;Load cgi module&lt;a class="headerlink" href="#load-cgi-module" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;find /etc/httpd/modules/ -iname "*cgi*"&lt;/code&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;Then we …&lt;/p&gt;</summary><content type="html">
+&lt;p&gt;Then …&lt;/p&gt;</summary><content type="html">
 &lt;p&gt;This article is inspired from &lt;a href="http://cgi.csc.liv.ac.uk/~ullrich/COMP284/assignment1N-2017-18.html"&gt;an practical assignment &lt;/a&gt;, as well as I have prior knowledge of perl script, so just for fun to write this.&lt;/p&gt;
 &lt;h1 id="install-and-configure-software"&gt;Install and configure software&lt;a class="headerlink" href="#install-and-configure-software" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install -y httpd perl perl-CGI
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;yum&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="n"&gt;httpd&lt;/span&gt; &lt;span class="n"&gt;perl&lt;/span&gt; &lt;span class="n"&gt;perl&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;CGI&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1 id="modify-httpdconf"&gt;Modify httpd.conf&lt;a class="headerlink" href="#modify-httpdconf" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="load-cgi-module"&gt;Load cgi module&lt;a class="headerlink" href="#load-cgi-module" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
@@ -237,7 +237,7 @@ Content-Type: text/html; charset=ISO-8859-1
 &lt;span class="nt"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now restart httpd like so:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo systemctl restart httpd.service
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;systemctl&lt;/span&gt; &lt;span class="k"&gt;restart&lt;/span&gt; &lt;span class="n"&gt;httpd&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;service&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Finally, open the broswer with the url:
 &lt;code&gt;http://localhost/cgi-bin/simple.pl&lt;/code&gt;&lt;/p&gt;
@@ -371,48 +371,48 @@ Content-Type: text/html; charset=ISO-8859-1
 &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"http://httpbin.org/ip"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;proxies&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;proxies&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;output:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;--No Proxy--
-{
-  "origin": "36.152.29.163"
-}
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;--No Proxy--&lt;/span&gt;
+&lt;span class="err"&gt;{&lt;/span&gt;
+  &lt;span class="ss"&gt;"origin"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="ss"&gt;"36.152.29.163"&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
 
---Proxy 182.121.201.9:9999--
-{
-  "origin": "36.152.29.163, 182.121.204.0"
-}
+&lt;span class="c1"&gt;--Proxy 182.121.201.9:9999--&lt;/span&gt;
+&lt;span class="err"&gt;{&lt;/span&gt;
+  &lt;span class="ss"&gt;"origin"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="ss"&gt;"36.152.29.163, 182.121.204.0"&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;可以看出来origin的值插入了一条新的ip，证明设置proxy生效了。&lt;/p&gt;
 &lt;p&gt;但是我们要注意，上面使用的代理并不是高匿的，所以从origin里面还是能找到机器的真实ip(仍然会被反爬)。
 高匿ip的输出应该是以下结果：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;--No Proxy--
-{
-  "origin": "36.152.29.163"
-}
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;--No Proxy--&lt;/span&gt;
+&lt;span class="err"&gt;{&lt;/span&gt;
+  &lt;span class="ss"&gt;"origin"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="ss"&gt;"36.152.29.163"&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
 
---Proxy 113.218.218.86:808--
-{
-  "origin": "113.218.218.86"
-}
+&lt;span class="c1"&gt;--Proxy 113.218.218.86:808--&lt;/span&gt;
+&lt;span class="err"&gt;{&lt;/span&gt;
+  &lt;span class="ss"&gt;"origin"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="ss"&gt;"113.218.218.86"&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="phantomjs-with-proxy"&gt;phantomjs with proxy&lt;a class="headerlink" href="#phantomjs-with-proxy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;编辑httpbin_test.js，&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;"use strict";
-var page = require('webpage').create();
-page.open('http://httpbin.org/ip', function (status) {
-    if (status !== 'success') {
-        console.log('Unable to access network');
-    } else {
-        console.log(page.content);
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="s"&gt;use strict&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;var&lt;/span&gt; &lt;span class="nv"&gt;page&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;require&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;webpage&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;.&lt;span class="nv"&gt;create&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
+&lt;span class="nv"&gt;page&lt;/span&gt;.&lt;span class="nv"&gt;open&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;http://httpbin.org/ip&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="nv"&gt;function&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;status&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt; {
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;status&lt;/span&gt; &lt;span class="o"&gt;!==&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;success&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt; {
+        &lt;span class="nv"&gt;console&lt;/span&gt;.&lt;span class="nv"&gt;log&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;Unable to access network&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
+    } &lt;span class="k"&gt;else&lt;/span&gt; {
+        &lt;span class="nv"&gt;console&lt;/span&gt;.&lt;span class="nv"&gt;log&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;page&lt;/span&gt;.&lt;span class="nv"&gt;content&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
     }
-    phantom.exit();
-});
+    &lt;span class="nv"&gt;phantom&lt;/span&gt;.&lt;span class="k"&gt;exit&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
+}&lt;span class="ss"&gt;)&lt;/span&gt;&lt;span class="c1"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;执行phantomjs命令，&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ phantomjs --proxy=182.121.201.9:9999 httpbin_test.js
-&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&amp;lt;pre&lt;/span&gt; &lt;span class="na"&gt;style=&lt;/span&gt;&lt;span class="s"&gt;"word-wrap: break-word; white-space: pre-wrap;"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;{
-  "origin": "36.152.29.163, 182.121.204.0"
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nv"&gt;phantomjs&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;proxy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;182&lt;/span&gt;.&lt;span class="mi"&gt;121&lt;/span&gt;.&lt;span class="mi"&gt;201&lt;/span&gt;.&lt;span class="mi"&gt;9&lt;/span&gt;:&lt;span class="mi"&gt;9999&lt;/span&gt; &lt;span class="nv"&gt;httpbin_test&lt;/span&gt;.&lt;span class="nv"&gt;js&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;html&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;head&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nv"&gt;head&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;body&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;pre&lt;/span&gt; &lt;span class="nv"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="s"&gt;word-wrap: break-word; white-space: pre-wrap;&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;{
+  &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="s"&gt;origin&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;: &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="s"&gt;36.152.29.163, 182.121.204.0&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
 }
-&lt;span class="nt"&gt;&amp;lt;/pre&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nv"&gt;pre&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nv"&gt;body&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nv"&gt;html&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Ok，proxy设置成功。&lt;/p&gt;
 &lt;h2 id="selenium-phantomjs-with-proxy"&gt;selenium + phantomjs with proxy&lt;a class="headerlink" href="#selenium-phantomjs-with-proxy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
@@ -437,11 +437,11 @@ page.open('http://httpbin.org/ip', function (status) {
 &lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;output：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;add proxy182.121.201.9:9999
-&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&amp;lt;pre&lt;/span&gt; &lt;span class="na"&gt;style=&lt;/span&gt;&lt;span class="s"&gt;"word-wrap: break-word; white-space: pre-wrap;"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;{
-  "origin": "36.152.29.163"
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;add&lt;/span&gt; &lt;span class="nv"&gt;proxy182&lt;/span&gt;.&lt;span class="mi"&gt;121&lt;/span&gt;.&lt;span class="mi"&gt;201&lt;/span&gt;.&lt;span class="mi"&gt;9&lt;/span&gt;:&lt;span class="mi"&gt;9999&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;html&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;head&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nv"&gt;head&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;body&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;pre&lt;/span&gt; &lt;span class="nv"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="s"&gt;word-wrap: break-word; white-space: pre-wrap;&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;{
+  &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="s"&gt;origin&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;: &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="s"&gt;36.152.29.163&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
 }
-&lt;span class="nt"&gt;&amp;lt;/pre&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nv"&gt;pre&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nv"&gt;body&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nv"&gt;html&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;奇怪，这里发现proxy并没有生效，不知道是不是我的phantomjs 1.9.7版本的bug。&lt;/p&gt;
 &lt;p&gt;那换个方案试试，&lt;/p&gt;
@@ -456,52 +456,52 @@ page.open('http://httpbin.org/ip', function (status) {
 &lt;span class="n"&gt;driver&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;close&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;output：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;html&amp;gt;&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;&amp;lt;body&amp;gt;&amp;lt;pre&lt;/span&gt; &lt;span class="na"&gt;style=&lt;/span&gt;&lt;span class="s"&gt;"word-wrap: break-word; white-space: pre-wrap;"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;{
-  "origin": "36.152.29.163, 182.121.204.0"
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;html&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;head&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nv"&gt;head&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;body&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;pre&lt;/span&gt; &lt;span class="nv"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="s"&gt;word-wrap: break-word; white-space: pre-wrap;&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;{
+  &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="s"&gt;origin&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;: &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="s"&gt;36.152.29.163, 182.121.204.0&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;
 }
-&lt;span class="nt"&gt;&amp;lt;/pre&amp;gt;&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nv"&gt;pre&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nv"&gt;body&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="nv"&gt;html&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Ok, proxy设置成功了。&lt;/p&gt;
 &lt;p&gt;可以看出来，通过service_args传递参数其实跟phantomjs命令行传参的是一样效果。&lt;/p&gt;
 &lt;p&gt;那么，如果想使用带auth的代理，只要加上对应的option就好了，很方便。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$phantomjs -h
-Usage:
-   phantomjs [switchs] [options] [script] [argument [argument [...]]]
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$&lt;span class="nv"&gt;phantomjs&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;h&lt;/span&gt;
+&lt;span class="nv"&gt;Usage&lt;/span&gt;:
+   &lt;span class="nv"&gt;phantomjs&lt;/span&gt; [&lt;span class="nv"&gt;switchs&lt;/span&gt;] [&lt;span class="nv"&gt;options&lt;/span&gt;] [&lt;span class="nv"&gt;script&lt;/span&gt;] [&lt;span class="nv"&gt;argument&lt;/span&gt; [&lt;span class="nv"&gt;argument&lt;/span&gt; [...]]]
 
-Options:
-  --cookies-file=&amp;lt;val&amp;gt;                 Sets the file name to store the persistent cookies
-  --config=&amp;lt;val&amp;gt;                       Specifies JSON-formatted configuration file
-  --debug=&amp;lt;val&amp;gt;                        Prints additional warning and debug message: 'true' or 'false' (default)
-  --disk-cache=&amp;lt;val&amp;gt;                   Enables disk cache: 'true' or 'false' (default)
-  --ignore-ssl-errors=&amp;lt;val&amp;gt;            Ignores SSL errors (expired/self-signed certificate errors): 'true' or 'false' (default)
-  --load-images=&amp;lt;val&amp;gt;                  Loads all inlined images: 'true' (default) or 'false'
-  --local-storage-path=&amp;lt;val&amp;gt;           Specifies the location for offline local storage
-  --local-storage-quota=&amp;lt;val&amp;gt;          Sets the maximum size of the offline local storage (in KB)
-  --local-to-remote-url-access=&amp;lt;val&amp;gt;   Allows local content to access remote URL: 'true' or 'false' (default)
-  --max-disk-cache-size=&amp;lt;val&amp;gt;          Limits the size of the disk cache (in KB)
-  --output-encoding=&amp;lt;val&amp;gt;              Sets the encoding for the terminal output, default is 'utf8'
-  --remote-debugger-port=&amp;lt;val&amp;gt;         Starts the script in a debug harness and listens on the specified port
-  --remote-debugger-autorun=&amp;lt;val&amp;gt;      Runs the script in the debugger immediately: 'true' or 'false' (default)
-  --proxy=&amp;lt;val&amp;gt;                        Sets the proxy server, e.g. '--proxy=http://proxy.company.com:8080'
-  --proxy-auth=&amp;lt;val&amp;gt;                   Provides authentication information for the proxy, e.g. ''-proxy-auth=username:password'
-  --proxy-type=&amp;lt;val&amp;gt;                   Specifies the proxy type, 'http' (default), 'none' (disable completely), or 'socks5'
-  --script-encoding=&amp;lt;val&amp;gt;              Sets the encoding used for the starting script, default is 'utf8'
-  --web-security=&amp;lt;val&amp;gt;                 Enables web security, 'true' (default) or 'false'
-  --ssl-protocol=&amp;lt;val&amp;gt;                 Sets the SSL protocol (supported protocols: 'SSLv3' (default), 'SSLv2', 'TLSv1', 'any')
-  --ssl-certificates-path=&amp;lt;val&amp;gt;        Sets the location for custom CA certificates (if none set, uses system default)
-  --webdriver=&amp;lt;val&amp;gt;                    Starts in 'Remote WebDriver mode' (embedded GhostDriver): '[[&amp;lt;IP&amp;gt;:]&amp;lt;PORT&amp;gt;]' (default '127.0.0.1:8910')
-  --webdriver-logfile=&amp;lt;val&amp;gt;            File where to write the WebDriver's Log (default 'none') (NOTE: needs '--webdriver')
-  --webdriver-loglevel=&amp;lt;val&amp;gt;           WebDriver Logging Level: (supported: 'ERROR', 'WARN', 'INFO', 'DEBUG') (default 'INFO') (NOTE: needs '--webdriver')
-  --webdriver-selenium-grid-hub=&amp;lt;val&amp;gt;  URL to the Selenium Grid HUB: 'URL_TO_HUB' (default 'none') (NOTE: needs '--webdriver')
-  -w,--wd                              Equivalent to '--webdriver' option above
-  -h,--help                            Shows this message and quits
-  -v,--version                         Prints out PhantomJS version
+&lt;span class="nv"&gt;Options&lt;/span&gt;:
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;cookies&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;                 &lt;span class="nv"&gt;Sets&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;file&lt;/span&gt; &lt;span class="nv"&gt;name&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;store&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;persistent&lt;/span&gt; &lt;span class="nv"&gt;cookies&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;config&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;                       &lt;span class="nv"&gt;Specifies&lt;/span&gt; &lt;span class="nv"&gt;JSON&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;formatted&lt;/span&gt; &lt;span class="nv"&gt;configuration&lt;/span&gt; &lt;span class="nv"&gt;file&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;debug&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;                        &lt;span class="nv"&gt;Prints&lt;/span&gt; &lt;span class="nv"&gt;additional&lt;/span&gt; &lt;span class="nv"&gt;warning&lt;/span&gt; &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;debug&lt;/span&gt; &lt;span class="nv"&gt;message&lt;/span&gt;: &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;true&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt; &lt;span class="nv"&gt;or&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;false&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;default&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;disk&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;cache&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;                   &lt;span class="nv"&gt;Enables&lt;/span&gt; &lt;span class="nv"&gt;disk&lt;/span&gt; &lt;span class="nv"&gt;cache&lt;/span&gt;: &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;true&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt; &lt;span class="nv"&gt;or&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;false&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;default&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;ignore&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;ssl&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;errors&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;            &lt;span class="nv"&gt;Ignores&lt;/span&gt; &lt;span class="nv"&gt;SSL&lt;/span&gt; &lt;span class="nv"&gt;errors&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;expired&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;self&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;signed&lt;/span&gt; &lt;span class="nv"&gt;certificate&lt;/span&gt; &lt;span class="nv"&gt;errors&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;: &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;true&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt; &lt;span class="nv"&gt;or&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;false&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;default&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;load&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;images&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;                  &lt;span class="nv"&gt;Loads&lt;/span&gt; &lt;span class="nv"&gt;all&lt;/span&gt; &lt;span class="nv"&gt;inlined&lt;/span&gt; &lt;span class="nv"&gt;images&lt;/span&gt;: &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;true&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;default&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;or&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;false&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;local&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;storage&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;           &lt;span class="nv"&gt;Specifies&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;location&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;offline&lt;/span&gt; &lt;span class="nv"&gt;local&lt;/span&gt; &lt;span class="nv"&gt;storage&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;local&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;storage&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;quota&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;          &lt;span class="nv"&gt;Sets&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;maximum&lt;/span&gt; &lt;span class="nv"&gt;size&lt;/span&gt; &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;offline&lt;/span&gt; &lt;span class="nv"&gt;local&lt;/span&gt; &lt;span class="nv"&gt;storage&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;KB&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;local&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;to&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;remote&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;url&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;access&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;   &lt;span class="nv"&gt;Allows&lt;/span&gt; &lt;span class="nv"&gt;local&lt;/span&gt; &lt;span class="nv"&gt;content&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;access&lt;/span&gt; &lt;span class="nv"&gt;remote&lt;/span&gt; &lt;span class="nv"&gt;URL&lt;/span&gt;: &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;true&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt; &lt;span class="nv"&gt;or&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;false&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;default&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;disk&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;cache&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;          &lt;span class="nv"&gt;Limits&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;size&lt;/span&gt; &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;disk&lt;/span&gt; &lt;span class="nv"&gt;cache&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;KB&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;output&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;              &lt;span class="nv"&gt;Sets&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;encoding&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;terminal&lt;/span&gt; &lt;span class="nv"&gt;output&lt;/span&gt;, &lt;span class="nv"&gt;default&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;utf8&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;remote&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;debugger&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;port&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;         &lt;span class="nv"&gt;Starts&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;script&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;debug&lt;/span&gt; &lt;span class="nv"&gt;harness&lt;/span&gt; &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;listens&lt;/span&gt; &lt;span class="nv"&gt;on&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;specified&lt;/span&gt; &lt;span class="nv"&gt;port&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;remote&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;debugger&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;autorun&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;      &lt;span class="nv"&gt;Runs&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;script&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;debugger&lt;/span&gt; &lt;span class="nv"&gt;immediately&lt;/span&gt;: &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;true&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt; &lt;span class="nv"&gt;or&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;false&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;default&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;proxy&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;                        &lt;span class="nv"&gt;Sets&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;proxy&lt;/span&gt; &lt;span class="nv"&gt;server&lt;/span&gt;, &lt;span class="nv"&gt;e&lt;/span&gt;.&lt;span class="nv"&gt;g&lt;/span&gt;. &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;--proxy=http://proxy.company.com:8080&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;proxy&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;auth&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;                   &lt;span class="nv"&gt;Provides&lt;/span&gt; &lt;span class="nv"&gt;authentication&lt;/span&gt; &lt;span class="nv"&gt;information&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;proxy&lt;/span&gt;, &lt;span class="nv"&gt;e&lt;/span&gt;.&lt;span class="nv"&gt;g&lt;/span&gt;. &lt;span class="s1"&gt;''&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;proxy&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;auth&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;username&lt;/span&gt;:&lt;span class="nv"&gt;password&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;proxy&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;                   &lt;span class="nv"&gt;Specifies&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;proxy&lt;/span&gt; &lt;span class="nv"&gt;type&lt;/span&gt;, &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;http&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;default&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;none&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;disable&lt;/span&gt; &lt;span class="nv"&gt;completely&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="nv"&gt;or&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;socks5&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;script&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;              &lt;span class="nv"&gt;Sets&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;encoding&lt;/span&gt; &lt;span class="nv"&gt;used&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;starting&lt;/span&gt; &lt;span class="nv"&gt;script&lt;/span&gt;, &lt;span class="nv"&gt;default&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;utf8&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;web&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;security&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;                 &lt;span class="nv"&gt;Enables&lt;/span&gt; &lt;span class="nv"&gt;web&lt;/span&gt; &lt;span class="nv"&gt;security&lt;/span&gt;, &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;true&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;default&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;or&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;false&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;ssl&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;protocol&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;                 &lt;span class="nv"&gt;Sets&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;SSL&lt;/span&gt; &lt;span class="nv"&gt;protocol&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;supported&lt;/span&gt; &lt;span class="nv"&gt;protocols&lt;/span&gt;: &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;SSLv3&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;default&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;, &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;SSLv2&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;TLSv1&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;any&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;ssl&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;certificates&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;        &lt;span class="nv"&gt;Sets&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;location&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;custom&lt;/span&gt; &lt;span class="nv"&gt;CA&lt;/span&gt; &lt;span class="nv"&gt;certificates&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nv"&gt;none&lt;/span&gt; &lt;span class="nv"&gt;set&lt;/span&gt;, &lt;span class="nv"&gt;uses&lt;/span&gt; &lt;span class="nv"&gt;system&lt;/span&gt; &lt;span class="nv"&gt;default&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;webdriver&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;                    &lt;span class="nv"&gt;Starts&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;Remote WebDriver mode&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;embedded&lt;/span&gt; &lt;span class="nv"&gt;GhostDriver&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;: &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;[[&amp;lt;IP&amp;gt;:]&amp;lt;PORT&amp;gt;]&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;default&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;127.0.0.1:8910&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;webdriver&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;logfile&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;            &lt;span class="nv"&gt;File&lt;/span&gt; &lt;span class="nv"&gt;where&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;write&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;WebDriver&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;s Log (default &lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="nv"&gt;none&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;) (NOTE: needs &lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;webdriver&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;webdriver&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;loglevel&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;           &lt;span class="nv"&gt;WebDriver&lt;/span&gt; &lt;span class="nv"&gt;Logging&lt;/span&gt; &lt;span class="nv"&gt;Level&lt;/span&gt;: &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;supported&lt;/span&gt;: &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;ERROR&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;WARN&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;INFO&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;, &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;DEBUG&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;default&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;INFO&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;NOTE&lt;/span&gt;: &lt;span class="nv"&gt;needs&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;--webdriver&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;webdriver&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;selenium&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;grid&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;hub&lt;/span&gt;&lt;span class="o"&gt;=&amp;lt;&lt;/span&gt;&lt;span class="nv"&gt;val&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;  &lt;span class="nv"&gt;URL&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;Selenium&lt;/span&gt; &lt;span class="nv"&gt;Grid&lt;/span&gt; &lt;span class="nv"&gt;HUB&lt;/span&gt;: &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;URL_TO_HUB&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;default&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;none&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;NOTE&lt;/span&gt;: &lt;span class="nv"&gt;needs&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;--webdriver&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;w&lt;/span&gt;,&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;wd&lt;/span&gt;                              &lt;span class="nv"&gt;Equivalent&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;--webdriver&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt; &lt;span class="nv"&gt;option&lt;/span&gt; &lt;span class="nv"&gt;above&lt;/span&gt;
+  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;h&lt;/span&gt;,&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;help&lt;/span&gt;                            &lt;span class="nv"&gt;Shows&lt;/span&gt; &lt;span class="nv"&gt;this&lt;/span&gt; &lt;span class="nv"&gt;message&lt;/span&gt; &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;quits&lt;/span&gt;
+  &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;v&lt;/span&gt;,&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="nv"&gt;version&lt;/span&gt;                         &lt;span class="nv"&gt;Prints&lt;/span&gt; &lt;span class="nv"&gt;out&lt;/span&gt; &lt;span class="nv"&gt;PhantomJS&lt;/span&gt; &lt;span class="nv"&gt;version&lt;/span&gt;
 
-Any of the options that accept boolean values ('true'/'false') can also accept 'yes'/'no'.
+&lt;span class="nv"&gt;Any&lt;/span&gt; &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;options&lt;/span&gt; &lt;span class="nv"&gt;that&lt;/span&gt; &lt;span class="nv"&gt;accept&lt;/span&gt; &lt;span class="nv"&gt;boolean&lt;/span&gt; &lt;span class="nv"&gt;values&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;true&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;false&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;can&lt;/span&gt; &lt;span class="nv"&gt;also&lt;/span&gt; &lt;span class="nv"&gt;accept&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;yes&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;no&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;.
 
-Without any argument, PhantomJS will launch in interactive mode (REPL).
+&lt;span class="nv"&gt;Without&lt;/span&gt; &lt;span class="nv"&gt;any&lt;/span&gt; &lt;span class="nv"&gt;argument&lt;/span&gt;, &lt;span class="nv"&gt;PhantomJS&lt;/span&gt; &lt;span class="nv"&gt;will&lt;/span&gt; &lt;span class="nv"&gt;launch&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;interactive&lt;/span&gt; &lt;span class="nv"&gt;mode&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;REPL&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;.
 
-Documentation can be found at the web site, http://phantomjs.org.
+&lt;span class="nv"&gt;Documentation&lt;/span&gt; &lt;span class="nv"&gt;can&lt;/span&gt; &lt;span class="nv"&gt;be&lt;/span&gt; &lt;span class="nv"&gt;found&lt;/span&gt; &lt;span class="nv"&gt;at&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;web&lt;/span&gt; &lt;span class="nv"&gt;site&lt;/span&gt;, &lt;span class="nv"&gt;http&lt;/span&gt;:&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nv"&gt;phantomjs&lt;/span&gt;.&lt;span class="nv"&gt;org&lt;/span&gt;.
 &lt;/pre&gt;&lt;/div&gt;</content><category term="python"></category><category term="phantomjs"></category><category term="spider"></category></entry><entry><title>机器学习资料整理(Python方向，建议通读)</title><link href="https://acefei.github.io/ji-qi-xue-xi-zi-liao-zheng-li-pythonfang-xiang-jian-yi-tong-du.html" rel="alternate"></link><published>2017-11-30T09:17:00+08:00</published><updated>2017-11-30T09:17:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-11-30:/ji-qi-xue-xi-zi-liao-zheng-li-pythonfang-xiang-jian-yi-tong-du.html</id><summary type="html">
 &lt;p&gt;一些好东西，入门前未必看得懂，要等学有小成时再看才能体会。&lt;/p&gt;
 &lt;h1 id="python"&gt;Python&lt;a class="headerlink" href="#python" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
@@ -588,23 +588,23 @@ Series和DataFrame分别对应于一维的序列和二维的表结构。&lt;/p&g
 &lt;p&gt;&lt;a href="https://jingyan.baidu.com/season/35662"&gt;numpy函数&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://github.com/josephmisiti/awesome-machine-learning#python"&gt;awesome-machine-learning&lt;/a&gt;&lt;/p&gt;</content><category term="python"></category></entry><entry><title>How to stop scrapy-redis spider when it's idle</title><link href="https://acefei.github.io/how-to-stop-scrapy-redis-spider-when-its-idle.html" rel="alternate"></link><published>2017-11-21T06:44:00+08:00</published><updated>2017-11-21T06:44:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-11-21:/how-to-stop-scrapy-redis-spider-when-its-idle.html</id><summary type="html">&lt;p&gt;scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。
 但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在log末尾里可以看到如下内容：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt; &lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;scrapy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extensions&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logstats&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;INFO&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Crawled&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;pages&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;at&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;pages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;min&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;scraped&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;at&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;min&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;在scrapy-redis的&lt;a href="https://github.com/rmax/scrapy-redis"&gt;README&lt;/a&gt;中得知:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# Max idle time to prevent the spider from being closed when distributed crawling.
-# This only works if …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# &lt;span class="nv"&gt;Max&lt;/span&gt; &lt;span class="nv"&gt;idle&lt;/span&gt; &lt;span class="nv"&gt;time&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;prevent&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;spider&lt;/span&gt; &lt;span class="nv"&gt;from&lt;/span&gt; &lt;span class="nv"&gt;being&lt;/span&gt; &lt;span class="nv"&gt;closed&lt;/span&gt; &lt;span class="nv"&gt;when&lt;/span&gt; &lt;span class="nv"&gt;distributed&lt;/span&gt; &lt;span class="nv"&gt;crawling&lt;/span&gt;.
+# &lt;span class="nv"&gt;This&lt;/span&gt; &lt;span class="nv"&gt;only …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。
 但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在log末尾里可以看到如下内容：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt; &lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;scrapy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extensions&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logstats&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;INFO&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Crawled&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;pages&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;at&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;pages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;min&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;scraped&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;at&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;min&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;在scrapy-redis的&lt;a href="https://github.com/rmax/scrapy-redis"&gt;README&lt;/a&gt;中得知:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# Max idle time to prevent the spider from being closed when distributed crawling.
-# This only works if queue class is SpiderQueue or SpiderStack,
-# and may also block the same time when your spider start at the first time (because the queue is empty).
-SCHEDULER_IDLE_BEFORE_CLOSE = 10
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# &lt;span class="nv"&gt;Max&lt;/span&gt; &lt;span class="nv"&gt;idle&lt;/span&gt; &lt;span class="nv"&gt;time&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;prevent&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;spider&lt;/span&gt; &lt;span class="nv"&gt;from&lt;/span&gt; &lt;span class="nv"&gt;being&lt;/span&gt; &lt;span class="nv"&gt;closed&lt;/span&gt; &lt;span class="nv"&gt;when&lt;/span&gt; &lt;span class="nv"&gt;distributed&lt;/span&gt; &lt;span class="nv"&gt;crawling&lt;/span&gt;.
+# &lt;span class="nv"&gt;This&lt;/span&gt; &lt;span class="nv"&gt;only&lt;/span&gt; &lt;span class="nv"&gt;works&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nv"&gt;queue&lt;/span&gt; &lt;span class="nv"&gt;class&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;SpiderQueue&lt;/span&gt; &lt;span class="nv"&gt;or&lt;/span&gt; &lt;span class="nv"&gt;SpiderStack&lt;/span&gt;,
+# &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;may&lt;/span&gt; &lt;span class="nv"&gt;also&lt;/span&gt; &lt;span class="nv"&gt;block&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;same&lt;/span&gt; &lt;span class="nv"&gt;time&lt;/span&gt; &lt;span class="nv"&gt;when&lt;/span&gt; &lt;span class="nv"&gt;your&lt;/span&gt; &lt;span class="nv"&gt;spider&lt;/span&gt; &lt;span class="nv"&gt;start&lt;/span&gt; &lt;span class="nv"&gt;at&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;first&lt;/span&gt; &lt;span class="nv"&gt;time&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;because&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;queue&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;empty&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;.
+&lt;span class="nv"&gt;SCHEDULER_IDLE_BEFORE_CLOSE&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -613,45 +613,45 @@ SCHEDULER_IDLE_BEFORE_CLOSE = 10
 &lt;p&gt;继续研读源码发现，这段log是scrapy extensions实现的，而且scrapy支持自定义extensions。&lt;/p&gt;
 &lt;p&gt;照着logsstats实现一个&lt;a href="https://github.com/acefei/ace-crawler/blob/master/prototypes/extensions.py"&gt;close spider extension&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;并添加如下配置到settings中：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;EXTENSIONS = {
-     &amp;#39;prototypes.extensions.CloseSpiderRedis&amp;#39;: 100,
-},
-CLOSE_SPIDER_AFTER_IDLE_TIMES = 5
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;EXTENSIONS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
+     &lt;span class="s1"&gt;&amp;#39;prototypes.extensions.CloseSpiderRedis&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="n"&gt;CLOSE_SPIDER_AFTER_IDLE_TIMES&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;&lt;em&gt;Done！&lt;/em&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
-2017-11-21 08:16:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
-2017-11-21 08:17:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
-2017-11-21 08:18:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
-2017-11-21 08:19:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)
-2017-11-21 08:19:10 [scrapy.core.engine] INFO: Closing spider (close spider after 5 times of spider idle)
-2017-11-21 08:19:10 [scrapy.statscollectors] INFO: Dumping Scrapy stats:
-{&amp;#39;downloader/request_bytes&amp;#39;: 493,
- &amp;#39;downloader/request_count&amp;#39;: 2,
- &amp;#39;downloader/request_method_count/GET&amp;#39;: 2,
- &amp;#39;downloader/response_bytes&amp;#39;: 23397,
- &amp;#39;downloader/response_count&amp;#39;: 2,
- &amp;#39;downloader/response_status_count/200&amp;#39;: 1,
- &amp;#39;downloader/response_status_count/302&amp;#39;: 1,
- &amp;#39;finish_reason&amp;#39;: &amp;#39;close spider after 5 times of spider idle&amp;#39;,
- &amp;#39;finish_time&amp;#39;: datetime.datetime(2017, 11, 21, 8, 19, 10, 770725),
- &amp;#39;log_count/DEBUG&amp;#39;: 6,
- &amp;#39;log_count/INFO&amp;#39;: 14,
- &amp;#39;memusage/max&amp;#39;: 936964096,
- &amp;#39;memusage/startup&amp;#39;: 936964096,
- &amp;#39;response_received_count&amp;#39;: 1,
- &amp;#39;scheduler/dequeued/redis&amp;#39;: 2,
- &amp;#39;scheduler/enqueued/redis&amp;#39;: 2,
- &amp;#39;start_time&amp;#39;: datetime.datetime(2017, 11, 21, 8, 13, 10, 735722)}
-2017-11-21 08:19:10 [scrapy.core.engine] INFO: Spider closed (close spider after 5 times of spider idle)
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt; &lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;scrapy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extensions&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logstats&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;INFO&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Crawled&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;pages&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;at&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;pages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;min&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;scraped&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;at&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;min&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt; &lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;16&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;scrapy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extensions&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logstats&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;INFO&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Crawled&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;pages&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;at&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;pages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;min&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;scraped&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;at&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;min&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt; &lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;17&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;scrapy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extensions&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logstats&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;INFO&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Crawled&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;pages&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;at&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;pages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;min&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;scraped&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;at&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;min&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt; &lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;18&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;scrapy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extensions&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logstats&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;INFO&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Crawled&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;pages&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;at&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;pages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;min&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;scraped&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;at&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;min&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt; &lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;scrapy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extensions&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logstats&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;INFO&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Crawled&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="n"&gt;pages&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;at&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;pages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;min&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;scraped&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;at&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="k"&gt;min&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt; &lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;scrapy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;core&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;engine&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;INFO&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Closing&lt;/span&gt; &lt;span class="n"&gt;spider&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;close&lt;/span&gt; &lt;span class="n"&gt;spider&lt;/span&gt; &lt;span class="k"&gt;after&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="n"&gt;times&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="n"&gt;spider&lt;/span&gt; &lt;span class="n"&gt;idle&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt; &lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;scrapy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;statscollectors&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;INFO&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Dumping&lt;/span&gt; &lt;span class="n"&gt;Scrapy&lt;/span&gt; &lt;span class="n"&gt;stats&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;downloader/request_bytes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;493&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+ &lt;span class="s1"&gt;&amp;#39;downloader/request_count&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+ &lt;span class="s1"&gt;&amp;#39;downloader/request_method_count/GET&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+ &lt;span class="s1"&gt;&amp;#39;downloader/response_bytes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;23397&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+ &lt;span class="s1"&gt;&amp;#39;downloader/response_count&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+ &lt;span class="s1"&gt;&amp;#39;downloader/response_status_count/200&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+ &lt;span class="s1"&gt;&amp;#39;downloader/response_status_count/302&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+ &lt;span class="s1"&gt;&amp;#39;finish_reason&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;close spider after 5 times of spider idle&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+ &lt;span class="s1"&gt;&amp;#39;finish_time&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;21&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;770725&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+ &lt;span class="s1"&gt;&amp;#39;log_count/DEBUG&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+ &lt;span class="s1"&gt;&amp;#39;log_count/INFO&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;14&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+ &lt;span class="s1"&gt;&amp;#39;memusage/max&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;936964096&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+ &lt;span class="s1"&gt;&amp;#39;memusage/startup&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;936964096&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+ &lt;span class="s1"&gt;&amp;#39;response_received_count&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+ &lt;span class="s1"&gt;&amp;#39;scheduler/dequeued/redis&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+ &lt;span class="s1"&gt;&amp;#39;scheduler/enqueued/redis&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+ &lt;span class="s1"&gt;&amp;#39;start_time&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;21&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;735722&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="err"&gt;}&lt;/span&gt;
+&lt;span class="mi"&gt;2017&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;11&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt; &lt;span class="mi"&gt;08&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;scrapy&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;core&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;engine&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="n"&gt;INFO&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Spider&lt;/span&gt; &lt;span class="n"&gt;closed&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;close&lt;/span&gt; &lt;span class="n"&gt;spider&lt;/span&gt; &lt;span class="k"&gt;after&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt; &lt;span class="n"&gt;times&lt;/span&gt; &lt;span class="k"&gt;of&lt;/span&gt; &lt;span class="n"&gt;spider&lt;/span&gt; &lt;span class="n"&gt;idle&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;最后要注意，默认scrapy-redis退出后，会清掉requests/dupefilter的内容，如果你想保留配置，请务必在settings中加上：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# Don&amp;#39;t cleanup redis queues, allows to pause/resume crawls.
-SCHEDULER_PERSIST = True
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# &lt;span class="nv"&gt;Don&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="s"&gt;t cleanup redis queues, allows to pause/resume crawls.&lt;/span&gt;
+&lt;span class="nv"&gt;SCHEDULER_PERSIST&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;True&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;</content><category term="scrapy"></category><category term="python"></category></entry><entry><title>使用Scrapyd和Scrapyd-client部署爬虫</title><link href="https://acefei.github.io/shi-yong-scrapydhe-scrapyd-clientbu-shu-pa-chong.html" rel="alternate"></link><published>2017-10-30T09:17:00+08:00</published><updated>2017-10-30T09:17:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-10-30:/shi-yong-scrapydhe-scrapyd-clientbu-shu-pa-chong.html</id><summary type="html">
 &lt;h3 id="_1"&gt;基本介绍&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;h4 id="scrapyd"&gt;&lt;a href="https://github.com/scrapy/scrapyd"&gt;Scrapyd&lt;/a&gt;&lt;a class="headerlink" href="#scrapyd" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
@@ -666,21 +666,21 @@ Scrapyd can manage multiple projects and each project can have multiple versions
 &lt;h4 id="scrapyd-client"&gt;&lt;a href="https://github.com/scrapy/scrapyd-client"&gt;Scrapyd-client&lt;/a&gt;&lt;a class="headerlink" href="#scrapyd-client" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;Scrapyd-client is a client for Scrapyd. It provides the general scrapyd-client and the scrapyd-deploy utility which allows you to deploy your project to a Scrapyd server.&lt;/p&gt;
 &lt;h3 id="_2"&gt;安装&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install scrapyd scrapyd-client
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;scrapyd&lt;/span&gt; &lt;span class="n"&gt;scrapyd&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;client&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="_3"&gt;配置服务器信息&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;当我们使用scrapy startnewproject来创建新工程时，会自动生成一个scrapy.cfg文件。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# Automatically created by: scrapy startproject
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# &lt;span class="nv"&gt;Automatically&lt;/span&gt; &lt;span class="nv"&gt;created&lt;/span&gt; &lt;span class="nv"&gt;by&lt;/span&gt;: &lt;span class="nv"&gt;scrapy&lt;/span&gt; &lt;span class="nv"&gt;startproject&lt;/span&gt;
 #
-# For more information about the [deploy] section see:
-# https://scrapyd.readthedocs.org/en/latest/deploy.html
+# &lt;span class="k"&gt;For&lt;/span&gt; &lt;span class="nv"&gt;more&lt;/span&gt; &lt;span class="nv"&gt;information&lt;/span&gt; &lt;span class="nv"&gt;about&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; [&lt;span class="nv"&gt;deploy&lt;/span&gt;] &lt;span class="nv"&gt;section&lt;/span&gt; &lt;span class="nv"&gt;see&lt;/span&gt;:
+# &lt;span class="nv"&gt;https&lt;/span&gt;:&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nv"&gt;scrapyd&lt;/span&gt;.&lt;span class="nv"&gt;readthedocs&lt;/span&gt;.&lt;span class="nv"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;en&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;latest&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;deploy&lt;/span&gt;.&lt;span class="nv"&gt;html&lt;/span&gt;
 
-[settings]
-default = prototypes.settings
+[&lt;span class="nv"&gt;settings&lt;/span&gt;]
+&lt;span class="nv"&gt;default&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;prototypes&lt;/span&gt;.&lt;span class="nv"&gt;settings&lt;/span&gt;
 
-[deploy:proto_server]
-url = http://localhost:6800/
-project = prototypes
+[&lt;span class="nv"&gt;deploy&lt;/span&gt;:&lt;span class="nv"&gt;proto_server&lt;/span&gt;]
+&lt;span class="nv"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;http&lt;/span&gt;:&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nv"&gt;localhost&lt;/span&gt;:&lt;span class="mi"&gt;6800&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="nv"&gt;project&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;prototypes&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;其中有两个地方是需要我们更新的：&lt;/p&gt;
 &lt;blockquote&gt;
@@ -693,24 +693,24 @@ url是指scrapyd启动后，默认的服务器地址&lt;/p&gt;
 &lt;p&gt;部署有两种方式：
 1. 通过json API:
 &lt;a href="http://scrapyd.readthedocs.io/en/stable/api.html?highlight=egg#addversion-json"&gt;addversion.json&lt;/a&gt; &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl http://localhost:6800/addversion.json -F project=prototypes -F version=r23 -F egg=@prototypes.egg
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;curl&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nl"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nl"&gt;localhost&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;6800&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;addversion&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;F&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;project&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;prototypes&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;F&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;r23&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;F&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;egg&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;@prototypes&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;egg&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;其中egg需要用scrapyd-deploy来生成&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# 进入scrapy工程目录
-scrapyd-deploy --build-egg prototypes.egg
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="err"&gt;进入&lt;/span&gt;&lt;span class="n"&gt;scrapy工程目录&lt;/span&gt;
+&lt;span class="n"&gt;scrapyd&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;deploy&lt;/span&gt; &lt;span class="c1"&gt;--build-egg prototypes.egg&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;ol&gt;
 &lt;li&gt;通过scrapyd-deploy一键部署&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;scrapyd-deploy proto_server -p prototypes
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;scrapyd&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;deploy&lt;/span&gt; &lt;span class="n"&gt;proto_server&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;p&lt;/span&gt; &lt;span class="n"&gt;prototypes&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;部署好后，我们可以用命令查看&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;scrapyd-deploy -L proto_server
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;scrapyd&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;deploy&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;L&lt;/span&gt; &lt;span class="n"&gt;proto_server&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;然后在http://localhost:6800/查看界面发现Available projects：&lt;strong&gt;prototypes&lt;/strong&gt; &lt;br/&gt;
 &lt;img alt="image" src="http://note.youdao.com/favicon.ico"/&gt;&lt;/p&gt;
 &lt;h3 id="spider"&gt;运行spider&lt;a class="headerlink" href="#spider" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;curl http://localhost:6800/schedule.json -d project=prototypes -d spider=qichacha
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;curl&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;localhost&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;6800&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;schedule&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;json&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="n"&gt;project&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;prototypes&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="n"&gt;spider&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;qichacha&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Note:
@@ -719,85 +719,84 @@ scrapyd-deploy --build-egg prototypes.egg
 &lt;h3 id="further"&gt;Further&lt;a class="headerlink" href="#further" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;[ ]  集成&lt;a href="https://github.com/DormyMo/SpiderKeeper"&gt;DormyMo/SpiderKeeper&lt;/a&gt;或&lt;a href="https://github.com/Gerapy/Gerapy"&gt;Gerapy/Gerapy&lt;/a&gt;&lt;/p&gt;</content><category term="python"></category><category term="scrapy"></category></entry><entry><title>在Centos7上使用Python操作Mysql实践</title><link href="https://acefei.github.io/zai-centos7shang-shi-yong-pythoncao-zuo-mysqlshi-jian.html" rel="alternate"></link><published>2017-10-27T01:14:00+08:00</published><updated>2017-10-27T01:14:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2017-10-27:/zai-centos7shang-shi-yong-pythoncao-zuo-mysqlshi-jian.html</id><summary type="html">
 &lt;h1 id="centos7mysql"&gt;Centos7上安装mysql&lt;a class="headerlink" href="#centos7mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install mysql mysql-devel
-# centos7上已经使用mariadb替换了mysql，它们仅在安装配置上有些区别，使用上没有差别。
-sudo yum install mariadb-server
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;yum&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;mysql&lt;/span&gt; &lt;span class="n"&gt;mysql&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;devel&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;centos7上已经使用mariadb替换了mysql&lt;/span&gt;&lt;span class="err"&gt;，它们仅在安装配置上有些区别，使用上没有差别。&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;yum&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;mariadb&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;server&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1 id="mysql"&gt;配置mysql&lt;a class="headerlink" href="#mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# 第一次启动会检查/var/lib/mysql目录是否为空，不为空将返回失败
-sudo service mariadb start
-# 设置mysql密码
-sudo mysql_secure_installation
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="err"&gt;第一次启动会检查&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mysql目录是否为空&lt;/span&gt;&lt;span class="err"&gt;，不为空将返回失败&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;service&lt;/span&gt; &lt;span class="n"&gt;mariadb&lt;/span&gt; &lt;span class="k"&gt;start&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="err"&gt;设置&lt;/span&gt;&lt;span class="n"&gt;mysql密码&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;mysql_secure_installation&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;如果配置时有任何错误，可在/var/log/mariadb/mariadb.log里查看具体原因&lt;/p&gt;
 &lt;h1 id="python-mysql"&gt;Python Mysql库安装&lt;a class="headerlink" href="#python-mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install python-devel
-sudo pip install mysql-python
-# Toolkit for Python-based database access.
-sudo pip …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;sudo&lt;/span&gt; &lt;span class="nv"&gt;yum&lt;/span&gt; &lt;span class="nv"&gt;install&lt;/span&gt; &lt;span class="nv"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;devel&lt;/span&gt;
+&lt;span class="nv"&gt;sudo&lt;/span&gt; &lt;span class="nv"&gt;pip&lt;/span&gt; &lt;span class="nv"&gt;install&lt;/span&gt; &lt;span class="nv"&gt;mysql&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;python&lt;/span&gt;
+# &lt;span class="nv"&gt;Toolkit&lt;/span&gt; &lt;span class="k"&gt;for …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">
 &lt;h1 id="centos7mysql"&gt;Centos7上安装mysql&lt;a class="headerlink" href="#centos7mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install mysql mysql-devel
-# centos7上已经使用mariadb替换了mysql，它们仅在安装配置上有些区别，使用上没有差别。
-sudo yum install mariadb-server
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;yum&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;mysql&lt;/span&gt; &lt;span class="n"&gt;mysql&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;devel&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;centos7上已经使用mariadb替换了mysql&lt;/span&gt;&lt;span class="err"&gt;，它们仅在安装配置上有些区别，使用上没有差别。&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;yum&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;mariadb&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;server&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1 id="mysql"&gt;配置mysql&lt;a class="headerlink" href="#mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# 第一次启动会检查/var/lib/mysql目录是否为空，不为空将返回失败
-sudo service mariadb start
-# 设置mysql密码
-sudo mysql_secure_installation
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="err"&gt;第一次启动会检查&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;mysql目录是否为空&lt;/span&gt;&lt;span class="err"&gt;，不为空将返回失败&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;service&lt;/span&gt; &lt;span class="n"&gt;mariadb&lt;/span&gt; &lt;span class="k"&gt;start&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="err"&gt;设置&lt;/span&gt;&lt;span class="n"&gt;mysql密码&lt;/span&gt;
+&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;mysql_secure_installation&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;如果配置时有任何错误，可在/var/log/mariadb/mariadb.log里查看具体原因&lt;/p&gt;
 &lt;h1 id="python-mysql"&gt;Python Mysql库安装&lt;a class="headerlink" href="#python-mysql" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sudo yum install python-devel
-sudo pip install mysql-python
-# Toolkit for Python-based database access.
-sudo pip install dataset
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;sudo&lt;/span&gt; &lt;span class="nv"&gt;yum&lt;/span&gt; &lt;span class="nv"&gt;install&lt;/span&gt; &lt;span class="nv"&gt;python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;devel&lt;/span&gt;
+&lt;span class="nv"&gt;sudo&lt;/span&gt; &lt;span class="nv"&gt;pip&lt;/span&gt; &lt;span class="nv"&gt;install&lt;/span&gt; &lt;span class="nv"&gt;mysql&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;python&lt;/span&gt;
+# &lt;span class="nv"&gt;Toolkit&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;Python&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;based&lt;/span&gt; &lt;span class="nv"&gt;database&lt;/span&gt; &lt;span class="nv"&gt;access&lt;/span&gt;.
+&lt;span class="nv"&gt;sudo&lt;/span&gt; &lt;span class="nv"&gt;pip&lt;/span&gt; &lt;span class="nv"&gt;install&lt;/span&gt; &lt;span class="nv"&gt;dataset&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h1 id="dataset"&gt;dataset常见操作&lt;a class="headerlink" href="#dataset" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;&lt;a href="http://dataset.readthedocs.io/en/latest/api.html"&gt;dataset&lt;/a&gt;库是对SQLAlchemy二次封装，使其操作数据库就像操作json文件一样方便。&lt;/p&gt;
 &lt;h2 id="mysql_1"&gt;连接Mysql&lt;a class="headerlink" href="#mysql_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;db = dataset.connect('mysql://username:password@port/dbname?charset=utf8')
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;db&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;dataset&lt;/span&gt;.&lt;span class="k"&gt;connect&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;mysql://username:password@port/dbname?charset=utf8&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="_1"&gt;添加记录&lt;a class="headerlink" href="#_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;data = {
-    'key': 1,
-    'column2': 2,
-    'column3': 3,
-}
-# 插入记录，如果key，存在则报错
-db[t_name].insert(data, ['key'])
-# 插入记录，如果key，存在则更新
-db[t_name].upsert(data, ['key'])
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;data&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;{&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="s1"&gt;'key'&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="s1"&gt;'column2'&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="s1"&gt;'column3'&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;插入记录&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;如果key&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;存在则报错&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;t_name&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;'key'&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;插入记录&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;如果key&lt;/span&gt;&lt;span class="err"&gt;，&lt;/span&gt;&lt;span class="n"&gt;存在则更新&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;t_name&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;upsert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;&lt;span class="n"&gt;'key'&lt;/span&gt;&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="_2"&gt;查找记录&lt;a class="headerlink" href="#_2" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# 打印表的字段
-print self.db['t_name'].columns
+&lt;span class="nv"&gt;print&lt;/span&gt; &lt;span class="nv"&gt;self&lt;/span&gt;.&lt;span class="nv"&gt;db&lt;/span&gt;[&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;t_name&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;].&lt;span class="nv"&gt;columns&lt;/span&gt;
 
 # 打印表中所有数据
-for row_data in self.db['t_name'].all():
-    print row_data
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;row_data&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;self&lt;/span&gt;.&lt;span class="nv"&gt;db&lt;/span&gt;[&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;t_name&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;].&lt;span class="nv"&gt;all&lt;/span&gt;&lt;span class="ss"&gt;()&lt;/span&gt;:
+    &lt;span class="nv"&gt;print&lt;/span&gt; &lt;span class="nv"&gt;row_data&lt;/span&gt;
 
 # 根据多个条件找记录, 返回的是列表
-self.db['t_name'].find(key1 = 1, key2 =2)
+&lt;span class="nv"&gt;self&lt;/span&gt;.&lt;span class="nv"&gt;db&lt;/span&gt;[&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;t_name&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;].&lt;span class="nv"&gt;find&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;key1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;, &lt;span class="nv"&gt;key2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
 
 # 返回一条记录
-self.db['t_name'].find_one(key1 = 1, key2 =2)
+&lt;span class="nv"&gt;self&lt;/span&gt;.&lt;span class="nv"&gt;db&lt;/span&gt;[&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;t_name&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;].&lt;span class="nv"&gt;find_one&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;key1&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;, &lt;span class="nv"&gt;key2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;考虑到find()查找性能，也可以使用原生的sql语句来进行query&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;select * from t_name limit 99
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;select&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;from&lt;/span&gt; &lt;span class="n"&gt;t_name&lt;/span&gt; &lt;span class="k"&gt;limit&lt;/span&gt; &lt;span class="mi"&gt;99&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="_3"&gt;更新记录&lt;a class="headerlink" href="#_3" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;data = {
-    'key': 1,
-    'column2': 2,
-    'column3': 3,
-}
-self.db['t_name'].update(data, ['key'])
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;'key'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;'column2'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;'column3'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'t_name'&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="k"&gt;update&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'key'&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="_4"&gt;删除记录&lt;a class="headerlink" href="#_4" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;self.db['t_name'].delete(key1=1, key2=2)
-# 删除所有记录
-self.db['t_name'].delete()
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'t_name'&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="k"&gt;delete&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;key1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;key2&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="err"&gt;删除所有记录&lt;/span&gt;
+&lt;span class="k"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;db&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'t_name'&lt;/span&gt;&lt;span class="p"&gt;].&lt;/span&gt;&lt;span class="k"&gt;delete&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h2 id="dataset_1"&gt;关于dataset导出数据&lt;a class="headerlink" href="#dataset_1" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;现在dataset被分离成两个模块，如果想导出数据请看&lt;a href="https://github.com/pudo/datafreeze"&gt;datafreeze&lt;/a&gt;&lt;/p&gt;
@@ -823,7 +822,7 @@ self.db['t_name'].delete()
 
 
 &lt;p&gt;结果...想当然了。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;test_1 (__main__ …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;想必大家在写Python UT的时候，偶尔会遇到一些测试用例需要同时测试CRUD的接口。
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;test_1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__main__ …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;p&gt;想必大家在写Python UT的时候，偶尔会遇到一些测试用例需要同时测试CRUD的接口。
 这时需要在test cases之间传递变量该如何做呢？&lt;/p&gt;
 &lt;p&gt;一开始，我们想既然是在一个class里，直接给instance增加attribute不就好了么?&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;unittest&lt;/span&gt;
@@ -845,14 +844,14 @@ self.db['t_name'].delete()
 
 
 &lt;p&gt;结果...想当然了。&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;test_1 (__main__.TestA) ... ok
-test_2 (__main__.TestA) ... None
-ok
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;test_1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__main__&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestA&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;...&lt;/span&gt; &lt;span class="n"&gt;ok&lt;/span&gt;
+&lt;span class="n"&gt;test_2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__main__&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestA&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;...&lt;/span&gt; &lt;span class="k"&gt;None&lt;/span&gt;
+&lt;span class="n"&gt;ok&lt;/span&gt;
 
-----------------------------------------------------------------------
-Ran 2 tests in 0.000s
+&lt;span class="c1"&gt;----------------------------------------------------------------------&lt;/span&gt;
+&lt;span class="n"&gt;Ran&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="n"&gt;tests&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;000&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;
 
-OK
+&lt;span class="n"&gt;OK&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -877,14 +876,14 @@ OK
 
 
 &lt;p&gt;Bingo！ &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;test_1 (__main__.TestA) ... ok
-test_2 (__main__.TestA) ... hello world
-ok
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;test_1&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__main__&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestA&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;...&lt;/span&gt; &lt;span class="n"&gt;ok&lt;/span&gt;
+&lt;span class="n"&gt;test_2&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;__main__&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;TestA&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;...&lt;/span&gt; &lt;span class="n"&gt;hello&lt;/span&gt; &lt;span class="n"&gt;world&lt;/span&gt;
+&lt;span class="n"&gt;ok&lt;/span&gt;
 
-----------------------------------------------------------------------
-Ran 2 tests in 0.000s
+&lt;span class="c1"&gt;----------------------------------------------------------------------&lt;/span&gt;
+&lt;span class="n"&gt;Ran&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="n"&gt;tests&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;000&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;
 
-OK
+&lt;span class="n"&gt;OK&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -918,52 +917,52 @@ OK
 &lt;p&gt;modify scrapy_redis/dupefilter.py&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    def __init__(self, server, key, debug=False):
-        &amp;quot;&amp;quot;&amp;quot;Initialize the duplicates filter.
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="n"&gt;def&lt;/span&gt; &lt;span class="n"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;server&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;False&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="ss"&gt;&amp;quot;&amp;quot;&amp;quot;Initialize the duplicates filter.&lt;/span&gt;
 
-        Parameters
-        ----------
-        server : redis.StrictRedis
-            The redis server instance.
-        key : str
-            Redis key Where to store fingerprints.
-        debug : bool, optional
-            Whether to log filtered requests.
+&lt;span class="ss"&gt;        Parameters&lt;/span&gt;
+&lt;span class="ss"&gt;        ----------&lt;/span&gt;
+&lt;span class="ss"&gt;        server : redis.StrictRedis&lt;/span&gt;
+&lt;span class="ss"&gt;            The redis server instance.&lt;/span&gt;
+&lt;span class="ss"&gt;        key : str&lt;/span&gt;
+&lt;span class="ss"&gt;            Redis key Where to store fingerprints.&lt;/span&gt;
+&lt;span class="ss"&gt;        debug : bool, optional&lt;/span&gt;
+&lt;span class="ss"&gt;            Whether to log filtered requests.&lt;/span&gt;
 
-        &amp;quot;&amp;quot;&amp;quot;
-        self.server = server
-        self.key = key
-        self.debug = debug
-        self.logdupes = True
+&lt;span class="ss"&gt;        &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+        &lt;span class="k"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;server&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;server&lt;/span&gt;
+        &lt;span class="k"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="k"&gt;key&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;key&lt;/span&gt;
+        &lt;span class="k"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;debug&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;debug&lt;/span&gt;
+        &lt;span class="k"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;logdupes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;True&lt;/span&gt;
 
-        # 集成布隆过滤器
-        self.bf = BloomFilter(conn=server, key=key)     # 利用连接池连接Redis
+        &lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="err"&gt;集成布隆过滤器&lt;/span&gt;
+        &lt;span class="k"&gt;self&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bf&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;BloomFilter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;conn&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;server&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;key&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;key&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;     &lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="err"&gt;利用连接池连接&lt;/span&gt;&lt;span class="n"&gt;Redis&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    def request_seen(self, request):
-        &amp;quot;&amp;quot;&amp;quot;Returns True if request was already seen.
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;    &lt;span class="nv"&gt;def&lt;/span&gt; &lt;span class="nv"&gt;request_seen&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;self&lt;/span&gt;, &lt;span class="nv"&gt;request&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;:
+        &lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;Returns True if request was already seen.&lt;/span&gt;
 
-        Parameters
-        ----------
-        request : scrapy.http.Request
+        &lt;span class="nv"&gt;Parameters&lt;/span&gt;
+        &lt;span class="o"&gt;----------&lt;/span&gt;
+        &lt;span class="nv"&gt;request&lt;/span&gt; : &lt;span class="nv"&gt;scrapy&lt;/span&gt;.&lt;span class="nv"&gt;http&lt;/span&gt;.&lt;span class="nv"&gt;Request&lt;/span&gt;
 
-        Returns
-        -------
-        bool
+        &lt;span class="nv"&gt;Returns&lt;/span&gt;
+        &lt;span class="o"&gt;-------&lt;/span&gt;
+        &lt;span class="nv"&gt;bool&lt;/span&gt;
 
-        &amp;quot;&amp;quot;&amp;quot;
+        &lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
         # 集成布隆过滤器
-        if self.bf.is_exist(fp):    # 判断如果域名在Redis里存在
-            return True
-        else:
-            self.bf.add(fp)         # 如果不存在，将域名添加到Redis
-            return False
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nv"&gt;self&lt;/span&gt;.&lt;span class="nv"&gt;bf&lt;/span&gt;.&lt;span class="nv"&gt;is_exist&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;fp&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;:    # 判断如果域名在&lt;span class="nv"&gt;Redis&lt;/span&gt;里存在
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nv"&gt;True&lt;/span&gt;
+        &lt;span class="k"&gt;else&lt;/span&gt;:
+            &lt;span class="nv"&gt;self&lt;/span&gt;.&lt;span class="nv"&gt;bf&lt;/span&gt;.&lt;span class="nv"&gt;add&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;fp&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;         # 如果不存在，将域名添加到&lt;span class="nv"&gt;Redis&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nv"&gt;False&lt;/span&gt;
 
-        #fp = self.request_fingerprint(request)
-        # This returns the number of values added, zero if already exists.
-        #added = self.server.sadd(self.key, fp)
-        #return added == 0
+        #&lt;span class="nv"&gt;fp&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;self&lt;/span&gt;.&lt;span class="nv"&gt;request_fingerprint&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;request&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+        # &lt;span class="nv"&gt;This&lt;/span&gt; &lt;span class="nv"&gt;returns&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;number&lt;/span&gt; &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="nv"&gt;values&lt;/span&gt; &lt;span class="nv"&gt;added&lt;/span&gt;, &lt;span class="nv"&gt;zero&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nv"&gt;already&lt;/span&gt; &lt;span class="nv"&gt;exists&lt;/span&gt;.
+        #&lt;span class="nv"&gt;added&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;self&lt;/span&gt;.&lt;span class="nv"&gt;server&lt;/span&gt;.&lt;span class="nv"&gt;sadd&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;self&lt;/span&gt;.&lt;span class="nv"&gt;key&lt;/span&gt;, &lt;span class="nv"&gt;fp&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+        #&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nv"&gt;added&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -972,25 +971,25 @@ OK
 Note: use our scrapy_redis code like &lt;scrapy_project_name&gt;.scrapy_redis instead of scrapy_redis that created by pip install&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;##################################
-# Configuration for scrapy-redis {
-DUPEFILTER_CLASS = &amp;quot;scrapy_redis_demo.scrapy_redis.dupefilter.RFPDupeFilter&amp;quot;
-SCHEDULER = &amp;quot;scrapy_redis_demo.scrapy_redis.scheduler.Scheduler&amp;quot;
-SCHEDULER_PERSIST = True
+# &lt;span class="nv"&gt;Configuration&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="nv"&gt;scrapy&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;redis&lt;/span&gt; {
+&lt;span class="nv"&gt;DUPEFILTER_CLASS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;scrapy_redis_demo.scrapy_redis.dupefilter.RFPDupeFilter&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;SCHEDULER&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;scrapy_redis_demo.scrapy_redis.scheduler.Scheduler&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+&lt;span class="nv"&gt;SCHEDULER_PERSIST&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;True&lt;/span&gt;
 
-ITEM_PIPELINES = {
-  &amp;#39;scrapy_redis_demo.scrapy_redis.pipelines.RedisPipeline&amp;#39;: 400,
+&lt;span class="nv"&gt;ITEM_PIPELINES&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; {
+  &lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="s"&gt;scrapy_redis_demo.scrapy_redis.pipelines.RedisPipeline&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;: &lt;span class="mi"&gt;400&lt;/span&gt;,
 }
 
-# if u add &amp;#39;network_mode: &amp;quot;host&amp;quot;&amp;#39; in scraper service in docker-compose.yaml
-# use host ip to access redis server
-REDIS_HOST = &amp;#39;172.16.100.62&amp;#39;
-# else use redis hostname to access redis server
-#REDIS_HOST = &amp;#39;redis&amp;#39;
-REDIS_PORT = 6379
+# &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nv"&gt;u&lt;/span&gt; &lt;span class="nv"&gt;add&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="s"&gt;network_mode: &amp;quot;host&amp;quot;&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;scraper&lt;/span&gt; &lt;span class="nv"&gt;service&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;docker&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;compose&lt;/span&gt;.&lt;span class="nv"&gt;yaml&lt;/span&gt;
+# &lt;span class="nv"&gt;use&lt;/span&gt; &lt;span class="nv"&gt;host&lt;/span&gt; &lt;span class="nv"&gt;ip&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;access&lt;/span&gt; &lt;span class="nv"&gt;redis&lt;/span&gt; &lt;span class="nv"&gt;server&lt;/span&gt;
+&lt;span class="nv"&gt;REDIS_HOST&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="s"&gt;172.16.100.62&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
+# &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="nv"&gt;use&lt;/span&gt; &lt;span class="nv"&gt;redis&lt;/span&gt; &lt;span class="nv"&gt;hostname&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;access&lt;/span&gt; &lt;span class="nv"&gt;redis&lt;/span&gt; &lt;span class="nv"&gt;server&lt;/span&gt;
+#&lt;span class="nv"&gt;REDIS_HOST&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="s"&gt;redis&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
+&lt;span class="nv"&gt;REDIS_PORT&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;6379&lt;/span&gt;
 
-# Specify your redis uri
-# the uri scheme syntax: http://www.iana.org/assignments/uri-schemes/prov/redis
-#REDIS_URL = &amp;#39;redis://172.16.100.62:6379&amp;#39;
+# &lt;span class="nv"&gt;Specify&lt;/span&gt; &lt;span class="nv"&gt;your&lt;/span&gt; &lt;span class="nv"&gt;redis&lt;/span&gt; &lt;span class="nv"&gt;uri&lt;/span&gt;
+# &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;uri&lt;/span&gt; &lt;span class="nv"&gt;scheme&lt;/span&gt; &lt;span class="nv"&gt;syntax&lt;/span&gt;: &lt;span class="nv"&gt;http&lt;/span&gt;:&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nv"&gt;www&lt;/span&gt;.&lt;span class="nv"&gt;iana&lt;/span&gt;.&lt;span class="nv"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;assignments&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;uri&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;schemes&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;prov&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;redis&lt;/span&gt;
+#&lt;span class="nv"&gt;REDIS_URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="s"&gt;redis://172.16.100.62:6379&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;
 
 # }
 ##################################
@@ -1005,9 +1004,9 @@ REDIS_PORT = 6379
 &lt;p&gt;Recently, I found a &lt;a href="http://www.apexlegend.com/eas/media/"&gt;TOEIC test website&lt;/a&gt; with enomous mp3 materials.&lt;/p&gt;
 &lt;p&gt;Just in time, I decided to scrape and download MP3 in parallel by python &lt;/p&gt;
 &lt;h3 id="requirement"&gt;Requirement&lt;a class="headerlink" href="#requirement" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install lxml
-# https://github.com/kennethreitz/grequests
-pip install grequests
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;lxml&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;kennethreitz&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;grequests&lt;/span&gt;
+&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;grequests&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1016,9 +1015,9 @@ pip install grequests
 &lt;p&gt;Recently, I found a &lt;a href="http://www.apexlegend.com/eas/media/"&gt;TOEIC test website&lt;/a&gt; with enomous mp3 materials.&lt;/p&gt;
 &lt;p&gt;Just in time, I decided to scrape and download MP3 in parallel by python &lt;/p&gt;
 &lt;h3 id="requirement"&gt;Requirement&lt;a class="headerlink" href="#requirement" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install lxml
-# https://github.com/kennethreitz/grequests
-pip install grequests
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;lxml&lt;/span&gt;
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;kennethreitz&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;grequests&lt;/span&gt;
+&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;grequests&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
@@ -1030,18 +1029,18 @@ pip install grequests
 &lt;p&gt;The following need to be noted:&lt;/p&gt;
 &lt;h4 id="1-using-pool-to-limit-concurrency"&gt;1. Using pool to limit concurrency.&lt;a class="headerlink" href="#1-using-pool-to-limit-concurrency" title="Permanent link"&gt;&amp;para;&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;GRequests doesn't use pool by default, please see below code snippet: &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;def map(requests, stream=False, size=None, exception_handler=None, gtimeout=None):
-    &amp;quot;&amp;quot;&amp;quot;Concurrently converts a list of Requests to Responses.
-    :param requests: a collection of Request objects.
-    :param stream: If True, the content will not be downloaded immediately.
-    :param size: Specifies the number of requests to make at a time. If None, no throttling occurs.
-    :param exception_handler: Callback function, called when exception occured. Params: Request, Exception
-    :param gtimeout: Gevent joinall timeout in seconds. (Note: unrelated to requests timeout)
-    &amp;quot;&amp;quot;&amp;quot;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;def&lt;/span&gt; &lt;span class="nv"&gt;map&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;requests&lt;/span&gt;, &lt;span class="nv"&gt;stream&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;False&lt;/span&gt;, &lt;span class="nv"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;None&lt;/span&gt;, &lt;span class="nv"&gt;exception_handler&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;None&lt;/span&gt;, &lt;span class="nv"&gt;gtimeout&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;None&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;:
+    &lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="s"&gt;Concurrently converts a list of Requests to Responses.&lt;/span&gt;
+    &lt;span class="nl"&gt;:param&lt;/span&gt; &lt;span class="nv"&gt;requests&lt;/span&gt;: &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;collection&lt;/span&gt; &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="nv"&gt;Request&lt;/span&gt; &lt;span class="nv"&gt;objects&lt;/span&gt;.
+    :&lt;span class="nv"&gt;param&lt;/span&gt; &lt;span class="nv"&gt;stream&lt;/span&gt;: &lt;span class="k"&gt;If&lt;/span&gt; &lt;span class="nv"&gt;True&lt;/span&gt;, &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;content&lt;/span&gt; &lt;span class="nv"&gt;will&lt;/span&gt; &lt;span class="nv"&gt;not&lt;/span&gt; &lt;span class="nv"&gt;be&lt;/span&gt; &lt;span class="nv"&gt;downloaded&lt;/span&gt; &lt;span class="nv"&gt;immediately&lt;/span&gt;.
+    :&lt;span class="nv"&gt;param&lt;/span&gt; &lt;span class="nv"&gt;size&lt;/span&gt;: &lt;span class="nv"&gt;Specifies&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;number&lt;/span&gt; &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="nv"&gt;requests&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;make&lt;/span&gt; &lt;span class="nv"&gt;at&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;time&lt;/span&gt;. &lt;span class="k"&gt;If&lt;/span&gt; &lt;span class="nv"&gt;None&lt;/span&gt;, &lt;span class="nv"&gt;no&lt;/span&gt; &lt;span class="nv"&gt;throttling&lt;/span&gt; &lt;span class="nv"&gt;occurs&lt;/span&gt;.
+    :&lt;span class="nv"&gt;param&lt;/span&gt; &lt;span class="nv"&gt;exception_handler&lt;/span&gt;: &lt;span class="nv"&gt;Callback&lt;/span&gt; &lt;span class="nv"&gt;function&lt;/span&gt;, &lt;span class="nv"&gt;called&lt;/span&gt; &lt;span class="nv"&gt;when&lt;/span&gt; &lt;span class="nv"&gt;exception&lt;/span&gt; &lt;span class="nv"&gt;occured&lt;/span&gt;. &lt;span class="nb"&gt;Params&lt;/span&gt;: &lt;span class="nv"&gt;Request&lt;/span&gt;, &lt;span class="nv"&gt;Exception&lt;/span&gt;
+    :&lt;span class="nv"&gt;param&lt;/span&gt; &lt;span class="nv"&gt;gtimeout&lt;/span&gt;: &lt;span class="nv"&gt;Gevent&lt;/span&gt; &lt;span class="nv"&gt;joinall&lt;/span&gt; &lt;span class="nb"&gt;timeout&lt;/span&gt; &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;seconds&lt;/span&gt;. &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;Note&lt;/span&gt;: &lt;span class="nv"&gt;unrelated&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;requests&lt;/span&gt; &lt;span class="nb"&gt;timeout&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
 
-    requests = list(requests)
+    &lt;span class="nv"&gt;requests&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;list&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;requests&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
 
-    pool = Pool(size) if size else None
+    &lt;span class="nv"&gt;pool&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;Pool&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;size&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nv"&gt;size&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="nv"&gt;None&lt;/span&gt;
 
 ...
 &lt;/pre&gt;&lt;/div&gt;
@@ -1078,44 +1077,44 @@ Content from the &lt;em&gt;master&lt;/em&gt; branch will be used to build and pu
 &lt;p&gt;When User Pages are built, they are available at http(s)://username.github.io.&lt;/p&gt;
 &lt;h3 id="set-up-the-blog-with-pelican"&gt;Set up the blog with Pelican&lt;a class="headerlink" href="#set-up-the-blog-with-pelican" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Create a new branch (pelican) for hosting pelican settings on github, please refer to &lt;a href="#publish"&gt;Publish&lt;/a&gt; &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ git clone https://github.com/acefei/acefei.github.io
-$ &lt;span class="nb"&gt;cd&lt;/span&gt; acefei.github.io/
-$ git checkout -b pelican
-$ pelican-quickstart
-Welcome to pelican-quickstart v3.7.1.
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ &lt;span class="nv"&gt;git&lt;/span&gt; &lt;span class="nv"&gt;clone&lt;/span&gt; &lt;span class="nv"&gt;https&lt;/span&gt;:&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nv"&gt;github&lt;/span&gt;.&lt;span class="nv"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;acefei&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;acefei&lt;/span&gt;.&lt;span class="nv"&gt;github&lt;/span&gt;.&lt;span class="nv"&gt;io&lt;/span&gt;
+$ &lt;span class="nv"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;acefei&lt;/span&gt;.&lt;span class="nv"&gt;github&lt;/span&gt;.&lt;span class="nv"&gt;io&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+$ &lt;span class="nv"&gt;git&lt;/span&gt; &lt;span class="nv"&gt;checkout&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;b&lt;/span&gt; &lt;span class="nv"&gt;pelican&lt;/span&gt;
+$ &lt;span class="nv"&gt;pelican&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;quickstart&lt;/span&gt;
+&lt;span class="nv"&gt;Welcome&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;pelican&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;quickstart&lt;/span&gt; &lt;span class="nv"&gt;v3&lt;/span&gt;.&lt;span class="mi"&gt;7&lt;/span&gt;.&lt;span class="mi"&gt;1&lt;/span&gt;.
 
-This script will &lt;span class="nb"&gt;help&lt;/span&gt; you create a new Pelican-based website.
+&lt;span class="nv"&gt;This&lt;/span&gt; &lt;span class="nv"&gt;script&lt;/span&gt; &lt;span class="nv"&gt;will&lt;/span&gt; &lt;span class="nv"&gt;help&lt;/span&gt; &lt;span class="nv"&gt;you&lt;/span&gt; &lt;span class="nv"&gt;create&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;new&lt;/span&gt; &lt;span class="nv"&gt;Pelican&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;based&lt;/span&gt; &lt;span class="nv"&gt;website&lt;/span&gt;.
 
-Please answer the following questions so this script can generate the files
-needed by Pelican.
+&lt;span class="nv"&gt;Please&lt;/span&gt; &lt;span class="nv"&gt;answer&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;following&lt;/span&gt; &lt;span class="nv"&gt;questions&lt;/span&gt; &lt;span class="nv"&gt;so&lt;/span&gt; &lt;span class="nv"&gt;this&lt;/span&gt; &lt;span class="nv"&gt;script&lt;/span&gt; &lt;span class="nv"&gt;can&lt;/span&gt; &lt;span class="nv"&gt;generate&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;files&lt;/span&gt;
+&lt;span class="nv"&gt;needed&lt;/span&gt; &lt;span class="nv"&gt;by&lt;/span&gt; &lt;span class="nv"&gt;Pelican&lt;/span&gt;.
 
 
-&amp;gt; Where &lt;span class="k"&gt;do&lt;/span&gt; you want to create your new web site? &lt;span class="o"&gt;[&lt;/span&gt;.&lt;span class="o"&gt;]&lt;/span&gt;
-&amp;gt; What will be the title of this web site? Acefei&lt;span class="err"&gt;'&lt;/span&gt;s Blog
-&amp;gt; Who will be the author of this web site? acefei
-&amp;gt; What will be the default language of this web site? &lt;span class="o"&gt;[&lt;/span&gt;en&lt;span class="o"&gt;]&lt;/span&gt;
-&amp;gt; Do you want to specify a URL prefix? e.g., http://example.com   &lt;span class="o"&gt;(&lt;/span&gt;Y/n&lt;span class="o"&gt;)&lt;/span&gt;
-&amp;gt; What is your URL prefix? &lt;span class="o"&gt;(&lt;/span&gt;see above example&lt;span class="p"&gt;;&lt;/span&gt; no trailing slash&lt;span class="o"&gt;)&lt;/span&gt; https://acefei.github.io
-&amp;gt; Do you want to &lt;span class="nb"&gt;enable&lt;/span&gt; article pagination? &lt;span class="o"&gt;(&lt;/span&gt;Y/n&lt;span class="o"&gt;)&lt;/span&gt; n
-&amp;gt; What is your &lt;span class="nb"&gt;time&lt;/span&gt; zone? &lt;span class="o"&gt;[&lt;/span&gt;Europe/Paris&lt;span class="o"&gt;]&lt;/span&gt; Asia/Shanghai
-&amp;gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? &lt;span class="o"&gt;(&lt;/span&gt;Y/n&lt;span class="o"&gt;)&lt;/span&gt;
-&amp;gt; Do you want an auto-reload &lt;span class="p"&gt;&amp;amp;&lt;/span&gt; simpleHTTP script to assist with theme and site development? &lt;span class="o"&gt;(&lt;/span&gt;Y/n&lt;span class="o"&gt;)&lt;/span&gt;
-&amp;gt; Do you want to upload your website using FTP? &lt;span class="o"&gt;(&lt;/span&gt;y/N&lt;span class="o"&gt;)&lt;/span&gt;
-&amp;gt; Do you want to upload your website using SSH? &lt;span class="o"&gt;(&lt;/span&gt;y/N&lt;span class="o"&gt;)&lt;/span&gt;
-&amp;gt; Do you want to upload your website using Dropbox? &lt;span class="o"&gt;(&lt;/span&gt;y/N&lt;span class="o"&gt;)&lt;/span&gt;
-&amp;gt; Do you want to upload your website using S3? &lt;span class="o"&gt;(&lt;/span&gt;y/N&lt;span class="o"&gt;)&lt;/span&gt;
-&amp;gt; Do you want to upload your website using Rackspace Cloud Files? &lt;span class="o"&gt;(&lt;/span&gt;y/N&lt;span class="o"&gt;)&lt;/span&gt;
-&amp;gt; Do you want to upload your website using GitHub Pages? &lt;span class="o"&gt;(&lt;/span&gt;y/N&lt;span class="o"&gt;)&lt;/span&gt; Y
-&amp;gt; Is this your personal page &lt;span class="o"&gt;(&lt;/span&gt;username.github.io&lt;span class="o"&gt;)&lt;/span&gt;? &lt;span class="o"&gt;(&lt;/span&gt;y/N&lt;span class="o"&gt;)&lt;/span&gt; Y
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;Where&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="nv"&gt;you&lt;/span&gt; &lt;span class="nv"&gt;want&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;create&lt;/span&gt; &lt;span class="nv"&gt;your&lt;/span&gt; &lt;span class="nv"&gt;new&lt;/span&gt; &lt;span class="nv"&gt;web&lt;/span&gt; &lt;span class="nv"&gt;site&lt;/span&gt;? [.]
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;What&lt;/span&gt; &lt;span class="nv"&gt;will&lt;/span&gt; &lt;span class="nv"&gt;be&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;title&lt;/span&gt; &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="nv"&gt;this&lt;/span&gt; &lt;span class="nv"&gt;web&lt;/span&gt; &lt;span class="nv"&gt;site&lt;/span&gt;? &lt;span class="nv"&gt;Acefei&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;s Blog&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;Who&lt;/span&gt; &lt;span class="nv"&gt;will&lt;/span&gt; &lt;span class="nv"&gt;be&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;author&lt;/span&gt; &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="nv"&gt;this&lt;/span&gt; &lt;span class="nv"&gt;web&lt;/span&gt; &lt;span class="nv"&gt;site&lt;/span&gt;? &lt;span class="nv"&gt;acefei&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;What&lt;/span&gt; &lt;span class="nv"&gt;will&lt;/span&gt; &lt;span class="nv"&gt;be&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;default&lt;/span&gt; &lt;span class="nv"&gt;language&lt;/span&gt; &lt;span class="nv"&gt;of&lt;/span&gt; &lt;span class="nv"&gt;this&lt;/span&gt; &lt;span class="nv"&gt;web&lt;/span&gt; &lt;span class="nv"&gt;site&lt;/span&gt;? [&lt;span class="nv"&gt;en&lt;/span&gt;]
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;Do&lt;/span&gt; &lt;span class="nv"&gt;you&lt;/span&gt; &lt;span class="nv"&gt;want&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;specify&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;URL&lt;/span&gt; &lt;span class="nv"&gt;prefix&lt;/span&gt;? &lt;span class="nv"&gt;e&lt;/span&gt;.&lt;span class="nv"&gt;g&lt;/span&gt;., &lt;span class="nv"&gt;http&lt;/span&gt;:&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nv"&gt;example&lt;/span&gt;.&lt;span class="nv"&gt;com&lt;/span&gt;   &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;Y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;What&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;your&lt;/span&gt; &lt;span class="nv"&gt;URL&lt;/span&gt; &lt;span class="nv"&gt;prefix&lt;/span&gt;? &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;see&lt;/span&gt; &lt;span class="nv"&gt;above&lt;/span&gt; &lt;span class="nv"&gt;example&lt;/span&gt;&lt;span class="c1"&gt;; no trailing slash) https://acefei.github.io&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;Do&lt;/span&gt; &lt;span class="nv"&gt;you&lt;/span&gt; &lt;span class="nv"&gt;want&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;enable&lt;/span&gt; &lt;span class="nv"&gt;article&lt;/span&gt; &lt;span class="nv"&gt;pagination&lt;/span&gt;? &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;Y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;n&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;What&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="nv"&gt;your&lt;/span&gt; &lt;span class="nv"&gt;time&lt;/span&gt; &lt;span class="nv"&gt;zone&lt;/span&gt;? [&lt;span class="nv"&gt;Europe&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;Paris&lt;/span&gt;] &lt;span class="nv"&gt;Asia&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;Shanghai&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;Do&lt;/span&gt; &lt;span class="nv"&gt;you&lt;/span&gt; &lt;span class="nv"&gt;want&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;generate&lt;/span&gt; &lt;span class="nv"&gt;a&lt;/span&gt; &lt;span class="nv"&gt;Fabfile&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;Makefile&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;automate&lt;/span&gt; &lt;span class="nv"&gt;generation&lt;/span&gt; &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;publishing&lt;/span&gt;? &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;Y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;Do&lt;/span&gt; &lt;span class="nv"&gt;you&lt;/span&gt; &lt;span class="nv"&gt;want&lt;/span&gt; &lt;span class="nv"&gt;an&lt;/span&gt; &lt;span class="nv"&gt;auto&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;reload&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="nv"&gt;simpleHTTP&lt;/span&gt; &lt;span class="nv"&gt;script&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;assist&lt;/span&gt; &lt;span class="nv"&gt;with&lt;/span&gt; &lt;span class="nv"&gt;theme&lt;/span&gt; &lt;span class="nv"&gt;and&lt;/span&gt; &lt;span class="nv"&gt;site&lt;/span&gt; &lt;span class="nv"&gt;development&lt;/span&gt;? &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;Y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;n&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;Do&lt;/span&gt; &lt;span class="nv"&gt;you&lt;/span&gt; &lt;span class="nv"&gt;want&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;upload&lt;/span&gt; &lt;span class="nv"&gt;your&lt;/span&gt; &lt;span class="nv"&gt;website&lt;/span&gt; &lt;span class="nv"&gt;using&lt;/span&gt; &lt;span class="nv"&gt;FTP&lt;/span&gt;? &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;N&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;Do&lt;/span&gt; &lt;span class="nv"&gt;you&lt;/span&gt; &lt;span class="nv"&gt;want&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;upload&lt;/span&gt; &lt;span class="nv"&gt;your&lt;/span&gt; &lt;span class="nv"&gt;website&lt;/span&gt; &lt;span class="nv"&gt;using&lt;/span&gt; &lt;span class="nv"&gt;SSH&lt;/span&gt;? &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;N&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;Do&lt;/span&gt; &lt;span class="nv"&gt;you&lt;/span&gt; &lt;span class="nv"&gt;want&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;upload&lt;/span&gt; &lt;span class="nv"&gt;your&lt;/span&gt; &lt;span class="nv"&gt;website&lt;/span&gt; &lt;span class="nv"&gt;using&lt;/span&gt; &lt;span class="nv"&gt;Dropbox&lt;/span&gt;? &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;N&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;Do&lt;/span&gt; &lt;span class="nv"&gt;you&lt;/span&gt; &lt;span class="nv"&gt;want&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;upload&lt;/span&gt; &lt;span class="nv"&gt;your&lt;/span&gt; &lt;span class="nv"&gt;website&lt;/span&gt; &lt;span class="nv"&gt;using&lt;/span&gt; &lt;span class="nv"&gt;S3&lt;/span&gt;? &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;N&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;Do&lt;/span&gt; &lt;span class="nv"&gt;you&lt;/span&gt; &lt;span class="nv"&gt;want&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;upload&lt;/span&gt; &lt;span class="nv"&gt;your&lt;/span&gt; &lt;span class="nv"&gt;website&lt;/span&gt; &lt;span class="nv"&gt;using&lt;/span&gt; &lt;span class="nv"&gt;Rackspace&lt;/span&gt; &lt;span class="nv"&gt;Cloud&lt;/span&gt; &lt;span class="nv"&gt;Files&lt;/span&gt;? &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;N&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="k"&gt;Do&lt;/span&gt; &lt;span class="nv"&gt;you&lt;/span&gt; &lt;span class="nv"&gt;want&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;upload&lt;/span&gt; &lt;span class="nv"&gt;your&lt;/span&gt; &lt;span class="nv"&gt;website&lt;/span&gt; &lt;span class="nv"&gt;using&lt;/span&gt; &lt;span class="nv"&gt;GitHub&lt;/span&gt; &lt;span class="nv"&gt;Pages&lt;/span&gt;? &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;N&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;Y&lt;/span&gt;
+&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;Is&lt;/span&gt; &lt;span class="nv"&gt;this&lt;/span&gt; &lt;span class="nv"&gt;your&lt;/span&gt; &lt;span class="nv"&gt;personal&lt;/span&gt; &lt;span class="nv"&gt;page&lt;/span&gt; &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;username&lt;/span&gt;.&lt;span class="nv"&gt;github&lt;/span&gt;.&lt;span class="nv"&gt;io&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;? &lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;y&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;N&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt; &lt;span class="nv"&gt;Y&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="write-first-post"&gt;&lt;a href="http://docs.getpelican.com/en/3.6.3/content.html"&gt;Write first post&lt;/a&gt;&lt;a class="headerlink" href="#write-first-post" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;To facilitate blog creation, I write &lt;a href="https://raw.githubusercontent.com/acefei/acefei.github.io/pelican/create_new_blog.sh"&gt;a script&lt;/a&gt; for creating the template with md format.&lt;/p&gt;
 &lt;p&gt;Generate HTML pages and pre-view via http://localhost:8000/&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make html &amp;amp;&amp;amp; make serve&amp;amp;
-firefox http://localhost:8000/
-# After pre-view 
-fg
-# Then, Ctrl+C to terminate the process
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;make&lt;/span&gt; &lt;span class="nv"&gt;html&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="nv"&gt;make&lt;/span&gt; &lt;span class="nv"&gt;serve&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;
+&lt;span class="nv"&gt;firefox&lt;/span&gt; &lt;span class="nv"&gt;http&lt;/span&gt;:&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="nv"&gt;localhost&lt;/span&gt;:&lt;span class="mi"&gt;8000&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+# &lt;span class="nv"&gt;After&lt;/span&gt; &lt;span class="nv"&gt;pre&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;view&lt;/span&gt; 
+&lt;span class="nv"&gt;fg&lt;/span&gt;
+# &lt;span class="k"&gt;Then&lt;/span&gt;, &lt;span class="nv"&gt;Ctrl&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nv"&gt;C&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;terminate&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;process&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="publish"&gt;Publish&lt;a class="headerlink" href="#publish" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;If everything is OK, generate the website.       &lt;br/&gt;
@@ -1123,23 +1122,23 @@ Currently, all pelican settings that are used to render HTML are on pelican bran
 As previously mentioned, the static website content should be pulish from master branch.     &lt;br/&gt;
 So, I need to publish respectively:    &lt;br/&gt;
 For static website: (on &lt;a href="https://github.com/acefei/acefei.github.io/tree/master"&gt;master branch&lt;/a&gt;)&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make github
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;github&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;For pelican settings: (on &lt;a href="https://github.com/acefei/acefei.github.io/tree/pelican"&gt;pelican branch&lt;/a&gt;)       &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;echo -e "*.pyc\noutput/" &amp;gt;&amp;gt; .gitignore
-git add .
-git commit -m "commit pelican setting"
-git push -u origin pelican
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt; &lt;span class="ss"&gt;"*.pyc\noutput/"&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gitignore&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="k"&gt;add&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="k"&gt;commit&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="ss"&gt;"commit pelican setting"&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;push&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="n"&gt;origin&lt;/span&gt; &lt;span class="n"&gt;pelican&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="extension"&gt;Extension&lt;a class="headerlink" href="#extension" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;h4 id="theme"&gt;Theme&lt;a class="headerlink" href="#theme" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;Clone your fevorite &lt;a href="http://pelicanthemes.com/"&gt;theme&lt;/a&gt;, such as &lt;a href="http://oncrashreboot.com/elegant-best-pelican-theme-features"&gt;elegant&lt;/a&gt; &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;mkdir pelican-themes
-cd pelican-themes
-git clone git://github.com/talha131/pelican-elegant.git
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;mkdir&lt;/span&gt; &lt;span class="n"&gt;pelican&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;themes&lt;/span&gt;
+&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="n"&gt;pelican&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;themes&lt;/span&gt;
+&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;clone&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;talha131&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pelican&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;elegant&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Then, add something like this to  pelicanconf.py&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;THEME = "pelican-themes/pelican-elegant"
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;THEME&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="ss"&gt;"pelican-themes/pelican-elegant"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Note:          &lt;br/&gt;
@@ -1148,25 +1147,25 @@ git clone git://github.com/talha131/pelican-elegant.git
 &lt;/blockquote&gt;
 &lt;h4 id="plugin"&gt;Plugin&lt;a class="headerlink" href="#plugin" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;Clone the plugin repo.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;git clone git://github.com/getpelican/pelican-plugins.git
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="n"&gt;clone&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;getpelican&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;pelican&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;plugins&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Then, add following contents into pelicanconf.py&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;###### plugin configuration #######
-PLUGIN_PATHS = ['pelican-plugins']
-PLUGINS = ['sitemap', 'extract_toc', 'tipue_search']
-SITEMAP = {
-'format': 'xml',
-'priorities': {
-    'articles': 0.5,
-    'indexes': 0.5,
-    'pages': 0.5
-    },
-'changefreqs': {
-    'articles': 'weekly',
-    'indexes': 'daily',
-    'pages': 'monthly'
-    }
-}
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="o"&gt;######&lt;/span&gt; &lt;span class="n"&gt;plugin&lt;/span&gt; &lt;span class="n"&gt;configuration&lt;/span&gt; &lt;span class="o"&gt;#######&lt;/span&gt;
+&lt;span class="n"&gt;PLUGIN_PATHS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'pelican-plugins'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;PLUGINS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'sitemap'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'extract_toc'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;'tipue_search'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;SITEMAP&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
+&lt;span class="s1"&gt;'format'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'xml'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;'priorities'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;'articles'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;'indexes'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;'pages'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;
+    &lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;span class="s1"&gt;'changefreqs'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="err"&gt;{&lt;/span&gt;
+    &lt;span class="s1"&gt;'articles'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'weekly'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;'indexes'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'daily'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s1"&gt;'pages'&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'monthly'&lt;/span&gt;
+    &lt;span class="err"&gt;}&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Ok, plugin install completely.&lt;/p&gt;
 &lt;h4 id="pelican-settings"&gt;Pelican settings&lt;a class="headerlink" href="#pelican-settings" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;

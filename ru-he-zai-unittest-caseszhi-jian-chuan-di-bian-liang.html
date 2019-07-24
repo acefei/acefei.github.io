@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
     <head>
-        <meta charset="utf-8"> 
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Ace Fei" />
-        <meta name="copyright" content="Ace Fei" />
 
         <meta name="description" content="想必大家在写Python UT的时候，偶尔会遇到一些测试用例需要同时测试CRUD的接口。 这时需要在test cases之间传递变量该如何做呢？ 一开始，我们想既然是在一个class里，直接给instance增加attribute不就好了么? import unittest class TestA(unittest.TestCase): def __init__(self, testname): super(TestA, self).__init__(testname) self.transmit_var = None def test_1(self): self.transmit_var = &#39;hello world&#39; def test_2(self): print self.transmit_var if __name__ == &#34;__main__&#34;: unittest.main(verbosity=2) 结果...想当然了。 test_1 (__main__ …
 " />
@@ -26,12 +25,14 @@
         <title>如何在unittest cases之间传递变量  · Acefei &#39;s One Piece
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/pygments.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/admonition.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/custom.css" media="screen">
-        <link rel="shortcut icon" href="https://acefei.github.io/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+
+        <link rel="shortcut icon" href="https://acefei.github.io/theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="https://acefei.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
         <link rel="apple-touch-icon" href="https://acefei.github.io/theme/images/apple-touch-icon.png"  type="image/png" />
         <link rel="apple-touch-icon" sizes="57x57" href="https://acefei.github.io/theme/images/apple-touch-icon-57x57.png" type="image/png" />
@@ -42,44 +43,53 @@
         <link rel="apple-touch-icon" sizes="144x144" href="https://acefei.github.io/theme/images/apple-touch-icon-144x144.png" type="image/png" />
         <link rel="apple-touch-icon" sizes="152x152" href="https://acefei.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
         <link href="https://acefei.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Acefei &#39;s One Piece - Full Atom Feed" />
+
+
     </head>
     <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="https://acefei.github.io/"><span class=site-name><span style="color:black;">Acefei</span> <span style="color:darkblue;">'s</span> <span style="color:#AA1032;">One Piece</span></span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li ><a href="https://acefei.github.io">Home</a></li>
-                            <li ><a href="https://acefei.github.io/categories.html">Categories</a></li>
-                            <li ><a href="https://acefei.github.io/tags.html">Tags</a></li>
-                            <li ><a href="https://acefei.github.io/archives.html">Archives</a></li>
-                            <li><form class="navbar-search" action="https://acefei.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
-                        </ul>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="https://acefei.github.io/"><span class=site-name><span style="color:black;">Acefei</span> <span style="color:darkblue;">'s</span> <span style="color:#AA1032;">One Piece</span></span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       https://acefei.github.io
+                                    >Home</a>
+                                </li>
+                                <li ><a href="https://acefei.github.io/categories">Categories</a></li>
+                                <li ><a href="https://acefei.github.io/tags">Tags</a></li>
+                                <li ><a href="https://acefei.github.io/archives">Archives</a></li>
+                                <li><form class="navbar-search" action="https://acefei.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
-<article>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://acefei.github.io/ru-he-zai-unittest-caseszhi-jian-chuan-di-bian-liang.html"> 如何在unittest cases之间传递变量  </a></h1>
+        <h1>
+            <a href="https://acefei.github.io/ru-he-zai-unittest-caseszhi-jian-chuan-di-bian-liang.html">
+                如何在unittest cases之间传递变量
+            </a>
+        </h1>
     </header>
 </div>
 
 <div class="row-fluid">
         <div class="span8 offset2 article-content">
-
             
             <p>想必大家在写Python UT的时候，偶尔会遇到一些测试用例需要同时测试CRUD的接口。
 这时需要在test cases之间传递变量该如何做呢？</p>
@@ -103,14 +113,14 @@
 
 
 <p>结果...想当然了。</p>
-<div class="highlight"><pre><span></span>test_1 (__main__.TestA) ... ok
-test_2 (__main__.TestA) ... None
-ok
+<div class="highlight"><pre><span></span><span class="n">test_1</span> <span class="p">(</span><span class="n">__main__</span><span class="p">.</span><span class="n">TestA</span><span class="p">)</span> <span class="p">...</span> <span class="n">ok</span>
+<span class="n">test_2</span> <span class="p">(</span><span class="n">__main__</span><span class="p">.</span><span class="n">TestA</span><span class="p">)</span> <span class="p">...</span> <span class="k">None</span>
+<span class="n">ok</span>
 
-----------------------------------------------------------------------
-Ran 2 tests in 0.000s
+<span class="c1">----------------------------------------------------------------------</span>
+<span class="n">Ran</span> <span class="mi">2</span> <span class="n">tests</span> <span class="k">in</span> <span class="mi">0</span><span class="p">.</span><span class="mi">000</span><span class="n">s</span>
 
-OK
+<span class="n">OK</span>
 </pre></div>
 
 
@@ -135,20 +145,23 @@ OK
 
 
 <p>Bingo！ </p>
-<div class="highlight"><pre><span></span>test_1 (__main__.TestA) ... ok
-test_2 (__main__.TestA) ... hello world
-ok
+<div class="highlight"><pre><span></span><span class="n">test_1</span> <span class="p">(</span><span class="n">__main__</span><span class="p">.</span><span class="n">TestA</span><span class="p">)</span> <span class="p">...</span> <span class="n">ok</span>
+<span class="n">test_2</span> <span class="p">(</span><span class="n">__main__</span><span class="p">.</span><span class="n">TestA</span><span class="p">)</span> <span class="p">...</span> <span class="n">hello</span> <span class="n">world</span>
+<span class="n">ok</span>
 
-----------------------------------------------------------------------
-Ran 2 tests in 0.000s
+<span class="c1">----------------------------------------------------------------------</span>
+<span class="n">Ran</span> <span class="mi">2</span> <span class="n">tests</span> <span class="k">in</span> <span class="mi">0</span><span class="p">.</span><span class="mi">000</span><span class="n">s</span>
 
-OK
+<span class="n">OK</span>
 </pre></div>
 
 
 <p><strong>知识点二：在unittest中，绑定在class的attribute可以在testcase之间传递</strong></p>
 <p>温故而知新：
 <a href="https://www.python-course.eu/python3_class_and_instance_attributes.php">Class and Instance Attributes</a></p>
+
+
+            
             
             
             <hr/>
@@ -156,15 +169,15 @@ OK
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2017-10-26T09:53:00+08:00">Oct 26, 2017</time>
+            <time itemprop="dateCreated" datetime="2017-10-26T09:53:00+08:00">Oct 26, 2017</time>
             <h4>Category</h4>
             <a class="category-link" href="https://acefei.github.io/categories.html#development-ref">Development</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="https://acefei.github.io/tags.html#python-ref">Python
+                <li><a href="https://acefei.github.io/tags#python-ref">Python
                     <span>11</span>
 </a></li>
-                <li><a href="https://acefei.github.io/tags.html#unittest-ref">unittest
+                <li><a href="https://acefei.github.io/tags#unittest-ref">unittest
                     <span>1</span>
 </a></li>
             </ul>
@@ -177,19 +190,21 @@ OK
         </section>
 </div>
 </article>
+                    </div>
+                    <div class="span1"></div>
                 </div>
-                <div class="span1"></div>
             </div>
         </div>
-        <div id="push"></div>
-    </div>
 <footer>
-<div id="footer">
-    <ul class="footer-content">
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
-    </ul>
-</div>
-</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
             function validateForm(query)
@@ -201,5 +216,5 @@ OK
     
     </body>
     <!-- Theme: Elegant built for Pelican
-    License : http://oncrashreboot.com/pelican-elegant -->
+        License : MIT -->
 </html>

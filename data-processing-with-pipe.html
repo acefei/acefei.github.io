@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
     <head>
-        <meta charset="utf-8"> 
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Ace Fei" />
-        <meta name="copyright" content="Ace Fei" />
 
         <meta name="description" content="现如今云计算，大数据流式处理都会涉及到MapReduce，pipeline等概念，而《左耳朵耗子：什么是函数式编程？》对其深入浅出，尤其是最后一段Pipe相关的代码，very graceful and elegent！ 那么这篇文章也将练习一下Pipe的用法。 首先，照着耗子哥文章，先来实现一个Pipe装饰器类 import functools class Pipe: def __init__(self, func): self.func = func functools.update_wrapper(self, func) def __ror__(self, pipe_left_obj): return self.func(pipe_left_obj) def __call__(self, *args, **kwargs): def wrapped(pipe_left_obj): return self.func …
 " />
@@ -26,12 +25,14 @@
         <title>Data processing with pipe  · Acefei &#39;s One Piece
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/pygments.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/admonition.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/custom.css" media="screen">
-        <link rel="shortcut icon" href="https://acefei.github.io/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+
+        <link rel="shortcut icon" href="https://acefei.github.io/theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="https://acefei.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
         <link rel="apple-touch-icon" href="https://acefei.github.io/theme/images/apple-touch-icon.png"  type="image/png" />
         <link rel="apple-touch-icon" sizes="57x57" href="https://acefei.github.io/theme/images/apple-touch-icon-57x57.png" type="image/png" />
@@ -42,38 +43,48 @@
         <link rel="apple-touch-icon" sizes="144x144" href="https://acefei.github.io/theme/images/apple-touch-icon-144x144.png" type="image/png" />
         <link rel="apple-touch-icon" sizes="152x152" href="https://acefei.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
         <link href="https://acefei.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Acefei &#39;s One Piece - Full Atom Feed" />
+
+
     </head>
     <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="https://acefei.github.io/"><span class=site-name><span style="color:black;">Acefei</span> <span style="color:darkblue;">'s</span> <span style="color:#AA1032;">One Piece</span></span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li ><a href="https://acefei.github.io">Home</a></li>
-                            <li ><a href="https://acefei.github.io/categories.html">Categories</a></li>
-                            <li ><a href="https://acefei.github.io/tags.html">Tags</a></li>
-                            <li ><a href="https://acefei.github.io/archives.html">Archives</a></li>
-                            <li><form class="navbar-search" action="https://acefei.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
-                        </ul>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="https://acefei.github.io/"><span class=site-name><span style="color:black;">Acefei</span> <span style="color:darkblue;">'s</span> <span style="color:#AA1032;">One Piece</span></span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       https://acefei.github.io
+                                    >Home</a>
+                                </li>
+                                <li ><a href="https://acefei.github.io/categories">Categories</a></li>
+                                <li ><a href="https://acefei.github.io/tags">Tags</a></li>
+                                <li ><a href="https://acefei.github.io/archives">Archives</a></li>
+                                <li><form class="navbar-search" action="https://acefei.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
-<article>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://acefei.github.io/data-processing-with-pipe.html"> Data processing with pipe  </a></h1>
+        <h1>
+            <a href="https://acefei.github.io/data-processing-with-pipe.html">
+                Data processing with pipe
+            </a>
+        </h1>
     </header>
 </div>
 
@@ -89,7 +100,6 @@
         </nav>
     </div>
     <div class="span8 article-content">
-
             
             
 <p>现如今云计算，大数据流式处理都会涉及到MapReduce，pipeline等概念，而<a href="https://mp.weixin.qq.com/s?src=11&amp;timestamp=1518417170&amp;ver=693&amp;signature=wfyzH2b5BnDqNMSxwG-fFhxdBy9YkIT2C80e-NGu678wjs0KpMH4a*r8-bXfwUMg-bYxsCx7NQE290qrjRkButMGqbpk0Vu99EtpTeuqMw9E6zCSbZ4HgmF-NauP6859&amp;new=1">《左耳朵耗子：什么是函数式编程？》</a>对其深入浅出，尤其是最后一段Pipe相关的代码，very graceful and elegent！
@@ -116,12 +126,12 @@
 <p>注意<code>__ror__</code>和<code>__or__</code>的区别，重载<code>__ror__</code>是因为我们需要数据是从<code>|</code>的左边对象传给右边对象，比如<code>x | y</code>等于<code>y.__ror__(x)</code>, 而<code>__or__</code>则相反, 它等于<code>x.__or__(y)</code></p>
 </blockquote>
 <p>Pipe的用法示例：</p>
-<div class="highlight"><pre><span></span>@Pipe
-def to_str(data, sep=','):
-    return sep.join(map(str, data))
+<div class="highlight"><pre><span></span>@<span class="nv">Pipe</span>
+<span class="nv">def</span> <span class="nv">to_str</span><span class="ss">(</span><span class="nv">data</span>, <span class="nv">sep</span><span class="o">=</span><span class="s1">'</span><span class="s">,</span><span class="s1">'</span><span class="ss">)</span>:
+    <span class="k">return</span> <span class="nv">sep</span>.<span class="nv">join</span><span class="ss">(</span><span class="nv">map</span><span class="ss">(</span><span class="nv">str</span>, <span class="nv">data</span><span class="ss">))</span>
 
-print [1,2,3] | to_str   # output is '1,2,3'
-print [4,5,6] | to_str('#')  # output is '1#2#3'
+<span class="nv">print</span> [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>] <span class="o">|</span> <span class="nv">to_str</span>   # <span class="nv">output</span> <span class="nv">is</span> <span class="s1">'</span><span class="s">1,2,3</span><span class="s1">'</span>
+<span class="nv">print</span> [<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>] <span class="o">|</span> <span class="nv">to_str</span><span class="ss">(</span><span class="s1">'</span><span class="s">#</span><span class="s1">'</span><span class="ss">)</span>  # <span class="nv">output</span> <span class="nv">is</span> <span class="s1">'</span><span class="s">1#2#3</span><span class="s1">'</span>
 </pre></div>
 <p>这里的<code>to_str('#')</code>会调用<code>Pipe.__call__()</code>, 实现<code>__call__</code>需要注意几点：
 1. 定义的时候带上<code>(*args, **kwargs)</code>来接受<code>to_str</code>的参数。
@@ -162,34 +172,34 @@ print [4,5,6] | to_str('#')  # output is '1#2#3'
     <span class="k">print</span> <span class="n">iterable</span>
 </pre></div>
 <p>我们拿《The Zen of Python》来试试效果：</p>
-<div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="s">"""</span>
-<span class="s">The Zen of Python, by Tim Peters</span>
+<div class="highlight"><pre><span></span><span class="nv">text</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="nv">The</span> <span class="nv">Zen</span> <span class="nv">of</span> <span class="nv">Python</span>, <span class="nv">by</span> <span class="nv">Tim</span> <span class="nv">Peters</span>
 
-<span class="s">Beautiful is better than ugly.</span>
-<span class="s">Explicit is better than implicit.</span>
-<span class="s">Simple is better than complex.</span>
-<span class="s">Complex is better than complicated.</span>
-<span class="s">Flat is better than nested.</span>
-<span class="s">Sparse is better than dense.</span>
-<span class="s">Readability counts.</span>
-<span class="s">Special cases aren't special enough to break the rules.</span>
-<span class="s">Although practicality beats purity.</span>
-<span class="s">Errors should never pass silently.</span>
-<span class="s">Unless explicitly silenced.</span>
-<span class="s">In the face of ambiguity, refuse the temptation to guess.</span>
-<span class="s">There should be one-- and preferably only one --obvious way to do it.</span>
-<span class="s">Although that way may not be obvious at first unless you're Dutch.</span>
-<span class="s">Now is better than never.</span>
-<span class="s">Although never is often better than *right* now.</span>
-<span class="s">If the implementation is hard to explain, it's a bad idea.</span>
-<span class="s">If the implementation is easy to explain, it may be a good idea.</span>
-<span class="s">Namespaces are one honking great idea -- let's do more of those!</span>
-<span class="s">"""</span>
+<span class="nv">Beautiful</span> <span class="nv">is</span> <span class="nv">better</span> <span class="nv">than</span> <span class="nv">ugly</span>.
+<span class="nv">Explicit</span> <span class="nv">is</span> <span class="nv">better</span> <span class="nv">than</span> <span class="nv">implicit</span>.
+<span class="nv">Simple</span> <span class="nv">is</span> <span class="nv">better</span> <span class="nv">than</span> <span class="nv">complex</span>.
+<span class="nv">Complex</span> <span class="nv">is</span> <span class="nv">better</span> <span class="nv">than</span> <span class="nv">complicated</span>.
+<span class="nv">Flat</span> <span class="nv">is</span> <span class="nv">better</span> <span class="nv">than</span> <span class="nv">nested</span>.
+<span class="nv">Sparse</span> <span class="nv">is</span> <span class="nv">better</span> <span class="nv">than</span> <span class="nv">dense</span>.
+<span class="nv">Readability</span> <span class="nv">counts</span>.
+<span class="nv">Special</span> <span class="nv">cases</span> <span class="nv">aren</span><span class="s1">'</span><span class="s">t special enough to break the rules.</span>
+<span class="nv">Although</span> <span class="nv">practicality</span> <span class="nv">beats</span> <span class="nv">purity</span>.
+<span class="nv">Errors</span> <span class="nv">should</span> <span class="nv">never</span> <span class="nv">pass</span> <span class="nv">silently</span>.
+<span class="nv">Unless</span> <span class="nv">explicitly</span> <span class="nv">silenced</span>.
+<span class="nv">In</span> <span class="nv">the</span> <span class="nv">face</span> <span class="nv">of</span> <span class="nv">ambiguity</span>, <span class="nv">refuse</span> <span class="nv">the</span> <span class="nv">temptation</span> <span class="nv">to</span> <span class="nv">guess</span>.
+<span class="nv">There</span> <span class="nv">should</span> <span class="nv">be</span> <span class="nv">one</span><span class="o">--</span> <span class="nv">and</span> <span class="nv">preferably</span> <span class="nv">only</span> <span class="nv">one</span> <span class="o">--</span><span class="nv">obvious</span> <span class="nv">way</span> <span class="nv">to</span> <span class="k">do</span> <span class="nv">it</span>.
+<span class="nv">Although</span> <span class="nv">that</span> <span class="nv">way</span> <span class="nv">may</span> <span class="nv">not</span> <span class="nv">be</span> <span class="nv">obvious</span> <span class="nv">at</span> <span class="nv">first</span> <span class="nv">unless</span> <span class="nv">you</span><span class="s1">'</span><span class="s">re Dutch.</span>
+<span class="nv">Now</span> <span class="nv">is</span> <span class="nv">better</span> <span class="nv">than</span> <span class="nv">never</span>.
+<span class="nv">Although</span> <span class="nv">never</span> <span class="nv">is</span> <span class="nv">often</span> <span class="nv">better</span> <span class="nv">than</span> <span class="o">*</span><span class="nv">right</span><span class="o">*</span> <span class="nv">now</span>.
+<span class="k">If</span> <span class="nv">the</span> <span class="nv">implementation</span> <span class="nv">is</span> <span class="nv">hard</span> <span class="nv">to</span> <span class="nv">explain</span>, <span class="nv">it</span><span class="s1">'</span><span class="s">s a bad idea.</span>
+<span class="k">If</span> <span class="nv">the</span> <span class="nv">implementation</span> <span class="nv">is</span> <span class="nv">easy</span> <span class="nv">to</span> <span class="nv">explain</span>, <span class="nv">it</span> <span class="nv">may</span> <span class="nv">be</span> <span class="nv">a</span> <span class="nv">good</span> <span class="nv">idea</span>.
+<span class="nv">Namespaces</span> <span class="nv">are</span> <span class="nv">one</span> <span class="nv">honking</span> <span class="nv">great</span> <span class="nv">idea</span> <span class="o">--</span> <span class="nv">let</span><span class="s1">'</span><span class="s">s do more of those!</span>
+<span class="s2">"""</span>
 
-<span class="n">text</span> <span class="err">|</span> <span class="n">split_to_words</span> <span class="err">|</span> <span class="n">groupby</span><span class="p">(</span><span class="n">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">)</span> <span class="err">|</span> <span class="n">mapping</span><span class="p">(</span><span class="n">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">x</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="err">|</span> <span class="n">count</span><span class="p">))</span> <span class="err">|</span> <span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span><span class="n">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="k">True</span><span class="p">)</span> <span class="err">|</span> <span class="n">echo</span>
+<span class="nv">text</span> <span class="o">|</span> <span class="nv">split_to_words</span> <span class="o">|</span> <span class="nv">groupby</span><span class="ss">(</span><span class="nv">lambda</span> <span class="nv">x</span>: <span class="nv">x</span><span class="ss">)</span> <span class="o">|</span> <span class="nv">mapping</span><span class="ss">(</span><span class="nv">lambda</span> <span class="nv">x</span>: <span class="ss">(</span><span class="nv">x</span>[<span class="mi">0</span>], <span class="nv">x</span>[<span class="mi">1</span>] <span class="o">|</span> <span class="nv">count</span><span class="ss">))</span> <span class="o">|</span> <span class="nv">sort</span><span class="ss">(</span><span class="nv">key</span> <span class="o">=</span><span class="nv">lambda</span> <span class="nv">x</span>: <span class="nv">x</span>[<span class="mi">1</span>], <span class="nv">reverse</span><span class="o">=</span><span class="nv">True</span><span class="ss">)</span> <span class="o">|</span> <span class="nv">echo</span>
 </pre></div>
 <p>输出如下:</p>
-<div class="highlight"><pre><span></span>[('is', 10), ('better', 8), ('than', 8), ('the', 5), ('to', 5), ('Although', 3), ('be', 3), ('of', 3), ('If', 2), ('a', 2), ('do', 2), ('explain,', 2), ('idea.', 2), ('implementation', 2), ('may', 2), ('never', 2), ('one', 2), ('should', 2), ('way', 2), ('*right*', 1), ('--', 1), ('--obvious', 1), ('Beautiful', 1), ('Complex', 1), ('Dutch.', 1), ('Errors', 1), ('Explicit', 1), ('Flat', 1), ('In', 1), ('Namespaces', 1), ('Now', 1), ('Peters', 1), ('Python,', 1), ('Readability', 1), ('Simple', 1), ('Sparse', 1), ('Special', 1), ('The', 1), ('There', 1), ('Tim', 1), ('Unless', 1), ('Zen', 1), ('ambiguity,', 1), ('and', 1), ('are', 1), ("aren't", 1), ('at', 1), ('bad', 1), ('beats', 1), ('break', 1), ('by', 1), ('cases', 1), ('complex.', 1), ('complicated.', 1), ('counts.', 1), ('dense.', 1), ('easy', 1), ('enough', 1), ('explicitly', 1), ('face', 1), ('first', 1), ('good', 1), ('great', 1), ('guess.', 1), ('hard', 1), ('honking', 1), ('idea', 1), ('implicit.', 1), ('it', 1), ("it's", 1), ('it.', 1), ("let's", 1), ('more', 1), ('nested.', 1), ('never.', 1), ('not', 1), ('now.', 1), ('obvious', 1), ('often', 1), ('one--', 1), ('only', 1), ('pass', 1), ('practicality', 1), ('preferably', 1), ('purity.', 1), ('refuse', 1), ('rules.', 1), ('silenced.', 1), ('silently.', 1), ('special', 1), ('temptation', 1), ('that', 1), ('those!', 1), ('ugly.', 1), ('unless', 1), ("you're", 1)]
+<div class="highlight"><pre><span></span>[<span class="ss">(</span><span class="s1">'</span><span class="s">is</span><span class="s1">'</span>, <span class="mi">10</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">better</span><span class="s1">'</span>, <span class="mi">8</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">than</span><span class="s1">'</span>, <span class="mi">8</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">the</span><span class="s1">'</span>, <span class="mi">5</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">to</span><span class="s1">'</span>, <span class="mi">5</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">Although</span><span class="s1">'</span>, <span class="mi">3</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">be</span><span class="s1">'</span>, <span class="mi">3</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">of</span><span class="s1">'</span>, <span class="mi">3</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">If</span><span class="s1">'</span>, <span class="mi">2</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">a</span><span class="s1">'</span>, <span class="mi">2</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">do</span><span class="s1">'</span>, <span class="mi">2</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">explain,</span><span class="s1">'</span>, <span class="mi">2</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">idea.</span><span class="s1">'</span>, <span class="mi">2</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">implementation</span><span class="s1">'</span>, <span class="mi">2</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">may</span><span class="s1">'</span>, <span class="mi">2</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">never</span><span class="s1">'</span>, <span class="mi">2</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">one</span><span class="s1">'</span>, <span class="mi">2</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">should</span><span class="s1">'</span>, <span class="mi">2</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">way</span><span class="s1">'</span>, <span class="mi">2</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">*right*</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">--</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">--obvious</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">Beautiful</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">Complex</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">Dutch.</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">Errors</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">Explicit</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">Flat</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">In</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">Namespaces</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">Now</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">Peters</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">Python,</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">Readability</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">Simple</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">Sparse</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">Special</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">The</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">There</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">Tim</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">Unless</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">Zen</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">ambiguity,</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">and</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">are</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s2">"</span><span class="s">aren't</span><span class="s2">"</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">at</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">bad</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">beats</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">break</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">by</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">cases</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">complex.</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">complicated.</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">counts.</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">dense.</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">easy</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">enough</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">explicitly</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">face</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">first</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">good</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">great</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">guess.</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">hard</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">honking</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">idea</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">implicit.</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">it</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s2">"</span><span class="s">it's</span><span class="s2">"</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">it.</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s2">"</span><span class="s">let's</span><span class="s2">"</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">more</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">nested.</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">never.</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">not</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">now.</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">obvious</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">often</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">one--</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">only</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">pass</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">practicality</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">preferably</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">purity.</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">refuse</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">rules.</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">silenced.</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">silently.</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">special</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">temptation</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">that</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">those!</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">ugly.</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s1">'</span><span class="s">unless</span><span class="s1">'</span>, <span class="mi">1</span><span class="ss">)</span>, <span class="ss">(</span><span class="s2">"</span><span class="s">you're</span><span class="s2">"</span>, <span class="mi">1</span><span class="ss">)</span>]
 </pre></div>
 <p>Works like a charm!</p>
 <h1 id="_1">参考<a class="headerlink" href="#_1" title="Permanent link">¶</a></h1>
@@ -198,6 +208,9 @@ print [4,5,6] | to_str('#')  # output is '1#2#3'
 <li><a href="https://coolshell.cn/articles/11265.html">Python修饰器的函数式编程</a></li>
 <li><a href="https://coolshell.cn/articles/10822.html">函数式编程</a></li>
 </ul>
+
+
+            
             
             
             <hr/>
@@ -205,15 +218,15 @@ print [4,5,6] | to_str('#')  # output is '1#2#3'
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2018-02-24T14:44:00+08:00">Feb 24, 2018</time>
+            <time itemprop="dateCreated" datetime="2018-02-24T14:44:00+08:00">Feb 24, 2018</time>
             <h4>Category</h4>
             <a class="category-link" href="https://acefei.github.io/categories.html#development-ref">Development</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="https://acefei.github.io/tags.html#function-programming-ref">function programming
+                <li><a href="https://acefei.github.io/tags#function-programming-ref">function programming
                     <span>1</span>
 </a></li>
-                <li><a href="https://acefei.github.io/tags.html#python-ref">python
+                <li><a href="https://acefei.github.io/tags#python-ref">python
                     <span>11</span>
 </a></li>
             </ul>
@@ -226,19 +239,21 @@ print [4,5,6] | to_str('#')  # output is '1#2#3'
         </section>
 </div>
 </article>
+                    </div>
+                    <div class="span1"></div>
                 </div>
-                <div class="span1"></div>
             </div>
         </div>
-        <div id="push"></div>
-    </div>
 <footer>
-<div id="footer">
-    <ul class="footer-content">
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
-    </ul>
-</div>
-</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
             function validateForm(query)
@@ -250,5 +265,5 @@ print [4,5,6] | to_str('#')  # output is '1#2#3'
     
     </body>
     <!-- Theme: Elegant built for Pelican
-    License : http://oncrashreboot.com/pelican-elegant -->
+        License : MIT -->
 </html>

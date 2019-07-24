@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
     <head>
-        <meta charset="utf-8"> 
+        <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Ace Fei" />
-        <meta name="copyright" content="Ace Fei" />
 
         <meta name="description" content="基本介绍¶ Scrapyd¶ Scrapyd is a service for running Scrapy spiders. It allows you to deploy your Scrapy projects and control their spiders using a HTTP JSON API. Scrapyd can manage multiple projects and each project can have multiple versions uploaded, but only the latest one will be used for launching …
 " />
@@ -26,12 +25,14 @@
         <title>使用Scrapyd和Scrapyd-client部署爬虫  · Acefei &#39;s One Piece
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
-        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/pygments.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/tipuesearch/tipuesearch.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/admonition.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://acefei.github.io/theme/css/custom.css" media="screen">
-        <link rel="shortcut icon" href="https://acefei.github.io/theme/images/favicon.ico" type="image/x-icon" type="image/png" />
+
+        <link rel="shortcut icon" href="https://acefei.github.io/theme/images/favicon.ico" type="image/x-icon" />
         <link rel="icon" href="https://acefei.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
         <link rel="apple-touch-icon" href="https://acefei.github.io/theme/images/apple-touch-icon.png"  type="image/png" />
         <link rel="apple-touch-icon" sizes="57x57" href="https://acefei.github.io/theme/images/apple-touch-icon-57x57.png" type="image/png" />
@@ -42,38 +43,48 @@
         <link rel="apple-touch-icon" sizes="144x144" href="https://acefei.github.io/theme/images/apple-touch-icon-144x144.png" type="image/png" />
         <link rel="apple-touch-icon" sizes="152x152" href="https://acefei.github.io/theme/images/apple-touch-icon-152x152.png" type="image/png" />
         <link href="https://acefei.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Acefei &#39;s One Piece - Full Atom Feed" />
+
+
     </head>
     <body>
-        <div id="content-sans-footer">
-        <div class="navbar navbar-static-top">
-            <div class="navbar-inner">
-                <div class="container-fluid">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </a>
-                    <a class="brand" href="https://acefei.github.io/"><span class=site-name><span style="color:black;">Acefei</span> <span style="color:darkblue;">'s</span> <span style="color:#AA1032;">One Piece</span></span></a>
-                    <div class="nav-collapse collapse">
-                        <ul class="nav pull-right top-menu">
-                            <li ><a href="https://acefei.github.io">Home</a></li>
-                            <li ><a href="https://acefei.github.io/categories.html">Categories</a></li>
-                            <li ><a href="https://acefei.github.io/tags.html">Tags</a></li>
-                            <li ><a href="https://acefei.github.io/archives.html">Archives</a></li>
-                            <li><form class="navbar-search" action="https://acefei.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
-                        </ul>
+        <div id="content">
+            <div class="navbar navbar-static-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>
+                        <a class="brand" href="https://acefei.github.io/"><span class=site-name><span style="color:black;">Acefei</span> <span style="color:darkblue;">'s</span> <span style="color:#AA1032;">One Piece</span></span></a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav pull-right top-menu">
+                                <li >
+                                    <a href=
+                                       https://acefei.github.io
+                                    >Home</a>
+                                </li>
+                                <li ><a href="https://acefei.github.io/categories">Categories</a></li>
+                                <li ><a href="https://acefei.github.io/tags">Tags</a></li>
+                                <li ><a href="https://acefei.github.io/archives">Archives</a></li>
+                                <li><form class="navbar-search" action="https://acefei.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="span1"></div>
-                <div class="span10">
-<article>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span1"></div>
+                    <div class="span10">
+<article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://acefei.github.io/shi-yong-scrapydhe-scrapyd-clientbu-shu-pa-chong.html"> 使用Scrapyd和Scrapyd-client部署爬虫  </a></h1>
+        <h1>
+            <a href="https://acefei.github.io/shi-yong-scrapydhe-scrapyd-clientbu-shu-pa-chong.html">
+                使用Scrapyd和Scrapyd-client部署爬虫
+            </a>
+        </h1>
     </header>
 </div>
 
@@ -99,7 +110,6 @@
         </nav>
     </div>
     <div class="span8 article-content">
-
             
             
 <h3 id="_1">基本介绍<a class="headerlink" href="#_1" title="Permanent link">¶</a></h3>
@@ -110,21 +120,21 @@ Scrapyd can manage multiple projects and each project can have multiple versions
 <h4 id="scrapyd-client"><a href="https://github.com/scrapy/scrapyd-client">Scrapyd-client</a><a class="headerlink" href="#scrapyd-client" title="Permanent link">¶</a></h4>
 <p>Scrapyd-client is a client for Scrapyd. It provides the general scrapyd-client and the scrapyd-deploy utility which allows you to deploy your project to a Scrapyd server.</p>
 <h3 id="_2">安装<a class="headerlink" href="#_2" title="Permanent link">¶</a></h3>
-<div class="highlight"><pre><span></span>pip install scrapyd scrapyd-client
+<div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">scrapyd</span> <span class="n">scrapyd</span><span class="o">-</span><span class="n">client</span>
 </pre></div>
 <h3 id="_3">配置服务器信息<a class="headerlink" href="#_3" title="Permanent link">¶</a></h3>
 <p>当我们使用scrapy startnewproject来创建新工程时，会自动生成一个scrapy.cfg文件。</p>
-<div class="highlight"><pre><span></span># Automatically created by: scrapy startproject
+<div class="highlight"><pre><span></span># <span class="nv">Automatically</span> <span class="nv">created</span> <span class="nv">by</span>: <span class="nv">scrapy</span> <span class="nv">startproject</span>
 #
-# For more information about the [deploy] section see:
-# https://scrapyd.readthedocs.org/en/latest/deploy.html
+# <span class="k">For</span> <span class="nv">more</span> <span class="nv">information</span> <span class="nv">about</span> <span class="nv">the</span> [<span class="nv">deploy</span>] <span class="nv">section</span> <span class="nv">see</span>:
+# <span class="nv">https</span>:<span class="o">//</span><span class="nv">scrapyd</span>.<span class="nv">readthedocs</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">en</span><span class="o">/</span><span class="nv">latest</span><span class="o">/</span><span class="nv">deploy</span>.<span class="nv">html</span>
 
-[settings]
-default = prototypes.settings
+[<span class="nv">settings</span>]
+<span class="nv">default</span> <span class="o">=</span> <span class="nv">prototypes</span>.<span class="nv">settings</span>
 
-[deploy:proto_server]
-url = http://localhost:6800/
-project = prototypes
+[<span class="nv">deploy</span>:<span class="nv">proto_server</span>]
+<span class="nv">url</span> <span class="o">=</span> <span class="nv">http</span>:<span class="o">//</span><span class="nv">localhost</span>:<span class="mi">6800</span><span class="o">/</span>
+<span class="nv">project</span> <span class="o">=</span> <span class="nv">prototypes</span>
 </pre></div>
 <p>其中有两个地方是需要我们更新的：</p>
 <blockquote>
@@ -137,24 +147,24 @@ url是指scrapyd启动后，默认的服务器地址</p>
 <p>部署有两种方式：
 1. 通过json API:
 <a href="http://scrapyd.readthedocs.io/en/stable/api.html?highlight=egg#addversion-json">addversion.json</a> </p>
-<div class="highlight"><pre><span></span>curl http://localhost:6800/addversion.json -F project=prototypes -F version=r23 -F egg=@prototypes.egg
+<div class="highlight"><pre><span></span><span class="n">curl</span><span class="w"> </span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="nl">localhost</span><span class="p">:</span><span class="mi">6800</span><span class="o">/</span><span class="n">addversion</span><span class="p">.</span><span class="n">json</span><span class="w"> </span><span class="o">-</span><span class="n">F</span><span class="w"> </span><span class="n">project</span><span class="o">=</span><span class="n">prototypes</span><span class="w"> </span><span class="o">-</span><span class="n">F</span><span class="w"> </span><span class="n">version</span><span class="o">=</span><span class="n">r23</span><span class="w"> </span><span class="o">-</span><span class="n">F</span><span class="w"> </span><span class="n">egg</span><span class="o">=</span><span class="nv">@prototypes</span><span class="p">.</span><span class="n">egg</span><span class="w"></span>
 </pre></div>
 <p>其中egg需要用scrapyd-deploy来生成</p>
-<div class="highlight"><pre><span></span># 进入scrapy工程目录
-scrapyd-deploy --build-egg prototypes.egg
+<div class="highlight"><pre><span></span><span class="o">#</span> <span class="err">进入</span><span class="n">scrapy工程目录</span>
+<span class="n">scrapyd</span><span class="o">-</span><span class="n">deploy</span> <span class="c1">--build-egg prototypes.egg</span>
 </pre></div>
 <ol>
 <li>通过scrapyd-deploy一键部署</li>
 </ol>
-<div class="highlight"><pre><span></span>scrapyd-deploy proto_server -p prototypes
+<div class="highlight"><pre><span></span><span class="n">scrapyd</span><span class="o">-</span><span class="n">deploy</span> <span class="n">proto_server</span> <span class="o">-</span><span class="n">p</span> <span class="n">prototypes</span>
 </pre></div>
 <p>部署好后，我们可以用命令查看</p>
-<div class="highlight"><pre><span></span>scrapyd-deploy -L proto_server
+<div class="highlight"><pre><span></span><span class="n">scrapyd</span><span class="o">-</span><span class="n">deploy</span> <span class="o">-</span><span class="n">L</span> <span class="n">proto_server</span>
 </pre></div>
 <p>然后在http://localhost:6800/查看界面发现Available projects：<strong>prototypes</strong> <br/>
 <img alt="image" src="http://note.youdao.com/favicon.ico"/></p>
 <h3 id="spider">运行spider<a class="headerlink" href="#spider" title="Permanent link">¶</a></h3>
-<div class="highlight"><pre><span></span>curl http://localhost:6800/schedule.json -d project=prototypes -d spider=qichacha
+<div class="highlight"><pre><span></span><span class="n">curl</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">localhost</span><span class="p">:</span><span class="mi">6800</span><span class="o">/</span><span class="n">schedule</span><span class="p">.</span><span class="n">json</span> <span class="o">-</span><span class="n">d</span> <span class="n">project</span><span class="o">=</span><span class="n">prototypes</span> <span class="o">-</span><span class="n">d</span> <span class="n">spider</span><span class="o">=</span><span class="n">qichacha</span>
 </pre></div>
 <blockquote>
 <p>Note:
@@ -162,6 +172,9 @@ scrapyd-deploy --build-egg prototypes.egg
 </blockquote>
 <h3 id="further">Further<a class="headerlink" href="#further" title="Permanent link">¶</a></h3>
 <p>[ ]  集成<a href="https://github.com/DormyMo/SpiderKeeper">DormyMo/SpiderKeeper</a>或<a href="https://github.com/Gerapy/Gerapy">Gerapy/Gerapy</a></p>
+
+
+            
             
             
             <hr/>
@@ -169,15 +182,15 @@ scrapyd-deploy --build-egg prototypes.egg
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h4>Published</h4>
-            <time pubdate="pubdate" datetime="2017-10-30T09:17:00+08:00">Oct 30, 2017</time>
+            <time itemprop="dateCreated" datetime="2017-10-30T09:17:00+08:00">Oct 30, 2017</time>
             <h4>Category</h4>
             <a class="category-link" href="https://acefei.github.io/categories.html#development-ref">Development</a>
             <h4>Tags</h4>
             <ul class="list-of-tags tags-in-article">
-                <li><a href="https://acefei.github.io/tags.html#python-ref">python
+                <li><a href="https://acefei.github.io/tags#python-ref">python
                     <span>11</span>
 </a></li>
-                <li><a href="https://acefei.github.io/tags.html#scrapy-ref">scrapy
+                <li><a href="https://acefei.github.io/tags#scrapy-ref">scrapy
                     <span>3</span>
 </a></li>
             </ul>
@@ -190,19 +203,21 @@ scrapyd-deploy --build-egg prototypes.egg
         </section>
 </div>
 </article>
+                    </div>
+                    <div class="span1"></div>
                 </div>
-                <div class="span1"></div>
             </div>
         </div>
-        <div id="push"></div>
-    </div>
 <footer>
-<div id="footer">
-    <ul class="footer-content">
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
-    </ul>
-</div>
-</footer>            <script src="http://code.jquery.com/jquery.min.js"></script>
+
+
+
+
+    <div id="fpowered">
+        Powered by: <a href="http://getpelican.com/" title="Pelican Home Page" target="_blank" rel="nofollow">Pelican</a>
+        Theme: <a href="https://elegant.oncrashreboot.com/" title="Theme Elegant Home Page" target="_blank" rel="nofollow">Elegant</a>
+    </div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
             function validateForm(query)
@@ -214,5 +229,5 @@ scrapyd-deploy --build-egg prototypes.egg
     
     </body>
     <!-- Theme: Elegant built for Pelican
-    License : http://oncrashreboot.com/pelican-elegant -->
+        License : MIT -->
 </html>

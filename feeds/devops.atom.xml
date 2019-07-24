@@ -1,20 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei 's One Piece - DevOps</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/devops.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2018-01-24T15:24:00+08:00</updated><entry><title>使用cookiecutter+pypackage-minimal快速制作一个python package</title><link href="https://acefei.github.io/shi-yong-cookiecutterpypackage-minimalkuai-su-zhi-zuo-yi-ge-python-package.html" rel="alternate"></link><published>2018-01-24T15:24:00+08:00</published><updated>2018-01-24T15:24:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2018-01-24:/shi-yong-cookiecutterpypackage-minimalkuai-su-zhi-zuo-yi-ge-python-package.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei 's One Piece - DevOps</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/devops.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2019-07-23T23:17:00+08:00</updated><entry><title>Create user with root privilege for storage server</title><link href="https://acefei.github.io/create-user-with-root-privilege-for-storage-server.html" rel="alternate"></link><published>2019-07-23T23:17:00+08:00</published><updated>2019-07-23T23:17:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2019-07-23:/create-user-with-root-privilege-for-storage-server.html</id><summary type="html">
+&lt;h3 id="qnap"&gt;Qnap&lt;a class="headerlink" href="#qnap" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Ensure SSH is enable on Qnap website . &lt;strong&gt;ContrlPanel -&amp;gt; Network &amp;amp; File Services -&amp;gt; Telnet/SSH -&amp;gt; Allow SSH connection&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ssh to Qnap server and run below cmd.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;adduser&lt;/span&gt; &lt;span class="c1"&gt;--gid 0 admin-last&lt;/span&gt;
+&lt;span class="n"&gt;sed&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="s1"&gt;'/^admin/aadmin-last    ALL=(ALL)    ALL'&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sudoers&lt;/span&gt;
+&lt;span class="n"&gt;passwd&lt;/span&gt; &lt;span class="k"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;last&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="netapp"&gt;NetApp&lt;a class="headerlink" href="#netapp" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Enable ssh on netapp website &lt;strong&gt;Secure Admin …&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;</summary><content type="html">
+&lt;h3 id="qnap"&gt;Qnap&lt;a class="headerlink" href="#qnap" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Ensure SSH is enable on Qnap website . &lt;strong&gt;ContrlPanel -&amp;gt; Network &amp;amp; File Services -&amp;gt; Telnet/SSH -&amp;gt; Allow SSH connection&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ssh to Qnap server and run below cmd.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;adduser&lt;/span&gt; &lt;span class="c1"&gt;--gid 0 admin-last&lt;/span&gt;
+&lt;span class="n"&gt;sed&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="s1"&gt;'/^admin/aadmin-last    ALL=(ALL)    ALL'&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;etc&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;sudoers&lt;/span&gt;
+&lt;span class="n"&gt;passwd&lt;/span&gt; &lt;span class="k"&gt;admin&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;last&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id="netapp"&gt;NetApp&lt;a class="headerlink" href="#netapp" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Enable ssh on netapp website &lt;strong&gt;Secure Admin -&amp;gt;  SSH -&amp;gt; Enable/Disable&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Add below into ~/.ssh/config&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ssh to Netapp and run below cmd.
+&lt;code&gt;useradmin user add root-last -c "adminstrator for netapp last resort" -g Administrators&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</content><category term="security"></category></entry><entry><title>使用cookiecutter+pypackage-minimal快速制作一个python package</title><link href="https://acefei.github.io/shi-yong-cookiecutterpypackage-minimalkuai-su-zhi-zuo-yi-ge-python-package.html" rel="alternate"></link><published>2018-01-24T15:24:00+08:00</published><updated>2018-01-24T15:24:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2018-01-24:/shi-yong-cookiecutterpypackage-minimalkuai-su-zhi-zuo-yi-ge-python-package.html</id><summary type="html">
 &lt;h3 id="prerequisites"&gt;Prerequisites&lt;a class="headerlink" href="#prerequisites" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install scrapy
-pip install cookiecutter
-https://github.com/kragniz/cookiecutter-pypackage-minimal.git
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;scrapy&lt;/span&gt;
+&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;cookiecutter&lt;/span&gt;
+&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;kragniz&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cookiecutter&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pypackage&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;minimal&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="start-cookiecutter"&gt;Start &lt;a href="https://github.com/audreyr/cookiecutter"&gt;cookiecutter&lt;/a&gt;&lt;a class="headerlink" href="#start-cookiecutter" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cookiecutter&lt;/span&gt; &lt;span class="n"&gt;cookiecutter&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pypackage&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;minimal&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
 &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python2&lt;/span&gt;&lt;span class="mf"&gt;.7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nl"&gt;py&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nl"&gt;RequestsDependencyWarning&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;urllib3&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;1.22&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;or&lt;/span&gt; &lt;span class="n"&gt;chardet&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;2.2.1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;doesn&lt;/span&gt;&lt;span class="err"&gt;'&lt;/span&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="n"&gt;match&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="n"&gt;supported&lt;/span&gt; &lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;
   &lt;span class="n"&gt;RequestsDependencyWarning&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;author_name&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Louis&lt;/span&gt; &lt;span class="n"&gt;Taylor&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;acefei&lt;/span&gt;
-&lt;span class="n"&gt;author_email …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">
+&lt;span class="n"&gt;author_name&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;Louis&lt;/span&gt; &lt;span class="n"&gt;Taylor …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">
 &lt;h3 id="prerequisites"&gt;Prerequisites&lt;a class="headerlink" href="#prerequisites" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install scrapy
-pip install cookiecutter
-https://github.com/kragniz/cookiecutter-pypackage-minimal.git
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;scrapy&lt;/span&gt;
+&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;cookiecutter&lt;/span&gt;
+&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;kragniz&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;cookiecutter&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pypackage&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;minimal&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="start-cookiecutter"&gt;Start &lt;a href="https://github.com/audreyr/cookiecutter"&gt;cookiecutter&lt;/a&gt;&lt;a class="headerlink" href="#start-cookiecutter" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;$&lt;/span&gt; &lt;span class="n"&gt;cookiecutter&lt;/span&gt; &lt;span class="n"&gt;cookiecutter&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;pypackage&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;minimal&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
@@ -42,15 +84,15 @@ https://github.com/kragniz/cookiecutter-pypackage-minimal.git
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="create-scrapy-template"&gt;Create scrapy template&lt;a class="headerlink" href="#create-scrapy-template" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Copy the original template from scrapy project.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd scrapy_templates/scrapy_templates/
-mkdir scrapy &amp;amp;&amp;amp; cd scrapy
-cp -r /usr/lib64/python2.7/site-packages/scrapy/templates/project .
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="n"&gt;scrapy_templates&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;scrapy_templates&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;
+&lt;span class="n"&gt;mkdir&lt;/span&gt; &lt;span class="n"&gt;scrapy&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;cd&lt;/span&gt; &lt;span class="n"&gt;scrapy&lt;/span&gt;
+&lt;span class="n"&gt;cp&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;usr&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;lib64&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;python2&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;site&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;scrapy&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;templates&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;project&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now, you can customize the template in &lt;code&gt;scrapy_templates/scrapy_templates/scrapy&lt;/code&gt;&lt;/p&gt;
 &lt;h3 id="add-non-package-files"&gt;Add non-package files&lt;a class="headerlink" href="#add-non-package-files" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Since the templates path is not a python package, to specify those files to distribute, we should add  &lt;a href="https://docs.python.org/2/distutils/sourcedist.html#manifest"&gt;MANIFEST&lt;/a&gt; file.       &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# in MANIFEST
-recursive-include  scrapy_templates/  *
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# &lt;span class="nv"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;MANIFEST&lt;/span&gt;
+&lt;span class="nv"&gt;recursive&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;include&lt;/span&gt;  &lt;span class="nv"&gt;scrapy_templates&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;  &lt;span class="o"&gt;*&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;In order for these files to be copied at install time to the package’s folder inside site-packages, you’ll need to supply &lt;code&gt;include_package_data=True&lt;/code&gt; to the setup() function.&lt;/p&gt;
 &lt;h3 id="command-line-script"&gt;Command Line Script&lt;a class="headerlink" href="#command-line-script" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
@@ -93,7 +135,7 @@ recursive-include  scrapy_templates/  *
 &lt;h3 id="summary"&gt;Summary&lt;a class="headerlink" href="#summary" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Now, we have finished an python package.&lt;br/&gt;
 It's easy to install this package by pip.&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install git+https://github.com/acefei/scrapy_templates.git
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;git&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;github&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;com&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;acefei&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;scrapy_templates&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;git&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;About this package details, please find &lt;a href="https://github.com/acefei/scrapy_templates.git"&gt;acefei/scrapy_templates
 &lt;/a&gt;&lt;/p&gt;
