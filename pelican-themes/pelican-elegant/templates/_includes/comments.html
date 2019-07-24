@@ -1,5 +1,5 @@
 {% macro comments(article) %}
-    {% if DISQUS_SITENAME and SITEURL and article.status != 'draft' %}
+    {% if DISQUS_SITENAME and SITEURL and article.status != 'draft' and article.comments != 'False' %}
 <section>
 {% if article.comments_intro %}
 <p id="comment-message">{{ article.comments_intro }} </p>
@@ -13,10 +13,13 @@
     <div class="accordion-group">
         <div class="accordion-heading">
             <a class="accordion-toggle disqus-comment-count" data-toggle="collapse" data-parent="#accordion2"
-                {% if article.disqus_identifier %}
+                {% if article.comment_id %}
+                    data-disqus-identifier="{{ article.comment_id }}"
+                {% elif article.disqus_identifier %}
                     data-disqus-identifier="{{ article.disqus_identifier }}"
                 {% endif %}
-                href="{{ SITEURL }}/{{ article.url }}#disqus_thread">
+                href="{{ SITEURL }}/{{ article.url }}#disqus_thread",
+                id="disqus-accordion-toggle">
                 Comments
             </a>
         </div>
@@ -40,4 +43,3 @@
         {{ disqus_misc_scripts() }}
     {% endif %}
 {% endmacro %}
-
