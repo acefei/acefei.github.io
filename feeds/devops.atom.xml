@@ -39,10 +39,11 @@
 &lt;p&gt;Add below into ~/.ssh/config&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;ssh to Netapp and run below cmd.
-&lt;code&gt;useradmin user add root-last -c "adminstrator for netapp last resort" -g Administrators&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;ssh to Netapp and run below cmd.&lt;/p&gt;
 &lt;/li&gt;
-&lt;/ol&gt;</content><category term="security"></category></entry><entry><title>使用cookiecutter+pypackage-minimal快速制作一个python package</title><link href="https://acefei.github.io/shi-yong-cookiecutterpypackage-minimalkuai-su-zhi-zuo-yi-ge-python-package.html" rel="alternate"></link><published>2018-01-24T15:24:00+08:00</published><updated>2018-01-24T15:24:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2018-01-24:/shi-yong-cookiecutterpypackage-minimalkuai-su-zhi-zuo-yi-ge-python-package.html</id><summary type="html">
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;useradmin&lt;/span&gt; &lt;span class="nv"&gt;user&lt;/span&gt; &lt;span class="nv"&gt;add&lt;/span&gt; &lt;span class="nv"&gt;root&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;last&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;c&lt;/span&gt; &lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="s"&gt;adminstrator for netapp last resort&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="nv"&gt;g&lt;/span&gt; &lt;span class="nv"&gt;Administrators&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="security"></category></entry><entry><title>使用cookiecutter+pypackage-minimal快速制作一个python package</title><link href="https://acefei.github.io/shi-yong-cookiecutterpypackage-minimalkuai-su-zhi-zuo-yi-ge-python-package.html" rel="alternate"></link><published>2018-01-24T15:24:00+08:00</published><updated>2018-01-24T15:24:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2018-01-24:/shi-yong-cookiecutterpypackage-minimalkuai-su-zhi-zuo-yi-ge-python-package.html</id><summary type="html">
 &lt;h3 id="prerequisites"&gt;Prerequisites&lt;a class="headerlink" href="#prerequisites" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;scrapy&lt;/span&gt;
 &lt;span class="n"&gt;pip&lt;/span&gt; &lt;span class="n"&gt;install&lt;/span&gt; &lt;span class="n"&gt;cookiecutter&lt;/span&gt;
