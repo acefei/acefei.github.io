@@ -96,6 +96,7 @@
 <ul>
 <li><a href="#qnap">Qnap</a></li>
 <li><a href="#netapp">NetApp</a></li>
+<li><a href="#freenas">FreeNAS</a></li>
 </ul>
 </div>
         </nav>
@@ -124,11 +125,57 @@
 <li>
 <p>Add below into ~/.ssh/config</p>
 </li>
-<li>
-<p>ssh to Netapp and run below cmd.</p>
-</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="k">Host</span> <span class="o">*</span>
+    <span class="n">KexAlgorithms</span> <span class="o">+</span><span class="n">diffie</span><span class="o">-</span><span class="n">hellman</span><span class="o">-</span><span class="n">group1</span><span class="o">-</span><span class="n">sha1</span>
+    <span class="n">Ciphers</span> <span class="o">+</span><span class="mi">3</span><span class="n">des</span><span class="o">-</span><span class="n">cbc</span> 
+</pre></div>
+<ol>
+<li>ssh to Netapp and run below cmd.</li>
 </ol>
 <div class="highlight"><pre><span></span><span class="nv">useradmin</span> <span class="nv">user</span> <span class="nv">add</span> <span class="nv">root</span><span class="o">-</span><span class="nv">last</span> <span class="o">-</span><span class="nv">c</span> <span class="s2">"</span><span class="s">adminstrator for netapp last resort</span><span class="s2">"</span> <span class="o">-</span><span class="nv">g</span> <span class="nv">Administrators</span>
+</pre></div>
+<p>In NetApp ONTAP, it might be failed as <code>"useradmin user add" is not supported: use the "security login create" command.</code>
+As the <a href="https://docs.netapp.com/ontap-9/index.jsp?topic=%2Fcom.netapp.doc.dot-cm-cmpr-950%2Fsecurity__login__create.html">NetApp ONTAP Documentation</a>,
+We can use below cmd. </p>
+<div class="highlight"><pre><span></span># <span class="nv">find</span> <span class="nv">current</span> <span class="nv">vserver</span> <span class="nv">name</span>
+<span class="nv">cluster1</span>::<span class="o">&gt;</span> <span class="nv">security</span> <span class="nv">login</span> <span class="k">show</span>
+<span class="nv">cluster1</span>::<span class="o">&gt;</span> <span class="nv">security</span> <span class="nv">login</span> <span class="nv">create</span> <span class="o">-</span><span class="nv">vserver</span> <span class="nv">vserver</span><span class="o">-</span><span class="nv">name</span> <span class="o">-</span><span class="nv">user</span><span class="o">-</span><span class="nv">or</span><span class="o">-</span><span class="nv">group</span><span class="o">-</span><span class="nv">name</span> <span class="nv">admin</span><span class="o">-</span><span class="nv">last</span> <span class="o">-</span><span class="nv">application</span> <span class="nv">ssh</span> <span class="o">-</span><span class="nv">authentication</span><span class="o">-</span><span class="nv">method</span> <span class="nv">password</span> <span class="o">-</span><span class="nv">role</span> <span class="nv">admin</span>
+</pre></div>
+<h3 id="freenas">FreeNAS<a class="headerlink" href="#freenas" title="Permanent link">¶</a></h3>
+<ol>
+<li>ssh to FreeNAS.</li>
+<li>add user with root privilege (set the user group is wheel)</li>
+</ol>
+<div class="highlight"><pre><span></span># <span class="nv">adduser</span>
+<span class="nv">Username</span>: <span class="nv">root</span><span class="o">-</span><span class="nv">last</span>
+<span class="nv">Full</span> <span class="nv">name</span>:
+<span class="nv">Uid</span> <span class="ss">(</span><span class="nv">Leave</span> <span class="nv">empty</span> <span class="k">for</span> <span class="nv">default</span><span class="ss">)</span>:
+<span class="nv">Login</span> <span class="nv">group</span> [<span class="nv">root</span><span class="o">-</span><span class="nv">last</span>]: <span class="nv">wheel</span>
+<span class="nv">Login</span> <span class="nv">group</span> <span class="nv">is</span> <span class="nv">wheel</span>. <span class="nv">Invite</span> <span class="nv">root</span><span class="o">-</span><span class="nv">last</span> <span class="nv">into</span> <span class="nv">other</span> <span class="nv">groups</span>? []:
+<span class="nv">Login</span> <span class="nv">class</span> [<span class="nv">default</span>]:
+<span class="nv">Shell</span> <span class="ss">(</span><span class="nv">sh</span> <span class="nv">csh</span> <span class="nv">tcsh</span> <span class="nv">bash</span> <span class="nv">rbash</span> <span class="nv">netcli</span>.<span class="nv">sh</span> <span class="nv">ksh93</span> <span class="nv">mksh</span> <span class="nv">zsh</span> <span class="nv">rzsh</span> <span class="nv">scponly</span> <span class="nv">git</span><span class="o">-</span><span class="nv">shell</span> <span class="nv">nologin</span><span class="ss">)</span> [<span class="nv">sh</span>]:
+<span class="nv">Home</span> <span class="nv">directory</span> [<span class="o">/</span><span class="nv">home</span><span class="o">/</span><span class="nv">root</span><span class="o">-</span><span class="nv">last</span>]:
+<span class="nv">Home</span> <span class="nv">directory</span> <span class="nv">permissions</span> <span class="ss">(</span><span class="nv">Leave</span> <span class="nv">empty</span> <span class="k">for</span> <span class="nv">default</span><span class="ss">)</span>:
+<span class="nv">Use</span> <span class="nv">password</span><span class="o">-</span><span class="nv">based</span> <span class="nv">authentication</span>? [<span class="nv">yes</span>]:
+<span class="nv">Use</span> <span class="nv">an</span> <span class="nv">empty</span> <span class="nv">password</span>? <span class="ss">(</span><span class="nv">yes</span><span class="o">/</span><span class="nv">no</span><span class="ss">)</span> [<span class="nv">no</span>]:
+<span class="nv">Use</span> <span class="nv">a</span> <span class="k">random</span> <span class="nv">password</span>? <span class="ss">(</span><span class="nv">yes</span><span class="o">/</span><span class="nv">no</span><span class="ss">)</span> [<span class="nv">no</span>]:
+<span class="nv">Enter</span> <span class="nv">password</span>:
+<span class="nv">Enter</span> <span class="nv">password</span> <span class="nv">again</span>:
+<span class="nv">Lock</span> <span class="nv">out</span> <span class="nv">the</span> <span class="nv">account</span> <span class="nv">after</span> <span class="nv">creation</span>? [<span class="nv">no</span>]:
+<span class="nv">Username</span>   : <span class="nv">root</span><span class="o">-</span><span class="nv">last</span>
+<span class="nv">Password</span>   : <span class="o">*****</span>
+<span class="nv">Full</span> <span class="nv">Name</span>  :
+<span class="nv">Uid</span>        : <span class="mi">1001</span>
+<span class="nv">Class</span>      :
+<span class="nv">Groups</span>     : <span class="nv">wheel</span>
+<span class="nv">Home</span>       : <span class="o">/</span><span class="nv">home</span><span class="o">/</span><span class="nv">root</span><span class="o">-</span><span class="nv">last</span>
+<span class="nv">Home</span> <span class="nv">Mode</span>  :
+<span class="nv">Shell</span>      : <span class="o">/</span><span class="nv">bin</span><span class="o">/</span><span class="nv">sh</span>
+<span class="nv">Locked</span>     : <span class="nv">no</span>
+<span class="nv">OK</span>? <span class="ss">(</span><span class="nv">yes</span><span class="o">/</span><span class="nv">no</span><span class="ss">)</span>: <span class="nv">yes</span>
+
+# <span class="nv">echo</span> <span class="s2">"</span><span class="s">%wheel ALL=(ALL) ALL</span><span class="s2">"</span> <span class="o">&gt;&gt;</span> <span class="o">/</span><span class="nv">etc</span><span class="o">/</span><span class="nv">local</span><span class="o">/</span><span class="nv">sudoers</span>
 </pre></div>
 
 
