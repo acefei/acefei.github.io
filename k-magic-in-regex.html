@@ -97,17 +97,17 @@ First of all, Let us see a question, how to get <code>123 789</code> from the st
 <div class="highlight"><pre><span></span><span class="err">$</span><span class="n">echo</span> <span class="ss">&quot;abc: 123 def 456 ghi: 789&quot;</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">Po</span> <span class="s1">&#39;(?&lt;=:\s)\d+&#39;</span>
 <span class="mi">123</span>
 <span class="mi">789</span>
-<span class="o">`````</span>
-
-<span class="n">However</span><span class="p">,</span> <span class="n">the</span> <span class="n">string</span> <span class="k">is</span> <span class="n">changed</span> <span class="k">to</span> <span class="o">```</span><span class="n">abc</span><span class="p">:</span> <span class="mi">123</span> <span class="n">def</span> <span class="mi">456</span> <span class="n">ghi</span><span class="p">:</span>  <span class="mi">789</span><span class="o">`</span> <span class="k">with</span> <span class="n">multiple</span> <span class="n">spaces</span> <span class="k">after</span> <span class="o">`</span><span class="p">:</span><span class="o">`</span><span class="p">,</span>  <span class="o">**</span><span class="n">lookbehind</span> <span class="k">assertion</span><span class="o">**</span> <span class="n">won</span><span class="err">&#39;</span><span class="n">t</span> <span class="k">work</span> <span class="k">in</span> <span class="n">this</span> <span class="k">case</span><span class="p">,</span> <span class="k">as</span> <span class="n">it</span> <span class="k">only</span> <span class="n">supports</span> <span class="n">fixed</span> <span class="k">length</span> <span class="n">pattern</span><span class="p">.</span>
 </pre></div>
 
 
-<p>$echo "abc: 123 def 456 ghi: 789" | grep -Po '(?&lt;=:\s+)\d+'
-grep: lookbehind assertion is not fixed length</p>
-<div class="highlight"><pre><span></span><span class="n">Now</span> <span class="n">we</span> <span class="n">just</span> <span class="n">need</span> <span class="k">to</span> <span class="n">a</span> <span class="n">small</span> <span class="n">change</span><span class="p">,</span> <span class="k">to</span> <span class="n">use</span> <span class="o">```</span><span class="err">\</span><span class="n">K</span><span class="o">`</span> <span class="k">instead</span> <span class="k">of</span> <span class="o">`</span><span class="p">(</span><span class="o">?&lt;=</span><span class="p">...)</span><span class="o">`</span>
-<span class="o">```</span>
-<span class="err">$</span><span class="n">echo</span> <span class="ss">&quot;abc: 123 def 456 ghi: 789&quot;</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">Po</span> <span class="s1">&#39;:\s*\K\d+&#39;</span>
+<p>However, the string is changed to <code>abc: 123 def 456 ghi:  789</code> with multiple spaces after <code>:</code>,  <strong>lookbehind assertion</strong> won't work in this case, as it only supports fixed length pattern.</p>
+<div class="highlight"><pre><span></span><span class="err">$</span><span class="n">echo</span> <span class="ss">&quot;abc: 123 def 456 ghi: 789&quot;</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">Po</span> <span class="s1">&#39;(?&lt;=:\s+)\d+&#39;</span>
+<span class="n">grep</span><span class="p">:</span> <span class="n">lookbehind</span> <span class="k">assertion</span> <span class="k">is</span> <span class="k">not</span> <span class="n">fixed</span> <span class="k">length</span>
+</pre></div>
+
+
+<p>Now we just need to a small change, to use <code>\K</code> instead of <code>(?&lt;=...)</code></p>
+<div class="highlight"><pre><span></span><span class="err">$</span><span class="n">echo</span> <span class="ss">&quot;abc: 123 def 456 ghi: 789&quot;</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">Po</span> <span class="s1">&#39;:\s*\K\d+&#39;</span>
 <span class="mi">123</span>
 <span class="mi">789</span>
 </pre></div>
