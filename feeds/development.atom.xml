@@ -538,7 +538,7 @@ Content-Type: text/html; charset=ISO-8859-1
 &lt;p&gt;&lt;a href="https://docs.scipy.org/doc/numpy-dev/genindex.html"&gt;Index&lt;/a&gt; 查询api，推荐！&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="scipy"&gt;&lt;a href=""&gt;Scipy&lt;/a&gt;&lt;a class="headerlink" href="#scipy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="scipy"&gt;&lt;a href="https://www.scipy.org/"&gt;Scipy&lt;/a&gt;&lt;a class="headerlink" href="#scipy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;SciPy函数库在NumPy库的基础上增加了众多的数学、科学以及工程计算中常用的库函数。例如线性代数、常微分方程数值求解、信号处理、图像处理、稀疏矩阵等等。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.scipy-lectures.org/#"&gt;Scipy Lecture Notes&lt;/a&gt; 极力推荐的一个学习笔记！&lt;/li&gt;
@@ -571,7 +571,7 @@ Series和DataFrame分别对应于一维的序列和二维的表结构。&lt;/p&g
 &lt;p&gt;&lt;a href="https://docs.scipy.org/doc/numpy-dev/genindex.html"&gt;Index&lt;/a&gt; 查询api，推荐！&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id="scipy"&gt;&lt;a href=""&gt;Scipy&lt;/a&gt;&lt;a class="headerlink" href="#scipy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="scipy"&gt;&lt;a href="https://www.scipy.org/"&gt;Scipy&lt;/a&gt;&lt;a class="headerlink" href="#scipy" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;SciPy函数库在NumPy库的基础上增加了众多的数学、科学以及工程计算中常用的库函数。例如线性代数、常微分方程数值求解、信号处理、图像处理、稀疏矩阵等等。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href="http://www.scipy-lectures.org/#"&gt;Scipy Lecture Notes&lt;/a&gt; 极力推荐的一个学习笔记！&lt;/li&gt;
