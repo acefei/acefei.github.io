@@ -5,36 +5,29 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://acefei.github.io/</loc>
-<lastmod>2019-11-07T09:50:58-00:00</lastmod>
+<lastmod>2019-11-07T09:54:17-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://acefei.github.io/archives.html</loc>
-<lastmod>2019-11-07T09:50:58-00:00</lastmod>
+<lastmod>2019-11-07T09:54:17-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://acefei.github.io/tags.html</loc>
-<lastmod>2019-11-07T09:50:58-00:00</lastmod>
+<lastmod>2019-11-07T09:54:17-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://acefei.github.io/categories.html</loc>
-<lastmod>2019-11-07T09:50:58-00:00</lastmod>
+<lastmod>2019-11-07T09:54:17-00:00</lastmod>
 <changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://acefei.github.io/ipxe-boot-over-http.html</loc>
-<lastmod>2019-11-07T09:41:00+08:00</lastmod>
-<changefreq>weekly</changefreq>
 <priority>0.5</priority>
 </url>
 
