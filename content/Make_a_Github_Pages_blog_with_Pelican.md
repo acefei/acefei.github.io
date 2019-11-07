@@ -71,25 +71,7 @@ fg
 ```
 
 ### Publish
-<s>
-If everything is OK, generate the website.         
-Currently, all pelican settings that are used to render HTML are on pelican branch.       
-As previously mentioned, the static website content should be pulish from master branch.       
-So, I need to publish respectively:      
-For static website: (on [master branch](https://github.com/acefei/acefei.github.io/tree/master))
-```
-make github
-```     
-
-For pelican settings: (on [pelican branch](https://github.com/acefei/acefei.github.io/tree/pelican))       
-```
-echo -e "*.pyc\noutput/" >> .gitignore
-git add .
-git commit -m "commit pelican setting"
-make pelican
-```
-</s>
-Thanks to [github action](https://help.github.com/en/actions), now you just to edit your article and commit on `pelican` branch, it will deploy automatically. (See [ci.yaml](https://github.com/acefei/acefei.github.io/blob/pelican/.github/workflows/ci.yaml))
+Thanks to [github action](https://help.github.com/en/actions), now you just to create your [article.md](https://github.com/acefei/acefei.github.io/tree/pelican/content) and commit on `pelican` branch, it will deploy automatically. (See [ci.yaml](https://github.com/acefei/acefei.github.io/blob/pelican/.github/workflows/ci.yaml))
 
 ### Extension
 #### Theme
