@@ -171,22 +171,7 @@ $ <span class="nv">pelican</span><span class="o">-</span><span class="nv">quicks
 # <span class="k">Then</span>, <span class="nv">Ctrl</span><span class="o">+</span><span class="nv">C</span> <span class="nv">to</span> <span class="nv">terminate</span> <span class="nv">the</span> <span class="nv">process</span>
 </pre></div>
 <h3 id="publish">Publish<a class="headerlink" href="#publish" title="Permanent link">¶</a></h3>
-<p><s>
-If everything is OK, generate the website.       <br/>
-Currently, all pelican settings that are used to render HTML are on pelican branch.     <br/>
-As previously mentioned, the static website content should be pulish from master branch.     <br/>
-So, I need to publish respectively:    <br/>
-For static website: (on <a href="https://github.com/acefei/acefei.github.io/tree/master">master branch</a>)</s></p>
-<div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">github</span>
-</pre></div>
-<p>For pelican settings: (on <a href="https://github.com/acefei/acefei.github.io/tree/pelican">pelican branch</a>)       </p>
-<div class="highlight"><pre><span></span><span class="n">echo</span> <span class="o">-</span><span class="n">e</span> <span class="ss">"*.pyc\noutput/"</span> <span class="o">&gt;&gt;</span> <span class="p">.</span><span class="n">gitignore</span>
-<span class="n">git</span> <span class="k">add</span> <span class="p">.</span>
-<span class="n">git</span> <span class="k">commit</span> <span class="o">-</span><span class="n">m</span> <span class="ss">"commit pelican setting"</span>
-<span class="n">make</span> <span class="n">pelican</span>
-</pre></div>
-<p></p>
-Thanks to <a href="https://help.github.com/en/actions">github action</a>, now you just to edit your article and commit on <code>pelican</code> branch, it will deploy automatically. (See <a href="https://github.com/acefei/acefei.github.io/blob/pelican/.github/workflows/ci.yaml">ci.yaml</a>)
+<p>Thanks to <a href="https://help.github.com/en/actions">github action</a>, now you just to create your <a href="https://github.com/acefei/acefei.github.io/tree/pelican/content">article.md</a> and commit on <code>pelican</code> branch, it will deploy automatically. (See <a href="https://github.com/acefei/acefei.github.io/blob/pelican/.github/workflows/ci.yaml">ci.yaml</a>)</p>
 <h3 id="extension">Extension<a class="headerlink" href="#extension" title="Permanent link">¶</a></h3>
 <h4 id="theme">Theme<a class="headerlink" href="#theme" title="Permanent link">¶</a></h4>
 <p>Clone your fevorite <a href="http://pelicanthemes.com/">theme</a>, such as <a href="http://oncrashreboot.com/elegant-best-pelican-theme-features">elegant</a> </p>

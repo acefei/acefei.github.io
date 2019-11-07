@@ -1138,22 +1138,7 @@ $ &lt;span class="nv"&gt;pelican&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt
 # &lt;span class="k"&gt;Then&lt;/span&gt;, &lt;span class="nv"&gt;Ctrl&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="nv"&gt;C&lt;/span&gt; &lt;span class="nv"&gt;to&lt;/span&gt; &lt;span class="nv"&gt;terminate&lt;/span&gt; &lt;span class="nv"&gt;the&lt;/span&gt; &lt;span class="nv"&gt;process&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;h3 id="publish"&gt;Publish&lt;a class="headerlink" href="#publish" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;s&gt;
-If everything is OK, generate the website.       &lt;br/&gt;
-Currently, all pelican settings that are used to render HTML are on pelican branch.     &lt;br/&gt;
-As previously mentioned, the static website content should be pulish from master branch.     &lt;br/&gt;
-So, I need to publish respectively:    &lt;br/&gt;
-For static website: (on &lt;a href="https://github.com/acefei/acefei.github.io/tree/master"&gt;master branch&lt;/a&gt;)&lt;/s&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;github&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;For pelican settings: (on &lt;a href="https://github.com/acefei/acefei.github.io/tree/pelican"&gt;pelican branch&lt;/a&gt;)       &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;echo&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;e&lt;/span&gt; &lt;span class="ss"&gt;"*.pyc\noutput/"&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;gitignore&lt;/span&gt;
-&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="k"&gt;add&lt;/span&gt; &lt;span class="p"&gt;.&lt;/span&gt;
-&lt;span class="n"&gt;git&lt;/span&gt; &lt;span class="k"&gt;commit&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;m&lt;/span&gt; &lt;span class="ss"&gt;"commit pelican setting"&lt;/span&gt;
-&lt;span class="n"&gt;make&lt;/span&gt; &lt;span class="n"&gt;pelican&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;/p&gt;
-Thanks to &lt;a href="https://help.github.com/en/actions"&gt;github action&lt;/a&gt;, now you just to edit your article and commit on &lt;code&gt;pelican&lt;/code&gt; branch, it will deploy automatically. (See &lt;a href="https://github.com/acefei/acefei.github.io/blob/pelican/.github/workflows/ci.yaml"&gt;ci.yaml&lt;/a&gt;)
+&lt;p&gt;Thanks to &lt;a href="https://help.github.com/en/actions"&gt;github action&lt;/a&gt;, now you just to create your &lt;a href="https://github.com/acefei/acefei.github.io/tree/pelican/content"&gt;article.md&lt;/a&gt; and commit on &lt;code&gt;pelican&lt;/code&gt; branch, it will deploy automatically. (See &lt;a href="https://github.com/acefei/acefei.github.io/blob/pelican/.github/workflows/ci.yaml"&gt;ci.yaml&lt;/a&gt;)&lt;/p&gt;
 &lt;h3 id="extension"&gt;Extension&lt;a class="headerlink" href="#extension" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;h4 id="theme"&gt;Theme&lt;a class="headerlink" href="#theme" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;Clone your fevorite &lt;a href="http://pelicanthemes.com/"&gt;theme&lt;/a&gt;, such as &lt;a href="http://oncrashreboot.com/elegant-best-pelican-theme-features"&gt;elegant&lt;/a&gt; &lt;/p&gt;
