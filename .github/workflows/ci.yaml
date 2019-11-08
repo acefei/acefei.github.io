@@ -26,9 +26,8 @@ jobs:
         USER: acefei
         GITHUB_PAGES_BRANCH: master
       run: |
-        git config --local user.email "$USER@github.com"
-        git config --local user.name $USER
+        git config --local user.email "${USER}@github.com"
+        git config --local user.name ${USER}
         make publish
-        ghp-import -m "Generate Pelican site" -b $GITHUB_PAGES_BRANCH ./output
-        git remote set-url --push origin https://x-access-token:$CI_TOKEN@github.com/$USER/$USER.github.io
-        git push origin $GITHUB_PAGES_BRANCH
+        ghp-import -m "Automated deployment: $(date -u) ${GITHUB_SHA}" -b ${GITHUB_PAGES_BRANCH} ./output
+        git push -f -q https://${CI_TOKEN}@github.com/${USER}/${USER}.github.io.git ${GITHUB_PAGES_BRANCH}
