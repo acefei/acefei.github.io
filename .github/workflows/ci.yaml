@@ -27,6 +27,7 @@ jobs:
       run: |
         git config --local user.email "$USER@github.com"
         git config --local user.name $USER
+        make publish
         ghp-import -m "Generate Pelican site" -b master ./output
         git remote set-url --push origin https://x-access-token:$CI_TOKEN@github.com/$USER/$USER.github.io
         git push
