@@ -120,6 +120,6 @@ Ok, plugin install completely.
 There are enhancements in [pelicanconfig.py](https://github.com/acefei/acefei.github.io/blob/pelican/pelicanconf.py)
 
 ### Reference
-> Blog [`onCrash=Reboot();`](http://oncrashreboot.com) uses Elegant theme. You
+* Blog [`onCrash=Reboot();`](http://oncrashreboot.com) uses Elegant theme. You
 can see its configuration files at
 [Github](https://github.com/talha131/onCrashReboot) for inspiration. 
