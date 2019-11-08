@@ -1368,8 +1368,8 @@ $ &lt;span class="nv"&gt;pelican&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt
 &lt;h4 id="pelican-settings"&gt;Pelican settings&lt;a class="headerlink" href="#pelican-settings" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h4&gt;
 &lt;p&gt;There are enhancements in &lt;a href="https://github.com/acefei/acefei.github.io/blob/pelican/pelicanconf.py"&gt;pelicanconfig.py&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id="reference"&gt;Reference&lt;a class="headerlink" href="#reference" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Blog &lt;a href="http://oncrashreboot.com"&gt;&lt;code&gt;onCrash=Reboot();&lt;/code&gt;&lt;/a&gt; uses Elegant theme. You
+&lt;ul&gt;
+&lt;li&gt;Blog &lt;a href="http://oncrashreboot.com"&gt;&lt;code&gt;onCrash=Reboot();&lt;/code&gt;&lt;/a&gt; uses Elegant theme. You
 can see its configuration files at
-&lt;a href="https://github.com/talha131/onCrashReboot"&gt;Github&lt;/a&gt; for inspiration. &lt;/p&gt;
-&lt;/blockquote&gt;</content><category term="Development"></category><category term="python"></category><category term="pelican"></category></entry></feed>
+&lt;a href="https://github.com/talha131/onCrashReboot"&gt;Github&lt;/a&gt; for inspiration. &lt;/li&gt;
+&lt;/ul&gt;</content><category term="Development"></category><category term="python"></category><category term="pelican"></category></entry></feed>
