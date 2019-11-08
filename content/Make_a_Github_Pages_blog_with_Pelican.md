@@ -71,7 +71,9 @@ fg
 ```
 
 ### Publish
-Thanks to [github action](https://help.github.com/en/actions), now you just to create your [article.md](https://github.com/acefei/acefei.github.io/tree/pelican/content) and commit on `pelican` branch, it will deploy automatically. (See [ci.yaml](https://github.com/acefei/acefei.github.io/blob/pelican/.github/workflows/ci.yaml))
+Thanks to this exquisite github action —— [actions-gh-pages](https://github.com/peaceiris/actions-gh-pages), now we just need to create your [article.md](https://github.com/acefei/acefei.github.io/tree/pelican/content) and commit changes on `pelican` branch, it will deploy automatically. (Find the details in [ci.yaml](https://github.com/acefei/acefei.github.io/blob/pelican/.github/workflows/ci.yaml))
+
+> Note: you must generate a [personal access token](https://github.com/settings/tokens/new) with the scopes **admin:repo_hook** and **repo**. 
 
 ### Extension
 #### Theme
