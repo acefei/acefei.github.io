@@ -171,7 +171,10 @@ $ <span class="nv">pelican</span><span class="o">-</span><span class="nv">quicks
 # <span class="k">Then</span>, <span class="nv">Ctrl</span><span class="o">+</span><span class="nv">C</span> <span class="nv">to</span> <span class="nv">terminate</span> <span class="nv">the</span> <span class="nv">process</span>
 </pre></div>
 <h3 id="publish">Publish<a class="headerlink" href="#publish" title="Permanent link">¶</a></h3>
-<p>Thanks to <a href="https://help.github.com/en/actions">github action</a>, now you just to create your <a href="https://github.com/acefei/acefei.github.io/tree/pelican/content">article.md</a> and commit on <code>pelican</code> branch, it will deploy automatically. (See <a href="https://github.com/acefei/acefei.github.io/blob/pelican/.github/workflows/ci.yaml">ci.yaml</a>)</p>
+<p>Thanks to this exquisite github action —— <a href="https://github.com/peaceiris/actions-gh-pages">actions-gh-pages</a>, now we just need to create your <a href="https://github.com/acefei/acefei.github.io/tree/pelican/content">article.md</a> and commit changes on <code>pelican</code> branch, it will deploy automatically. (Find the details in <a href="https://github.com/acefei/acefei.github.io/blob/pelican/.github/workflows/ci.yaml">ci.yaml</a>)</p>
+<blockquote>
+<p>Note: you must generate a <a href="https://github.com/settings/tokens/new">personal access token</a> with the scopes <strong>admin:repo_hook</strong> and <strong>repo</strong>. </p>
+</blockquote>
 <h3 id="extension">Extension<a class="headerlink" href="#extension" title="Permanent link">¶</a></h3>
 <h4 id="theme">Theme<a class="headerlink" href="#theme" title="Permanent link">¶</a></h4>
 <p>Clone your fevorite <a href="http://pelicanthemes.com/">theme</a>, such as <a href="http://oncrashreboot.com/elegant-best-pelican-theme-features">elegant</a> </p>
