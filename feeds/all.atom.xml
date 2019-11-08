@@ -159,10 +159,10 @@ We can use below cmd. &lt;/p&gt;
 &lt;span class="nv"&gt;print&lt;/span&gt; [&lt;span class="mi"&gt;4&lt;/span&gt;,&lt;span class="mi"&gt;5&lt;/span&gt;,&lt;span class="mi"&gt;6&lt;/span&gt;] &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="nv"&gt;to_str&lt;/span&gt;&lt;span class="ss"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;#&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="ss"&gt;)&lt;/span&gt;  # &lt;span class="nv"&gt;output&lt;/span&gt; &lt;span class="nv"&gt;is&lt;/span&gt; &lt;span class="s1"&gt;'&lt;/span&gt;&lt;span class="s"&gt;1#2#3&lt;/span&gt;&lt;span class="s1"&gt;'&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;这里的&lt;code&gt;to_str('#')&lt;/code&gt;会调用&lt;code&gt;Pipe.__call__()&lt;/code&gt;, 实现&lt;code&gt;__call__&lt;/code&gt;需要注意几点：
-1. 定义的时候带上&lt;code&gt;(*args, **kwargs)&lt;/code&gt;来接受&lt;code&gt;to_str&lt;/code&gt;的参数。
-2. 返回值应该是Pipe对象，用于&lt;code&gt;|&lt;/code&gt;运算。
-3. Pipe初始化的时候需要传入函数对象（wrapped）做参数，且此函数的第一个参数是用于接受&lt;code&gt;|&lt;/code&gt;左边对象。
-4. 在&lt;code&gt;__call__&lt;/code&gt;中的&lt;code&gt;self.func&lt;/code&gt;是指的&lt;code&gt;function to_str&lt;/code&gt;, 而在&lt;code&gt;__ror__&lt;/code&gt;里的&lt;code&gt;self.func&lt;/code&gt;则是指的&lt;code&gt;function wrapped&lt;/code&gt;。&lt;/p&gt;
+- 定义的时候带上&lt;code&gt;(*args, **kwargs)&lt;/code&gt;来接受&lt;code&gt;to_str&lt;/code&gt;的参数。
+- 返回值应该是Pipe对象，用于&lt;code&gt;|&lt;/code&gt;运算。
+- Pipe初始化的时候需要传入函数对象（wrapped）做参数，且此函数的第一个参数是用于接受&lt;code&gt;|&lt;/code&gt;左边对象。
+- 在&lt;code&gt;__call__&lt;/code&gt;中的&lt;code&gt;self.func&lt;/code&gt;是指的&lt;code&gt;function to_str&lt;/code&gt;, 而在&lt;code&gt;__ror__&lt;/code&gt;里的&lt;code&gt;self.func&lt;/code&gt;则是指的&lt;code&gt;function wrapped&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;教的曲唱不得，为了深刻理解，最好还是自己在pycharm里用debug单步调试一下看看。&lt;/p&gt;
 &lt;p&gt;接下来我们尝试一下大数据里常遇到场景，假设有一段英文文章，我们对它统计词频并排序后打印分哪几步？
 - 先将整段文章分割成单词

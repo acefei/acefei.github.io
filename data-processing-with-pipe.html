@@ -134,10 +134,10 @@
 <span class="nv">print</span> [<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>] <span class="o">|</span> <span class="nv">to_str</span><span class="ss">(</span><span class="s1">'</span><span class="s">#</span><span class="s1">'</span><span class="ss">)</span>  # <span class="nv">output</span> <span class="nv">is</span> <span class="s1">'</span><span class="s">1#2#3</span><span class="s1">'</span>
 </pre></div>
 <p>这里的<code>to_str('#')</code>会调用<code>Pipe.__call__()</code>, 实现<code>__call__</code>需要注意几点：
-1. 定义的时候带上<code>(*args, **kwargs)</code>来接受<code>to_str</code>的参数。
-2. 返回值应该是Pipe对象，用于<code>|</code>运算。
-3. Pipe初始化的时候需要传入函数对象（wrapped）做参数，且此函数的第一个参数是用于接受<code>|</code>左边对象。
-4. 在<code>__call__</code>中的<code>self.func</code>是指的<code>function to_str</code>, 而在<code>__ror__</code>里的<code>self.func</code>则是指的<code>function wrapped</code>。</p>
+- 定义的时候带上<code>(*args, **kwargs)</code>来接受<code>to_str</code>的参数。
+- 返回值应该是Pipe对象，用于<code>|</code>运算。
+- Pipe初始化的时候需要传入函数对象（wrapped）做参数，且此函数的第一个参数是用于接受<code>|</code>左边对象。
+- 在<code>__call__</code>中的<code>self.func</code>是指的<code>function to_str</code>, 而在<code>__ror__</code>里的<code>self.func</code>则是指的<code>function wrapped</code>。</p>
 <p>教的曲唱不得，为了深刻理解，最好还是自己在pycharm里用debug单步调试一下看看。</p>
 <p>接下来我们尝试一下大数据里常遇到场景，假设有一段英文文章，我们对它统计词频并排序后打印分哪几步？
 - 先将整段文章分割成单词
