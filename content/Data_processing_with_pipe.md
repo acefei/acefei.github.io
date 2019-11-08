@@ -43,10 +43,10 @@ print [1,2,3] | to_str   # output is '1,2,3'
 print [4,5,6] | to_str('#')  # output is '1#2#3'
 ```
 这里的`to_str('#')`会调用`Pipe.__call__()`, 实现`__call__`需要注意几点：
-1. 定义的时候带上`(*args, **kwargs)`来接受`to_str`的参数。
-2. 返回值应该是Pipe对象，用于`|`运算。
-3. Pipe初始化的时候需要传入函数对象（wrapped）做参数，且此函数的第一个参数是用于接受`|`左边对象。
-4. 在`__call__`中的`self.func`是指的`function to_str`, 而在`__ror__`里的`self.func`则是指的`function wrapped`。
+- 定义的时候带上`(*args, **kwargs)`来接受`to_str`的参数。
+- 返回值应该是Pipe对象，用于`|`运算。
+- Pipe初始化的时候需要传入函数对象（wrapped）做参数，且此函数的第一个参数是用于接受`|`左边对象。
+- 在`__call__`中的`self.func`是指的`function to_str`, 而在`__ror__`里的`self.func`则是指的`function wrapped`。
 
 教的曲唱不得，为了深刻理解，最好还是自己在pycharm里用debug单步调试一下看看。
 
