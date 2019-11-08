@@ -24,10 +24,11 @@ jobs:
       env:
         CI_TOKEN: ${{ secrets.CI_TOKEN }}
         USER: acefei
+        GITHUB_PAGES_BRANCH: master
       run: |
         git config --local user.email "$USER@github.com"
         git config --local user.name $USER
         make publish
-        ghp-import -m "Generate Pelican site" -b master ./output
+        ghp-import -m "Generate Pelican site" -b $GITHUB_PAGES_BRANCH ./output
         git remote set-url --push origin https://x-access-token:$CI_TOKEN@github.com/$USER/$USER.github.io
-        git push
+        git push origin $GITHUB_PAGES_BRANCH
