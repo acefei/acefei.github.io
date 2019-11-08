@@ -21,7 +21,12 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Publish to github pages
+      env:
+        CI_TOKEN: ${{ secrets.CI_TOKEN }}
+        USER: acefei
       run: |
-        git config --local user.email "acefei@github.com"
-        git config --local user.name "acefei"
-        make github
+        git config --local user.email "$USER@github.com"
+        git config --local user.name $USER
+        ghp-import -m "Generate Pelican site" -b master ./output
+        git remote set-url --push origin https://x-access-token:$CI_TOKEN@github.com/$USER/$USER.github.io
+        git push
