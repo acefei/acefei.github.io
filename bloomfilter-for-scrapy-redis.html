@@ -108,7 +108,7 @@
 <p>modify scrapy_redis/dupefilter.py</p>
 </li>
 </ol>
-<div class="highlight"><pre><span></span>    <span class="n">def</span> <span class="n">__init__</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="k">key</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="k">False</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code>    <span class="n">def</span> <span class="n">__init__</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="k">key</span><span class="p">,</span> <span class="n">debug</span><span class="o">=</span><span class="k">False</span><span class="p">):</span>
         <span class="ss">&quot;&quot;&quot;Initialize the duplicates filter.</span>
 
 <span class="ss">        Parameters</span>
@@ -128,70 +128,70 @@
 
         <span class="o">#</span> <span class="err">集成布隆过滤器</span>
         <span class="k">self</span><span class="p">.</span><span class="n">bf</span> <span class="o">=</span> <span class="n">BloomFilter</span><span class="p">(</span><span class="n">conn</span><span class="o">=</span><span class="n">server</span><span class="p">,</span> <span class="k">key</span><span class="o">=</span><span class="k">key</span><span class="p">)</span>     <span class="o">#</span> <span class="err">利用连接池连接</span><span class="n">Redis</span>
-</pre></div>
+</code></pre></div>
 
 
-<div class="highlight"><pre><span></span>    <span class="nv">def</span> <span class="nv">request_seen</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">request</span><span class="ss">)</span>:
-        <span class="s2">&quot;&quot;&quot;</span><span class="s">Returns True if request was already seen.</span>
+<div class="highlight"><pre><span></span><code>    <span class="n">def</span> <span class="n">request_seen</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="ss">&quot;&quot;&quot;Returns True if request was already seen.</span>
 
-        <span class="nv">Parameters</span>
-        <span class="o">----------</span>
-        <span class="nv">request</span> : <span class="nv">scrapy</span>.<span class="nv">http</span>.<span class="nv">Request</span>
+<span class="ss">        Parameters</span>
+<span class="ss">        ----------</span>
+<span class="ss">        request : scrapy.http.Request</span>
 
-        <span class="nv">Returns</span>
-        <span class="o">-------</span>
-        <span class="nv">bool</span>
+<span class="ss">        Returns</span>
+<span class="ss">        -------</span>
+<span class="ss">        bool</span>
 
-        <span class="s2">&quot;&quot;&quot;</span>
-        # 集成布隆过滤器
-        <span class="k">if</span> <span class="nv">self</span>.<span class="nv">bf</span>.<span class="nv">is_exist</span><span class="ss">(</span><span class="nv">fp</span><span class="ss">)</span>:    # 判断如果域名在<span class="nv">Redis</span>里存在
-            <span class="k">return</span> <span class="nv">True</span>
-        <span class="k">else</span>:
-            <span class="nv">self</span>.<span class="nv">bf</span>.<span class="nv">add</span><span class="ss">(</span><span class="nv">fp</span><span class="ss">)</span>         # 如果不存在，将域名添加到<span class="nv">Redis</span>
-            <span class="k">return</span> <span class="nv">False</span>
+<span class="ss">        &quot;&quot;&quot;</span>
+        <span class="o">#</span> <span class="err">集成布隆过滤器</span>
+        <span class="k">if</span> <span class="k">self</span><span class="p">.</span><span class="n">bf</span><span class="p">.</span><span class="n">is_exist</span><span class="p">(</span><span class="n">fp</span><span class="p">):</span>    <span class="o">#</span> <span class="err">判断如果域名在</span><span class="n">Redis里存在</span>
+            <span class="k">return</span> <span class="k">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">self</span><span class="p">.</span><span class="n">bf</span><span class="p">.</span><span class="k">add</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>         <span class="o">#</span> <span class="err">如果不存在，将域名添加到</span><span class="n">Redis</span>
+            <span class="k">return</span> <span class="k">False</span>
 
-        #<span class="nv">fp</span> <span class="o">=</span> <span class="nv">self</span>.<span class="nv">request_fingerprint</span><span class="ss">(</span><span class="nv">request</span><span class="ss">)</span>
-        # <span class="nv">This</span> <span class="nv">returns</span> <span class="nv">the</span> <span class="nv">number</span> <span class="nv">of</span> <span class="nv">values</span> <span class="nv">added</span>, <span class="nv">zero</span> <span class="k">if</span> <span class="nv">already</span> <span class="nv">exists</span>.
-        #<span class="nv">added</span> <span class="o">=</span> <span class="nv">self</span>.<span class="nv">server</span>.<span class="nv">sadd</span><span class="ss">(</span><span class="nv">self</span>.<span class="nv">key</span>, <span class="nv">fp</span><span class="ss">)</span>
-        #<span class="k">return</span> <span class="nv">added</span> <span class="o">==</span> <span class="mi">0</span>
-</pre></div>
+        <span class="o">#</span><span class="n">fp</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">request_fingerprint</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="o">#</span> <span class="n">This</span> <span class="k">returns</span> <span class="n">the</span> <span class="nb">number</span> <span class="k">of</span> <span class="k">values</span> <span class="n">added</span><span class="p">,</span> <span class="n">zero</span> <span class="k">if</span> <span class="n">already</span> <span class="k">exists</span><span class="p">.</span>
+        <span class="o">#</span><span class="n">added</span> <span class="o">=</span> <span class="k">self</span><span class="p">.</span><span class="n">server</span><span class="p">.</span><span class="n">sadd</span><span class="p">(</span><span class="k">self</span><span class="p">.</span><span class="k">key</span><span class="p">,</span> <span class="n">fp</span><span class="p">)</span>
+        <span class="o">#</span><span class="k">return</span> <span class="n">added</span> <span class="o">==</span> <span class="mi">0</span>
+</code></pre></div>
 
 
 <ol>
 <li>Add scrapy_redis configration into settings.py
 Note: use our scrapy_redis code like <scrapy_project_name>.scrapy_redis instead of scrapy_redis that created by pip install</li>
 </ol>
-<div class="highlight"><pre><span></span>##################################
-# <span class="nv">Configuration</span> <span class="k">for</span> <span class="nv">scrapy</span><span class="o">-</span><span class="nv">redis</span> {
-<span class="nv">DUPEFILTER_CLASS</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">scrapy_redis_demo.scrapy_redis.dupefilter.RFPDupeFilter</span><span class="s2">&quot;</span>
-<span class="nv">SCHEDULER</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">scrapy_redis_demo.scrapy_redis.scheduler.Scheduler</span><span class="s2">&quot;</span>
-<span class="nv">SCHEDULER_PERSIST</span> <span class="o">=</span> <span class="nv">True</span>
+<div class="highlight"><pre><span></span><code><span class="o">##################################</span>
+<span class="o">#</span> <span class="n">Configuration</span> <span class="k">for</span> <span class="n">scrapy</span><span class="o">-</span><span class="n">redis</span> <span class="err">{</span>
+<span class="n">DUPEFILTER_CLASS</span> <span class="o">=</span> <span class="ss">&quot;scrapy_redis_demo.scrapy_redis.dupefilter.RFPDupeFilter&quot;</span>
+<span class="n">SCHEDULER</span> <span class="o">=</span> <span class="ss">&quot;scrapy_redis_demo.scrapy_redis.scheduler.Scheduler&quot;</span>
+<span class="n">SCHEDULER_PERSIST</span> <span class="o">=</span> <span class="k">True</span>
 
-<span class="nv">ITEM_PIPELINES</span> <span class="o">=</span> {
-  <span class="s1">&#39;</span><span class="s">scrapy_redis_demo.scrapy_redis.pipelines.RedisPipeline</span><span class="s1">&#39;</span>: <span class="mi">400</span>,
-}
+<span class="n">ITEM_PIPELINES</span> <span class="o">=</span> <span class="err">{</span>
+  <span class="s1">&#39;scrapy_redis_demo.scrapy_redis.pipelines.RedisPipeline&#39;</span><span class="p">:</span> <span class="mi">400</span><span class="p">,</span>
+<span class="err">}</span>
 
-# <span class="k">if</span> <span class="nv">u</span> <span class="nv">add</span> <span class="s1">&#39;</span><span class="s">network_mode: &quot;host&quot;</span><span class="s1">&#39;</span> <span class="nv">in</span> <span class="nv">scraper</span> <span class="nv">service</span> <span class="nv">in</span> <span class="nv">docker</span><span class="o">-</span><span class="nv">compose</span>.<span class="nv">yaml</span>
-# <span class="nv">use</span> <span class="nv">host</span> <span class="nv">ip</span> <span class="nv">to</span> <span class="nv">access</span> <span class="nv">redis</span> <span class="nv">server</span>
-<span class="nv">REDIS_HOST</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">172.16.100.62</span><span class="s1">&#39;</span>
-# <span class="k">else</span> <span class="nv">use</span> <span class="nv">redis</span> <span class="nv">hostname</span> <span class="nv">to</span> <span class="nv">access</span> <span class="nv">redis</span> <span class="nv">server</span>
-#<span class="nv">REDIS_HOST</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">redis</span><span class="s1">&#39;</span>
-<span class="nv">REDIS_PORT</span> <span class="o">=</span> <span class="mi">6379</span>
+<span class="o">#</span> <span class="k">if</span> <span class="n">u</span> <span class="k">add</span> <span class="s1">&#39;network_mode: &quot;host&quot;&#39;</span> <span class="k">in</span> <span class="n">scraper</span> <span class="n">service</span> <span class="k">in</span> <span class="n">docker</span><span class="o">-</span><span class="n">compose</span><span class="p">.</span><span class="n">yaml</span>
+<span class="o">#</span> <span class="n">use</span> <span class="k">host</span> <span class="n">ip</span> <span class="k">to</span> <span class="k">access</span> <span class="n">redis</span> <span class="n">server</span>
+<span class="n">REDIS_HOST</span> <span class="o">=</span> <span class="s1">&#39;172.16.100.62&#39;</span>
+<span class="o">#</span> <span class="k">else</span> <span class="n">use</span> <span class="n">redis</span> <span class="n">hostname</span> <span class="k">to</span> <span class="k">access</span> <span class="n">redis</span> <span class="n">server</span>
+<span class="o">#</span><span class="n">REDIS_HOST</span> <span class="o">=</span> <span class="s1">&#39;redis&#39;</span>
+<span class="n">REDIS_PORT</span> <span class="o">=</span> <span class="mi">6379</span>
 
-# <span class="nv">Specify</span> <span class="nv">your</span> <span class="nv">redis</span> <span class="nv">uri</span>
-# <span class="nv">the</span> <span class="nv">uri</span> <span class="nv">scheme</span> <span class="nv">syntax</span>: <span class="nv">http</span>:<span class="o">//</span><span class="nv">www</span>.<span class="nv">iana</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">assignments</span><span class="o">/</span><span class="nv">uri</span><span class="o">-</span><span class="nv">schemes</span><span class="o">/</span><span class="nv">prov</span><span class="o">/</span><span class="nv">redis</span>
-#<span class="nv">REDIS_URL</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">redis://172.16.100.62:6379</span><span class="s1">&#39;</span>
+<span class="o">#</span> <span class="n">Specify</span> <span class="n">your</span> <span class="n">redis</span> <span class="n">uri</span>
+<span class="o">#</span> <span class="n">the</span> <span class="n">uri</span> <span class="n">scheme</span> <span class="n">syntax</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">iana</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">assignments</span><span class="o">/</span><span class="n">uri</span><span class="o">-</span><span class="n">schemes</span><span class="o">/</span><span class="n">prov</span><span class="o">/</span><span class="n">redis</span>
+<span class="o">#</span><span class="n">REDIS_URL</span> <span class="o">=</span> <span class="s1">&#39;redis://172.16.100.62:6379&#39;</span>
 
-# }
-##################################
-</pre></div>
+<span class="o">#</span> <span class="err">}</span>
+<span class="o">##################################</span>
+</code></pre></div>
 
 
 <ol>
 <li>import <scrapy_project_name>.scrapy_redis in your spiders/xxxxx.py</li>
 </ol>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scrapy_redis_demo.scrapy_redis.spiders</span> <span class="kn">import</span> <span class="n">RedisCrawlSpider</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">scrapy_redis_demo.scrapy_redis.spiders</span> <span class="kn">import</span> <span class="n">RedisCrawlSpider</span>
+</code></pre></div>
 
 
             

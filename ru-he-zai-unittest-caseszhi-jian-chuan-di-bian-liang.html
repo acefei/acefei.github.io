@@ -94,7 +94,7 @@
             <p>想必大家在写Python UT的时候，偶尔会遇到一些测试用例需要同时测试CRUD的接口。
 这时需要在test cases之间传递变量该如何做呢？</p>
 <p>一开始，我们想既然是在一个class里，直接给instance增加attribute不就好了么?</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">unittest</span>
 
 <span class="k">class</span> <span class="nc">TestA</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">testname</span><span class="p">):</span>
@@ -109,11 +109,11 @@
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">verbosity</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>结果...想当然了。</p>
-<div class="highlight"><pre><span></span><span class="n">test_1</span> <span class="p">(</span><span class="n">__main__</span><span class="p">.</span><span class="n">TestA</span><span class="p">)</span> <span class="p">...</span> <span class="n">ok</span>
+<div class="highlight"><pre><span></span><code><span class="n">test_1</span> <span class="p">(</span><span class="n">__main__</span><span class="p">.</span><span class="n">TestA</span><span class="p">)</span> <span class="p">...</span> <span class="n">ok</span>
 <span class="n">test_2</span> <span class="p">(</span><span class="n">__main__</span><span class="p">.</span><span class="n">TestA</span><span class="p">)</span> <span class="p">...</span> <span class="k">None</span>
 <span class="n">ok</span>
 
@@ -121,7 +121,7 @@
 <span class="n">Ran</span> <span class="mi">2</span> <span class="n">tests</span> <span class="k">in</span> <span class="mi">0</span><span class="p">.</span><span class="mi">000</span><span class="n">s</span>
 
 <span class="n">OK</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><strong>知识点一：在unittest中, 执行每个testcase的时候，会刷新instance attribute</strong></p>
@@ -130,7 +130,7 @@
 <blockquote>
 <p>通过查看源码可以知道self.<strong>class</strong> is cls。</p>
 </blockquote>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">unittest</span>
 
 <span class="k">class</span> <span class="nc">TestA</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">test_1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -141,11 +141,11 @@
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
     <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">(</span><span class="n">verbosity</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-</pre></div>
+</code></pre></div>
 
 
 <p>Bingo！ </p>
-<div class="highlight"><pre><span></span><span class="n">test_1</span> <span class="p">(</span><span class="n">__main__</span><span class="p">.</span><span class="n">TestA</span><span class="p">)</span> <span class="p">...</span> <span class="n">ok</span>
+<div class="highlight"><pre><span></span><code><span class="n">test_1</span> <span class="p">(</span><span class="n">__main__</span><span class="p">.</span><span class="n">TestA</span><span class="p">)</span> <span class="p">...</span> <span class="n">ok</span>
 <span class="n">test_2</span> <span class="p">(</span><span class="n">__main__</span><span class="p">.</span><span class="n">TestA</span><span class="p">)</span> <span class="p">...</span> <span class="n">hello</span> <span class="n">world</span>
 <span class="n">ok</span>
 
@@ -153,7 +153,7 @@
 <span class="n">Ran</span> <span class="mi">2</span> <span class="n">tests</span> <span class="k">in</span> <span class="mi">0</span><span class="p">.</span><span class="mi">000</span><span class="n">s</span>
 
 <span class="n">OK</span>
-</pre></div>
+</code></pre></div>
 
 
 <p><strong>知识点二：在unittest中，绑定在class的attribute可以在testcase之间传递</strong></p>

@@ -107,7 +107,7 @@
 <p>在写爬虫的时候，经常会遇到anti-spider，这时候我们可以采取切换代理ip来绕过限制。但是最近在Selenium+PhantomJS实践过程中遇到一个很trick的问题，在此做一下记录。</p>
 <h2 id="python-requests-with-proxy">python requests with proxy<a class="headerlink" href="#python-requests-with-proxy" title="Permanent link">¶</a></h2>
 <p>一开始我们还是用pythonic的方式来看看，http proxy是如何隐藏真实ip的。</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="k">print</span> <span class="s2">"--No Proxy--"</span>
 <span class="k">print</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"http://httpbin.org/ip"</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
 
@@ -116,9 +116,9 @@
 <span class="k">print</span> <span class="s2">"--Proxy {0}--"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">proxy</span><span class="p">)</span>
 <span class="n">proxies</span> <span class="o">=</span> <span class="p">{</span> <span class="s2">"http"</span><span class="p">:</span> <span class="s2">"http://{0}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">proxy</span><span class="p">)</span> <span class="p">}</span>
 <span class="k">print</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"http://httpbin.org/ip"</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="n">proxies</span><span class="p">)</span><span class="o">.</span><span class="n">content</span>
-</pre></div>
+</code></pre></div>
 <p>output:</p>
-<div class="highlight"><pre><span></span><span class="c1">--No Proxy--</span>
+<div class="highlight"><pre><span></span><code><span class="c1">--No Proxy--</span>
 <span class="err">{</span>
   <span class="ss">"origin"</span><span class="p">:</span> <span class="ss">"36.152.29.163"</span>
 <span class="err">}</span>
@@ -127,11 +127,11 @@
 <span class="err">{</span>
   <span class="ss">"origin"</span><span class="p">:</span> <span class="ss">"36.152.29.163, 182.121.204.0"</span>
 <span class="err">}</span>
-</pre></div>
+</code></pre></div>
 <p>可以看出来origin的值插入了一条新的ip，证明设置proxy生效了。</p>
 <p>但是我们要注意，上面使用的代理并不是高匿的，所以从origin里面还是能找到机器的真实ip(仍然会被反爬)。
 高匿ip的输出应该是以下结果：</p>
-<div class="highlight"><pre><span></span><span class="c1">--No Proxy--</span>
+<div class="highlight"><pre><span></span><code><span class="c1">--No Proxy--</span>
 <span class="err">{</span>
   <span class="ss">"origin"</span><span class="p">:</span> <span class="ss">"36.152.29.163"</span>
 <span class="err">}</span>
@@ -140,31 +140,31 @@
 <span class="err">{</span>
   <span class="ss">"origin"</span><span class="p">:</span> <span class="ss">"113.218.218.86"</span>
 <span class="err">}</span>
-</pre></div>
+</code></pre></div>
 <h2 id="phantomjs-with-proxy">phantomjs with proxy<a class="headerlink" href="#phantomjs-with-proxy" title="Permanent link">¶</a></h2>
 <p>编辑httpbin_test.js，</p>
-<div class="highlight"><pre><span></span><span class="s2">"</span><span class="s">use strict</span><span class="s2">"</span><span class="c1">;</span>
-<span class="nv">var</span> <span class="nv">page</span> <span class="o">=</span> <span class="nv">require</span><span class="ss">(</span><span class="s1">'</span><span class="s">webpage</span><span class="s1">'</span><span class="ss">)</span>.<span class="nv">create</span><span class="ss">()</span><span class="c1">;</span>
-<span class="nv">page</span>.<span class="nv">open</span><span class="ss">(</span><span class="s1">'</span><span class="s">http://httpbin.org/ip</span><span class="s1">'</span>, <span class="nv">function</span> <span class="ss">(</span><span class="nv">status</span><span class="ss">)</span> {
-    <span class="k">if</span> <span class="ss">(</span><span class="nv">status</span> <span class="o">!==</span> <span class="s1">'</span><span class="s">success</span><span class="s1">'</span><span class="ss">)</span> {
-        <span class="nv">console</span>.<span class="nv">log</span><span class="ss">(</span><span class="s1">'</span><span class="s">Unable to access network</span><span class="s1">'</span><span class="ss">)</span><span class="c1">;</span>
-    } <span class="k">else</span> {
-        <span class="nv">console</span>.<span class="nv">log</span><span class="ss">(</span><span class="nv">page</span>.<span class="nv">content</span><span class="ss">)</span><span class="c1">;</span>
-    }
-    <span class="nv">phantom</span>.<span class="k">exit</span><span class="ss">()</span><span class="c1">;</span>
-}<span class="ss">)</span><span class="c1">;</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">"use strict";</span>
+<span class="err">var page = require('webpage').create();</span>
+<span class="err">page.open('http://httpbin.org/ip', function (status) {</span>
+<span class="err">    if (status !== 'success') {</span>
+<span class="err">        console.log('Unable to access network');</span>
+<span class="err">    } else {</span>
+<span class="err">        console.log(page.content);</span>
+<span class="err">    }</span>
+<span class="err">    phantom.exit();</span>
+<span class="err">});</span>
+</code></pre></div>
 <p>执行phantomjs命令，</p>
-<div class="highlight"><pre><span></span>$ <span class="nv">phantomjs</span> <span class="o">--</span><span class="nv">proxy</span><span class="o">=</span><span class="mi">182</span>.<span class="mi">121</span>.<span class="mi">201</span>.<span class="mi">9</span>:<span class="mi">9999</span> <span class="nv">httpbin_test</span>.<span class="nv">js</span>
-<span class="o">&lt;</span><span class="nv">html</span><span class="o">&gt;&lt;</span><span class="nv">head</span><span class="o">&gt;&lt;/</span><span class="nv">head</span><span class="o">&gt;&lt;</span><span class="nv">body</span><span class="o">&gt;&lt;</span><span class="nv">pre</span> <span class="nv">style</span><span class="o">=</span><span class="s2">"</span><span class="s">word-wrap: break-word; white-space: pre-wrap;</span><span class="s2">"</span><span class="o">&gt;</span>{
-  <span class="s2">"</span><span class="s">origin</span><span class="s2">"</span>: <span class="s2">"</span><span class="s">36.152.29.163, 182.121.204.0</span><span class="s2">"</span>
+<div class="highlight"><pre><span></span><code>$ phantomjs --proxy=182.121.201.9:9999 httpbin_test.js
+<span class="nt">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;pre</span> <span class="na">style=</span><span class="s">"word-wrap: break-word; white-space: pre-wrap;"</span><span class="nt">&gt;</span>{
+  "origin": "36.152.29.163, 182.121.204.0"
 }
-<span class="o">&lt;/</span><span class="nv">pre</span><span class="o">&gt;&lt;/</span><span class="nv">body</span><span class="o">&gt;&lt;/</span><span class="nv">html</span><span class="o">&gt;</span>
-</pre></div>
+<span class="nt">&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</span>
+</code></pre></div>
 <p>Ok，proxy设置成功。</p>
 <h2 id="selenium-phantomjs-with-proxy">selenium + phantomjs with proxy<a class="headerlink" href="#selenium-phantomjs-with-proxy" title="Permanent link">¶</a></h2>
 <p>Stackoverflow上有人推荐方案，</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
 <span class="kn">from</span> <span class="nn">selenium.webdriver</span> <span class="kn">import</span> <span class="n">DesiredCapabilities</span>
 <span class="kn">from</span> <span class="nn">selenium.webdriver.common.proxy</span> <span class="kn">import</span> <span class="n">Proxy</span>
 <span class="kn">from</span> <span class="nn">selenium.webdriver.common.proxy</span> <span class="kn">import</span> <span class="n">ProxyType</span>
@@ -182,17 +182,17 @@
 <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'http://httpbin.org/ip'</span><span class="p">)</span>
 <span class="k">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">page_source</span>
 <span class="n">driver</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 <p>output：</p>
-<div class="highlight"><pre><span></span><span class="nv">add</span> <span class="nv">proxy182</span>.<span class="mi">121</span>.<span class="mi">201</span>.<span class="mi">9</span>:<span class="mi">9999</span>
-<span class="o">&lt;</span><span class="nv">html</span><span class="o">&gt;&lt;</span><span class="nv">head</span><span class="o">&gt;&lt;/</span><span class="nv">head</span><span class="o">&gt;&lt;</span><span class="nv">body</span><span class="o">&gt;&lt;</span><span class="nv">pre</span> <span class="nv">style</span><span class="o">=</span><span class="s2">"</span><span class="s">word-wrap: break-word; white-space: pre-wrap;</span><span class="s2">"</span><span class="o">&gt;</span>{
-  <span class="s2">"</span><span class="s">origin</span><span class="s2">"</span>: <span class="s2">"</span><span class="s">36.152.29.163</span><span class="s2">"</span>
+<div class="highlight"><pre><span></span><code>add proxy182.121.201.9:9999
+<span class="nt">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;pre</span> <span class="na">style=</span><span class="s">"word-wrap: break-word; white-space: pre-wrap;"</span><span class="nt">&gt;</span>{
+  "origin": "36.152.29.163"
 }
-<span class="o">&lt;/</span><span class="nv">pre</span><span class="o">&gt;&lt;/</span><span class="nv">body</span><span class="o">&gt;&lt;/</span><span class="nv">html</span><span class="o">&gt;</span>
-</pre></div>
+<span class="nt">&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</span>
+</code></pre></div>
 <p>奇怪，这里发现proxy并没有生效，不知道是不是我的phantomjs 1.9.7版本的bug。</p>
 <p>那换个方案试试，</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
 
 <span class="n">service_args</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">'--proxy=182.121.201.9:9999'</span><span class="p">,</span>
@@ -201,55 +201,55 @@
 <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'http://httpbin.org/ip'</span><span class="p">)</span>
 <span class="k">print</span> <span class="n">driver</span><span class="o">.</span><span class="n">page_source</span>
 <span class="n">driver</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
+</code></pre></div>
 <p>output：</p>
-<div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nv">html</span><span class="o">&gt;&lt;</span><span class="nv">head</span><span class="o">&gt;&lt;/</span><span class="nv">head</span><span class="o">&gt;&lt;</span><span class="nv">body</span><span class="o">&gt;&lt;</span><span class="nv">pre</span> <span class="nv">style</span><span class="o">=</span><span class="s2">"</span><span class="s">word-wrap: break-word; white-space: pre-wrap;</span><span class="s2">"</span><span class="o">&gt;</span>{
-  <span class="s2">"</span><span class="s">origin</span><span class="s2">"</span>: <span class="s2">"</span><span class="s">36.152.29.163, 182.121.204.0</span><span class="s2">"</span>
+<div class="highlight"><pre><span></span><code><span class="nt">&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;pre</span> <span class="na">style=</span><span class="s">"word-wrap: break-word; white-space: pre-wrap;"</span><span class="nt">&gt;</span>{
+  "origin": "36.152.29.163, 182.121.204.0"
 }
-<span class="o">&lt;/</span><span class="nv">pre</span><span class="o">&gt;&lt;/</span><span class="nv">body</span><span class="o">&gt;&lt;/</span><span class="nv">html</span><span class="o">&gt;</span>
-</pre></div>
+<span class="nt">&lt;/pre&gt;&lt;/body&gt;&lt;/html&gt;</span>
+</code></pre></div>
 <p>Ok, proxy设置成功了。</p>
 <p>可以看出来，通过service_args传递参数其实跟phantomjs命令行传参的是一样效果。</p>
 <p>那么，如果想使用带auth的代理，只要加上对应的option就好了，很方便。</p>
-<div class="highlight"><pre><span></span>$<span class="nv">phantomjs</span> <span class="o">-</span><span class="nv">h</span>
-<span class="nv">Usage</span>:
-   <span class="nv">phantomjs</span> [<span class="nv">switchs</span>] [<span class="nv">options</span>] [<span class="nv">script</span>] [<span class="nv">argument</span> [<span class="nv">argument</span> [...]]]
+<div class="highlight"><pre><span></span><code><span class="err">$</span><span class="n">phantomjs</span><span class="w"> </span><span class="o">-</span><span class="n">h</span><span class="w"></span>
+<span class="k">Usage</span><span class="err">:</span><span class="w"></span>
+<span class="w">   </span><span class="n">phantomjs</span><span class="w"> </span><span class="o">[</span><span class="n">switchs</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">options</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">script</span><span class="o">]</span><span class="w"> </span><span class="o">[</span><span class="n">argument [argument [...</span><span class="o">]</span><span class="err">]]</span><span class="w"></span>
 
-<span class="nv">Options</span>:
-  <span class="o">--</span><span class="nv">cookies</span><span class="o">-</span><span class="nv">file</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>                 <span class="nv">Sets</span> <span class="nv">the</span> <span class="nv">file</span> <span class="nv">name</span> <span class="nv">to</span> <span class="nv">store</span> <span class="nv">the</span> <span class="nv">persistent</span> <span class="nv">cookies</span>
-  <span class="o">--</span><span class="nv">config</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>                       <span class="nv">Specifies</span> <span class="nv">JSON</span><span class="o">-</span><span class="nv">formatted</span> <span class="nv">configuration</span> <span class="nv">file</span>
-  <span class="o">--</span><span class="nv">debug</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>                        <span class="nv">Prints</span> <span class="nv">additional</span> <span class="nv">warning</span> <span class="nv">and</span> <span class="nv">debug</span> <span class="nv">message</span>: <span class="s1">'</span><span class="s">true</span><span class="s1">'</span> <span class="nv">or</span> <span class="s1">'</span><span class="s">false</span><span class="s1">'</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>
-  <span class="o">--</span><span class="nv">disk</span><span class="o">-</span><span class="nv">cache</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>                   <span class="nv">Enables</span> <span class="nv">disk</span> <span class="nv">cache</span>: <span class="s1">'</span><span class="s">true</span><span class="s1">'</span> <span class="nv">or</span> <span class="s1">'</span><span class="s">false</span><span class="s1">'</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>
-  <span class="o">--</span><span class="nv">ignore</span><span class="o">-</span><span class="nv">ssl</span><span class="o">-</span><span class="nv">errors</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>            <span class="nv">Ignores</span> <span class="nv">SSL</span> <span class="nv">errors</span> <span class="ss">(</span><span class="nv">expired</span><span class="o">/</span><span class="nv">self</span><span class="o">-</span><span class="nv">signed</span> <span class="nv">certificate</span> <span class="nv">errors</span><span class="ss">)</span>: <span class="s1">'</span><span class="s">true</span><span class="s1">'</span> <span class="nv">or</span> <span class="s1">'</span><span class="s">false</span><span class="s1">'</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>
-  <span class="o">--</span><span class="nv">load</span><span class="o">-</span><span class="nv">images</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>                  <span class="nv">Loads</span> <span class="nv">all</span> <span class="nv">inlined</span> <span class="nv">images</span>: <span class="s1">'</span><span class="s">true</span><span class="s1">'</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span> <span class="nv">or</span> <span class="s1">'</span><span class="s">false</span><span class="s1">'</span>
-  <span class="o">--</span><span class="nv">local</span><span class="o">-</span><span class="nv">storage</span><span class="o">-</span><span class="nv">path</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>           <span class="nv">Specifies</span> <span class="nv">the</span> <span class="nv">location</span> <span class="k">for</span> <span class="nv">offline</span> <span class="nv">local</span> <span class="nv">storage</span>
-  <span class="o">--</span><span class="nv">local</span><span class="o">-</span><span class="nv">storage</span><span class="o">-</span><span class="nv">quota</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>          <span class="nv">Sets</span> <span class="nv">the</span> <span class="nv">maximum</span> <span class="nv">size</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">offline</span> <span class="nv">local</span> <span class="nv">storage</span> <span class="ss">(</span><span class="nv">in</span> <span class="nv">KB</span><span class="ss">)</span>
-  <span class="o">--</span><span class="nv">local</span><span class="o">-</span><span class="nv">to</span><span class="o">-</span><span class="nv">remote</span><span class="o">-</span><span class="nv">url</span><span class="o">-</span><span class="nv">access</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>   <span class="nv">Allows</span> <span class="nv">local</span> <span class="nv">content</span> <span class="nv">to</span> <span class="nv">access</span> <span class="nv">remote</span> <span class="nv">URL</span>: <span class="s1">'</span><span class="s">true</span><span class="s1">'</span> <span class="nv">or</span> <span class="s1">'</span><span class="s">false</span><span class="s1">'</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>
-  <span class="o">--</span><span class="nv">max</span><span class="o">-</span><span class="nv">disk</span><span class="o">-</span><span class="nv">cache</span><span class="o">-</span><span class="nv">size</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>          <span class="nv">Limits</span> <span class="nv">the</span> <span class="nv">size</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">disk</span> <span class="nv">cache</span> <span class="ss">(</span><span class="nv">in</span> <span class="nv">KB</span><span class="ss">)</span>
-  <span class="o">--</span><span class="nv">output</span><span class="o">-</span><span class="nv">encoding</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>              <span class="nv">Sets</span> <span class="nv">the</span> <span class="nv">encoding</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">terminal</span> <span class="nv">output</span>, <span class="nv">default</span> <span class="nv">is</span> <span class="s1">'</span><span class="s">utf8</span><span class="s1">'</span>
-  <span class="o">--</span><span class="nv">remote</span><span class="o">-</span><span class="nv">debugger</span><span class="o">-</span><span class="nv">port</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>         <span class="nv">Starts</span> <span class="nv">the</span> <span class="nv">script</span> <span class="nv">in</span> <span class="nv">a</span> <span class="nv">debug</span> <span class="nv">harness</span> <span class="nv">and</span> <span class="nv">listens</span> <span class="nv">on</span> <span class="nv">the</span> <span class="nv">specified</span> <span class="nv">port</span>
-  <span class="o">--</span><span class="nv">remote</span><span class="o">-</span><span class="nv">debugger</span><span class="o">-</span><span class="nv">autorun</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>      <span class="nv">Runs</span> <span class="nv">the</span> <span class="nv">script</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">debugger</span> <span class="nv">immediately</span>: <span class="s1">'</span><span class="s">true</span><span class="s1">'</span> <span class="nv">or</span> <span class="s1">'</span><span class="s">false</span><span class="s1">'</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>
-  <span class="o">--</span><span class="nv">proxy</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>                        <span class="nv">Sets</span> <span class="nv">the</span> <span class="nv">proxy</span> <span class="nv">server</span>, <span class="nv">e</span>.<span class="nv">g</span>. <span class="s1">'</span><span class="s">--proxy=http://proxy.company.com:8080</span><span class="s1">'</span>
-  <span class="o">--</span><span class="nv">proxy</span><span class="o">-</span><span class="nv">auth</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>                   <span class="nv">Provides</span> <span class="nv">authentication</span> <span class="nv">information</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">proxy</span>, <span class="nv">e</span>.<span class="nv">g</span>. <span class="s1">''</span><span class="o">-</span><span class="nv">proxy</span><span class="o">-</span><span class="nv">auth</span><span class="o">=</span><span class="nv">username</span>:<span class="nv">password</span><span class="s1">'</span>
-  <span class="o">--</span><span class="nv">proxy</span><span class="o">-</span><span class="nv">type</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>                   <span class="nv">Specifies</span> <span class="nv">the</span> <span class="nv">proxy</span> <span class="nv">type</span>, <span class="s1">'</span><span class="s">http</span><span class="s1">'</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>, <span class="s1">'</span><span class="s">none</span><span class="s1">'</span> <span class="ss">(</span><span class="nv">disable</span> <span class="nv">completely</span><span class="ss">)</span>, <span class="nv">or</span> <span class="s1">'</span><span class="s">socks5</span><span class="s1">'</span>
-  <span class="o">--</span><span class="nv">script</span><span class="o">-</span><span class="nv">encoding</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>              <span class="nv">Sets</span> <span class="nv">the</span> <span class="nv">encoding</span> <span class="nv">used</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">starting</span> <span class="nv">script</span>, <span class="nv">default</span> <span class="nv">is</span> <span class="s1">'</span><span class="s">utf8</span><span class="s1">'</span>
-  <span class="o">--</span><span class="nv">web</span><span class="o">-</span><span class="nv">security</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>                 <span class="nv">Enables</span> <span class="nv">web</span> <span class="nv">security</span>, <span class="s1">'</span><span class="s">true</span><span class="s1">'</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span> <span class="nv">or</span> <span class="s1">'</span><span class="s">false</span><span class="s1">'</span>
-  <span class="o">--</span><span class="nv">ssl</span><span class="o">-</span><span class="nv">protocol</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>                 <span class="nv">Sets</span> <span class="nv">the</span> <span class="nv">SSL</span> <span class="nv">protocol</span> <span class="ss">(</span><span class="nv">supported</span> <span class="nv">protocols</span>: <span class="s1">'</span><span class="s">SSLv3</span><span class="s1">'</span> <span class="ss">(</span><span class="nv">default</span><span class="ss">)</span>, <span class="s1">'</span><span class="s">SSLv2</span><span class="s1">'</span>, <span class="s1">'</span><span class="s">TLSv1</span><span class="s1">'</span>, <span class="s1">'</span><span class="s">any</span><span class="s1">'</span><span class="ss">)</span>
-  <span class="o">--</span><span class="nv">ssl</span><span class="o">-</span><span class="nv">certificates</span><span class="o">-</span><span class="nv">path</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>        <span class="nv">Sets</span> <span class="nv">the</span> <span class="nv">location</span> <span class="k">for</span> <span class="nv">custom</span> <span class="nv">CA</span> <span class="nv">certificates</span> <span class="ss">(</span><span class="k">if</span> <span class="nv">none</span> <span class="nv">set</span>, <span class="nv">uses</span> <span class="nv">system</span> <span class="nv">default</span><span class="ss">)</span>
-  <span class="o">--</span><span class="nv">webdriver</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>                    <span class="nv">Starts</span> <span class="nv">in</span> <span class="s1">'</span><span class="s">Remote WebDriver mode</span><span class="s1">'</span> <span class="ss">(</span><span class="nv">embedded</span> <span class="nv">GhostDriver</span><span class="ss">)</span>: <span class="s1">'</span><span class="s">[[&lt;IP&gt;:]&lt;PORT&gt;]</span><span class="s1">'</span> <span class="ss">(</span><span class="nv">default</span> <span class="s1">'</span><span class="s">127.0.0.1:8910</span><span class="s1">'</span><span class="ss">)</span>
-  <span class="o">--</span><span class="nv">webdriver</span><span class="o">-</span><span class="nv">logfile</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>            <span class="nv">File</span> <span class="nv">where</span> <span class="nv">to</span> <span class="nv">write</span> <span class="nv">the</span> <span class="nv">WebDriver</span><span class="s1">'</span><span class="s">s Log (default </span><span class="s1">'</span><span class="nv">none</span><span class="s1">'</span><span class="s">) (NOTE: needs </span><span class="s1">'</span><span class="o">--</span><span class="nv">webdriver</span><span class="s1">'</span><span class="s">)</span>
-  <span class="o">--</span><span class="nv">webdriver</span><span class="o">-</span><span class="nv">loglevel</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>           <span class="nv">WebDriver</span> <span class="nv">Logging</span> <span class="nv">Level</span>: <span class="ss">(</span><span class="nv">supported</span>: <span class="s1">'</span><span class="s">ERROR</span><span class="s1">'</span>, <span class="s1">'</span><span class="s">WARN</span><span class="s1">'</span>, <span class="s1">'</span><span class="s">INFO</span><span class="s1">'</span>, <span class="s1">'</span><span class="s">DEBUG</span><span class="s1">'</span><span class="ss">)</span> <span class="ss">(</span><span class="nv">default</span> <span class="s1">'</span><span class="s">INFO</span><span class="s1">'</span><span class="ss">)</span> <span class="ss">(</span><span class="nv">NOTE</span>: <span class="nv">needs</span> <span class="s1">'</span><span class="s">--webdriver</span><span class="s1">'</span><span class="ss">)</span>
-  <span class="o">--</span><span class="nv">webdriver</span><span class="o">-</span><span class="nv">selenium</span><span class="o">-</span><span class="nv">grid</span><span class="o">-</span><span class="nv">hub</span><span class="o">=&lt;</span><span class="nv">val</span><span class="o">&gt;</span>  <span class="nv">URL</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">Selenium</span> <span class="nv">Grid</span> <span class="nv">HUB</span>: <span class="s1">'</span><span class="s">URL_TO_HUB</span><span class="s1">'</span> <span class="ss">(</span><span class="nv">default</span> <span class="s1">'</span><span class="s">none</span><span class="s1">'</span><span class="ss">)</span> <span class="ss">(</span><span class="nv">NOTE</span>: <span class="nv">needs</span> <span class="s1">'</span><span class="s">--webdriver</span><span class="s1">'</span><span class="ss">)</span>
-  <span class="o">-</span><span class="nv">w</span>,<span class="o">--</span><span class="nv">wd</span>                              <span class="nv">Equivalent</span> <span class="nv">to</span> <span class="s1">'</span><span class="s">--webdriver</span><span class="s1">'</span> <span class="nv">option</span> <span class="nv">above</span>
-  <span class="o">-</span><span class="nv">h</span>,<span class="o">--</span><span class="nv">help</span>                            <span class="nv">Shows</span> <span class="nv">this</span> <span class="nv">message</span> <span class="nv">and</span> <span class="nv">quits</span>
-  <span class="o">-</span><span class="nv">v</span>,<span class="o">--</span><span class="nv">version</span>                         <span class="nv">Prints</span> <span class="nv">out</span> <span class="nv">PhantomJS</span> <span class="nv">version</span>
+<span class="nl">Options</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="c1">--cookies-file=&lt;val&gt;                 Sets the file name to store the persistent cookies</span>
+<span class="w">  </span><span class="c1">--config=&lt;val&gt;                       Specifies JSON-formatted configuration file</span>
+<span class="w">  </span><span class="c1">--debug=&lt;val&gt;                        Prints additional warning and debug message: 'true' or 'false' (default)</span>
+<span class="w">  </span><span class="c1">--disk-cache=&lt;val&gt;                   Enables disk cache: 'true' or 'false' (default)</span>
+<span class="w">  </span><span class="c1">--ignore-ssl-errors=&lt;val&gt;            Ignores SSL errors (expired/self-signed certificate errors): 'true' or 'false' (default)</span>
+<span class="w">  </span><span class="c1">--load-images=&lt;val&gt;                  Loads all inlined images: 'true' (default) or 'false'</span>
+<span class="w">  </span><span class="c1">--local-storage-path=&lt;val&gt;           Specifies the location for offline local storage</span>
+<span class="w">  </span><span class="c1">--local-storage-quota=&lt;val&gt;          Sets the maximum size of the offline local storage (in KB)</span>
+<span class="w">  </span><span class="c1">--local-to-remote-url-access=&lt;val&gt;   Allows local content to access remote URL: 'true' or 'false' (default)</span>
+<span class="w">  </span><span class="c1">--max-disk-cache-size=&lt;val&gt;          Limits the size of the disk cache (in KB)</span>
+<span class="w">  </span><span class="c1">--output-encoding=&lt;val&gt;              Sets the encoding for the terminal output, default is 'utf8'</span>
+<span class="w">  </span><span class="c1">--remote-debugger-port=&lt;val&gt;         Starts the script in a debug harness and listens on the specified port</span>
+<span class="w">  </span><span class="c1">--remote-debugger-autorun=&lt;val&gt;      Runs the script in the debugger immediately: 'true' or 'false' (default)</span>
+<span class="w">  </span><span class="c1">--proxy=&lt;val&gt;                        Sets the proxy server, e.g. '--proxy=http://proxy.company.com:8080'</span>
+<span class="w">  </span><span class="c1">--proxy-auth=&lt;val&gt;                   Provides authentication information for the proxy, e.g. ''-proxy-auth=username:password'</span>
+<span class="w">  </span><span class="c1">--proxy-type=&lt;val&gt;                   Specifies the proxy type, 'http' (default), 'none' (disable completely), or 'socks5'</span>
+<span class="w">  </span><span class="c1">--script-encoding=&lt;val&gt;              Sets the encoding used for the starting script, default is 'utf8'</span>
+<span class="w">  </span><span class="c1">--web-security=&lt;val&gt;                 Enables web security, 'true' (default) or 'false'</span>
+<span class="w">  </span><span class="c1">--ssl-protocol=&lt;val&gt;                 Sets the SSL protocol (supported protocols: 'SSLv3' (default), 'SSLv2', 'TLSv1', 'any')</span>
+<span class="w">  </span><span class="c1">--ssl-certificates-path=&lt;val&gt;        Sets the location for custom CA certificates (if none set, uses system default)</span>
+<span class="w">  </span><span class="c1">--webdriver=&lt;val&gt;                    Starts in 'Remote WebDriver mode' (embedded GhostDriver): '[[&lt;IP&gt;:]&lt;PORT&gt;]' (default '127.0.0.1:8910')</span>
+<span class="w">  </span><span class="c1">--webdriver-logfile=&lt;val&gt;            File where to write the WebDriver's Log (default 'none') (NOTE: needs '--webdriver')</span>
+<span class="w">  </span><span class="c1">--webdriver-loglevel=&lt;val&gt;           WebDriver Logging Level: (supported: 'ERROR', 'WARN', 'INFO', 'DEBUG') (default 'INFO') (NOTE: needs '--webdriver')</span>
+<span class="w">  </span><span class="c1">--webdriver-selenium-grid-hub=&lt;val&gt;  URL to the Selenium Grid HUB: 'URL_TO_HUB' (default 'none') (NOTE: needs '--webdriver')</span>
+<span class="w">  </span><span class="o">-</span><span class="n">w</span><span class="p">,</span><span class="c1">--wd                              Equivalent to '--webdriver' option above</span>
+<span class="w">  </span><span class="o">-</span><span class="n">h</span><span class="p">,</span><span class="c1">--help                            Shows this message and quits</span>
+<span class="w">  </span><span class="o">-</span><span class="n">v</span><span class="p">,</span><span class="c1">--version                         Prints out PhantomJS version</span>
 
-<span class="nv">Any</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">options</span> <span class="nv">that</span> <span class="nv">accept</span> <span class="nv">boolean</span> <span class="nv">values</span> <span class="ss">(</span><span class="s1">'</span><span class="s">true</span><span class="s1">'</span><span class="o">/</span><span class="s1">'</span><span class="s">false</span><span class="s1">'</span><span class="ss">)</span> <span class="nv">can</span> <span class="nv">also</span> <span class="nv">accept</span> <span class="s1">'</span><span class="s">yes</span><span class="s1">'</span><span class="o">/</span><span class="s1">'</span><span class="s">no</span><span class="s1">'</span>.
+<span class="ow">Any</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">options</span><span class="w"> </span><span class="n">that</span><span class="w"> </span><span class="n">accept</span><span class="w"> </span><span class="k">boolean</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">'true'</span><span class="o">/</span><span class="s1">'false'</span><span class="p">)</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">also</span><span class="w"> </span><span class="n">accept</span><span class="w"> </span><span class="s1">'yes'</span><span class="o">/</span><span class="s1">'no'</span><span class="p">.</span><span class="w"></span>
 
-<span class="nv">Without</span> <span class="nv">any</span> <span class="nv">argument</span>, <span class="nv">PhantomJS</span> <span class="nv">will</span> <span class="nv">launch</span> <span class="nv">in</span> <span class="nv">interactive</span> <span class="nv">mode</span> <span class="ss">(</span><span class="nv">REPL</span><span class="ss">)</span>.
+<span class="k">Without</span><span class="w"> </span><span class="ow">any</span><span class="w"> </span><span class="n">argument</span><span class="p">,</span><span class="w"> </span><span class="n">PhantomJS</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">launch</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">interactive</span><span class="w"> </span><span class="n">mode</span><span class="w"> </span><span class="p">(</span><span class="n">REPL</span><span class="p">).</span><span class="w"></span>
 
-<span class="nv">Documentation</span> <span class="nv">can</span> <span class="nv">be</span> <span class="nv">found</span> <span class="nv">at</span> <span class="nv">the</span> <span class="nv">web</span> <span class="nv">site</span>, <span class="nv">http</span>:<span class="o">//</span><span class="nv">phantomjs</span>.<span class="nv">org</span>.
-</pre></div>
+<span class="n">Documentation</span><span class="w"> </span><span class="n">can</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="k">found</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">web</span><span class="w"> </span><span class="n">site</span><span class="p">,</span><span class="w"> </span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">phantomjs</span><span class="p">.</span><span class="n">org</span><span class="p">.</span><span class="w"></span>
+</code></pre></div>
 
 
             

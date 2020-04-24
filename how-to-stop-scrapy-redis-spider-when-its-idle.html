@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Ace Fei" />
 
-        <meta name="description" content="scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。 但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在log末尾里可以看到如下内容： 2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min) 在scrapy-redis的README中得知: # Max idle time to prevent the spider from being closed when distributed crawling. # This only …
+        <meta name="description" content="scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。 但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在log末尾里可以看到如下内容： 2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min) 在scrapy-redis的README中得知: # Max idle time to prevent the spider from being closed when distributed crawling. # This only works if …
 " />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
@@ -15,12 +15,12 @@
 
 <meta property="og:title" content="How to stop scrapy-redis spider when it&#39;s idle "/>
 <meta property="og:url" content="https://acefei.github.io/how-to-stop-scrapy-redis-spider-when-its-idle.html" />
-<meta property="og:description" content="scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。 但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在log末尾里可以看到如下内容： 2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min) 在scrapy-redis的README中得知: # Max idle time to prevent the spider from being closed when distributed crawling. # This only …" />
+<meta property="og:description" content="scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。 但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在log末尾里可以看到如下内容： 2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min) 在scrapy-redis的README中得知: # Max idle time to prevent the spider from being closed when distributed crawling. # This only works if …" />
 <meta property="og:site_name" content="Acefei &#39;s One Piece" />
 <meta property="og:article:author" content="Ace Fei" />
 <meta property="og:article:published_time" content="2017-11-21T06:44:00+08:00" />
 <meta name="twitter:title" content="How to stop scrapy-redis spider when it&#39;s idle ">
-<meta name="twitter:description" content="scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。 但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在log末尾里可以看到如下内容： 2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min) 在scrapy-redis的README中得知: # Max idle time to prevent the spider from being closed when distributed crawling. # This only …">
+<meta name="twitter:description" content="scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。 但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在log末尾里可以看到如下内容： 2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min) 在scrapy-redis的README中得知: # Max idle time to prevent the spider from being closed when distributed crawling. # This only works if …">
 
         <title>How to stop scrapy-redis spider when it&#39;s idle  · Acefei &#39;s One Piece
 </title>
@@ -93,16 +93,16 @@
             
             <p>scrapy-redis是以redis为基础的组件替换了原本scrapy的部分功能，让它可以分布式运作。
 但是在使用的时候发现，它一旦待爬队列为空，spider不会自动结束，而是一直在等待redis push新的urls，在log末尾里可以看到如下内容：</p>
-<div class="highlight"><pre><span></span><span class="mi">2017</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">21</span> <span class="mi">08</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">10</span> <span class="p">[</span><span class="n">scrapy</span><span class="p">.</span><span class="n">extensions</span><span class="p">.</span><span class="n">logstats</span><span class="p">]</span> <span class="n">INFO</span><span class="p">:</span> <span class="n">Crawled</span> <span class="mi">1</span> <span class="n">pages</span> <span class="p">(</span><span class="k">at</span> <span class="mi">0</span> <span class="n">pages</span><span class="o">/</span><span class="k">min</span><span class="p">),</span> <span class="n">scraped</span> <span class="mi">0</span> <span class="n">items</span> <span class="p">(</span><span class="k">at</span> <span class="mi">0</span> <span class="n">items</span><span class="o">/</span><span class="k">min</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)</span>
+</code></pre></div>
 
 
 <p>在scrapy-redis的<a href="https://github.com/rmax/scrapy-redis">README</a>中得知:</p>
-<div class="highlight"><pre><span></span># <span class="nv">Max</span> <span class="nv">idle</span> <span class="nv">time</span> <span class="nv">to</span> <span class="nv">prevent</span> <span class="nv">the</span> <span class="nv">spider</span> <span class="nv">from</span> <span class="nv">being</span> <span class="nv">closed</span> <span class="nv">when</span> <span class="nv">distributed</span> <span class="nv">crawling</span>.
-# <span class="nv">This</span> <span class="nv">only</span> <span class="nv">works</span> <span class="k">if</span> <span class="nv">queue</span> <span class="nv">class</span> <span class="nv">is</span> <span class="nv">SpiderQueue</span> <span class="nv">or</span> <span class="nv">SpiderStack</span>,
-# <span class="nv">and</span> <span class="nv">may</span> <span class="nv">also</span> <span class="nv">block</span> <span class="nv">the</span> <span class="nv">same</span> <span class="nv">time</span> <span class="nv">when</span> <span class="nv">your</span> <span class="nv">spider</span> <span class="nv">start</span> <span class="nv">at</span> <span class="nv">the</span> <span class="nv">first</span> <span class="nv">time</span> <span class="ss">(</span><span class="nv">because</span> <span class="nv">the</span> <span class="nv">queue</span> <span class="nv">is</span> <span class="nv">empty</span><span class="ss">)</span>.
-<span class="nv">SCHEDULER_IDLE_BEFORE_CLOSE</span> <span class="o">=</span> <span class="mi">10</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err"># Max idle time to prevent the spider from being closed when distributed crawling.</span>
+<span class="err"># This only works if queue class is SpiderQueue or SpiderStack,</span>
+<span class="err"># and may also block the same time when your spider start at the first time (because the queue is empty).</span>
+<span class="err">SCHEDULER_IDLE_BEFORE_CLOSE = 10</span>
+</code></pre></div>
 
 
 <p>添加到settings后，发现spider还是不会退出，只是不停的报exception。 </p>
@@ -110,46 +110,46 @@
 <p>继续研读源码发现，这段log是scrapy extensions实现的，而且scrapy支持自定义extensions。</p>
 <p>照着logsstats实现一个<a href="https://github.com/acefei/ace-crawler/blob/master/prototypes/extensions.py">close spider extension</a></p>
 <p>并添加如下配置到settings中：</p>
-<div class="highlight"><pre><span></span><span class="n">EXTENSIONS</span> <span class="o">=</span> <span class="err">{</span>
-     <span class="s1">&#39;prototypes.extensions.CloseSpiderRedis&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-<span class="err">}</span><span class="p">,</span>
-<span class="n">CLOSE_SPIDER_AFTER_IDLE_TIMES</span> <span class="o">=</span> <span class="mi">5</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">EXTENSIONS = {</span>
+<span class="err">     &#39;prototypes.extensions.CloseSpiderRedis&#39;: 100,</span>
+<span class="err">},</span>
+<span class="err">CLOSE_SPIDER_AFTER_IDLE_TIMES = 5</span>
+</code></pre></div>
 
 
 <p><em>Done！</em></p>
-<div class="highlight"><pre><span></span><span class="mi">2017</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">21</span> <span class="mi">08</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">10</span> <span class="p">[</span><span class="n">scrapy</span><span class="p">.</span><span class="n">extensions</span><span class="p">.</span><span class="n">logstats</span><span class="p">]</span> <span class="n">INFO</span><span class="p">:</span> <span class="n">Crawled</span> <span class="mi">1</span> <span class="n">pages</span> <span class="p">(</span><span class="k">at</span> <span class="mi">0</span> <span class="n">pages</span><span class="o">/</span><span class="k">min</span><span class="p">),</span> <span class="n">scraped</span> <span class="mi">0</span> <span class="n">items</span> <span class="p">(</span><span class="k">at</span> <span class="mi">0</span> <span class="n">items</span><span class="o">/</span><span class="k">min</span><span class="p">)</span>
-<span class="mi">2017</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">21</span> <span class="mi">08</span><span class="p">:</span><span class="mi">16</span><span class="p">:</span><span class="mi">10</span> <span class="p">[</span><span class="n">scrapy</span><span class="p">.</span><span class="n">extensions</span><span class="p">.</span><span class="n">logstats</span><span class="p">]</span> <span class="n">INFO</span><span class="p">:</span> <span class="n">Crawled</span> <span class="mi">1</span> <span class="n">pages</span> <span class="p">(</span><span class="k">at</span> <span class="mi">0</span> <span class="n">pages</span><span class="o">/</span><span class="k">min</span><span class="p">),</span> <span class="n">scraped</span> <span class="mi">0</span> <span class="n">items</span> <span class="p">(</span><span class="k">at</span> <span class="mi">0</span> <span class="n">items</span><span class="o">/</span><span class="k">min</span><span class="p">)</span>
-<span class="mi">2017</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">21</span> <span class="mi">08</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mi">10</span> <span class="p">[</span><span class="n">scrapy</span><span class="p">.</span><span class="n">extensions</span><span class="p">.</span><span class="n">logstats</span><span class="p">]</span> <span class="n">INFO</span><span class="p">:</span> <span class="n">Crawled</span> <span class="mi">1</span> <span class="n">pages</span> <span class="p">(</span><span class="k">at</span> <span class="mi">0</span> <span class="n">pages</span><span class="o">/</span><span class="k">min</span><span class="p">),</span> <span class="n">scraped</span> <span class="mi">0</span> <span class="n">items</span> <span class="p">(</span><span class="k">at</span> <span class="mi">0</span> <span class="n">items</span><span class="o">/</span><span class="k">min</span><span class="p">)</span>
-<span class="mi">2017</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">21</span> <span class="mi">08</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mi">10</span> <span class="p">[</span><span class="n">scrapy</span><span class="p">.</span><span class="n">extensions</span><span class="p">.</span><span class="n">logstats</span><span class="p">]</span> <span class="n">INFO</span><span class="p">:</span> <span class="n">Crawled</span> <span class="mi">1</span> <span class="n">pages</span> <span class="p">(</span><span class="k">at</span> <span class="mi">0</span> <span class="n">pages</span><span class="o">/</span><span class="k">min</span><span class="p">),</span> <span class="n">scraped</span> <span class="mi">0</span> <span class="n">items</span> <span class="p">(</span><span class="k">at</span> <span class="mi">0</span> <span class="n">items</span><span class="o">/</span><span class="k">min</span><span class="p">)</span>
-<span class="mi">2017</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">21</span> <span class="mi">08</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">10</span> <span class="p">[</span><span class="n">scrapy</span><span class="p">.</span><span class="n">extensions</span><span class="p">.</span><span class="n">logstats</span><span class="p">]</span> <span class="n">INFO</span><span class="p">:</span> <span class="n">Crawled</span> <span class="mi">1</span> <span class="n">pages</span> <span class="p">(</span><span class="k">at</span> <span class="mi">0</span> <span class="n">pages</span><span class="o">/</span><span class="k">min</span><span class="p">),</span> <span class="n">scraped</span> <span class="mi">0</span> <span class="n">items</span> <span class="p">(</span><span class="k">at</span> <span class="mi">0</span> <span class="n">items</span><span class="o">/</span><span class="k">min</span><span class="p">)</span>
-<span class="mi">2017</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">21</span> <span class="mi">08</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">10</span> <span class="p">[</span><span class="n">scrapy</span><span class="p">.</span><span class="n">core</span><span class="p">.</span><span class="n">engine</span><span class="p">]</span> <span class="n">INFO</span><span class="p">:</span> <span class="n">Closing</span> <span class="n">spider</span> <span class="p">(</span><span class="k">close</span> <span class="n">spider</span> <span class="k">after</span> <span class="mi">5</span> <span class="n">times</span> <span class="k">of</span> <span class="n">spider</span> <span class="n">idle</span><span class="p">)</span>
-<span class="mi">2017</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">21</span> <span class="mi">08</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">10</span> <span class="p">[</span><span class="n">scrapy</span><span class="p">.</span><span class="n">statscollectors</span><span class="p">]</span> <span class="n">INFO</span><span class="p">:</span> <span class="n">Dumping</span> <span class="n">Scrapy</span> <span class="n">stats</span><span class="p">:</span>
-<span class="err">{</span><span class="s1">&#39;downloader/request_bytes&#39;</span><span class="p">:</span> <span class="mi">493</span><span class="p">,</span>
- <span class="s1">&#39;downloader/request_count&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
- <span class="s1">&#39;downloader/request_method_count/GET&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
- <span class="s1">&#39;downloader/response_bytes&#39;</span><span class="p">:</span> <span class="mi">23397</span><span class="p">,</span>
- <span class="s1">&#39;downloader/response_count&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
- <span class="s1">&#39;downloader/response_status_count/200&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
- <span class="s1">&#39;downloader/response_status_count/302&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
- <span class="s1">&#39;finish_reason&#39;</span><span class="p">:</span> <span class="s1">&#39;close spider after 5 times of spider idle&#39;</span><span class="p">,</span>
- <span class="s1">&#39;finish_time&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">770725</span><span class="p">),</span>
- <span class="s1">&#39;log_count/DEBUG&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
- <span class="s1">&#39;log_count/INFO&#39;</span><span class="p">:</span> <span class="mi">14</span><span class="p">,</span>
- <span class="s1">&#39;memusage/max&#39;</span><span class="p">:</span> <span class="mi">936964096</span><span class="p">,</span>
- <span class="s1">&#39;memusage/startup&#39;</span><span class="p">:</span> <span class="mi">936964096</span><span class="p">,</span>
- <span class="s1">&#39;response_received_count&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
- <span class="s1">&#39;scheduler/dequeued/redis&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
- <span class="s1">&#39;scheduler/enqueued/redis&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
- <span class="s1">&#39;start_time&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2017</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">735722</span><span class="p">)</span><span class="err">}</span>
-<span class="mi">2017</span><span class="o">-</span><span class="mi">11</span><span class="o">-</span><span class="mi">21</span> <span class="mi">08</span><span class="p">:</span><span class="mi">19</span><span class="p">:</span><span class="mi">10</span> <span class="p">[</span><span class="n">scrapy</span><span class="p">.</span><span class="n">core</span><span class="p">.</span><span class="n">engine</span><span class="p">]</span> <span class="n">INFO</span><span class="p">:</span> <span class="n">Spider</span> <span class="n">closed</span> <span class="p">(</span><span class="k">close</span> <span class="n">spider</span> <span class="k">after</span> <span class="mi">5</span> <span class="n">times</span> <span class="k">of</span> <span class="n">spider</span> <span class="n">idle</span><span class="p">)</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">2017-11-21 08:15:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)</span>
+<span class="err">2017-11-21 08:16:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)</span>
+<span class="err">2017-11-21 08:17:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)</span>
+<span class="err">2017-11-21 08:18:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)</span>
+<span class="err">2017-11-21 08:19:10 [scrapy.extensions.logstats] INFO: Crawled 1 pages (at 0 pages/min), scraped 0 items (at 0 items/min)</span>
+<span class="err">2017-11-21 08:19:10 [scrapy.core.engine] INFO: Closing spider (close spider after 5 times of spider idle)</span>
+<span class="err">2017-11-21 08:19:10 [scrapy.statscollectors] INFO: Dumping Scrapy stats:</span>
+<span class="err">{&#39;downloader/request_bytes&#39;: 493,</span>
+<span class="err"> &#39;downloader/request_count&#39;: 2,</span>
+<span class="err"> &#39;downloader/request_method_count/GET&#39;: 2,</span>
+<span class="err"> &#39;downloader/response_bytes&#39;: 23397,</span>
+<span class="err"> &#39;downloader/response_count&#39;: 2,</span>
+<span class="err"> &#39;downloader/response_status_count/200&#39;: 1,</span>
+<span class="err"> &#39;downloader/response_status_count/302&#39;: 1,</span>
+<span class="err"> &#39;finish_reason&#39;: &#39;close spider after 5 times of spider idle&#39;,</span>
+<span class="err"> &#39;finish_time&#39;: datetime.datetime(2017, 11, 21, 8, 19, 10, 770725),</span>
+<span class="err"> &#39;log_count/DEBUG&#39;: 6,</span>
+<span class="err"> &#39;log_count/INFO&#39;: 14,</span>
+<span class="err"> &#39;memusage/max&#39;: 936964096,</span>
+<span class="err"> &#39;memusage/startup&#39;: 936964096,</span>
+<span class="err"> &#39;response_received_count&#39;: 1,</span>
+<span class="err"> &#39;scheduler/dequeued/redis&#39;: 2,</span>
+<span class="err"> &#39;scheduler/enqueued/redis&#39;: 2,</span>
+<span class="err"> &#39;start_time&#39;: datetime.datetime(2017, 11, 21, 8, 13, 10, 735722)}</span>
+<span class="err">2017-11-21 08:19:10 [scrapy.core.engine] INFO: Spider closed (close spider after 5 times of spider idle)</span>
+</code></pre></div>
 
 
 <p>最后要注意，默认scrapy-redis退出后，会清掉requests/dupefilter的内容，如果你想保留配置，请务必在settings中加上：</p>
-<div class="highlight"><pre><span></span># <span class="nv">Don</span><span class="s1">&#39;</span><span class="s">t cleanup redis queues, allows to pause/resume crawls.</span>
-<span class="nv">SCHEDULER_PERSIST</span> <span class="o">=</span> <span class="nv">True</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err"># Don&#39;t cleanup redis queues, allows to pause/resume crawls.</span>
+<span class="err">SCHEDULER_PERSIST = True</span>
+</code></pre></div>
 
 
             

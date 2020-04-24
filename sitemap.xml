@@ -5,29 +5,36 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://acefei.github.io/</loc>
-<lastmod>2019-11-08T09:55:55-00:00</lastmod>
+<lastmod>2020-04-24T09:02:23-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://acefei.github.io/archives.html</loc>
-<lastmod>2019-11-08T09:55:55-00:00</lastmod>
+<lastmod>2020-04-24T09:02:23-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://acefei.github.io/tags.html</loc>
-<lastmod>2019-11-08T09:55:55-00:00</lastmod>
+<lastmod>2020-04-24T09:02:23-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://acefei.github.io/categories.html</loc>
-<lastmod>2019-11-08T09:55:55-00:00</lastmod>
+<lastmod>2020-04-24T09:02:23-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://acefei.github.io/multiple-compiling-when-running-npm-start-on-create-react-app-cra.html</loc>
+<lastmod>2020-04-24T16:59:00+08:00</lastmod>
+<changefreq>weekly</changefreq>
 <priority>0.5</priority>
 </url>
 

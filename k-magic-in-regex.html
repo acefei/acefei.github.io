@@ -104,19 +104,19 @@
             
 <p>First of all, Let us see a question, how to get <code>123 789</code> from the string <code>abc: 123 def 456 ghi: 789</code> by shell one liner.</p>
 <p>The elegant way I can figure out is to use <strong>lookbehind assertion</strong> <code>(?&lt;=...)</code>.</p>
-<div class="highlight"><pre><span></span><span class="err">$</span><span class="n">echo</span> <span class="ss">"abc: 123 def 456 ghi: 789"</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">Po</span> <span class="s1">'(?&lt;=:\s)\d+'</span>
-<span class="mi">123</span>
-<span class="mi">789</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">$echo "abc: 123 def 456 ghi: 789" | grep -Po '(?&lt;=:\s)\d+'</span>
+<span class="err">123</span>
+<span class="err">789</span>
+</code></pre></div>
 <p>However, the string is changed to <code>abc: 123 def 456 ghi:  789</code> with multiple spaces after <code>:</code>,  <strong>lookbehind assertion</strong> won't work in this case, as it only supports fixed length pattern.</p>
-<div class="highlight"><pre><span></span><span class="err">$</span><span class="n">echo</span> <span class="ss">"abc: 123 def 456 ghi: 789"</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">Po</span> <span class="s1">'(?&lt;=:\s+)\d+'</span>
-<span class="n">grep</span><span class="p">:</span> <span class="n">lookbehind</span> <span class="k">assertion</span> <span class="k">is</span> <span class="k">not</span> <span class="n">fixed</span> <span class="k">length</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">$echo "abc: 123 def 456 ghi: 789" | grep -Po '(?&lt;=:\s+)\d+'</span>
+<span class="c">grep: lookbehind assertion is not fixed length</span>
+</code></pre></div>
 <p>Now we just need to a small change, to use <code>\K</code> instead of <code>(?&lt;=...)</code></p>
-<div class="highlight"><pre><span></span><span class="err">$</span><span class="n">echo</span> <span class="ss">"abc: 123 def 456 ghi: 789"</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">Po</span> <span class="s1">':\s*\K\d+'</span>
-<span class="mi">123</span>
-<span class="mi">789</span>
-</pre></div>
+<div class="highlight"><pre><span></span><code><span class="err">$echo "abc: 123 def 456 ghi: 789" | grep -Po ':\s*\K\d+'</span>
+<span class="err">123</span>
+<span class="err">789</span>
+</code></pre></div>
 <h3 id="further-reading">Further reading<a class="headerlink" href="#further-reading" title="Permanent link">¶</a></h3>
 <p><a href="https://stackoverflow.com/questions/28842979/understanding-g-and-k-in-regex">Understanding \G and \K in regex</a></p>
 
