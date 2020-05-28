@@ -1,5 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei 's One Piece - DevOps</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/devops.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2019-07-23T23:17:00+08:00</updated><entry><title>Create user with root privilege for storage server</title><link href="https://acefei.github.io/create-user-with-root-privilege-for-storage-server.html" rel="alternate"></link><published>2019-07-23T23:17:00+08:00</published><updated>2019-07-23T23:17:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2019-07-23:/create-user-with-root-privilege-for-storage-server.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Acefei 's One Piece - DevOps</title><link href="https://acefei.github.io/" rel="alternate"></link><link href="https://acefei.github.io/feeds/devops.atom.xml" rel="self"></link><id>https://acefei.github.io/</id><updated>2020-05-28T06:05:00+08:00</updated><entry><title>Deploy ARM template with Ansible</title><link href="https://acefei.github.io/deploy-arm-template-with-ansible.html" rel="alternate"></link><published>2020-05-28T06:05:00+08:00</published><updated>2020-05-28T06:05:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2020-05-28:/deploy-arm-template-with-ansible.html</id><summary type="html">
+&lt;h1 id="deploy-arm-template-with-ansible"&gt;Deploy ARM template with Ansible&lt;a class="headerlink" href="#deploy-arm-template-with-ansible" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="requirements"&gt;Requirements&lt;a class="headerlink" href="#requirements" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Create a docker image with the Dockerfile:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;FROM&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;microsoft&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;azure&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;cli&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;RUN&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pip&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;--upgrade pip &amp;amp;&amp;amp; pip install -U -I ansible[azure]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="create-credentials-for-ansible"&gt;Create Credentials for Ansible&lt;a class="headerlink" href="#create-credentials-for-ansible" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Run the following within docker container&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;login&lt;/span&gt; &lt;span class="n"&gt;azure&lt;/span&gt;
+&lt;span class="n"&gt;az&lt;/span&gt; &lt;span class="n"&gt;login&lt;/span&gt;
+
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;Subscriptions&lt;/span&gt; &lt;span class="n"&gt;associated&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;account&lt;/span&gt;
+&lt;span class="n"&gt;az …&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">
+&lt;h1 id="deploy-arm-template-with-ansible"&gt;Deploy ARM template with Ansible&lt;a class="headerlink" href="#deploy-arm-template-with-ansible" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id="requirements"&gt;Requirements&lt;a class="headerlink" href="#requirements" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Create a docker image with the Dockerfile:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;FROM&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;microsoft&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;azure&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;cli&lt;/span&gt;&lt;span class="w"&gt;&lt;/span&gt;
+&lt;span class="n"&gt;RUN&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;pip&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;--upgrade pip &amp;amp;&amp;amp; pip install -U -I ansible[azure]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="create-credentials-for-ansible"&gt;Create Credentials for Ansible&lt;a class="headerlink" href="#create-credentials-for-ansible" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Run the following within docker container&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;login&lt;/span&gt; &lt;span class="n"&gt;azure&lt;/span&gt;
+&lt;span class="n"&gt;az&lt;/span&gt; &lt;span class="n"&gt;login&lt;/span&gt;
+
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;Subscriptions&lt;/span&gt; &lt;span class="n"&gt;associated&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;account&lt;/span&gt;
+&lt;span class="n"&gt;az&lt;/span&gt; &lt;span class="n"&gt;account&lt;/span&gt; &lt;span class="n"&gt;list&lt;/span&gt;
+
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="n"&gt;should&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;have&lt;/span&gt; &lt;span class="k"&gt;more&lt;/span&gt; &lt;span class="k"&gt;than&lt;/span&gt; &lt;span class="n"&gt;one&lt;/span&gt; &lt;span class="n"&gt;Subscription&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;you&lt;/span&gt; &lt;span class="n"&gt;can&lt;/span&gt; &lt;span class="n"&gt;specify&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;Subscription&lt;/span&gt; &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;id&lt;/span&gt; &lt;span class="n"&gt;field&lt;/span&gt; &lt;span class="n"&gt;being&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;subscriptionId&lt;/span&gt; &lt;span class="n"&gt;field&lt;/span&gt; &lt;span class="n"&gt;referenced&lt;/span&gt; &lt;span class="n"&gt;above&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
+&lt;span class="n"&gt;az&lt;/span&gt; &lt;span class="n"&gt;account&lt;/span&gt; &lt;span class="k"&gt;set&lt;/span&gt; &lt;span class="c1"&gt;--subscription=&amp;lt;subscriptionId&amp;gt;&lt;/span&gt;
+
+&lt;span class="o"&gt;#&lt;/span&gt; &lt;span class="k"&gt;create&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;Service&lt;/span&gt; &lt;span class="n"&gt;Principal&lt;/span&gt; &lt;span class="n"&gt;which&lt;/span&gt; &lt;span class="n"&gt;will&lt;/span&gt; &lt;span class="n"&gt;have&lt;/span&gt; &lt;span class="n"&gt;permissions&lt;/span&gt; &lt;span class="k"&gt;to&lt;/span&gt; &lt;span class="n"&gt;manage&lt;/span&gt; &lt;span class="n"&gt;resources&lt;/span&gt;
+&lt;span class="n"&gt;az&lt;/span&gt; &lt;span class="n"&gt;ad&lt;/span&gt; &lt;span class="n"&gt;sp&lt;/span&gt; &lt;span class="k"&gt;create&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;rbac&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="n"&gt;CloudOps&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;After stepping through the above commands you will get the result:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;{&lt;/span&gt;
+&lt;span class="err"&gt;  "appId": "00000000-0000-0000-0000-000000000000",&lt;/span&gt;
+&lt;span class="err"&gt;  "displayName": "CloudOps",&lt;/span&gt;
+&lt;span class="err"&gt;  "name": "http://CloudOps",&lt;/span&gt;
+&lt;span class="err"&gt;  "password": ********************,&lt;/span&gt;
+&lt;span class="err"&gt;  "tenant": "00000000-0000-0000-0000-000000000000"&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;To pass service principal credentials via the environment, define the following variables:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;export AZURE_SUBSCRIPTION_ID=&amp;lt;your-subscription_id&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;export AZURE_CLIENT_ID=&amp;lt;security-principal-appid&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;export AZURE_SECRET=&amp;lt;security-principal-password&amp;gt;&lt;/span&gt;
+&lt;span class="err"&gt;export AZURE_TENANT=&amp;lt;security-principal-tenant&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you forget the password, reset the service principal credentials.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="err"&gt;az ad sp credential reset --name &amp;lt;appId&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id="reference"&gt;Reference&lt;a class="headerlink" href="#reference" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://docs.ansible.com/ansible/latest/scenario_guides/guide_azure.html"&gt;Microsoft Azure Guide&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.microsoft.com/en-us/azure/developer/ansible/install-on-linux-vm"&gt;Quickstart: Install Ansible on Linux virtual machines in Azure&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><category term="DevOps"></category><category term="Azure"></category><category term="ARM template"></category><category term="Ansible"></category></entry><entry><title>Create user with root privilege for storage server</title><link href="https://acefei.github.io/create-user-with-root-privilege-for-storage-server.html" rel="alternate"></link><published>2019-07-23T23:17:00+08:00</published><updated>2019-07-23T23:17:00+08:00</updated><author><name>Ace Fei</name></author><id>tag:acefei.github.io,2019-07-23:/create-user-with-root-privilege-for-storage-server.html</id><summary type="html">
 &lt;h3 id="qnap"&gt;Qnap&lt;a class="headerlink" href="#qnap" title="Permanent link"&gt;¶&lt;/a&gt;&lt;/h3&gt;
 &lt;ol&gt;
 &lt;li&gt;
