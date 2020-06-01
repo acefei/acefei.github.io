@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="author" content="Ace Fei" />
 
-        <meta name="description" content="Deploy ARM template with Ansible¶ Requirements¶ Create a docker image with the Dockerfile: FROM microsoft/azure-cli RUN pip install --upgrade pip &amp;&amp; pip install -U -I ansible[azure] Create Credentials for Ansible¶ Run the following within docker container # login azure az login # list the Subscriptions associated with the account az …
+        <meta name="description" content="Deploy ARM template with Ansible¶ Requirements¶ Create a docker image with the Dockerfile: FROM mcr.microsoft.com/azure-cli RUN pip install --upgrade pip &amp;&amp; pip install ansible[azure] Create Credentials for Ansible¶ Run the following within docker container # login azure az login # list the Subscriptions associated with the account az …
 " />
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
@@ -15,12 +15,12 @@
 
 <meta property="og:title" content="Deploy ARM template with Ansible "/>
 <meta property="og:url" content="https://acefei.github.io/deploy-arm-template-with-ansible.html" />
-<meta property="og:description" content="Deploy ARM template with Ansible¶ Requirements¶ Create a docker image with the Dockerfile: FROM microsoft/azure-cli RUN pip install --upgrade pip &amp;&amp; pip install -U -I ansible[azure] Create Credentials for Ansible¶ Run the following within docker container # login azure az login # list the Subscriptions associated with the account az …" />
+<meta property="og:description" content="Deploy ARM template with Ansible¶ Requirements¶ Create a docker image with the Dockerfile: FROM mcr.microsoft.com/azure-cli RUN pip install --upgrade pip &amp;&amp; pip install ansible[azure] Create Credentials for Ansible¶ Run the following within docker container # login azure az login # list the Subscriptions associated with the account az …" />
 <meta property="og:site_name" content="Acefei &#39;s One Piece" />
 <meta property="og:article:author" content="Ace Fei" />
 <meta property="og:article:published_time" content="2020-05-28T06:05:00+08:00" />
 <meta name="twitter:title" content="Deploy ARM template with Ansible ">
-<meta name="twitter:description" content="Deploy ARM template with Ansible¶ Requirements¶ Create a docker image with the Dockerfile: FROM microsoft/azure-cli RUN pip install --upgrade pip &amp;&amp; pip install -U -I ansible[azure] Create Credentials for Ansible¶ Run the following within docker container # login azure az login # list the Subscriptions associated with the account az …">
+<meta name="twitter:description" content="Deploy ARM template with Ansible¶ Requirements¶ Create a docker image with the Dockerfile: FROM mcr.microsoft.com/azure-cli RUN pip install --upgrade pip &amp;&amp; pip install ansible[azure] Create Credentials for Ansible¶ Run the following within docker container # login azure az login # list the Subscriptions associated with the account az …">
 
         <title>Deploy ARM template with Ansible  · Acefei &#39;s One Piece
 </title>
@@ -110,8 +110,8 @@
 <h1 id="deploy-arm-template-with-ansible">Deploy ARM template with Ansible<a class="headerlink" href="#deploy-arm-template-with-ansible" title="Permanent link">¶</a></h1>
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Permanent link">¶</a></h2>
 <p>Create a docker image with the Dockerfile:</p>
-<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="n">microsoft</span><span class="o">/</span><span class="n">azure</span><span class="o">-</span><span class="n">cli</span><span class="w"></span>
-<span class="n">RUN</span><span class="w"> </span><span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="c1">--upgrade pip &amp;&amp; pip install -U -I ansible[azure]</span>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span><span class="w"> </span><span class="n">mcr</span><span class="p">.</span><span class="n">microsoft</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">azure</span><span class="o">-</span><span class="n">cli</span><span class="w"></span>
+<span class="n">RUN</span><span class="w"> </span><span class="n">pip</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="c1">--upgrade pip &amp;&amp; pip install ansible[azure]</span>
 </code></pre></div>
 <h2 id="create-credentials-for-ansible">Create Credentials for Ansible<a class="headerlink" href="#create-credentials-for-ansible" title="Permanent link">¶</a></h2>
 <p>Run the following within docker container</p>
