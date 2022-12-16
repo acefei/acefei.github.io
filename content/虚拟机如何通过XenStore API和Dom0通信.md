@@ -6,8 +6,16 @@ Authors: Ace Fei
 
 
 [TOC]
+## 什么是Xenstore
+xenstore是Xen虚拟化环境的重要组成部分，用于管理和协调在Xen主机上运行的VM的操作。　它有一个Key-Vaule数据库，用于存储关于在Xen主机上运行的虚拟机(VM)实例以及主机本身的各种信息。
 
-## 什么是XenStore
+在Xen中，xenstore被实现为内核模块，并通过虚拟文件系统xenfs访问，该文件系统挂载在/proc/xen上。 xenstore用于存储关于在主机上运行的VM的各种信息，例如VM的配置、VM的状态以及可供VM使用的资源。
+
+xenstore可以由主机和客户端VM访问，并用于在主机和客户端之间传递信息。例如，主机可以使用xenstore将可用资源的信息传递给客户端，而客户端可以使用xenstore将其资源需求传递给主机。
+
+
+
+## 什么是XenStore API
 XenStore 是一种用于在 Xen 虚拟化环境中存储和共享数据的系统。它使用一种类似于文件系统的接口，可以让虚拟机和 Domain 0 内核通信。
 
 XenStore API 包含以下函数：
@@ -24,6 +32,21 @@ XenStore API 包含以下函数：
     xs_set_permissions()：设置对 XenStore 条目的访问权限。
 ```
 这些函数可以用来在虚拟机和 Domain 0 之间共享数据，如虚拟机的网络地址、内存配置等。
+
+## vm-data名称空间
+在创建虚拟机时，XenStore会为虚拟机生成一个vm-data名称空间。
+
+这个过程的具体步骤如下：
+
+1. 在创建虚拟机时，Xen虚拟化系统会在虚拟机内存中生成一个XenStore数据库。
+
+2. 在这个数据库中，Xen会为虚拟机生成一个vm-data名称空间。
+
+3. 在vm-data名称空间中，Xen会储存虚拟机的一些基本信息，包括虚拟机的网络设置、存储设备信息等。
+
+4. 在虚拟机启动时，Xen会读取vm-data名称空间中的信息，并将这些信息加载到虚拟机中。
+
+5. 虚拟机可以使用XenStore API来访问vm-data名称空间中的信息，并通过XenBus总线与宿主机进行数据交换。
 
 ## 虚拟机和Dom0间通信
 虚拟机可以通过使用 `xs_write()` 函数向 XenStore 中写入数据来告诉 Domain 0 虚拟机的网络信息。
